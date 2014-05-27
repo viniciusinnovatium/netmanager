@@ -4,35 +4,31 @@
 
 <web-app>
 	<display-name>Netmanager Web Application</display-name>
+	
+	
 	<servlet>
-		<servlet-name>NetmanagerServlet</servlet-name>
-		<display-name>NetmanagerServlet</display-name>
-		<description></description>
-		<servlet-class>com.disclinc.netmanager.servlet.NetmanagerServlet</servlet-class>
+		<servlet-name>CLSServlet</servlet-name>
+		<display-name>CLSServlet</display-name>
+		<description>Classes do Caché convertidas (*.cls)</description>
+		<servlet-class>com.disclinc.netmanager.servlet.CLSServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>MenuServlet</servlet-name>
-		<display-name>MenuServlet</display-name>
+		<servlet-name>WWWServlet</servlet-name>
+		<display-name>WWWServlet</display-name>
 		<description></description>
-		<servlet-class>com.disclinc.netmanager.servlet.MenuServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>PacienteServlet</servlet-name>
-		<display-name>PacienteServlet</display-name>
-		<description></description>
-		<servlet-class>com.disclinc.netmanager.servlet.PacienteServlet</servlet-class>
+		<servlet-class>com.disclinc.netmanager.servlet.WWWServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>NetmanagerServlet</servlet-name>
+		<servlet-name>CLSServlet</servlet-name>
+		<url-pattern>*.cls</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WWWServlet</servlet-name>
+		<url-pattern>/www.cls</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>WWWServlet</servlet-name>
 		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>MenuServlet</servlet-name>
-		<url-pattern>/menu</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>PacienteServlet</servlet-name>
-		<url-pattern>/paciente</url-pattern>
 	</servlet-mapping>
 </web-app>
