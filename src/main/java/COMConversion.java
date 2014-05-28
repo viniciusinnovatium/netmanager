@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC COMConversion
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:30
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:14:12
 //*****************************************************************************
 
 import mLibrary.*;
@@ -25,6 +25,7 @@ import include.COMConst;
 import include.$occInclude;
 import include.$occConstant;
 import include.$occStatus;
+import include.$occErrors;
 
 //<< COMConversion
 public class COMConversion extends mClass {
@@ -349,7 +350,7 @@ public class COMConversion extends mClass {
         //<< kill err
         m$.var("err").kill();
         //<< do DecomposeStatus^%apiOBJ(tempSC,.err,"-d")
-        m$.Cmd.Do("%apiOBJ.DecomposeStatus",tempSC.get(),m$.var("err"),"-d");
+        m$.Cmd.Do("$apiOBJ.DecomposeStatus",tempSC.get(),m$.var("err"),"-d");
         //<< for loop=1:1:err write err(loop),!
         mVar loop = m$.var("loop");
         for (loop.set(1);(mOp.LessOrEqual(loop.get(),m$.var("err").get()));loop.set(mOp.Add(loop.get(),1))) {
@@ -376,7 +377,7 @@ public class COMConversion extends mClass {
         //<< kill err
         m$.var("err").kill();
         //<< do DecomposeStatus^%apiOBJ(tempSC,.err,"-d")
-        m$.Cmd.Do("%apiOBJ.DecomposeStatus",tempSC.get(),m$.var("err"),"-d");
+        m$.Cmd.Do("$apiOBJ.DecomposeStatus",tempSC.get(),m$.var("err"),"-d");
         //<< for loop=1:1:err write err(loop),!
         mVar loop = m$.var("loop");
         for (loop.set(1);(mOp.LessOrEqual(loop.get(),m$.var("err").get()));loop.set(mOp.Add(loop.get(),1))) {
@@ -414,7 +415,7 @@ public class COMConversion extends mClass {
       //<< kill err
       m$.var("err").kill();
       //<< do DecomposeStatus^%apiOBJ(sc,.err,"-d")
-      m$.Cmd.Do("%apiOBJ.DecomposeStatus",sc.get(),m$.var("err"),"-d");
+      m$.Cmd.Do("$apiOBJ.DecomposeStatus",sc.get(),m$.var("err"),"-d");
       //<< for loop=1:1:err write err(loop),!
       mVar loop = m$.var("loop");
       for (loop.set(1);(mOp.LessOrEqual(loop.get(),m$.var("err").get()));loop.set(mOp.Add(loop.get(),1))) {

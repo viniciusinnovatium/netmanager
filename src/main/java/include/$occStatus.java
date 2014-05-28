@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - INC include.$occStatus
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 14:45:37
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:10:51
 //*****************************************************************************
 
 package include;
@@ -42,6 +42,22 @@ public class $occStatus extends mInclude {
   public static Object $$$GETERRORCODE(mContext m$, Object ... _p) {
     mVar p$sc = m$.varRef("p$sc",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
     return (m$.Fnc.$listget(m$.Fnc.$listget(m$.Fnc.$extract(p$sc.get(),3)),1,0));
+  }
+
+  //<< 
+  //<< /// Create an error %Status code
+  //<< /// %arg1 - Error code, total list of codes in %occErrors.inc
+  //<< /// %arg2 - Optional additional information
+  //<< #def1arg ERROR(%args)          $System.Status.Error(%args)
+  public static Object $$$ERROR(mContext m$, Object ... _p) {
+    mVar p$args = m$.varRef("p$args",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
+    return (m$.getSystem().getStatus().Error(p$args.get()));
+  }
+
+  //<< #define  ERR(%code)            $System.Status.Error(%args)
+  public static Object $$$ERR(mContext m$, Object ... _p) {
+    mVar p$code = m$.varRef("p$code",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
+    return (m$.getSystem().getStatus().Error(m$.var("%args").get()));
   }
 
 }

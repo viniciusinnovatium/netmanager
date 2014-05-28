@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWERROR
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:33
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:14:15
 //*****************************************************************************
 
 import mLibrary.*;
@@ -75,7 +75,7 @@ public class WWWERROR extends mClass {
           if (mOp.NotEqual(include.WWWConst.$$$WWW012ExecuteErrorTrapping(m$,m$.Fnc.$get(m$.var("^WWW012",0,m$.var("YM").get(),1))),"")) {
             //<< . IF $$$WWW012ErrorTrappingWithVariable(^WWW012(0,YM,1))=$$$YES DO BACK^%ETN  ;ERRORTRAP CACHE
             if (mOp.Equal(include.WWWConst.$$$WWW012ErrorTrappingWithVariable(m$,m$.var("^WWW012",0,m$.var("YM").get(),1)),include.COMSYS.$$$YES(m$))) {
-              m$.Cmd.Do("%ETN.BACK");
+              m$.Cmd.Do("$ETN.BACK");
             }
             //<< . XECUTE $$$WWW012ExecuteErrorTrapping(^WWW012(0,YM,1))
             m$.Cmd.Xecute(include.WWWConst.$$$WWW012ExecuteErrorTrapping(m$,m$.var("^WWW012",0,m$.var("YM").get(),1)));
@@ -172,7 +172,7 @@ public class WWWERROR extends mClass {
     if (mOp.NotEqual(m$.Fnc.$get(m$.var("YM")),"")) {
       if (mOp.NotEqual(m$.Fnc.$get(m$.var("Y")),"")) {
         if (mOp.Equal(include.WWWConst.$$$WWW012ErrorTrappingWithVariable(m$,m$.Fnc.$get(m$.var("^WWW012",0,m$.var("YM").get(),1))),include.COMSYS.$$$YES(m$))) {
-          m$.Cmd.Do("%ETN.BACK");
+          m$.Cmd.Do("$ETN.BACK");
         }
       }
     }
@@ -215,7 +215,7 @@ public class WWWERROR extends mClass {
     if (mOp.NotEqual(m$.Fnc.$get(m$.var("YM")),"")) {
       if (mOp.NotEqual(m$.Fnc.$get(m$.var("Y")),"")) {
         if (mOp.Equal(include.WWWConst.$$$WWW012ErrorTrappingWithVariable(m$,m$.Fnc.$get(m$.var("^WWW012",0,m$.var("YM").get(),1))),include.COMSYS.$$$YES(m$))) {
-          m$.Cmd.Do("%ETN.BACK");
+          m$.Cmd.Do("$ETN.BACK");
         }
       }
     }
@@ -248,7 +248,7 @@ public class WWWERROR extends mClass {
     if (mOp.NotEqual(m$.Fnc.$get(m$.var("YM")),"")) {
       if (mOp.NotEqual(m$.Fnc.$get(m$.var("Y")),"")) {
         if (mOp.Equal(include.WWWConst.$$$WWW012ErrorTrappingWithVariable(m$,m$.Fnc.$get(m$.var("^WWW012",0,m$.var("YM").get(),1))),include.COMSYS.$$$YES(m$))) {
-          m$.Cmd.Do("%ETN.BACK");
+          m$.Cmd.Do("$ETN.BACK");
         }
       }
     }

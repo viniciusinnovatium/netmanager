@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC COMUtilForm
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:26
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:05
 //*****************************************************************************
 
 import mLibrary.*;
@@ -539,7 +539,7 @@ public class COMUtilForm extends mClass {
       //<< set strNamespace = $zutil(5)
       strNamespace.set(m$.Fnc.$zutil(5));
       //<< do $zutil(5,pstrToNameSp)
-      m$.Cmd.Do("$zutil",5,pstrToNameSp.get());
+      m$.Fnc.$zutil(5,pstrToNameSp.get());
       //<< for loop=1:1:$length(strClassList,",") {
       for (loop.set(1);(mOp.LessOrEqual(loop.get(),m$.Fnc.$length(strClassList.get(),",")));loop.set(mOp.Add(loop.get(),1))) {
         //<< set strGlobal = $piece(strClassList,",",loop)
@@ -560,7 +560,7 @@ public class COMUtilForm extends mClass {
       }
       //<< }
       //<< do $zutil(5,strNamespace)
-      m$.Cmd.Do("$zutil",5,strNamespace.get());
+      m$.Fnc.$zutil(5,strNamespace.get());
     }
     //<< }
     //<< quit

@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORMC1
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:06
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:48
 //*****************************************************************************
 
 import mLibrary.*;
@@ -173,7 +173,7 @@ public class WWWFORMC1 extends mClass {
           //<< . IF $EXTRACT($PIECE(YA,Y,19))="@" NEW YBACK SET YBACK = ""     ;OHNE YBACK ;without YBACK   ; $$$WWW124TargetFrameName()
           if (mOp.Equal(m$.Fnc.$extract(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),19)),"@")) {
             mVar YBACK = m$.var("YBACK");
-            m$.newVar(YBACK);
+            m$.newVarBlock(1,YBACK);
             YBACK.set("");
           }
           //<< . ;
@@ -221,7 +221,7 @@ public class WWWFORMC1 extends mClass {
           if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),11),"")) {
             do {
               //<< . . NEW YQ
-              m$.newVar(YQ);
+              m$.newVarBlock(2,YQ);
               //<< . . SET YQ  = $PIECE(YA,Y,11)
               YQ.set(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),11));
               //<< . . IF '$DATA(@YQ) QUIT
@@ -232,6 +232,7 @@ public class WWWFORMC1 extends mClass {
               m$.indirectVar(YQ.get()).set(m$.Fnc.$get(m$.var("%",m$.var("YQUERY").get(),YQ.get())));
             } while (false);
           }
+          m$.restoreVarBlock(2);
           //<< . ;
           //<< . SET YI = YI+1
           YI.set(mOp.Add(YI.get(),1));
@@ -382,7 +383,7 @@ public class WWWFORMC1 extends mClass {
               //<< . . NEW EXEC,TEXT
               mVar EXEC = m$.var("EXEC");
               mVar TEXT = m$.var("TEXT");
-              m$.newVar(EXEC,TEXT);
+              m$.newVarBlock(2,EXEC,TEXT);
               //<< . . SET EXEC = $PIECE(YA,Y,62)
               EXEC.set(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),62));
               //<< . . XECUTE EXEC
@@ -421,6 +422,7 @@ public class WWWFORMC1 extends mClass {
               }
             } while (false);
           }
+          m$.restoreVarBlock(2);
           //<< . ;
           //<< . IF $GET(Q)=1  QUIT      ;DISABLED
           if (mOp.Equal(m$.Fnc.$get(Q),1)) {
@@ -469,7 +471,7 @@ public class WWWFORMC1 extends mClass {
             //<< . . NEW LINK,EXEC
             mVar LINK = m$.var("LINK");
             mVar EXEC = m$.var("EXEC");
-            m$.newVar(LINK,EXEC);
+            m$.newVarBlock(2,LINK,EXEC);
             //<< . . SET LINK=0
             LINK.set(0);
             //<< . . IF $EXTRACT($PIECE(YA,Y,25),1,2)="$$" SET EXEC = "SET LINK="_$PIECE(YA,Y,25) XECUTE EXEC
@@ -511,6 +513,7 @@ public class WWWFORMC1 extends mClass {
             }
             break;
           }
+          m$.restoreVarBlock(2);
           //<< . ;
           //<< . ;SUCHFUNKTION ; Search Function
           //<< . ;-------------------------------------
@@ -772,14 +775,14 @@ public class WWWFORMC1 extends mClass {
             }
             //<< . . NEW YDATEI
             mVar YDATEI = m$.var("YDATEI");
-            m$.newVar(YDATEI);
+            m$.newVarBlock(2,YDATEI);
             //<< . . SET YDATEI=$PIECE(YA,Y,12)
             YDATEI.set(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),12));
             //<< . . IF $FIND(YDATEI,"VORG@") DO   ;BEC;26614;22.11.04
             if (mOp.Logical(m$.Fnc.$find(YDATEI.get(),"VORG@"))) {
               //<< . . . NEW FIELD
               mVar FIELD = m$.var("FIELD");
-              m$.newVar(FIELD);
+              m$.newVarBlock(3,FIELD);
               //<< . . . SET FIELD  = $PIECE(YDATEI,"VORG@",2)
               FIELD.set(m$.Fnc.$piece(YDATEI.get(),"VORG@",2));
               //<< . . . SET FIELD  = $PIECE(FIELD,"@",1)
@@ -787,6 +790,7 @@ public class WWWFORMC1 extends mClass {
               //<< . . . SET YDATEI = $PIECE(YDATEI,"VORG@"_FIELD_"@/",1)_$PIECE($GET(^INVORG(YM,YM,1)),Y,FIELD)_"/"_$PIECE(YDATEI,"VORG@"_FIELD_"@/",2)    ;BEC;26614;22.11.04
               YDATEI.set(mOp.Concat(mOp.Concat(mOp.Concat(m$.Fnc.$piece(YDATEI.get(),mOp.Concat(mOp.Concat("VORG@",FIELD.get()),"@/"),1),m$.Fnc.$piece(m$.Fnc.$get(m$.var("^INVORG",m$.var("YM").get(),m$.var("YM").get(),1)),m$.var("Y").get(),FIELD.get())),"/"),m$.Fnc.$piece(YDATEI.get(),mOp.Concat(mOp.Concat("VORG@",FIELD.get()),"@/"),2)));
             }
+            m$.restoreVarBlock(3);
             //<< . . ;
             //<< . . IF $FIND(YDATEI,"YM/")   SET YDATEI=$PIECE(YDATEI,"YM/",1)_YM_"/"_$PIECE(YDATEI,"YM/",2)
             if (mOp.Logical(m$.Fnc.$find(YDATEI.get(),"YM/"))) {
@@ -806,7 +810,7 @@ public class WWWFORMC1 extends mClass {
                 //<< . . . NEW FILE,X
                 mVar FILE = m$.var("FILE");
                 mVar X = m$.var("X");
-                m$.newVar(FILE,X);
+                m$.newVarBlock(3,FILE,X);
                 //<< . . . QUIT:$GET(YKEY)=""
                 if (mOp.Equal(m$.Fnc.$get(m$.var("YKEY")),"")) {
                   break;
@@ -831,6 +835,7 @@ public class WWWFORMC1 extends mClass {
                 YDATEI.set(mOp.Concat(mOp.Concat(m$.Fnc.$piece(YDATEI.get(),"auto",1),m$.Fnc.$translate(m$.var("YKEY").get(),", \"")),m$.Fnc.$piece(YDATEI.get(),"auto",2,99)));
               } while (false);
             }
+            m$.restoreVarBlock(3);
             //<< . . ;
             //<< . . SET YDATEI=$TRANSLATE(YDATEI,"\","/")   ;LESEN AUTO FILE ;read motor-car
             YDATEI.set(m$.Fnc.$translate(YDATEI.get(),"\\","/"));
@@ -847,7 +852,7 @@ public class WWWFORMC1 extends mClass {
               //<< . . . NEW FILE,X
               mVar FILE = m$.var("FILE");
               mVar X = m$.var("X");
-              m$.newVar(FILE,X);
+              m$.newVarBlock(3,FILE,X);
               //<< . . . QUIT:$GET(YKEY)=""
               if (mOp.Equal(m$.Fnc.$get(m$.var("YKEY")),"")) {
                 break;
@@ -875,6 +880,7 @@ public class WWWFORMC1 extends mClass {
               //<< . . . WRITE """"
               m$.Cmd.Write("\"");
             } while(false);
+            m$.restoreVarBlock(3);
             //<< . . ;
             //<< . . IF YTARGETF'="" WRITE " TARGET="""_YTARGETF_""""
             if (mOp.NotEqual(YTARGETF.get(),"")) {
@@ -888,6 +894,7 @@ public class WWWFORMC1 extends mClass {
             m$.Cmd.Write("<BR>");
             break;
           }
+          m$.restoreVarBlock(2);
           //<< . ;
           //<< . ;OHNE HTMLAUFBEREITUNG ;Don't Prepare HTML
           //<< . ;-------------------------------------
@@ -914,7 +921,7 @@ public class WWWFORMC1 extends mClass {
               //<< . . IF $PIECE(YA,Y,13)'="" NEW YPARA SET YPARA=$PIECE(YA,Y,13)  ;PARAMETER NEU ;parameter recent
               if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),13),"")) {
                 mVar YPARA = m$.var("YPARA");
-                m$.newVar(YPARA);
+                m$.newVarBlock(2,YPARA);
                 YPARA.set(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),13));
               }
               //<< . . IF blnDescOnButton WRITE "'"
@@ -939,14 +946,14 @@ public class WWWFORMC1 extends mClass {
               YBACK.set(mOp.Concat(mOp.Concat(m$.var("YBACK").get(),m$.var("YFORM").get()),","));
               //<< . . IF $EXTRACT($PIECE(YA,Y,19))="@" NEW YBACK SET YBACK=""   ;TYBD;OHNE YBACK ;without
               if (mOp.Equal(m$.Fnc.$extract(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),19)),"@")) {
-                m$.newVar(YBACK);
+                m$.newVarBlock(2,YBACK);
                 YBACK.set("");
               }
               //<< . . IF $EXTRACT($PIECE(YA,Y,6))="""" DO                  ;EXECUTE VOR EXECUTE
               if (mOp.Equal(m$.Fnc.$extract(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),6)),"\"")) {
                 //<< . . . NEW YEXE
                 mVar YEXE = m$.var("YEXE");
-                m$.newVar(YEXE);
+                m$.newVarBlock(3,YEXE);
                 //<< . . . SET YEXE = $PIECE(YA,Y,6)
                 YEXE.set(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),6));
                 //<< . . . SET YEXE = "S $P(YA,Y,6)="_YEXE
@@ -954,6 +961,7 @@ public class WWWFORMC1 extends mClass {
                 //<< . . . XECUTE YEXE
                 m$.Cmd.Xecute(YEXE.get());
               }
+              m$.restoreVarBlock(3);
               //<< . . ;
               //<< . . WRITE "&YEXEC="_$TRANSLATE($PIECE(YA,Y,6),"# ""","*|'")
               m$.Cmd.Write(mOp.Concat("&YEXEC=",m$.Fnc.$translate(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),6),"# \"","*|'")));
@@ -991,6 +999,7 @@ public class WWWFORMC1 extends mClass {
               }
               break;
             }
+            m$.restoreVarBlock(2);
           }
           //<< . ;
           //<< . ;MIT HTML AUFBEREITUNG ;Prepare HTML
@@ -1010,7 +1019,7 @@ public class WWWFORMC1 extends mClass {
               //<< . . IF $PIECE(YA,Y,13)'="" NEW YPARA SET YPARA=$PIECE(YA,Y,13)  ;PARAMETER NEU ;parameter recent
               if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),13),"")) {
                 mVar YPARA = m$.var("YPARA");
-                m$.newVar(YPARA);
+                m$.newVarBlock(2,YPARA);
                 YPARA.set(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),13));
               }
               //<< . . IF blnDescOnButton WRITE "'"
@@ -1035,14 +1044,14 @@ public class WWWFORMC1 extends mClass {
               YBACK.set(mOp.Concat(mOp.Concat(m$.var("YBACK").get(),m$.var("YFORM").get()),","));
               //<< . . IF $EXTRACT($PIECE(YA,Y,19))="@" NEW YBACK SET YBACK=""   ;TYBD;OHNE YBACK ;without
               if (mOp.Equal(m$.Fnc.$extract(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),19)),"@")) {
-                m$.newVar(YBACK);
+                m$.newVarBlock(2,YBACK);
                 YBACK.set("");
               }
               //<< . . IF $EXTRACT($PIECE(YA,Y,6))="""" DO   ;EXECUTE VOR EXECUTE ;EXECUTE pre- EXECUTE
               if (mOp.Equal(m$.Fnc.$extract(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),6)),"\"")) {
                 //<< . . . NEW YEXE
                 mVar YEXE = m$.var("YEXE");
-                m$.newVar(YEXE);
+                m$.newVarBlock(3,YEXE);
                 //<< . . . SET YEXE = $PIECE(YA,Y,6)
                 YEXE.set(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),6));
                 //<< . . . SET YEXE = "S $P(YA,Y,6)="_YEXE
@@ -1050,6 +1059,7 @@ public class WWWFORMC1 extends mClass {
                 //<< . . . XECUTE YEXE
                 m$.Cmd.Xecute(YEXE.get());
               }
+              m$.restoreVarBlock(3);
               //<< . . ;
               //<< . . WRITE "&YEXEC="_$TRANSLATE($PIECE(YA,Y,6),"# ""","*|'")
               m$.Cmd.Write(mOp.Concat("&YEXEC=",m$.Fnc.$translate(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),6),"# \"","*|'")));
@@ -1087,6 +1097,7 @@ public class WWWFORMC1 extends mClass {
               }
               break;
             }
+            m$.restoreVarBlock(2);
           }
           //<< . ;
           //<< . ;EXECUTE ODER FORMULAR AUFRUF ;EXECUTE Or form
@@ -1115,7 +1126,7 @@ public class WWWFORMC1 extends mClass {
               //<< . . IF $PIECE(YA,Y,13)'="" NEW YPARA SET YPARA=$PIECE(YA,Y,13)  ;PARAMETER NEU ;parameter recent
               if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),13),"")) {
                 mVar YPARA = m$.var("YPARA");
-                m$.newVar(YPARA);
+                m$.newVarBlock(2,YPARA);
                 YPARA.set(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),13));
               }
               //<< . . IF blnDescOnButton WRITE "'"
@@ -1130,14 +1141,14 @@ public class WWWFORMC1 extends mClass {
               mVar MAPPING = m$.var("MAPPING");
               mVar YKEY = m$.var("YKEY");
               mVar YNOKEY = m$.var("YNOKEY");
-              m$.newVar(MAPPING,YKEY,YNOKEY);
+              m$.newVarBlock(2,MAPPING,YKEY,YNOKEY);
               //<< . . SET MAPPING=""   ;FELDMAPPING XXX=FELD
               MAPPING.set("");
               //<< . . IF $PIECE(YA,Y,54)'="" DO
               if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),54),"")) {
                 //<< . . . NEW I,MAP
                 mVar MAP = m$.var("MAP");
-                m$.newVar(I,MAP);
+                m$.newVarBlock(3,I,MAP);
                 //<< . . . SET YNOKEY=YFORM  ;BEI RÜCKSPRUNG KEINE ÜBERGABE DES KEY´S ;next to no
                 YNOKEY.set(m$.var("YFORM").get());
                 //<< . . . SET MAPPING=$TRANSLATE($PIECE(YA,Y,54),",",";")
@@ -1173,6 +1184,7 @@ public class WWWFORMC1 extends mClass {
                   } while (false);
                 }
               }
+              m$.restoreVarBlock(3);
               //<< . . ;
               //<< . . IF MAPPING="" SET YKEY=YKEYXX   ;NORMALE KEYVORGABE
               if (mOp.Equal(MAPPING.get(),"")) {
@@ -1186,7 +1198,7 @@ public class WWWFORMC1 extends mClass {
                   mVar YDATEI = m$.var("YDATEI");
                   mVar YFELD = m$.var("YFELD");
                   mVar YSCHLUES = m$.var("YSCHLUES");
-                  m$.newVar(YDATEI,YFELD,YSCHLUES,YI);
+                  m$.newVarBlock(3,YDATEI,YFELD,YSCHLUES,YI);
                   //<< . . . SET YDATEI=$PIECE($GET(^WWW120(0,$PIECE(YA,Y,7),1)),Y,11)
                   YDATEI.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW120",0,m$.Fnc.$piece(YA.get(),m$.var("Y").get(),7),1)),m$.var("Y").get(),11));
                   //<< . . . QUIT:YDATEI=""   ;KEINE DATEI ;no data file
@@ -1240,6 +1252,7 @@ public class WWWFORMC1 extends mClass {
                   }
                 } while (false);
               }
+              m$.restoreVarBlock(3);
               //<< . . ;
               //<< . . ;IF $GET(YFOART)=1 IF $PIECE($GET(^WWW120(0,$PIECE(YA,Y,7),1)),Y,2)<4 KILL ^WWW128(0,$PIECE(YA,Y,7))  ;LFN
               //<< . . WRITE "EP=WWWFORM&amp;YFORM="_$PIECE(YA,Y,7)
@@ -1263,7 +1276,7 @@ public class WWWFORMC1 extends mClass {
               //<< . . IF $EXTRACT($PIECE(YA,Y,19))="@" NEW YBACK SET YBACK=""   ;TYBD;OHNE YBACK ;without
               if (mOp.Equal(m$.Fnc.$extract(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),19)),"@")) {
                 mVar YBACK = m$.var("YBACK");
-                m$.newVar(YBACK);
+                m$.newVarBlock(2,YBACK);
                 YBACK.set("");
               }
               //<< . . IF $PIECE(YA,Y,11)'="" WRITE "&"_$PIECE(YA,Y,11)_"="_$GET(@($PIECE(YA,Y,11)))
@@ -1301,9 +1314,11 @@ public class WWWFORMC1 extends mClass {
               }
               break;
             }
+            m$.restoreVarBlock(2);
           }
         } while (false);
       }
+      m$.restoreVarBlock(1);
     }
     do {
       //<< 
@@ -1332,10 +1347,11 @@ public class WWWFORMC1 extends mClass {
     //<< IF (+$GET(YSCREENM)'=0) && ((YFOART=1) || (YFOART=4) || (YFOART=3)) DO
     if ((mOp.NotEqual(mOp.Positive(m$.Fnc.$get(m$.var("YSCREENM"))),0)) && mOp.Logical(((mOp.Equal(m$.var("YFOART").get(),1)) || (mOp.Equal(m$.var("YFOART").get(),4)) || (mOp.Equal(m$.var("YFOART").get(),3))))) {
       //<< . NEW YPRINT
-      m$.newVar(YPRINT);
+      m$.newVarBlock(1,YPRINT);
       //<< . DO ^WWWSCRB1  ;SCREEN DFLT BUTTON
       m$.Cmd.Do("WWWSCRB1.main");
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< QUIT
     return;

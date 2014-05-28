@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWGEDT
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:09
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:50
 //*****************************************************************************
 
 import mLibrary.*;
@@ -574,7 +574,7 @@ public class WWWGEDT extends mClass {
           mVar YFE = m$.var("YFE");
           mVar YSAT = m$.var("YSAT");
           mVar YDATA = m$.var("YDATA");
-          m$.newVar(YDAT,YKE,YFE,YSAT,YDATA);
+          m$.newVarBlock(1,YDAT,YKE,YFE,YSAT,YDATA);
           //<< . SET YDAT=$PIECE($GET(^WWW002(0,YDATEI,YLFN,1)),Y,8)
           YDAT.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW002",0,m$.var("YDATEI").get(),m$.var("YLFN").get(),1)),m$.var("Y").get(),8));
           //<< . SET YKE=$PIECE($GET(^WWW002(0,YDATEI,YLFN,1)),Y,9)
@@ -620,6 +620,7 @@ public class WWWGEDT extends mClass {
         } while (false);
         return;
       }
+      m$.restoreVarBlock(1);
     }
     //<< 
     //<< IF YQ=0 DO FORMAT
@@ -652,7 +653,7 @@ public class WWWGEDT extends mClass {
           mVar YFE = m$.var("YFE");
           mVar YSAT = m$.var("YSAT");
           mVar YDATA = m$.var("YDATA");
-          m$.newVar(YDAT,YKE,YFE,YSAT,YDATA);
+          m$.newVarBlock(1,YDAT,YKE,YFE,YSAT,YDATA);
           //<< . SET YDAT=$PIECE($GET(^WWW003(0,YDATEI,YLFN,1)),Y,8)
           YDAT.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW003",0,m$.var("YDATEI").get(),m$.var("YLFN").get(),1)),m$.var("Y").get(),8));
           //<< . SET YKE =$PIECE($GET(^WWW003(0,YDATEI,YLFN,1)),Y,9)
@@ -694,6 +695,7 @@ public class WWWGEDT extends mClass {
         } while (false);
         return;
       }
+      m$.restoreVarBlock(1);
     }
     //<< 
     //<< DO FORMAT

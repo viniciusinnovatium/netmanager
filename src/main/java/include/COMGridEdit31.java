@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - INC include.COMGridEdit31
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:13:51
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:12:07
 //*****************************************************************************
 
 package include;
@@ -61,7 +61,7 @@ public class COMGridEdit31 extends mInclude {
 
   //<< #define GRIDViewableRows    ($get($$$GRIDRowCount)-$get(^WWWDATEN(0,+$H,YUSER,YFORM,"V","HIDDEN")))
   public static Object $$$GRIDViewableRows(mContext m$) {
-    return ((mOp.Subtract(m$.Fnc.$get(include.COMGridEdit31.$$$GRIDRowCountVar(m$)),m$.Fnc.$get(m$.var("^WWWDATEN",0,mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"V","HIDDEN")))));
+    return ((mOp.Subtract(m$.Fnc.$get($$$GRIDRowCountVar(m$)),m$.Fnc.$get(m$.var("^WWWDATEN",0,mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"V","HIDDEN")))));
   }
 
   //<< #define GRIDPage            ^WWWDATEN(0,+$H,YUSER,YFORM,"V","PAGE")
@@ -186,19 +186,19 @@ public class COMGridEdit31 extends mInclude {
   //<< #def1arg OnBeforeDisplayLine(%args)     ($get($$$EventExists("Display"))=$$$NO || $$OnBeforeDisplayLine^COMGridEdit31Events(%args))
   public static Object $$$OnBeforeDisplayLine(mContext m$, Object ... _p) {
     mVar p$args = m$.varRef("p$args",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
-    return ((mOp.Equal(m$.Fnc.$get(include.COMGridEdit31.$$$EventExistsVar(m$,"Display")),include.COMSYS.$$$NO(m$)) || mOp.Logical(m$.fnc$("COMGridEdit31Events.OnBeforeDisplayLine",p$args.get()))));
+    return ((mOp.Equal(m$.Fnc.$get($$$EventExistsVar(m$,"Display")),include.COMSYS.$$$NO(m$)) || mOp.Logical(m$.fnc$("COMGridEdit31Events.OnBeforeDisplayLine",p$args.get()))));
   }
 
   //<< #def1arg OnDisplayRightClickMenu(%args) $case($get($$$EventExists("RightClick")),$$$NO:"",:$$OnDisplayRightClickMenu^COMGridEdit31Events(%args))
   public static Object $$$OnDisplayRightClickMenu(mContext m$, Object ... _p) {
     mVar p$args = m$.varRef("p$args",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
-    return (m$.Fnc.$case(m$.Fnc.$get(include.COMGridEdit31.$$$EventExistsVar(m$,"RightClick")),include.COMSYS.$$$NO(m$),"",m$.fnc$("COMGridEdit31Events.OnDisplayRightClickMenu",p$args.get())));
+    return (m$.Fnc.$case(m$.Fnc.$get($$$EventExistsVar(m$,"RightClick")),include.COMSYS.$$$NO(m$),"",m$.fnc$("COMGridEdit31Events.OnDisplayRightClickMenu",p$args.get())));
   }
 
   //<< #def1arg OnBeforeFormat(%args)          if $get($$$EventExists("Format"))'=$$$NO do OnBeforeFormat^COMGridEdit31Events(%args)
   public static Object $$$OnBeforeFormat(mContext m$, Object ... _p) {
     mVar p$args = m$.varRef("p$args",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
-    if (mOp.NotEqual(m$.Fnc.$get(include.COMGridEdit31.$$$EventExistsVar(m$,"Format")),include.COMSYS.$$$NO(m$))) {
+    if (mOp.NotEqual(m$.Fnc.$get($$$EventExistsVar(m$,"Format")),include.COMSYS.$$$NO(m$))) {
       m$.Cmd.Do("COMGridEdit31Events.OnBeforeFormat",p$args.get());
     }
     return null;
@@ -207,7 +207,7 @@ public class COMGridEdit31 extends mInclude {
   //<< #def1arg OnLineAdded(%args)             if $get($$$EventExists("LineAdded"))'=$$$NO do OnLineAdded^COMGridEdit31Events(%args)
   public static Object $$$OnLineAdded(mContext m$, Object ... _p) {
     mVar p$args = m$.varRef("p$args",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
-    if (mOp.NotEqual(m$.Fnc.$get(include.COMGridEdit31.$$$EventExistsVar(m$,"LineAdded")),include.COMSYS.$$$NO(m$))) {
+    if (mOp.NotEqual(m$.Fnc.$get($$$EventExistsVar(m$,"LineAdded")),include.COMSYS.$$$NO(m$))) {
       m$.Cmd.Do("COMGridEdit31Events.OnLineAdded",p$args.get());
     }
     return null;
@@ -216,7 +216,7 @@ public class COMGridEdit31 extends mInclude {
   //<< #def1arg OnLineDeleted(%args)           if $get($$$EventExists("LineDelete"))'=$$$NO do OnLineDeleted^COMGridEdit31Events(%args)
   public static Object $$$OnLineDeleted(mContext m$, Object ... _p) {
     mVar p$args = m$.varRef("p$args",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
-    if (mOp.NotEqual(m$.Fnc.$get(include.COMGridEdit31.$$$EventExistsVar(m$,"LineDelete")),include.COMSYS.$$$NO(m$))) {
+    if (mOp.NotEqual(m$.Fnc.$get($$$EventExistsVar(m$,"LineDelete")),include.COMSYS.$$$NO(m$))) {
       m$.Cmd.Do("COMGridEdit31Events.OnLineDeleted",p$args.get());
     }
     return null;
@@ -225,7 +225,7 @@ public class COMGridEdit31 extends mInclude {
   //<< #def1arg OnBeforeDisplayCombo(%args)    if $get($$$EventExists("Combo"))'=$$$NO do OnBeforeDisplayCombo^COMGridEdit31Events(%args)
   public static Object $$$OnBeforeDisplayCombo(mContext m$, Object ... _p) {
     mVar p$args = m$.varRef("p$args",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
-    if (mOp.NotEqual(m$.Fnc.$get(include.COMGridEdit31.$$$EventExistsVar(m$,"Combo")),include.COMSYS.$$$NO(m$))) {
+    if (mOp.NotEqual(m$.Fnc.$get($$$EventExistsVar(m$,"Combo")),include.COMSYS.$$$NO(m$))) {
       m$.Cmd.Do("COMGridEdit31Events.OnBeforeDisplayCombo",p$args.get());
     }
     return null;
@@ -236,7 +236,7 @@ public class COMGridEdit31 extends mInclude {
   public static Object $$$CallEvent(mContext m$, Object ... _p) {
     mVar p$code = m$.varRef("p$code",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
     mVar p$event = m$.varRef("p$event",(((_p!=null)&&(_p.length>=2))?_p[1]:null));
-    if (mOp.NotEqual(m$.Fnc.$get(include.COMGridEdit31.$$$EventExistsVar(m$,p$event)),include.COMSYS.$$$NO(m$))) {
+    if (mOp.NotEqual(m$.Fnc.$get($$$EventExistsVar(m$,p$event)),include.COMSYS.$$$NO(m$))) {
       m$.Cmd.Do("COMGridEdit31Events.CallEvent",p$code.get(),p$event.get());
     }
     return null;

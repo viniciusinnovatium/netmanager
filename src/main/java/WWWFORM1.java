@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORM1
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:37
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:16
 //*****************************************************************************
 
 import mLibrary.*;
@@ -278,7 +278,7 @@ public class WWWFORM1 extends mClass {
           //<< . . new BER,MOD
           mVar BER = m$.var("BER");
           mVar MOD = m$.var("MOD");
-          m$.newVar(BER,MOD);
+          m$.newVarBlock(2,BER,MOD);
           //<< . . set BER=""
           BER.set("");
           //<< . . set MOD=""
@@ -312,6 +312,7 @@ public class WWWFORM1 extends mClass {
             }
           }
         } while(false);
+        m$.restoreVarBlock(2);
       }
     }
     //<< 

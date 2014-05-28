@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWKILL
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:57
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:38
 //*****************************************************************************
 
 import mLibrary.*;
@@ -707,10 +707,10 @@ public class WWWKILL extends mClass {
             mVar YMAX = m$.var("YMAX");
             mVar YMAX1 = m$.var("YMAX1");
             mVar YMAX2 = m$.var("YMAX2");
-            m$.newVar(YQ,YMAX,YMAX1,YMAX2);
+            m$.newVarBlock(3,YQ,YMAX,YMAX1,YMAX2);
             //<< . . . NEW YFILES
             mVar YFILES = m$.var("YFILES");
-            m$.newVar(YFILES);
+            m$.newVarBlock(3,YFILES);
             //<< . . . SET YFILES=YDATEI_"s"
             YFILES.set(mOp.Concat(m$.var("YDATEI").get(),"s"));
             //<< . . . IF $PIECE(YDATA,Y,23)'="" SET YFILES=$PIECE(YDATA,Y,23)  ;ANDERE DATEI ;data file
@@ -900,6 +900,7 @@ public class WWWKILL extends mClass {
               } while (false);
             }
           }
+          m$.restoreVarBlock(3);
         } while (false);
       }
     }

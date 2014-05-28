@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWMENUW
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:41
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:14:23
 //*****************************************************************************
 
 import mLibrary.*;
@@ -181,7 +181,7 @@ public class WWWMENUW extends mClass {
                 do {
                   //<< . . . NEW YANZ
                   mVar YANZ = m$.var("YANZ");
-                  m$.newVar(YANZ);
+                  m$.newVarBlock(3,YANZ);
                   //<< . . . SET YASTART=1
                   YASTART.set(1);
                   //<< . . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
@@ -196,12 +196,13 @@ public class WWWMENUW extends mClass {
                   break;
                 } while (false);
               }
+              m$.restoreVarBlock(3);
               //<< . . IF YPROG2=($PIECE($PIECE(YANZ,",",2),".",1,3)_".") DO
               if (mOp.Equal(YPROG2.get(),(mOp.Concat(m$.Fnc.$piece(m$.Fnc.$piece(m$.var("YANZ").get(),",",2),".",1,3),".")))) {
                 do {
                   //<< . . . NEW YANZ
                   mVar YANZ = m$.var("YANZ");
-                  m$.newVar(YANZ);
+                  m$.newVarBlock(3,YANZ);
                   //<< . . . SET YASTART=1
                   YASTART.set(1);
                   //<< . . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
@@ -216,6 +217,7 @@ public class WWWMENUW extends mClass {
                   break;
                 } while (false);
               }
+              m$.restoreVarBlock(3);
               //<< . . QUIT
               break;
             } while (false);
@@ -235,7 +237,7 @@ public class WWWMENUW extends mClass {
               do {
                 //<< . . . NEW YNAME
                 mVar YNAME = m$.var("YNAME");
-                m$.newVar(YNAME);
+                m$.newVarBlock(3,YNAME);
                 //<< . . . SET YAUFRUF="WWWFORM"
                 mVar YAUFRUF = m$.var("YAUFRUF");
                 YAUFRUF.set("WWWFORM");
@@ -259,6 +261,7 @@ public class WWWMENUW extends mClass {
                 break;
               } while (false);
             }
+            m$.restoreVarBlock(3);
             //<< . . IF $PIECE(YA,Y,12)'="" DO  ;URL
             if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),12),"")) {
               do {
@@ -591,7 +594,7 @@ public class WWWMENUW extends mClass {
                 do {
                   //<< . . . NEW YANZ
                   mVar YANZ = m$.var("YANZ");
-                  m$.newVar(YANZ);
+                  m$.newVarBlock(3,YANZ);
                   //<< . . . SET YASTART=1
                   YASTART.set(1);
                   //<< . . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
@@ -606,12 +609,13 @@ public class WWWMENUW extends mClass {
                   break;
                 } while (false);
               }
+              m$.restoreVarBlock(3);
               //<< . . IF YPROG3=($PIECE($PIECE(YANZ,",",2),".",1,4)_".") DO
               if (mOp.Equal(YPROG3.get(),(mOp.Concat(m$.Fnc.$piece(m$.Fnc.$piece(m$.var("YANZ").get(),",",2),".",1,4),".")))) {
                 do {
                   //<< . . . NEW YANZ
                   mVar YANZ = m$.var("YANZ");
-                  m$.newVar(YANZ);
+                  m$.newVarBlock(3,YANZ);
                   //<< . . . SET YASTART=1
                   YASTART.set(1);
                   //<< . . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
@@ -626,6 +630,7 @@ public class WWWMENUW extends mClass {
                   break;
                 } while (false);
               }
+              m$.restoreVarBlock(3);
               //<< . . QUIT
               break;
             } while (false);
@@ -645,7 +650,7 @@ public class WWWMENUW extends mClass {
               do {
                 //<< . . . NEW YNAME
                 mVar YNAME = m$.var("YNAME");
-                m$.newVar(YNAME);
+                m$.newVarBlock(3,YNAME);
                 //<< . . . SET YAUFRUF="WWWFORM"
                 mVar YAUFRUF = m$.var("YAUFRUF");
                 YAUFRUF.set("WWWFORM");
@@ -669,6 +674,7 @@ public class WWWMENUW extends mClass {
                 break;
               } while (false);
             }
+            m$.restoreVarBlock(3);
             //<< . . IF $PIECE(YA,Y,12)'="" DO  ;URL
             if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),12),"")) {
               do {

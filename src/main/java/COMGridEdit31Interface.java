@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC COMGridEdit31Interface
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:27
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:14:09
 //*****************************************************************************
 
 import mLibrary.*;
@@ -245,7 +245,7 @@ public class COMGridEdit31Interface extends mClass {
   //<< GetYKEYContainer()   ; use $$$GRIDYKEYContainer instead of calling here
   public Object GetYKEYContainer(Object ... _p) {
     //<< quit $get($$$WWWDATEN("REFERENCEKEY"))
-    return m$.Fnc.$get(COMGridEdit31Interface.$$$WWWDATENVar(m$,"REFERENCEKEY"));
+    return m$.Fnc.$get($$$WWWDATENVar(m$,"REFERENCEKEY"));
   }
 
   //<< 

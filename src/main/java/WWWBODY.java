@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWBODY
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:31
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:11
 //*****************************************************************************
 
 import mLibrary.*;
@@ -370,7 +370,7 @@ public class WWWBODY extends mClass {
           mVar YFORM = m$.var("YFORM");
           mVar YVOR = m$.var("YVOR");
           mVar YOK = m$.var("YOK");
-          m$.newVar(TXT,TXT1,YFORM,YVOR,YOK);
+          m$.newVarBlock(2,TXT,TXT1,YFORM,YVOR,YOK);
           //<< . . SET (TXT,TXT1)=""
           TXT.set("");
           TXT1.set("");
@@ -414,6 +414,7 @@ public class WWWBODY extends mClass {
           YOK.set(m$.fnc$("WWWSPEI.main","WWW013M",mOp.Concat(mOp.Concat(m$.var("YBED").get(),","),TXT.get()),TXT1.get(),include.COMSYS.$$$YES(m$)));
         } while (false);
       }
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . ; "This Version Is No Longer Supported. Please Update The System."
       //<< . ;-------------------------------------
@@ -464,7 +465,7 @@ public class WWWBODY extends mClass {
             //<< . . NEW YI,YQ
             mVar YI = m$.var("YI");
             mVar YQ = m$.var("YQ");
-            m$.newVar(YI,YQ);
+            m$.newVarBlock(2,YI,YQ);
             //<< . . ;-----------------------------------
             //<< . . ;
             //<< . . SET YQ=0
@@ -635,7 +636,7 @@ public class WWWBODY extends mClass {
             //<< . . new idClassFld,objFormData
             mVar idClassFld = m$.var("idClassFld");
             mVar objFormData = m$.var("objFormData");
-            m$.newVar(idClassFld,objFormData);
+            m$.newVarBlock(2,idClassFld,objFormData);
             //<< . . SET YI=""
             YI.set("");
             //<< . . FOR  SET YI=$ORDER(^WWW122(0,YFORM,YI)) QUIT:YI=""  QUIT:YQ=1  DO   ;FOKUS AUF ERSTES FELD ;focus upon premier field
@@ -719,6 +720,7 @@ public class WWWBODY extends mClass {
             }
           } while (false);
         }
+        m$.restoreVarBlock(2);
       }
       //<< . ;=====================================
       //<< . ;
@@ -972,7 +974,7 @@ public class WWWBODY extends mClass {
       if (mOp.NotEqual(m$.Fnc.$piece(YVOR.get(),m$.var("Y").get(),12),"")) {
         //<< . . new strLinkColour
         mVar strLinkColour = m$.var("strLinkColour");
-        m$.newVar(strLinkColour);
+        m$.newVarBlock(2,strLinkColour);
         //<< . . set strLinkColour = $piece($get(^WWW100(0,"FARBE",SPRACHE,$piece(YVOR,Y,12),1)),Y,1)
         strLinkColour.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW100",0,"FARBE",m$.var("SPRACHE").get(),m$.Fnc.$piece(YVOR.get(),m$.var("Y").get(),12),1)),m$.var("Y").get(),1));
         //<< . . write YCR," LINK="""_strLinkColour_""""
@@ -982,6 +984,7 @@ public class WWWBODY extends mClass {
         //<< . . write YCR," VLINK="""_strLinkColour_""""
         m$.Cmd.Write(m$.var("YCR").get(),mOp.Concat(mOp.Concat(" VLINK=\"",strLinkColour.get()),"\""));
       }
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . WRITE YCR," topmargin=1"," leftmargin=1",">"
       m$.Cmd.Write(m$.var("YCR").get()," topmargin=1"," leftmargin=1",">");

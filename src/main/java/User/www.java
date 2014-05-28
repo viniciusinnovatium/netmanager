@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - CLASS User.www
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:16
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:12:54
 //*****************************************************************************
 
 package User;
@@ -29,7 +29,7 @@ public class www extends mPage {
   //<< {
   //<< 
   //<< Parameter ENCODED = 0;
-  public static Object p_ENCODED = 0;
+  public static String p_ENCODED = "0";
 
   //<< 
   //<< /*

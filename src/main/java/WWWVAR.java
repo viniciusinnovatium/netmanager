@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWVAR
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:21
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:12:59
 //*****************************************************************************
 
 import mLibrary.*;
@@ -177,7 +177,7 @@ public class WWWVAR extends mClass {
           //<< . . NEW YBEX,YDH
           mVar YBEX = m$.var("YBEX");
           mVar YDH = m$.var("YDH");
-          m$.newVar(YBEX,YDH);
+          m$.newVarBlock(2,YBEX,YDH);
           //<< . . SET YBEX = ^WWW013(0,YBED,1)
           YBEX.set(m$.var("^WWW013",0,YBED.get(),1).get());
           //<< . . SET $PIECE(^WWWUSER(0,YUSER,1),Y,20) = $PIECE(YBEX,Y,5)
@@ -224,6 +224,7 @@ public class WWWVAR extends mClass {
             }
           }
         }
+        m$.restoreVarBlock(2);
         //<< . ;
         //<< . SET YA=""
         mVar YA = m$.var("YA");
@@ -268,7 +269,7 @@ public class WWWVAR extends mClass {
       if (mOp.NotEqual(m$.Fnc.$get(YUSER),"")) {
         //<< . NEW YVAR
         mVar YVAR = m$.var("YVAR");
-        m$.newVar(YVAR);
+        m$.newVarBlock(1,YVAR);
         //<< . IF '$DATA(^WWWUSER1(0,YUSER,"%KEY")) DO  ;IF NEW USER ONLY !
         if (mOp.Not(m$.Fnc.$data(m$.var("^WWWUSER1",0,YUSER.get(),"%KEY")))) {
           //<< . . SET YVAR(1) = ""
@@ -341,6 +342,7 @@ public class WWWVAR extends mClass {
           }
         }
       }
+      m$.restoreVarBlock(1);
     }
     //<< 
     //<< // FIXME : How much of the following is really necessary
@@ -445,7 +447,7 @@ public class WWWVAR extends mClass {
     if (mOp.NotEqual(YUSER.get(),"")) {
       //<< . NEW YUSER1
       mVar YUSER1 = m$.var("YUSER1");
-      m$.newVar(YUSER1);
+      m$.newVarBlock(1,YUSER1);
       //<< . SET YUSER1 = $GET(^WWWUSER(0,YUSER,1))
       YUSER1.set(m$.Fnc.$get(m$.var("^WWWUSER",0,YUSER.get(),1)));
       //<< . SET YPWD   = $PIECE(YUSER1,Y,1)
@@ -521,6 +523,7 @@ public class WWWVAR extends mClass {
         } while (false);
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< if (+YM=0) && (YM'=0) set @YM=YM   ; VARIABLE=MANDANTENNAME, WENN NUMERISCH ;ACHTUNG, WENN YM GLEICH WICHTIGER NAME
     if ((mOp.Equal(mOp.Positive(YM.get()),0)) && (mOp.NotEqual(YM.get(),0))) {

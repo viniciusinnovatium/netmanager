@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC COMSTARTZstart
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:56
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:37
 //*****************************************************************************
 
 import mLibrary.*;
@@ -192,7 +192,7 @@ public class COMSTARTZstart extends mClass {
       //<< else {
       else {
         //<< do $zutil(5, strNameSpace)
-        m$.Cmd.Do("$zutil",5,strNameSpace.get());
+        m$.Fnc.$zutil(5,strNameSpace.get());
         //<< 
         //<< if ($zutil(5) = strNameSpace) {
         if ((mOp.Equal(m$.Fnc.$zutil(5),strNameSpace.get()))) {
@@ -232,7 +232,7 @@ public class COMSTARTZstart extends mClass {
     mVar $ztrap = m$.var("$ztrap");
     $ztrap.set("");
     //<< do $zutil(5, strCurrentNamespace)
-    m$.Cmd.Do("$zutil",5,m$.var("strCurrentNamespace").get());
+    m$.Fnc.$zutil(5,m$.var("strCurrentNamespace").get());
     //<< quit
     return;
   }

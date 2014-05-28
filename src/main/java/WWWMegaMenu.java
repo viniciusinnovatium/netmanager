@@ -1,11 +1,10 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWMegaMenu
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:50
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:31
 //*****************************************************************************
 
 import mLibrary.*;
-
 //<< #include COMSYS
 import include.COMSYS;
 import include.COMSYSDate;
@@ -76,7 +75,7 @@ public class WWWMegaMenu extends mClass {
     if (mOp.Equal(YINHALT.get(),"GETFULL_INTERNAL")) {
       return m$.fnc$("WWWMegaMenuFullMenu.GetFullMenuInternal");
     }
-    return null;
+    throw new IllegalStateException("This converted method does not implements a default value.Verify this condition.");
   }
 
   //<< 

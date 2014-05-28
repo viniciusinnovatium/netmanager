@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC COMTransaction
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:28
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:14:10
 //*****************************************************************************
 
 import mLibrary.*;
@@ -181,8 +181,9 @@ public class COMTransaction extends mClass {
   //<< ;   Interim fix - add $get() around trap - find what is causing it
   //<< ;   [save on INReq calling CreateReceiptTxn^INTRNRec which generated an error while trying to save "INRECLine"]
   //<< 
-  //<< TransactionError  ;Internal Tag
-  public Object TransactionError() {
+  //<< //TransactionError  ;Internal Tag
+  //<< TransactionError()  ;Internal Tag
+  public Object TransactionError(Object ... _p) {
     //<< new strError
     mVar strError = m$.var("strError");
     m$.newVar(strError);
@@ -639,7 +640,6 @@ public class COMTransaction extends mClass {
     //<< }
     //<< }
     //<< quit 0
-    //return 0;
   }
 
   //<< 

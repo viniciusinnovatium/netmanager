@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWVORG
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:14
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:56
 //*****************************************************************************
 
 import mLibrary.*;
@@ -112,7 +112,7 @@ public class WWWVORG extends mClass {
           //<< . NEW YUSER,YVAR
           mVar YUSER = m$.var("YUSER");
           mVar YVAR = m$.var("YVAR");
-          m$.newVar(YUSER,YVAR);
+          m$.newVarBlock(1,YUSER,YVAR);
           //<< . IF $GET(YUSER)="" SET YUSER=$GET(%(YQUERY,"YUSER"))
           if (mOp.Equal(m$.Fnc.$get(YUSER),"")) {
             YUSER.set(m$.Fnc.$get(m$.var("%",YQUERY.get(),"YUSER")));
@@ -165,6 +165,7 @@ public class WWWVORG extends mClass {
             }
           }
         }
+        m$.restoreVarBlock(1);
       }
     }
     //<< 
@@ -196,7 +197,7 @@ public class WWWVORG extends mClass {
             YHYPER.set(1);
             //<< . NEW YVAR
             mVar YVAR = m$.var("YVAR");
-            m$.newVar(YVAR);
+            m$.newVarBlock(1,YVAR);
             //<< . SET YVAR=""
             YVAR.set("");
             //<< . FOR  SET YVAR=$ORDER(%request.Data(YVAR)) QUIT:YVAR=""  DO
@@ -272,7 +273,7 @@ public class WWWVORG extends mClass {
             mVar MIMES = m$.var("MIMES");
             mVar len = m$.var("len");
             mVar YIII = m$.var("YIII");
-            m$.newVar(MIME,MIMES,len,YIII);
+            m$.newVarBlock(1,MIME,MIMES,len,YIII);
             //<< . IF $GET(%request.Data("EP",1))="WWWXMLSERVER" DO READXML QUIT  ;XML
             if (mOp.Equal(m$.Fnc.$get(m$.getRequest().varData("EP",1)),"WWWXMLSERVER")) {
               m$.Cmd.Do("READXML");
@@ -280,6 +281,7 @@ public class WWWVORG extends mClass {
             }
           } while (false);
         }
+        m$.restoreVarBlock(1);
       }
     }
     //<< 
@@ -403,7 +405,7 @@ public class WWWVORG extends mClass {
       }
       //<< . NEW CHAR
       mVar CHAR = m$.var("CHAR");
-      m$.newVar(CHAR);
+      m$.newVarBlock(1,CHAR);
       //<< . SET CHAR=""
       CHAR.set("");
       //<< . FOR  SET CHAR=$ORDER(^WWWUMLAU(0,CHAR)) QUIT:CHAR=""  SET YUMLAU=YUMLAU_CHAR_","
@@ -419,6 +421,7 @@ public class WWWVORG extends mClass {
         YUMLAU.set(m$.Fnc.$extract(YUMLAU.get(),1,mOp.Subtract(m$.Fnc.$length(YUMLAU.get()),1)));
       }
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;SET YTARGET  = $PIECE($PIECE(YVOR1,Y,19),"/",1)_YUSER
     //<< ;SET YTARGET2 = $PIECE($PIECE(YVOR1,Y,19),"/",2)
@@ -657,7 +660,7 @@ public class WWWVORG extends mClass {
     if (mOp.NotEqual(YUSER.get(),"")) {
       //<< . NEW YUSER1
       mVar YUSER1 = m$.var("YUSER1");
-      m$.newVar(YUSER1);
+      m$.newVarBlock(1,YUSER1);
       //<< . SET YUSER1=$GET(^WWWUSER(0,YUSER,1))
       YUSER1.set(m$.Fnc.$get(m$.var("^WWWUSER",0,YUSER.get(),1)));
       //<< . IF $PIECE(YUSER1,Y,20)'="" SET YM        = $PIECE(YUSER1,Y,20)   ;GET CURRENT COMPANY // Can this ever be different from above?
@@ -676,6 +679,7 @@ public class WWWVORG extends mClass {
       mVar YTARGET2 = m$.var("YTARGET2");
       YTARGET2.set(m$.Fnc.$piece(m$.Fnc.$piece(YVOR1.get(),Y.get(),19),"/",2));
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< SET YBEDBER = $$^WWWBEDBER(YBED)             ; BERECHTIGUNG       ; user authorisation
     YBEDBER.set(m$.fnc$("WWWBEDBER.main",YBED.get()));

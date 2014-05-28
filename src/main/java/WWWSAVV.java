@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWSAVV
-//** Innovatium Systems - Code Converter - v1.24
-//** 2014-05-23 12:44:50
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:14:32
 //*****************************************************************************
 
 import mLibrary.*;
@@ -22,6 +22,7 @@ import include.COMGridEdit31Interface;
 import include.COMTab;
 import include.COMEditor;
 import include.COMSYSJS;
+import include.$occInclude;
 
 //<< WWWSAVV
 public class WWWSAVV extends mClass {
@@ -93,15 +94,15 @@ public class WWWSAVV extends mClass {
     //<< 
     //<< ;+++++++++++++++++++++++++++++++++++++++
     //<< ;YALLKEY=0 = SPEICHERN ;Save
-    //<< ;YALLKEY=1 = NUR ï¿½FFNEN ;only open
+    //<< ;YALLKEY=1 = NUR ÖFFNEN ;only open
     //<< ;YALLKEY=2 = KEYS VORHANDEN ;on hand
-    //<< ;YALLKEY=9 = KEY VOLLSTï¿½NDIG KEIN WEITERSUCHEN Nï¿½TIG ;KEY integral no necessary
+    //<< ;YALLKEY=9 = KEY VOLLSTÄNDIG KEIN WEITERSUCHEN NÖTIG ;KEY integral no necessary
     //<< ;+++++++++++++++++++++++++++++++++++++++
     //<< 
     //<< SET YALLKEY=0             ;SPEICHERN ;Save
     mVar YALLKEY = m$.var("YALLKEY");
     YALLKEY.set(0);
-    //<< IF YOPEN=1 SET YALLKEY=1  ;ï¿½FFNEN    ;open
+    //<< IF YOPEN=1 SET YALLKEY=1  ;ÖFFNEN    ;open
     if (mOp.Equal(m$.var("YOPEN").get(),1)) {
       YALLKEY.set(1);
     }
@@ -123,7 +124,7 @@ public class WWWSAVV extends mClass {
             do {
               //<< . NEW YDATEI
               mVar YDATEI = m$.var("YDATEI");
-              m$.newVar(YDATEI);
+              m$.newVarBlock(1,YDATEI);
               //<< . SET YDATEI=$$$WWW120ClassUsedInForm(YVOR)
               YDATEI.set(include.WWWConst.$$$WWW120ClassUsedInForm(m$,YVOR));
               //<< . ;PRIMAERSCHLUESSEL
@@ -141,7 +142,7 @@ public class WWWSAVV extends mClass {
               //<< . SET YMAXKEY=""
               mVar YMAXKEY = m$.var("YMAXKEY");
               YMAXKEY.set("");
-              //<< . IF YDATEI'="" SET YMAXKEY=$ORDER(^WWW002(0,YDATEI,""),-1) IF YMAXKEY'="" DO  QUIT:YALLKEY=2   ;PRIMAERSCHLï¿½SSEL
+              //<< . IF YDATEI'="" SET YMAXKEY=$ORDER(^WWW002(0,YDATEI,""),-1) IF YMAXKEY'="" DO  QUIT:YALLKEY=2   ;PRIMAERSCHLÜSSEL
               if (mOp.NotEqual(YDATEI.get(),"")) {
                 YMAXKEY.set(m$.Fnc.$order(m$.var("^WWW002",0,YDATEI.get(),""),mOp.Negative(1)));
                 if (mOp.NotEqual(YMAXKEY.get(),"")) {
@@ -178,7 +179,7 @@ public class WWWSAVV extends mClass {
                           YKEY.var(YI.get()).set(0);
                           break;
                         }
-                        //<< . . . . SET YALLKEY=1  ;SUCHEN ï¿½FFNEN ;seek unclose
+                        //<< . . . . SET YALLKEY=1  ;SUCHEN ÖFFNEN ;seek unclose
                         YALLKEY.set(1);
                       } while (false);
                     }
@@ -208,7 +209,7 @@ public class WWWSAVV extends mClass {
               if (mOp.Logical(m$.Fnc.$data(m$.var("^WWWDATEN",m$.var("YM").get(),mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"LOCK",2)))) {
                 //<< . . NEW LOCK
                 mVar LOCK = m$.var("LOCK");
-                m$.newVar(LOCK);
+                m$.newVarBlock(2,LOCK);
                 //<< . . FOR  hang 1 SET LOCK=$GET(^WWWDATEN(YM,+$HOROLOG,YUSER,YFORM,"LOCK",2)) QUIT:LOCK=""  QUIT:+LOCK'=+$HOROLOG  QUIT:($PIECE(LOCK,",",2)+4)<$PIECE($HOROLOG,",",2)  ;TYBD;LOCK BEI SAVE VON DATENFELDERN ;next to
                 for (;true;) {
                   m$.Cmd.Hang(1);
@@ -224,12 +225,13 @@ public class WWWSAVV extends mClass {
                   }
                 }
               }
+              m$.restoreVarBlock(2);
               //<< . ;
               //<< . SET YMFELD=$GET(^WWWDATEN(YM,+$HOROLOG,YUSER,YFORM,"M",1))
               YMFELD.set(m$.Fnc.$get(m$.var("^WWWDATEN",m$.var("YM").get(),mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"M",1)));
               //<< . SET YI=""
               YI.set("");
-              //<< . FOR  SET YI=$ORDER(^WWW122s(0,4," ",YFORM,YI)) QUIT:YI=""  DO   ;prï¿½fen der manuellen felder ;sift who
+              //<< . FOR  SET YI=$ORDER(^WWW122s(0,4," ",YFORM,YI)) QUIT:YI=""  DO   ;prüfen der manuellen felder ;sift who
               for (;true;) {
                 YI.set(m$.Fnc.$order(m$.var("^WWW122s",0,4," ",m$.var("YFORM").get(),YI.get())));
                 if (mOp.Equal(YI.get(),"")) {
@@ -238,7 +240,7 @@ public class WWWSAVV extends mClass {
                 do {
                   //<< . . NEW YSATZ
                   mVar YSATZ = m$.var("YSATZ");
-                  m$.newVar(YSATZ);
+                  m$.newVarBlock(2,YSATZ);
                   //<< . . SET YSATZ=$GET(^WWW122(0,YFORM,YI,1))
                   YSATZ.set(m$.Fnc.$get(m$.var("^WWW122",0,m$.var("YFORM").get(),YI.get(),1)));
                   //<< . . QUIT:$PIECE(YSATZ,Y,1)'=""   ;KEIN MANUELLER ;no
@@ -280,10 +282,11 @@ public class WWWSAVV extends mClass {
                   //<< . . SET YM(YI)=$PIECE(YMFELD,Y,YI)
                   mVar YM = m$.var("YM");
                   YM.var(YI.get()).set(m$.Fnc.$piece(YMFELD.get(),m$.var("Y").get(),YI.get()));
-                  //<< . . SET $PIECE(YMFELD,Y,YI)=$$GetInternal^WWWTR(YTYP,$PIECE(YMFELD,Y,YI))  ;TYBD;23827;25,06,2003;UMSETZUNG Fï¿½R SEITENWECHSEL
+                  //<< . . SET $PIECE(YMFELD,Y,YI)=$$GetInternal^WWWTR(YTYP,$PIECE(YMFELD,Y,YI))  ;TYBD;23827;25,06,2003;UMSETZUNG FÜR SEITENWECHSEL
                   m$.pieceVar(YMFELD,m$.var("Y").get(),YI.get()).set(m$.fnc$("WWWTR.GetInternal",YTYP.get(),m$.Fnc.$piece(YMFELD.get(),m$.var("Y").get(),YI.get())));
                 } while (false);
               }
+              m$.restoreVarBlock(2);
               //<< . ;
               //<< . ;DATENFELDER
               //<< . SET YFELD=$GET(^WWWDATEN(YM,+$HOROLOG,YUSER,YFORM,"D",1))
@@ -305,7 +308,7 @@ public class WWWSAVV extends mClass {
                     m$.pieceVar(YFELD,m$.var("Y").get(),YI.get()).set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWWDATEN",m$.var("YM").get(),mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),mOp.Concat(mOp.Concat(mOp.Concat("Y",m$.var("YFORM").get()),"D"),YI.get()),1)),m$.var("Y").get(),2));
                     //<< . . . . IF $EXTRACT($REVERSE($PIECE(YFELD,Y,YI)))=";" I '$F($PIECE(YFELD,Y,YI),"&") SET $PIECE(YFELD,Y,YI)=$REVERSE($EXTRACT($REVERSE($PIECE(YFELD,Y,YI)),2,9999))
                     if (mOp.Equal(m$.Fnc.$extract(m$.Fnc.$reverse(m$.Fnc.$piece(YFELD.get(),m$.var("Y").get(),YI.get()))),";")) {
-                      if (mOp.Not(m$.Fnc.$find(m$.Fnc.$piece(YFELD.get(),m$.var("Y").get(),YI.get()),"&"))) {
+                      if (mOp.Not(m$.Fnc.$f(m$.Fnc.$piece(YFELD.get(),m$.var("Y").get(),YI.get()),"&"))) {
                         m$.pieceVar(YFELD,m$.var("Y").get(),YI.get()).set(m$.Fnc.$reverse(m$.Fnc.$extract(m$.Fnc.$reverse(m$.Fnc.$piece(YFELD.get(),m$.var("Y").get(),YI.get())),2,9999)));
                       }
                     }
@@ -315,6 +318,7 @@ public class WWWSAVV extends mClass {
             } while (false);
             return;
           }
+          m$.restoreVarBlock(1);
         }
       }
       //<< . . . ; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ DISABLED BLOCK END
@@ -323,7 +327,7 @@ public class WWWSAVV extends mClass {
       if (mOp.NotEqual(m$.Fnc.$extract(m$.var("YOPEN").get(),1,4),"SAVE")) {
         //<< . . NEW YDECIMALLEN
         mVar YDECIMALLEN = m$.var("YDECIMALLEN");
-        m$.newVar(YDECIMALLEN);
+        m$.newVarBlock(2,YDECIMALLEN);
         //<< . . IF YDATEI'="" SET YI="" FOR  SET YI=$ORDER(^WWW003(0,YDATEI,YI)) QUIT:YI=""  DO  ;DATENFELDER
         if (mOp.NotEqual(m$.var("YDATEI").get(),"")) {
           YI.set("");
@@ -364,19 +368,19 @@ public class WWWSAVV extends mClass {
             YDECIMALLEN.set(2);
             //<< . . . IF YTYP=8 DO
             if (mOp.Equal(YTYP.get(),8)) {
-              //<< . . . . IF $DATA(^WWW122D(0,YFORM)) DO  ;TYBD;18,10,2004;ANZAHL DECIMALSTELLEN Wï¿½HRUNG
+              //<< . . . . IF $DATA(^WWW122D(0,YFORM)) DO  ;TYBD;18,10,2004;ANZAHL DECIMALSTELLEN WÄHRUNG
               if (mOp.Logical(m$.Fnc.$data(m$.var("^WWW122D",0,m$.var("YFORM").get())))) {
                 //<< . . . . . set YDECIMALLEN = $$^WWWDECIMALLEN(YFORM,YI)
                 YDECIMALLEN.set(m$.fnc$("WWWDECIMALLEN.main",m$.var("YFORM").get(),YI.get()));
               }
             }
             //<< . . . ;
-            //<< . . . IF YTYP=8 IF $FIND($PIECE(YFELD,Y,YI),"@") DO  QUIT  ;FIS;25727;21.05.04;FREMDWï¿½HRUNG
+            //<< . . . IF YTYP=8 IF $FIND($PIECE(YFELD,Y,YI),"@") DO  QUIT  ;FIS;25727;21.05.04;FREMDWÄHRUNG
             if (mOp.Equal(YTYP.get(),8)) {
               if (mOp.Logical(m$.Fnc.$find(m$.Fnc.$piece(YFELD.get(),m$.var("Y").get(),YI.get()),"@"))) {
                 //<< . . . . NEW TRENN
                 mVar TRENN = m$.var("TRENN");
-                m$.newVar(TRENN);
+                m$.newVarBlock(4,TRENN);
                 //<< . . . . ;SR17807 SET TRENN    = $$GetFormat^INPARA(8,".,")
                 //<< . . . . SET TRENN    = $$GetFormat^WWW100(8,".,") ;SR17807
                 TRENN.set(m$.fnc$("WWW100.GetFormat",8,".,"));
@@ -386,7 +390,7 @@ public class WWWSAVV extends mClass {
                 mVar YDECIMAL = m$.var("YDECIMAL");
                 YDECIMAL.set(m$.Fnc.$extract(TRENN.get(),1));
                 //<< . . . . ;
-                //<< . . . . IF YDECIMAL="," SET $PIECE(YFELD,Y,YI)=$TRANSLATE($PIECE(YFELD,Y,YI),".",$EXTRACT(TRENN,2))  ;ZURï¿½CKSETZEN AUF DEZIMAL-TRENNZEICHEN ;upon
+                //<< . . . . IF YDECIMAL="," SET $PIECE(YFELD,Y,YI)=$TRANSLATE($PIECE(YFELD,Y,YI),".",$EXTRACT(TRENN,2))  ;ZURÜCKSETZEN AUF DEZIMAL-TRENNZEICHEN ;upon
                 if (mOp.Equal(YDECIMAL.get(),",")) {
                   m$.pieceVar(YFELD,m$.var("Y").get(),YI.get()).set(m$.Fnc.$translate(m$.Fnc.$piece(YFELD.get(),m$.var("Y").get(),YI.get()),".",m$.Fnc.$extract(TRENN.get(),2)));
                 }
@@ -394,6 +398,7 @@ public class WWWSAVV extends mClass {
                 m$.var("%",m$.var("YQUERY").get(),mOp.Concat(mOp.Concat(mOp.Concat("Y",m$.var("YFORM").get()),"D"),YI.get())).set(m$.fnc$("WWWTR.GetLiteral",YTYP.get(),m$.Fnc.$piece(YFELD.get(),m$.var("Y").get(),YI.get())));
                 break;
               }
+              m$.restoreVarBlock(4);
             }
             //<< . . . ;
             //<< . . . SET $PIECE(YFELD,Y,YI)=$$GetLiteral^WWWTR(YTYP,$PIECE(YFELD,Y,YI))
@@ -403,6 +408,7 @@ public class WWWSAVV extends mClass {
           } while (false);
         }
       }
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . if YMFELD '= "" do SaveRecallRecord^WWWRECALL(YBED,YFORM,"M",YMFELD)
       if (mOp.NotEqual(YMFELD.get(),"")) {
@@ -415,13 +421,13 @@ public class WWWSAVV extends mClass {
       do {
         //<< . NEW YDATEI
         mVar YDATEI = m$.var("YDATEI");
-        m$.newVar(YDATEI);
+        m$.newVarBlock(1,YDATEI);
         //<< . SET YDATEI = $$$WWW120ClassUsedInForm(YVOR)  ; D11
         YDATEI.set(include.WWWConst.$$$WWW120ClassUsedInForm(m$,YVOR));
         //<< . SET YMAXKEY=""
         mVar YMAXKEY = m$.var("YMAXKEY");
         YMAXKEY.set("");
-        //<< . IF YDATEI'="" SET YMAXKEY=$ORDER(^WWW002(0,YDATEI,""),-1) IF YMAXKEY'="" DO  QUIT:YALLKEY=2   ;PRIMAERSCHLï¿½SSEL
+        //<< . IF YDATEI'="" SET YMAXKEY=$ORDER(^WWW002(0,YDATEI,""),-1) IF YMAXKEY'="" DO  QUIT:YALLKEY=2   ;PRIMAERSCHLÜSSEL
         if (mOp.NotEqual(YDATEI.get(),"")) {
           YMAXKEY.set(m$.Fnc.$order(m$.var("^WWW002",0,YDATEI.get(),""),mOp.Negative(1)));
           if (mOp.NotEqual(YMAXKEY.get(),"")) {
@@ -448,7 +454,7 @@ public class WWWSAVV extends mClass {
                     YKEY.var(YI.get()).set(0);
                     break;
                   }
-                  //<< . . . . SET YALLKEY=1  ;SUCHEN ï¿½FFNEN ;seek unclose
+                  //<< . . . . SET YALLKEY=1  ;SUCHEN ÖFFNEN ;seek unclose
                   YALLKEY.set(1);
                 } while (false);
               }
@@ -470,14 +476,14 @@ public class WWWSAVV extends mClass {
           do {
             //<< . . NEW DATA
             mVar DATA = m$.var("DATA");
-            m$.newVar(DATA);
+            m$.newVarBlock(2,DATA);
             //<< . . SET YKEY(1)=$GET(%(YQUERY,"Y"_YFORM_"P"_1))
             YKEY.var(1).set(m$.Fnc.$get(m$.var("%",m$.var("YQUERY").get(),mOp.Concat(mOp.Concat(mOp.Concat("Y",m$.var("YFORM").get()),"P"),1))));
             //<< . . QUIT:YRICHT'=""                              ;NUR NEXT DATENSATZ ;only data record
             if (mOp.NotEqual(m$.var("YRICHT").get(),"")) {
               break;
             }
-            //<< . . QUIT:YOPEN=1                                 ;NUR DATENSATZ SUCHEN/ï¿½FFNEN ;only data record
+            //<< . . QUIT:YOPEN=1                                 ;NUR DATENSATZ SUCHEN/ÖFFNEN ;only data record
             if (mOp.Equal(m$.var("YOPEN").get(),1)) {
               break;
             }
@@ -489,6 +495,7 @@ public class WWWSAVV extends mClass {
             }
           } while (false);
         }
+        m$.restoreVarBlock(2);
         //<< . ;
         //<< . IF YDATEI'="" SET YI="" FOR  SET YI=$ORDER(^WWW003(0,YDATEI,YI)) QUIT:YI=""  DO  ;DATENFELDER
         if (mOp.NotEqual(YDATEI.get(),"")) {
@@ -556,7 +563,7 @@ public class WWWSAVV extends mClass {
                   if (mOp.NotEqual(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW122",0,m$.var("YFORM").get(),YI.get(),1)),m$.var("Y").get(),1),"")) {
                     break;
                   }
-                  //<< . . . . IF YOPEN'=2 QUIT:$EXTRACT(YOPEN,1,4)'="SAVE"       ;ZWISCHENSPEICHER Fï¿½R MANUELLE ;to
+                  //<< . . . . IF YOPEN'=2 QUIT:$EXTRACT(YOPEN,1,4)'="SAVE"       ;ZWISCHENSPEICHER FÜR MANUELLE ;to
                   if (mOp.NotEqual(m$.var("YOPEN").get(),2)) {
                     if (mOp.NotEqual(m$.Fnc.$extract(m$.var("YOPEN").get(),1,4),"SAVE")) {
                       break;
@@ -574,6 +581,7 @@ public class WWWSAVV extends mClass {
         }
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< if YMFELD '= "" do SaveRecallRecord^WWWRECALL(YBED,YFORM,"M",YMFELD)
     if (mOp.NotEqual(YMFELD.get(),"")) {

@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWW120
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:23
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:14:05
 //*****************************************************************************
 
 import mLibrary.*;
@@ -239,7 +239,7 @@ public class WWW120 extends mClass {
                   if (mOp.NotEqual(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW003",0,YI.var(1).get(),YI.var(2).get(),1)),m$.var("Y").get(),26),"")) {
                     //<< . . . . . NEW PROP
                     mVar PROP = m$.var("PROP");
-                    m$.newVar(PROP);
+                    m$.newVarBlock(5,PROP);
                     //<< . . . . . SET YI(10) = $PIECE($GET(^WWW003(0,YI(1),YI(2),1)),Y,26)
                     YI.var(10).set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW003",0,YI.var(1).get(),YI.var(2).get(),1)),m$.var("Y").get(),26));
                     //<< . . . . . SET PROP   = $PIECE($GET(^WWW003(0,YI(1),YI(2),1)),Y,25)
@@ -277,6 +277,7 @@ public class WWW120 extends mClass {
                     }
                     break;
                   }
+                  m$.restoreVarBlock(5);
                   //<< . . . . ;
                   //<< . . . . ;----- Mandatory Field
                   //<< . . . . SET YMUSS=$PIECE($GET(^WWW003(0,YI(1),YI(2),1)),Y,18)      ;MUSSFELD
@@ -400,7 +401,7 @@ public class WWW120 extends mClass {
         mVar YQ = m$.var("YQ");
         mVar YI = m$.var("YI");
         mVar YVOR = m$.var("YVOR");
-        m$.newVar(YVOR1,YQ,YI,YVOR);
+        m$.newVarBlock(1,YVOR1,YQ,YI,YVOR);
         //<< . SET YQ=0
         YQ.set(0);
         //<< . FOR YI=3:1:9 IF $PIECE($GET(^WWW120(0,YFORM,1)),Y,YI)'="" SET YQ=1 QUIT
@@ -430,6 +431,7 @@ public class WWW120 extends mClass {
         m$.var("^WWW120",0,YFORM.get(),1).set(YVOR.get());
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< QUIT
     return null;

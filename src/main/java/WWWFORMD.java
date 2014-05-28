@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORMD
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:30:38
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:39
 //*****************************************************************************
 
 import mLibrary.*;
@@ -293,7 +293,7 @@ public class WWWFORMD extends mClass {
       m$.var("^WWWSOR",mOp.Concat(m$.var("YUSER").get(),"PAGE")).kill();
       //<< . NEW YHIDDSE
       mVar YHIDDSE = m$.var("YHIDDSE");
-      m$.newVar(YHIDDSE);
+      m$.newVarBlock(1,YHIDDSE);
       //<< . SET YBBN = ""
       mVar YBBN = m$.var("YBBN");
       YBBN.set("");
@@ -334,7 +334,7 @@ public class WWWFORMD extends mClass {
         if (mOp.Logical(m$.Fnc.$data(m$.var("^WWW122D",0,m$.var("YFORM").get(),YBBN.get(),m$.var("YM").get(),1)))) {
           //<< . . . NEW YSATZ1
           mVar YSATZ1 = m$.var("YSATZ1");
-          m$.newVar(YSATZ1);
+          m$.newVarBlock(3,YSATZ1);
           //<< . . . SET YSATZ1=$GET(^WWW122D(0,YFORM,YBBN,YM,1))
           YSATZ1.set(m$.Fnc.$get(m$.var("^WWW122D",0,m$.var("YFORM").get(),YBBN.get(),m$.var("YM").get(),1)));
           //<< . . . ;
@@ -378,6 +378,7 @@ public class WWWFORMD extends mClass {
             m$.var("^WWWDUMMY",m$.var("YUSER").get(),"TEMP").set(m$.var("YFELD").get());
           }
         }
+        m$.restoreVarBlock(3);
         //<< . . . ;BR014592 ^^^^
         //<< . . ;
         //<< . . ; FIXME : Class WWW122DU does not exist - either killed or set to 1 in WWWSCRA <GRF>
@@ -566,6 +567,7 @@ public class WWWFORMD extends mClass {
       //<< . KILL ^WWWSOR(YUSER_"PAGE")
       m$.var("^WWWSOR",mOp.Concat(m$.var("YUSER").get(),"PAGE")).kill();
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;---------------------------------------
     //<< ;   YSATZ       objFormData     ^WWW122
@@ -575,7 +577,6 @@ public class WWWFORMD extends mClass {
     //<< ; FIXME : <GRF> see note in further FIXME below re QUIT
     //<< DO  QUIT                              ;ZUSAMMENSTELLEN DER DATEN; ;the
     return;
-    //FORMVOR();
   }
 
   //<< 
@@ -793,7 +794,7 @@ public class WWWFORMD extends mClass {
               if (mOp.Equal(m$.Fnc.$piece(m$.var("YVOR").get(),m$.var("Y").get(),44),1)) {
                 //<< . . . NEW YI
                 mVar YI = m$.var("YI");
-                m$.newVar(YI);
+                m$.newVarBlock(3,YI);
                 //<< . . . WRITE "<TR><TD>"
                 m$.Cmd.Write("<TR><TD>");
                 //<< . . . IF YERSTES'=1 WRITE "<HR>"
@@ -859,6 +860,7 @@ public class WWWFORMD extends mClass {
                 m$.Cmd.Write(m$.var("YCR").get(),"</TR>");
                 break;
               }
+              m$.restoreVarBlock(3);
               //<< . . ;
               //<< . . ;+++++++++++++++++++++++++++++++++++
               //<< . . ;
@@ -950,42 +952,6 @@ public class WWWFORMD extends mClass {
                   } while(false);
                   break;
                   //<< . . . ;
-                  //<< . . . ;--------------------------------- ??? DISABLED BLOCK ??? see DO/QUIT above
-                  //<< . . . ;
-                  /*
-                  //<< . . . WRITE "<TABLE WIDTH=100%>"
-                  m$.Cmd.Write("<TABLE WIDTH=100%>");
-                  //<< . . . SET YTABLEANZ = $GET(YTABLEANZ)+1
-                  mVar YTABLEANZ = m$.var("YTABLEANZ");
-                  YTABLEANZ.set(mOp.Add(m$.Fnc.$get(m$.var("YTABLEANZ")),1));
-                  //<< . . . WRITE YCR,"<TR><TD align=right>"
-                  m$.Cmd.Write(m$.var("YCR").get(),"<TR><TD align=right>");
-                  //<< . . . IF $PIECE(YSATZ,Y,39)="" WRITE "<HR>"
-                  if (mOp.Equal(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),39),"")) {
-                    m$.Cmd.Write("<HR>");
-                  }
-                  //<< . . . IF $PIECE(YSATZ,Y,39)'="" DO
-                  if (mOp.NotEqual(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),39),"")) {
-                    //<< . . . . WRITE "<HR></TD>"
-                    m$.Cmd.Write("<HR></TD>");
-                    //<< . . . . ;------
-                    //<< . . . . write YCR,"<TD align=middle nowrap width=30%>"
-                    m$.Cmd.Write(m$.var("YCR").get(),"<TD align=middle nowrap width=30%>");
-                    //<< . . . . WRITE "<FONT SIZE="""_$PIECE(YVOR,Y,7)_""">"
-                    m$.Cmd.Write(mOp.Concat(mOp.Concat("<FONT SIZE=\"",m$.Fnc.$piece(m$.var("YVOR").get(),m$.var("Y").get(),7)),"\">"));
-                    //<< . . . . write $$TranslateGroupName($PIECE(YSATZ,Y,39))
-                    m$.Cmd.Write(m$.fnc$("TranslateGroupName",m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),39)));
-                    //<< . . . . WRITE "</TD><TD align=left><HR>"
-                    m$.Cmd.Write("</TD><TD align=left><HR>");
-                  }
-                  //<< . . . ;
-                  //<< . . . WRITE YCR,"</TD></TR>"
-                  m$.Cmd.Write(m$.var("YCR").get(),"</TD></TR>");
-                  //<< . . . WRITE "</TABLE>"
-                  m$.Cmd.Write("</TABLE>");
-                  //<< . . . SET YTABLEANZ = $GET(YTABLEANZ)-1
-                  YTABLEANZ.set(mOp.Subtract(m$.Fnc.$get(YTABLEANZ),1));
-                  */
                 } while (false);
                 break;
               }

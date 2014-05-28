@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC COMGridEdit31
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:24
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:14:06
 //*****************************************************************************
 
 import mLibrary.*;
@@ -11,11 +11,10 @@ import include.WWWConst;
 import include.COMSYS;
 //<< #include COMConst
 import include.COMConst;
-//<< #include COMGridEdit31
-//import include.COMGridEdit31;
 
 public class COMGridEdit31 extends mClass {
 
+  //<< #include COMGridEdit31
   //<< 
   //<< #def1arg WWWDATEN(%args) ^WWWDATEN(0,+$horolog,YUSER,YFORM,"V",%args)
   public static Object $$$WWWDATEN(mContext m$, Object ... _p) {
@@ -839,7 +838,7 @@ public class COMGridEdit31 extends mClass {
       //<< if $get(^CacheTemp(YUSER,"GridLine"))'="" {
       if (mOp.NotEqual(m$.Fnc.$get(m$.var("^CacheTemp",m$.var("YUSER").get(),"GridLine")),"")) {
         //<< set idRow = $get($$$WWWDATEN("REFERENCEROW",$get(^CacheTemp(YUSER,"GridLine")),1))
-        idRow.set(m$.Fnc.$get(COMGridEdit31.$$$WWWDATENVar(m$,"REFERENCEROW",m$.Fnc.$get(m$.var("^CacheTemp",m$.var("YUSER").get(),"GridLine")),1)));
+        idRow.set(m$.Fnc.$get($$$WWWDATENVar(m$,"REFERENCEROW",m$.Fnc.$get(m$.var("^CacheTemp",m$.var("YUSER").get(),"GridLine")),1)));
         //<< if idRow'="" {
         if (mOp.NotEqual(idRow.get(),"")) {
           //<< set intPage  = $$GetPage^COMGridEdit31R(idRow)

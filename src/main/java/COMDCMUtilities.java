@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC COMDCMUtilities
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:23
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:02
 //*****************************************************************************
 
 import mLibrary.*;

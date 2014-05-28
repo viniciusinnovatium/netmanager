@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWSCRA
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:15
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:56
 //*****************************************************************************
 
 import mLibrary.*;
@@ -291,7 +291,7 @@ public class WWWSCRA extends mClass {
       mVar SK2 = m$.var("SK2");
       mVar SK3 = m$.var("SK3");
       mVar SK4 = m$.var("SK4");
-      m$.newVar(SK1,SK2,SK3,SK4);
+      m$.newVarBlock(1,SK1,SK2,SK3,SK4);
       //<< . SET SK1=$$^WWWUMLAU(YFORM,1)
       SK1.set(m$.fnc$("WWWUMLAU.main",m$.var("YFORM").get(),1));
       //<< . SET SK2=$PIECE(YI(1),Y,60)
@@ -317,22 +317,24 @@ public class WWWSCRA extends mClass {
       //<< . SET ^WWW122s(0,1,SK2,YFORM,YFELD)=""
       m$.var("^WWW122s",0,1,SK2.get(),m$.var("YFORM").get(),YFELD.get()).set("");
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< IF YQ="K" DO   ;KILL
     if (mOp.Equal(YQ.get(),"K")) {
       //<< . NEW YFORM1
       mVar YFORM1 = m$.var("YFORM1");
-      m$.newVar(YFORM1);
+      m$.newVarBlock(1,YFORM1);
       //<< . SET YFORM1=YFORM
       YFORM1.set(m$.var("YFORM").get());
       //<< . NEW YFORM
       mVar YFORM = m$.var("YFORM");
-      m$.newVar(YFORM);
+      m$.newVarBlock(1,YFORM);
       //<< . SET YFORM="WWW122"
       YFORM.set("WWW122");
       //<< . DO ^WWWKILL("WWW122",YFORM1_","_YFELD)
       m$.Cmd.Do("WWWKILL.main","WWW122",mOp.Concat(mOp.Concat(YFORM1.get(),","),YFELD.get()));
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< QUIT
     return;

@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORMS
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:59
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:40
 //*****************************************************************************
 
 import mLibrary.*;
@@ -113,7 +113,7 @@ public class WWWFORMS extends mClass {
         mVar YNKEY = m$.var("YNKEY");
         mVar YI = m$.var("YI");
         mVar YSKEY = m$.var("YSKEY");
-        m$.newVar(YNKEY,YI,YSKEY);
+        m$.newVarBlock(2,YNKEY,YI,YSKEY);
         //<< . . SET YNKEY="",YNKEY(1)=""
         YNKEY.set("");
         YNKEY.var(1).set("");
@@ -157,6 +157,7 @@ public class WWWFORMS extends mClass {
           YKEY.set(m$.Fnc.$piece(m$.Fnc.$piece(YKEY.get(),"(",2,99),",",2,mOp.Add(YMAXKEY.get(),1)));
         }
       }
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . IF YRICHT="NEXT" DO
       if (mOp.Equal(m$.var("YRICHT").get(),"NEXT")) {
@@ -164,7 +165,7 @@ public class WWWFORMS extends mClass {
         mVar YNKEY = m$.var("YNKEY");
         mVar YI = m$.var("YI");
         mVar YSKEY = m$.var("YSKEY");
-        m$.newVar(YNKEY,YI,YSKEY);
+        m$.newVarBlock(2,YNKEY,YI,YSKEY);
         //<< . . SET YNKEY="",YNKEY(1)=""
         YNKEY.set("");
         YNKEY.var(1).set("");
@@ -242,6 +243,7 @@ public class WWWFORMS extends mClass {
           }
         }
       }
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . IF YRICHT="BACK" DO
       if (mOp.Equal(m$.var("YRICHT").get(),"BACK")) {
@@ -249,7 +251,7 @@ public class WWWFORMS extends mClass {
         mVar YNKEY = m$.var("YNKEY");
         mVar YI = m$.var("YI");
         mVar YSKEY = m$.var("YSKEY");
-        m$.newVar(YNKEY,YI,YSKEY);
+        m$.newVarBlock(2,YNKEY,YI,YSKEY);
         //<< . . SET YNKEY="",YNKEY(1)=""
         YNKEY.set("");
         YNKEY.var(1).set("");
@@ -308,6 +310,7 @@ public class WWWFORMS extends mClass {
           }
         }
       }
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . IF YRICHT="LAST" DO
       if (mOp.Equal(m$.var("YRICHT").get(),"LAST")) {
@@ -315,7 +318,7 @@ public class WWWFORMS extends mClass {
         mVar YNKEY = m$.var("YNKEY");
         mVar YI = m$.var("YI");
         mVar YSKEY = m$.var("YSKEY");
-        m$.newVar(YNKEY,YI,YSKEY);
+        m$.newVarBlock(2,YNKEY,YI,YSKEY);
         //<< . . SET YNKEY="",YNKEY(1)=""
         YNKEY.set("");
         YNKEY.var(1).set("");
@@ -359,6 +362,7 @@ public class WWWFORMS extends mClass {
           YKEY.set(m$.Fnc.$piece(m$.Fnc.$piece(YKEY.get(),"(",2,99),",",2,mOp.Add(YMAXKEY.get(),1)));
         }
       }
+      m$.restoreVarBlock(2);
     }
     //<< 
     //<< QUIT

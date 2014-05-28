@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORM9
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:44
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:25
 //*****************************************************************************
 
 import mLibrary.*;
@@ -427,7 +427,7 @@ public class WWWFORM9 extends mClass {
               }
               //<< . . . new YBACK1
               mVar YBACK1 = m$.var("YBACK1");
-              m$.newVar(YBACK1);
+              m$.newVarBlock(3,YBACK1);
               //<< . . . set YBACK1=$piece($get(YBACK),",",$length($get(YBACK),",")-1)
               YBACK1.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("YBACK")),",",mOp.Subtract(m$.Fnc.$length(m$.Fnc.$get(m$.var("YBACK")),","),1)));
               //<< . . . if YBACK1'="" set $piece(YKEY,",",YLFN)=$get(^WWW126(YM,YBACK1,YUSER,$piece(YSATZ,Y,16),1)) set $piece(YFKEY,",",YLFN)=$get(^WWW126(YM,YBACK1,YUSER,$piece(YSATZ,Y,16),1)) ;UNGLEICHE KEYS
@@ -437,6 +437,7 @@ public class WWWFORM9 extends mClass {
               }
             } while (false);
           }
+          m$.restoreVarBlock(3);
           //<< . . ;
           //<< . . if YLFN'=$piece(YSATZ,Y,16) do
           if (mOp.NotEqual(m$.var("YLFN").get(),m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),16))) {
@@ -447,7 +448,7 @@ public class WWWFORM9 extends mClass {
               }
               //<< . . . new YBACK1
               mVar YBACK1 = m$.var("YBACK1");
-              m$.newVar(YBACK1);
+              m$.newVarBlock(3,YBACK1);
               //<< . . . set YBACK1=$piece($get(YBACK),",",$length($get(YBACK),",")-1)
               YBACK1.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("YBACK")),",",mOp.Subtract(m$.Fnc.$length(m$.Fnc.$get(m$.var("YBACK")),","),1)));
               //<< . . . if YBACK1'="" set $piece(YKEY,",",YLFN)=$get(^WWW126(YM,YBACK1,YUSER,$piece(YSATZ,Y,16),1)) set $piece(YFKEY,",",YLFN)=$get(^WWW126(YM,YBACK1,YUSER,$piece(YSATZ,Y,16),1)) ;UNGLEICHE KEYS
@@ -457,6 +458,7 @@ public class WWWFORM9 extends mClass {
               }
             } while (false);
           }
+          m$.restoreVarBlock(3);
           //<< . . ;
           //<< . . if +$piece(YSATZ,Y,16)=0 do
           if (mOp.Equal(mOp.Positive(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),16)),0)) {
@@ -616,7 +618,7 @@ public class WWWFORM9 extends mClass {
               }
               //<< . . new YINHALT1
               mVar YINHALT1 = m$.var("YINHALT1");
-              m$.newVar(YINHALT1);
+              m$.newVarBlock(2,YINHALT1);
               //<< . . if ($extract(YINHALT,2)="$") || ($extract(YINHALT,2)="#") set YINHALT1 = "S YINHALT="_$extract($piece(YSATZ,Y,15),2,99) xecute YINHALT1
               if ((mOp.Equal(m$.Fnc.$extract(YINHALT.get(),2),"$")) || (mOp.Equal(m$.Fnc.$extract(YINHALT.get(),2),"#"))) {
                 YINHALT1.set(mOp.Concat("S YINHALT=",m$.Fnc.$extract(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),15),2,99)));
@@ -624,6 +626,7 @@ public class WWWFORM9 extends mClass {
               }
             } while (false);
           }
+          m$.restoreVarBlock(2);
         }
         //<< . ;
         //<< . set YGROUP=1
@@ -649,7 +652,7 @@ public class WWWFORM9 extends mClass {
                 if ((mOp.Equal(m$.Fnc.$extract(YINHALT.get(),2),"$")) || (mOp.NotEqual(m$.Fnc.$extract(YINHALT.get(),2),"#"))) {
                   //<< . . . new YINHALT1
                   mVar YINHALT1 = m$.var("YINHALT1");
-                  m$.newVar(YINHALT1);
+                  m$.newVarBlock(3,YINHALT1);
                   //<< . . . set YINHALT1 = "S YINHALT="_$extract($piece(YSATZ,Y,15),2,99)
                   YINHALT1.set(mOp.Concat("S YINHALT=",m$.Fnc.$extract(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),15),2,99)));
                   //<< . . . xecute YINHALT1
@@ -659,6 +662,7 @@ public class WWWFORM9 extends mClass {
                   //<< . . . set $piece(YKEY,",",YLFN)  = YINHALT
                   m$.pieceVar(m$.var("YKEY"),",",m$.var("YLFN").get()).set(YINHALT.get());
                 }
+                m$.restoreVarBlock(3);
               }
             }
           }
@@ -754,7 +758,7 @@ public class WWWFORM9 extends mClass {
         //<< . if YFOART=1 do  ;ANZEIGE FELDER BEI MEHREREN SEITEN ;Show next to sidelong
         if (mOp.Equal(m$.var("YFOART").get(),1)) {
           //<< . . new YI
-          m$.newVar(YI);
+          m$.newVarBlock(2,YI);
           //<< . . if ($piece(YDVOR,Y,8)="") || ($piece(YDVOR,Y,8)=YDATEI) do
           if ((mOp.Equal(m$.Fnc.$piece(YDVOR.get(),m$.var("Y").get(),8),"")) || (mOp.Equal(m$.Fnc.$piece(YDVOR.get(),m$.var("Y").get(),8),YDATEI.get()))) {
             //<< . . . if $get(YPARA(3))'="" set $piece(YDVOR,Y,10) = $translate(YPARA(3),",",";")   ;MULTIPLE ANZEIGE NACH PRIMÄRSCHLÜSSEL;TYBD;30,7,2004;26192
@@ -800,6 +804,7 @@ public class WWWFORM9 extends mClass {
             }
           }
         }
+        m$.restoreVarBlock(2);
       } while (false);
     }
     //<< . ;
@@ -889,13 +894,14 @@ public class WWWFORM9 extends mClass {
               }
               //<< . . . new YINHALT1
               mVar YINHALT1 = m$.var("YINHALT1");
-              m$.newVar(YINHALT1);
+              m$.newVarBlock(3,YINHALT1);
               //<< . . . set YINHALT1="S YINHALT="_$extract($piece(YSATZ,Y,16),2,99)
               YINHALT1.set(mOp.Concat("S YINHALT=",m$.Fnc.$extract(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),16),2,99)));
               //<< . . . xecute YINHALT1
               m$.Cmd.Xecute(YINHALT1.get());
             } while (false);
           }
+          m$.restoreVarBlock(3);
         }
         //<< . ;
         //<< . set YLANGE=$piece(YDVOR,Y,4)               ;FELDLENGE
@@ -1057,7 +1063,7 @@ public class WWWFORM9 extends mClass {
                 }
                 //<< . . . new YINHALT1
                 mVar YINHALT1 = m$.var("YINHALT1");
-                m$.newVar(YINHALT1);
+                m$.newVarBlock(3,YINHALT1);
                 //<< . . . set YINHALT1="S YINHALT="_$extract($piece(YSATZ,Y,15),2,99)
                 YINHALT1.set(mOp.Concat("S YINHALT=",m$.Fnc.$extract(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),15),2,99)));
                 //<< . . . xecute YINHALT1
@@ -1068,6 +1074,7 @@ public class WWWFORM9 extends mClass {
                 }
               } while (false);
             }
+            m$.restoreVarBlock(3);
           }
         }
         //<< . ;
@@ -1225,12 +1232,12 @@ public class WWWFORM9 extends mClass {
       do {
         //<< . new YYKEY
         mVar YYKEY = m$.var("YYKEY");
-        m$.newVar(YYKEY);
+        m$.newVarBlock(1,YYKEY);
         //<< . set YYKEY=$get(YKEY)
         YYKEY.set(m$.Fnc.$get(m$.var("YKEY")));
         //<< . new YKEY
         mVar YKEY = m$.var("YKEY");
-        m$.newVar(YKEY);
+        m$.newVarBlock(1,YKEY);
         //<< . set YKEY=YYKEY
         YKEY.set(YYKEY.get());
         //<< . if YKEY="" set YKEY=$translate($get(%(YQUERY,"YKEY")),"|"," ")  ;WENN VARIABLE BENÖTIGT ;when
@@ -1275,13 +1282,14 @@ public class WWWFORM9 extends mClass {
               }
               //<< . . . new YINHALT1
               mVar YINHALT1 = m$.var("YINHALT1");
-              m$.newVar(YINHALT1);
+              m$.newVarBlock(3,YINHALT1);
               //<< . . . set YINHALT1="S YINHALT="_$extract($piece(YSATZ,Y,16),2,99)
               YINHALT1.set(mOp.Concat("S YINHALT=",m$.Fnc.$extract(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),16),2,99)));
               //<< . . . xecute YINHALT1
               m$.Cmd.Xecute(YINHALT1.get());
             } while (false);
           }
+          m$.restoreVarBlock(3);
         }
         //<< . ;
         //<< . set YLANGE=$piece(YSATZ,Y,6)
@@ -1351,7 +1359,7 @@ public class WWWFORM9 extends mClass {
                   mVar YLFNX = m$.var("YLFNX");
                   mVar YDATEI1 = m$.var("YDATEI1");
                   mVar YDATEI = m$.var("YDATEI");
-                  m$.newVar(YLFN,YLFNX,YDATEI1,YDATEI);
+                  m$.newVarBlock(3,YLFN,YLFNX,YDATEI1,YDATEI);
                   //<< . . . set YDATEI=$piece($get(^WWW120(0,YFORM,1)),Y,11)
                   YDATEI.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW120",0,m$.var("YFORM").get(),1)),m$.var("Y").get(),11));
                   //<< . . . quit:YDATEI=""
@@ -1419,6 +1427,7 @@ public class WWWFORM9 extends mClass {
                   }
                 } while (false);
               }
+              m$.restoreVarBlock(3);
             }
           }
         }
@@ -1468,7 +1477,7 @@ public class WWWFORM9 extends mClass {
               }
               //<< . . . new YINHALT1
               mVar YINHALT1 = m$.var("YINHALT1");
-              m$.newVar(YINHALT1);
+              m$.newVarBlock(3,YINHALT1);
               //<< . . . set YINHALT1="S YINHALT="_$extract($piece(YSATZ,Y,15),2,99)
               YINHALT1.set(mOp.Concat("S YINHALT=",m$.Fnc.$extract(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),15),2,99)));
               //<< . . . xecute YINHALT1
@@ -1479,6 +1488,7 @@ public class WWWFORM9 extends mClass {
               }
             } while (false);
           }
+          m$.restoreVarBlock(3);
         }
         //<< . ;
         //<< . if $data(YMFELD) if YMFELD'="" set YINHALT=$piece(YMFELD,Y,YLFN)
@@ -1541,7 +1551,7 @@ public class WWWFORM9 extends mClass {
             if (mOp.Logical(m$.Fnc.$find(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),21),"."))) {
               //<< . . new OBJ
               mVar OBJ = m$.var("OBJ");
-              m$.newVar(OBJ);
+              m$.newVarBlock(2,OBJ);
               //<< . . if $get(FormObj)'="" do
               if (mOp.NotEqual(m$.Fnc.$get(m$.var("FormObj")),"")) {
                 //<< . . . set OBJ="S YINHALT="_YFORM_"Obj."_$piece(YSATZ,Y,21)
@@ -1550,6 +1560,7 @@ public class WWWFORM9 extends mClass {
                 m$.Cmd.Xecute(OBJ.get());
               }
             }
+            m$.restoreVarBlock(2);
           }
         }
         //<< . ;
@@ -1580,6 +1591,7 @@ public class WWWFORM9 extends mClass {
         m$.Cmd.Do("WWWFORM7.Start",mOp.Equal(m$.var("YHIDDSE").get(),0));
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< 
     //<< ;-------------------------------------------------------------------------------
@@ -1757,7 +1769,7 @@ public class WWWFORM9 extends mClass {
     //<< if YNAME1'="" do
     if (mOp.NotEqual(YNAME1.get(),"")) {
       //<< . new YI
-      m$.newVar(YI);
+      m$.newVarBlock(1,YI);
       //<< . write "<FONT SIZE="_$piece(YVOR,Y,7)_">"  ;SR17887
       m$.Cmd.Write(mOp.Concat(mOp.Concat("<FONT SIZE=",m$.Fnc.$piece(m$.var("YVOR").get(),m$.var("Y").get(),7)),">"));
       //<< . for YI=1:1 set YI(1)=$piece(YNAME1,"|",YI) quit:YI(1)=""  do
@@ -1776,6 +1788,7 @@ public class WWWFORM9 extends mClass {
       //<< . write "</FONT>"   ;SR17887
       m$.Cmd.Write("</FONT>");
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< // SR?????: Reorder these so that extra buttons go after the standard buttons
     //<< do THUMP      ;BILDER NACH DER EINGABEE ;imagery within the
@@ -2215,7 +2228,7 @@ public class WWWFORM9 extends mClass {
         //<< . new YINHALT0,URL
         mVar YINHALT0 = m$.var("YINHALT0");
         mVar URL = m$.var("URL");
-        m$.newVar(YINHALT0,URL);
+        m$.newVarBlock(1,YINHALT0,URL);
         //<< . set YINHALT0=$translate(YINHALT,",",";")
         YINHALT0.set(m$.Fnc.$translate(m$.var("YINHALT").get(),",",";"));
         //<< . for YI=1:1 quit:$piece(YINHALT0,";",YI)=""  set YINHALT1=$piece(YINHALT0,";",YI) do
@@ -2245,7 +2258,7 @@ public class WWWFORM9 extends mClass {
                         do {
                           //<< . . . . . new PATH
                           mVar PATH = m$.var("PATH");
-                          m$.newVar(PATH);
+                          m$.newVarBlock(5,PATH);
                           //<< . . . . . set PATH=$$$WWW122ListOfObjects(YSATZ)
                           PATH.set(include.WWWConst.$$$WWW122ListOfObjects(m$,m$.var("YSATZ")));
                           //<< . . . . . if PATH="YGIF" set YINHALT1=YGIF_YINHALT quit
@@ -2269,6 +2282,7 @@ public class WWWFORM9 extends mClass {
                         } while (false);
                         break;
                       }
+                      m$.restoreVarBlock(5);
                     }
                     //<< . . . . ;
                     //<< . . . . set:$extract(YFORM,1,3)'="WWW" YINHALT1=YGIF1_YINHALT1
@@ -2358,7 +2372,7 @@ public class WWWFORM9 extends mClass {
                         do {
                           //<< . . . . . new PATH
                           mVar PATH = m$.var("PATH");
-                          m$.newVar(PATH);
+                          m$.newVarBlock(5,PATH);
                           //<< . . . . . set PATH=$piece(YSATZ,Y,57)
                           PATH.set(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),57));
                           //<< . . . . . if PATH="YGIF"  set YINHALT1=YGIF_YINHALT  quit
@@ -2382,6 +2396,7 @@ public class WWWFORM9 extends mClass {
                         } while (false);
                         break;
                       }
+                      m$.restoreVarBlock(5);
                     }
                     //<< . . . . ;
                     //<< . . . . set:$extract(YFORM,1,3)'="WWW" YINHALT1=YGIF1_YINHALT1
@@ -2423,6 +2438,7 @@ public class WWWFORM9 extends mClass {
           } while (false);
         }
       }
+      m$.restoreVarBlock(1);
     }
     //<< 
     //<< ;---------------------------------------
@@ -2444,7 +2460,7 @@ public class WWWFORM9 extends mClass {
                     do {
                       //<< . . . . new PATH
                       mVar PATH = m$.var("PATH");
-                      m$.newVar(PATH);
+                      m$.newVarBlock(4,PATH);
                       //<< . . . . set PATH=$piece(YSATZ,Y,57)
                       PATH.set(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),57));
                       //<< . . . . if PATH="YGIF"  set YINHALT1=YGIF_YINHALT  quit
@@ -2468,6 +2484,7 @@ public class WWWFORM9 extends mClass {
                     } while (false);
                     break;
                   }
+                  m$.restoreVarBlock(4);
                 }
                 //<< . . . ;
                 //<< . . . set:$extract(YFORM,1,3)'="WWW" YINHALT=YGIF1_YINHALT
@@ -2547,7 +2564,7 @@ public class WWWFORM9 extends mClass {
                   do {
                     //<< . . . . new PATH
                     mVar PATH = m$.var("PATH");
-                    m$.newVar(PATH);
+                    m$.newVarBlock(4,PATH);
                     //<< . . . . set PATH=$piece(YSATZ,Y,57)
                     PATH.set(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),57));
                     //<< . . . . if PATH="YGIF"  set YINHALT1=YGIF_YINHALT  quit
@@ -2571,6 +2588,7 @@ public class WWWFORM9 extends mClass {
                   } while (false);
                   break;
                 }
+                m$.restoreVarBlock(4);
               }
               //<< . . . ;
               //<< . . . set:$extract(YFORM,1,3)'="WWW" YINHALT=YGIF1_YINHALT
@@ -2645,7 +2663,7 @@ public class WWWFORM9 extends mClass {
                   do {
                     //<< . . . . new PATH
                     mVar PATH = m$.var("PATH");
-                    m$.newVar(PATH);
+                    m$.newVarBlock(4,PATH);
                     //<< . . . . set PATH=$piece(YSATZ,Y,57)
                     PATH.set(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),57));
                     //<< . . . . if PATH="YGIF"  set YINHALT1=YGIF_YINHALT  quit
@@ -2669,6 +2687,7 @@ public class WWWFORM9 extends mClass {
                   } while (false);
                   break;
                 }
+                m$.restoreVarBlock(4);
               }
               //<< . . . ;
               //<< . . . set:$extract(YFORM,1,3)'="WWW" YINHALT=YGIF1_YINHALT
@@ -2758,7 +2777,7 @@ public class WWWFORM9 extends mClass {
           if (mOp.Equal(m$.Fnc.$piece(objCompany.get(),m$.var("Y").get(),92),1)) {
             //<< . new FILE
             mVar FILE = m$.var("FILE");
-            m$.newVar(FILE);
+            m$.newVarBlock(1,FILE);
             //<< . ;WRITE "&nbsp;"
             //<< . write YCR,"<A HREF=""CALLTO://"_$translate(YINHALT,"()-.#*_  &/!?")_""">"
             m$.Cmd.Write(m$.var("YCR").get(),mOp.Concat(mOp.Concat("<A HREF=\"CALLTO://",m$.Fnc.$translate(m$.var("YINHALT").get(),"()-.#*_  &/!?")),"\">"));
@@ -2767,6 +2786,7 @@ public class WWWFORM9 extends mClass {
             //<< . write "</A>"
             m$.Cmd.Write("</A>");
           }
+          m$.restoreVarBlock(1);
         }
       }
     }
@@ -2819,7 +2839,7 @@ public class WWWFORM9 extends mClass {
             m$.Cmd.Write(m$.var("YCR").get());
             //<< . new URL
             mVar URL = m$.var("URL");
-            m$.newVar(URL);
+            m$.newVarBlock(1,URL);
             //<< . set URL = $$$WWW012URLForAutoRoute(objCompany)
             URL.set(include.WWWConst.$$$WWW012URLForAutoRoute(m$,objCompany));
             //<< . quit:URL=""  ;KEIN EINTRAG IN MAP UND GUIDE;TYBD;14,5,2004
@@ -2848,6 +2868,7 @@ public class WWWFORM9 extends mClass {
           } while (false);
           return;
         }
+        m$.restoreVarBlock(1);
       }
     }
     //<< 

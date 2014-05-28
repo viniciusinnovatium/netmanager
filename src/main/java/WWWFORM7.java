@@ -1,16 +1,27 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORM7
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:38
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:18
 //*****************************************************************************
 
-import mLibrary.mClass;
-import mLibrary.mContext;
-import mLibrary.mOp;
-import mLibrary.mVar;
+import mLibrary.*;
+
 //<< 
 //<< #include COMSYS
+import include.COMSYS;
+import include.COMSYSDate;
+import include.COMSYSNum;
+import include.COMSYSString;
+import include.COMSYSWWW;
+import include.COMSYSOutput;
+import include.COMSYSEnum;
+import include.COMGridEdit31Interface;
+import include.COMTab;
+import include.COMEditor;
+import include.COMSYSJS;
+import include.$occInclude;
 //<< #include WWWConst
+import include.WWWConst;
 
 //<< WWWFORM7
 public class WWWFORM7 extends mClass {
@@ -696,7 +707,7 @@ public class WWWFORM7 extends mClass {
     //<< if $$$DEVMODE {
     if (mOp.Logical(include.COMSYS.$$$DEVMODE(m$))) {
       //<< if ($$$Contains(("WWW001","WWW002","WWW003","WWW003Calc"),YFORM)) {
-      if (mOp.Logical((include.COMSYS.$$$Contains(m$,("WWW001"),m$.var("YFORM"))))) {
+      if (mOp.Logical((m$.Fnc.$listfind(m$.Fnc.$listbuild("WWW001","WWW002","WWW003","WWW003Calc"),m$.var("YFORM").get())))) {
         //<< if (YART="P") && (YLFN=1) {
         if ((mOp.Equal(m$.var("YART").get(),"P")) && (mOp.Equal(m$.var("YLFN").get(),1))) {
           //<< write "<td><font color=red size=2><b><i>"
@@ -753,7 +764,7 @@ public class WWWFORM7 extends mClass {
             do {
               //<< . . new YOLDV
               mVar YOLDV = m$.var("YOLDV");
-              m$.newVar(YOLDV);
+              m$.newVarBlock(2,YOLDV);
               //<< . . set YOLDV = $piece($get(^WWWDATEN(0,+$horolog,YUSER,YFORM,"D",2)),Y,YLFN)
               YOLDV.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWWDATEN",0,mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"D",2)),m$.var("Y").get(),m$.var("YLFN").get()));
               //<< . . if $find(YOLDV,"@") if $$GetLiteral^WWWTR(YI(6),YOLDV)=YINHALT quit
@@ -766,6 +777,7 @@ public class WWWFORM7 extends mClass {
               m$.pieceVar(m$.var("^WWWDATEN",0,mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"D",1),m$.var("Y").get(),m$.var("YLFN").get()).set(m$.fnc$("WWWTR.GetInternal",YI.var(6).get(),m$.var("YINHALT").get()));
             } while (false);
           }
+          m$.restoreVarBlock(2);
         }
       } while (false);
     }
@@ -793,7 +805,7 @@ public class WWWFORM7 extends mClass {
             do {
               //<< . . new YOLDV
               mVar YOLDV = m$.var("YOLDV");
-              m$.newVar(YOLDV);
+              m$.newVarBlock(2,YOLDV);
               //<< . . set YOLDV = $piece($get(^WWWDATEN(0,+$horolog,YUSER,YFORM,"P",2)),",",YLFN)
               YOLDV.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWWDATEN",0,mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"P",2)),",",m$.var("YLFN").get()));
               //<< . . if $find(YOLDV,"@") if $$GetLiteral^WWWTR(YI(6),YOLDV)=YINHALT quit
@@ -806,6 +818,7 @@ public class WWWFORM7 extends mClass {
               m$.pieceVar(m$.var("^WWWDATEN",0,mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"P",1),",",m$.var("YLFN").get()).set(m$.fnc$("WWWTR.GetInternal",YI.var(6).get(),m$.var("YINHALT").get()));
             } while (false);
           }
+          m$.restoreVarBlock(2);
         }
       } while (false);
     }
@@ -832,7 +845,7 @@ public class WWWFORM7 extends mClass {
           do {
             //<< . . new YOLDV
             mVar YOLDV = m$.var("YOLDV");
-            m$.newVar(YOLDV);
+            m$.newVarBlock(2,YOLDV);
             //<< . . set YOLDV = $piece($get(^WWWDATEN(0,+$horolog,YUSER,YFORM,"M",2)),Y,YLFN)
             YOLDV.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWWDATEN",0,mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"M",2)),m$.var("Y").get(),m$.var("YLFN").get()));
             //<< . . if $find(YOLDV,"@") if $$GetLiteral^WWWTR(YI(6),YOLDV)=YINHALT quit
@@ -845,6 +858,7 @@ public class WWWFORM7 extends mClass {
             m$.pieceVar(m$.var("^WWWDATEN",0,mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"M",1),m$.var("Y").get(),m$.var("YLFN").get()).set(m$.fnc$("WWWTR.GetInternal",YI.var(6).get(),m$.var("YINHALT").get()));
           } while (false);
         }
+        m$.restoreVarBlock(2);
       }
     }
     //<< 
@@ -1095,7 +1109,7 @@ public class WWWFORM7 extends mClass {
     if (mOp.Equal(mOp.Positive(m$.Fnc.$piece(m$.var("YVOR").get(),m$.var("Y").get(),44)),2)) {
       //<< . new YTABB
       mVar YTABB = m$.var("YTABB");
-      m$.newVar(YTABB);
+      m$.newVarBlock(1,YTABB);
       //<< . set YTABB=0
       YTABB.set(0);
       //<< . if (YSPAL=1) || (YNSPAL=1) do
@@ -1189,6 +1203,7 @@ public class WWWFORM7 extends mClass {
         }
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< ; "Format In Pixels"
     //<< ;---------------------------------------
@@ -1276,7 +1291,7 @@ public class WWWFORM7 extends mClass {
       do {
         //<< . new YYBACK
         mVar YYBACK = m$.var("YYBACK");
-        m$.newVar(YYBACK);
+        m$.newVarBlock(1,YYBACK);
         //<< . ;
         //<< . if $extract(YPARA(1),1,11)="COMTempList" do
         if (mOp.Equal(m$.Fnc.$extract(m$.var("YPARA").var(1).get(),1,11),"COMTempList")) {
@@ -1343,7 +1358,7 @@ public class WWWFORM7 extends mClass {
         mVar YFKEY = m$.var("YFKEY");
         mVar YKEY = m$.var("YKEY");
         mVar YBACK = m$.var("YBACK");
-        m$.newVar(YI,YQ,YFKEY,YKEY,YBACK);
+        m$.newVarBlock(1,YI,YQ,YFKEY,YKEY,YBACK);
         //<< . set YBACK = ""  ;KEIN ZURÜCK WEIL KEY NICHT BRAUCHBAR BEI ZURÜCK; S YBACK=YYBACK_YFORM_","
         YBACK.set("");
         //<< . set YFKEY = ""
@@ -1371,7 +1386,7 @@ public class WWWFORM7 extends mClass {
               //<< . . . new PARAN,strURL
               mVar PARAN = m$.var("PARAN");
               mVar strURL = m$.var("strURL");
-              m$.newVar(PARAN,strURL);
+              m$.newVarBlock(3,PARAN,strURL);
               //<< . . . ;
               //<< . . . set PARAN=$piece($get(^WWW001(0,YPARA(1),1)),Y,1)    ; objClass
               PARAN.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW001",0,m$.var("YPARA").var(1).get(),1)),m$.var("Y").get(),1));
@@ -1427,6 +1442,7 @@ public class WWWFORM7 extends mClass {
               //<< . . . write " href='' onclick=""subWindow('"_strURL_"','TEILEFRAME2'); return false;"">"
               m$.Cmd.Write(mOp.Concat(mOp.Concat(" href='' onclick=\"subWindow('",strURL.get()),"','TEILEFRAME2'); return false;\">"));
             }
+            m$.restoreVarBlock(3);
           } while(false);
           //<< . if YQ=0 set YI="" for  set YI = $order(^WWW120s(0,1,$$^WWWUMLAU(YPARA(1),1),YI)) quit:YI=""  do  quit:YQ=1
           if (mOp.Equal(YQ.get(),0)) {
@@ -1447,7 +1463,7 @@ public class WWWFORM7 extends mClass {
                 //<< . . . new PARAN,strURL
                 mVar PARAN = m$.var("PARAN");
                 mVar strURL = m$.var("strURL");
-                m$.newVar(PARAN,strURL);
+                m$.newVarBlock(3,PARAN,strURL);
                 //<< . . . ;
                 //<< . . . set PARAN=$piece($get(^WWW001(0,YPARA(1),1)),Y,1)    ; objClass
                 PARAN.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW001",0,m$.var("YPARA").var(1).get(),1)),m$.var("Y").get(),1));
@@ -1503,6 +1519,7 @@ public class WWWFORM7 extends mClass {
                 //<< . . . write " href='' onclick=""subWindow('"_strURL_"','TEILEFRAME2'); return false;"">"
                 m$.Cmd.Write(mOp.Concat(mOp.Concat(" href='' onclick=\"subWindow('",strURL.get()),"','TEILEFRAME2'); return false;\">"));
               }
+              m$.restoreVarBlock(3);
               if (mOp.Equal(YQ.get(),1)) {
                 break;
               }
@@ -1511,6 +1528,7 @@ public class WWWFORM7 extends mClass {
         }
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;------------------------------------------------------------------------
     //<< if (YNAME'="") || (YNAME0'="") if $extract(YPARA(2))'="""" if $translate(YSTATUS," ")'="" if YLINK'=1 do
@@ -1775,7 +1793,7 @@ public class WWWFORM7 extends mClass {
       if (mOp.NotEqual(m$.var("YNAME0").get(),"")) {
         //<< . . new YI
         mVar YI = m$.var("YI");
-        m$.newVar(YI);
+        m$.newVarBlock(2,YI);
         //<< . . for YI=1:1 set YI(1) = $piece(YNAME0,"|",YI) quit:YI(1)=""  do
         for (YI.set(1);(true);YI.set(mOp.Add(YI.get(),1))) {
           YI.var(1).set(m$.Fnc.$piece(m$.var("YNAME0").get(),"|",YI.get()));
@@ -1789,6 +1807,7 @@ public class WWWFORM7 extends mClass {
           }
         }
       }
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . if (YNAME'="") || (YNAME0'="") do
       if ((mOp.NotEqual(m$.var("YNAME").get(),"")) || (mOp.NotEqual(m$.var("YNAME0").get(),""))) {
@@ -1880,7 +1899,7 @@ public class WWWFORM7 extends mClass {
             //<< . if $get(YVOR1)="" new YVOR1 set YVOR1=$get(^WWW012(0,0,1))  ;FIS;17.12.04 ;NUR BEI BEDARF NEU HOLEN
             if (mOp.Equal(m$.Fnc.$get(m$.var("YVOR1")),"")) {
               mVar YVOR1 = m$.var("YVOR1");
-              m$.newVar(YVOR1);
+              m$.newVarBlock(1,YVOR1);
               YVOR1.set(m$.Fnc.$get(m$.var("^WWW012",0,0,1)));
             }
             //<< . if $piece(YVOR1,Y,161)=$$$YES quit
@@ -1895,6 +1914,7 @@ public class WWWFORM7 extends mClass {
             m$.Cmd.Write(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<INPUT TYPE=BUTTON VALUE=c NAME=C onClick=\"document.",m$.var("YHTMFORM").get()),".Y"),m$.var("YFORM").get()),m$.var("YART").get()),m$.var("YLFN").get()),".style.fontFamily='Courier'\">"));
           } while (false);
         }
+        m$.restoreVarBlock(1);
       }
     }
     //<< 
@@ -2180,7 +2200,7 @@ public class WWWFORM7 extends mClass {
           do {
             //<< . . new YDATA
             mVar YDATA = m$.var("YDATA");
-            m$.newVar(YDATA);
+            m$.newVarBlock(2,YDATA);
             //<< . . if YPARA(3)="" set YPARA(3)=1
             if (mOp.Equal(m$.var("YPARA").var(3).get(),"")) {
               mVar YPARA = m$.var("YPARA");
@@ -2242,7 +2262,7 @@ public class WWWFORM7 extends mClass {
             YPARA.var(3).set(m$.Fnc.$translate(YPARA.var(3).get(),";",","));
             //<< . . new YII
             mVar YII = m$.var("YII");
-            m$.newVar(YII);
+            m$.newVarBlock(2,YII);
             //<< . . set YPARA(100)=""
             YPARA.var(100).set("");
             //<< . . for YII=1:1 set YII(1)=$piece(YPARA(3),",",YII) quit:YII(1)=""  do
@@ -2279,6 +2299,7 @@ public class WWWFORM7 extends mClass {
             }
           } while (false);
         }
+        m$.restoreVarBlock(2);
       }
       return include.COMSYS.$$$NO(m$);
     }
@@ -2457,7 +2478,7 @@ public class WWWFORM7 extends mClass {
       mVar YROW = m$.var("YROW");
       mVar YCOL = m$.var("YCOL");
       mVar CHAR = m$.var("CHAR");
-      m$.newVar(YROW,YCOL,CHAR);
+      m$.newVarBlock(1,YROW,YCOL,CHAR);
       //<< . do
       do {
         //<< . . ;;IF $PIECE($GET(^WWW012(0,0,1)),Y,152)=1 QUIT     ;;MINI HTML-EDITOR;BEC;;23380;23.02.04
@@ -2465,7 +2486,7 @@ public class WWWFORM7 extends mClass {
         //<< . . if $get(YVOR1)="" new YVOR1 set YVOR1=$get(^WWW012(0,0,1))  ;FIS;17.12.04 ;NUR BEI BEDARF NEU HOLEN
         if (mOp.Equal(m$.Fnc.$get(m$.var("YVOR1")),"")) {
           mVar YVOR1 = m$.var("YVOR1");
-          m$.newVar(YVOR1);
+          m$.newVarBlock(2,YVOR1);
           YVOR1.set(m$.Fnc.$get(m$.var("^WWW012",0,0,1)));
         }
         //<< . . if $piece(YVOR1,Y,161)=1 quit  ;do not show format buttons
@@ -2480,6 +2501,7 @@ public class WWWFORM7 extends mClass {
           }
         }
       } while(false);
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . set YROW=5,YCOL=40
       YROW.set(5);
@@ -2634,7 +2656,7 @@ public class WWWFORM7 extends mClass {
         //<< . . new I,YZWS
         mVar I = m$.var("I");
         mVar YZWS = m$.var("YZWS");
-        m$.newVar(I,YZWS);
+        m$.newVarBlock(2,I,YZWS);
         //<< . . for YI=1:1 set YZWS=$piece(YINHALT,"|",YI) quit:$piece(YINHALT,"|",YI,9999)=""  do
         mVar YI = m$.var("YI");
         for (YI.set(1);(true);YI.set(mOp.Add(YI.get(),1))) {
@@ -2648,6 +2670,7 @@ public class WWWFORM7 extends mClass {
           m$.Cmd.Write(YZWS.get());
         }
       } while(false);
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . write "</TEXTAREA>"
       m$.Cmd.Write("</TEXTAREA>");
@@ -2655,6 +2678,7 @@ public class WWWFORM7 extends mClass {
       m$.Cmd.Do("WWWFORM75.PARASUCH");
       return include.COMSYS.$$$NO(m$);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;---------------------------------------
     //<< ;---------------------------------------
@@ -3231,7 +3255,7 @@ public class WWWFORM7 extends mClass {
       YSORT.set("");
       //<< . new blnLinkedToGrid
       mVar blnLinkedToGrid = m$.var("blnLinkedToGrid");
-      m$.newVar(blnLinkedToGrid);
+      m$.newVarBlock(1,blnLinkedToGrid);
       //<< . set blnLinkedToGrid=$$$NO
       blnLinkedToGrid.set(include.COMSYS.$$$NO(m$));
       //<< . if YART="M" set blnLinkedToGrid=$$IsLinkedTo^COMGridEdit31Links(YBBN)
@@ -3437,6 +3461,7 @@ public class WWWFORM7 extends mClass {
       m$.Cmd.Do("WWWFORM75.PARASUCH");
       return include.COMSYS.$$$NO(m$);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;---------------------------------------
     //<< ;COLLECTION                                                 ; *** EXECUTE ***
@@ -3445,7 +3470,7 @@ public class WWWFORM7 extends mClass {
     if ((mOp.Equal(m$.var("YTYP").get(),15)) || (mOp.Equal(m$.var("YXTYP").get(),16))) {
       //<< . new YLFN2
       mVar YLFN2 = m$.var("YLFN2");
-      m$.newVar(YLFN2);
+      m$.newVarBlock(1,YLFN2);
       //<< . if $piece(YSATZ,Y,30)<1 set $piece(YSATZ,Y,30)=8
       if (mOp.Less(m$.Fnc.$piece(m$.var("YSATZ").get(),m$.var("Y").get(),30),1)) {
         m$.pieceVar(m$.var("YSATZ"),m$.var("Y").get(),30).set(8);
@@ -3634,6 +3659,7 @@ public class WWWFORM7 extends mClass {
       }
       return include.COMSYS.$$$NO(m$);
     }
+    m$.restoreVarBlock(1);
     do {
       //<< 
       //<< ;---------------------------------------
@@ -3881,7 +3907,7 @@ public class WWWFORM7 extends mClass {
               m$.Cmd.Write(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(" src=\"javascript:window.location='",m$.var("YAKTION").get()),"EP=WWWMANU&amp;YEXEC=*DO|ANZEIGE^WWWFORM74&amp;YFORM="),m$.var("YFORM").get()),"&amp;YLFDAT="),m$.var("YFORM").get()),m$.var("YART").get()),m$.var("YLFN").get()));
               //<< . . . new YFORM
               mVar YFORM = m$.var("YFORM");
-              m$.newVar(YFORM);
+              m$.newVarBlock(3,YFORM);
               //<< . . . do ^WWWCGI
               m$.Cmd.Do("WWWCGI.main");
               //<< . . . write "'"""
@@ -3895,6 +3921,7 @@ public class WWWFORM7 extends mClass {
               //<< . . . write YCR,"</IFRAME>"
               m$.Cmd.Write(m$.var("YCR").get(),"</IFRAME>");
             } while(false);
+            m$.restoreVarBlock(3);
             //<< . . ;
             //<< . . write "</div>"
             m$.Cmd.Write("</div>");
@@ -3985,7 +4012,7 @@ public class WWWFORM7 extends mClass {
               do {
                 //<< . . new YA1
                 mVar YA1 = m$.var("YA1");
-                m$.newVar(YA1);
+                m$.newVarBlock(2,YA1);
                 //<< . . set YA=$get(^WWWSOR(YUSER,2,YSORT,YPARA(5)))
                 mVar YA = m$.var("YA");
                 YA.set(m$.Fnc.$get(m$.var("^WWWSOR",m$.var("YUSER").get(),2,YSORT.get(),YPARA.var(5).get())));
@@ -4037,6 +4064,7 @@ public class WWWFORM7 extends mClass {
                   }
                 }
               } while(false);
+              m$.restoreVarBlock(2);
             } while (false);
           }
         }

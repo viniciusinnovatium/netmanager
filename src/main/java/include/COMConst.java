@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - INC include.COMConst
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:12:38
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:10:52
 //*****************************************************************************
 
 package include;

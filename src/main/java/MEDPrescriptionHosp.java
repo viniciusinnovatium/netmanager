@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC MEDPrescriptionHosp
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:12
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:53
 //*****************************************************************************
 
 import mLibrary.*;
@@ -1584,6 +1584,21 @@ public class MEDPrescriptionHosp extends mClass {
     return null;
   }
 
+  //<< /*
+  //<< new tmTime
+  //<< if pstrTime="." {
+  //<< set pstrTime=$ztime($piece($h,",",2),2)
+  //<< }
+  //<< set tmTime=$ztimeh(pstrTime,2,"err")
+  //<< if tmTime="err" {
+  //<< set Q=$$$QDontSave
+  //<< do ReturnError^COMUtils("MED01265")  ;Incorrect Time~
+  //<< } else {
+  //<< set pstrTime=$ztime(tmTime,2)
+  //<< }
+  //<< quit ;SR18026
+  //<< */
+  //<< 
   //<< UpdateDiluent(pidItem,YUPDATE)
   public Object UpdateDiluent(Object ... _p) {
     mVar pidItem = m$.newVarRef("pidItem",(((_p!=null)&&(_p.length>=1))?_p[0]:null));

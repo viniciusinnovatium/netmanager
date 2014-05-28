@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWSOR
-//** Innovatium Systems - Code Converter - v1.24
-//** 2014-05-23 17:08:58
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:14:32
 //*****************************************************************************
 
 import mLibrary.*;
@@ -18,6 +18,7 @@ import include.COMGridEdit31Interface;
 import include.COMTab;
 import include.COMEditor;
 import include.COMSYSJS;
+import include.$occInclude;
 
 //<< WWWSOR(YDATEI,YFKEY,YAUSW,YRICHT,YSORT,YANZ,YKOMP,YFIND,YFFKY,YSAUSW)
 public class WWWSOR extends mClass {
@@ -154,7 +155,7 @@ public class WWWSOR extends mClass {
     if (mOp.Equal(m$.Fnc.$extract(YSAUSW.get()),"@")) {
       do {
         //<< . NEW YA
-        m$.newVar(YA);
+        m$.newVarBlock(1,YA);
         //<< . IF $EXTRACT(YSAUSW,2)'="$" SET YSAUSW=@($EXTRACT(YSAUSW,2,99)) QUIT
         if (mOp.NotEqual(m$.Fnc.$extract(YSAUSW.get(),2),"$")) {
           YSAUSW.set(m$.indirectVar((m$.Fnc.$extract(YSAUSW.get(),2,99))).get());
@@ -166,6 +167,7 @@ public class WWWSOR extends mClass {
         m$.Cmd.Xecute(YA.get());
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< QUIT:$GET(YDATEI)=""
     if (mOp.Equal(m$.Fnc.$get(YDATEI),"")) {
@@ -792,7 +794,7 @@ public class WWWSOR extends mClass {
     if (mOp.Greater(m$.var("YALTERN").get(),0)) {
       //<< . NEW YMMKEY
       mVar YMMKEY = m$.var("YMMKEY");
-      m$.newVar(YMMKEY);
+      m$.newVarBlock(1,YMMKEY);
       //<< . SET YMMKEY=0
       YMMKEY.set(0);
       //<< . IF $PIECE($TRANSLATE($GET(^WWW002(0,YDATEI,1,1)),"'",""""),Y,11)'="" SET YMMKEY=1
@@ -804,6 +806,7 @@ public class WWWSOR extends mClass {
         YTKEY.set(m$.Fnc.$piece(YTKEY.get(),",",1,mOp.Subtract(m$.Fnc.$length(YTKEY.get(),","),1)));
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< IF $LENGTH(YTKEY,",")>1 IF YKOMP=2 SET YTKEY=$PIECE(YTKEY,",",1,$LENGTH(YTKEY,",")-1)
     if (mOp.Greater(m$.Fnc.$length(YTKEY.get(),","),1)) {
@@ -832,7 +835,7 @@ public class WWWSOR extends mClass {
       mVar YSI = m$.var("YSI");
       mVar YQ = m$.var("YQ");
       mVar YSKTEIL = m$.var("YSKTEIL");
-      m$.newVar(LFDAT,YSORTK,YSI,YQ,YSKTEIL);
+      m$.newVarBlock(1,LFDAT,YSORTK,YSI,YQ,YSKTEIL);
       //<< . SET YQ=0
       YQ.set(0);
       //<< . ;SET YFELD=$$^WWWSETL(YA)
@@ -887,6 +890,7 @@ public class WWWSOR extends mClass {
         }
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< SET YAUSWAHL=YAUSW
     mVar YAUSWAHL = m$.var("YAUSWAHL");

@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORMBIT
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:09
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:51
 //*****************************************************************************
 
 import mLibrary.*;
@@ -106,7 +106,7 @@ public class WWWFORMBIT extends mClass {
       mVar YFORM = m$.var("YFORM");
       mVar YKEY = m$.var("YKEY");
       mVar YBACK = m$.var("YBACK");
-      m$.newVar(YFORM,YKEY,YBACK,YDATEI);
+      m$.newVarBlock(1,YFORM,YKEY,YBACK,YDATEI);
       //<< . DO ^WWWCGI
       m$.Cmd.Do("WWWCGI.main");
       //<< . WRITE "';"
@@ -120,6 +120,7 @@ public class WWWFORMBIT extends mClass {
       //<< . WRITE YCR
       m$.Cmd.Write(m$.var("YCR").get());
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< WRITE YCR,"<FORM NAME="_""""_YHTMFORM_""""_">"
     m$.Cmd.Write(m$.var("YCR").get(),mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<FORM NAME=","\""),YHTMFORM.get()),"\""),">"));
@@ -346,7 +347,7 @@ public class WWWFORMBIT extends mClass {
         mVar PARA = m$.var("PARA");
         mVar RELF = m$.var("RELF");
         mVar LENGTH = m$.var("LENGTH");
-        m$.newVar(TYP,REL,PARA,RELF,LENGTH);
+        m$.newVarBlock(1,TYP,REL,PARA,RELF,LENGTH);
         //<< . SET YFRAGE=$GET(^WWWSOR(YUSER,"SORT",YLFN))
         mVar YFRAGE = m$.var("YFRAGE");
         YFRAGE.set(m$.Fnc.$get(m$.var("^WWWSOR",m$.var("YUSER").get(),"SORT",YLFN.get())));
@@ -427,7 +428,7 @@ public class WWWFORMBIT extends mClass {
           //<< . . NEW SUCH,YI
           mVar SUCH = m$.var("SUCH");
           mVar YI = m$.var("YI");
-          m$.newVar(SUCH,YI);
+          m$.newVarBlock(2,SUCH,YI);
           //<< . . SET SUCH="^"_REL_"("_""""_$$^WWWYM(REL)_""""  ;ZUSAMMENBAU DER GLOBALREFERENZ ;the
           SUCH.set(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("^",REL.get()),"("),"\""),m$.fnc$("WWWYM.main",REL.get())),"\""));
           //<< . . IF PARA'="" SET SUCH=SUCH_","_PARA
@@ -511,6 +512,7 @@ public class WWWFORMBIT extends mClass {
           //<< . . SET ^WWWDATEN(YM,+$HOROLOG,YUSER,YFORM,"V","X"_YDATEI_"D"_YLFN,1)=1  ;VORBELEGEN SUCHLOGIK: UND ;And
           m$.var("^WWWDATEN",m$.var("YM").get(),mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"V",mOp.Concat(mOp.Concat(mOp.Concat("X",m$.var("YDATEI").get()),"D"),YLFN.get()),1).set(1);
         } while(false);
+        m$.restoreVarBlock(2);
         //<< . ;
         //<< . WRITE "</TD>"
         m$.Cmd.Write("</TD>");
@@ -525,6 +527,7 @@ public class WWWFORMBIT extends mClass {
         m$.Cmd.Write("</TR>");
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< IF YTAB=1 WRITE "<TD COLSPAN=2>&nbsp;</TD></TR>"
     if (mOp.Equal(YTAB.get(),1)) {
@@ -635,7 +638,7 @@ public class WWWFORMBIT extends mClass {
       mVar YKEY = m$.var("YKEY");
       mVar YBACK = m$.var("YBACK");
       mVar YDATEI = m$.var("YDATEI");
-      m$.newVar(YFORM,YKEY,YBACK,YDATEI);
+      m$.newVarBlock(1,YFORM,YKEY,YBACK,YDATEI);
       //<< . DO ^WWWCGI
       m$.Cmd.Do("WWWCGI.main");
       //<< . WRITE "'} else alert('"_$$^WWWTEXT(119)_"');"_""""  ;KEINE DATEN GEFUNDEN
@@ -649,6 +652,7 @@ public class WWWFORMBIT extends mClass {
       //<< . WRITE "</A>"
       m$.Cmd.Write("</A>");
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< WRITE YCR,"</TD></TR>"
     m$.Cmd.Write(m$.var("YCR").get(),"</TD></TR>");
@@ -700,7 +704,7 @@ public class WWWFORMBIT extends mClass {
           //<< . . NEW YTYP,YVALUE
           mVar YTYP = m$.var("YTYP");
           mVar YVALUE = m$.var("YVALUE");
-          m$.newVar(YTYP,YVALUE);
+          m$.newVarBlock(2,YTYP,YVALUE);
           //<< . . SET YFRAGE=$$^WWWFELDNAME(YDATEI,"D",YLFN)
           mVar YFRAGE = m$.var("YFRAGE");
           YFRAGE.set(m$.fnc$("WWWFELDNAME.main",m$.var("YDATEI").get(),"D",YLFN.get()));
@@ -764,6 +768,7 @@ public class WWWFORMBIT extends mClass {
           }
         } while (false);
       }
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . IF YTAB=4 DO
       if (mOp.Equal(YTAB.get(),4)) {
@@ -809,12 +814,13 @@ public class WWWFORMBIT extends mClass {
       //<< DO
       //<< . NEW YKEY
       mVar YKEY = m$.var("YKEY");
-      m$.newVar(YKEY);
+      m$.newVarBlock(1,YKEY);
       //<< . SET YKEY=" "
       YKEY.set(" ");
       //<< . DO ^WWWBACK
       m$.Cmd.Do("WWWBACK.main");
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< IF YFORM="" QUIT
     if (mOp.Equal(YFORM.get(),"")) {
@@ -884,7 +890,7 @@ public class WWWFORMBIT extends mClass {
       //<< . NEW ANZAB,ANZAHL
       mVar ANZAB = m$.var("ANZAB");
       mVar ANZAHL = m$.var("ANZAHL");
-      m$.newVar(ANZAB,ANZAHL);
+      m$.newVarBlock(1,ANZAB,ANZAHL);
       //<< . SET ANZAB=1
       ANZAB.set(1);
       //<< . SET ANZAHL=100
@@ -902,6 +908,7 @@ public class WWWFORMBIT extends mClass {
       mVar YMAX = m$.var("YMAX");
       YMAX.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWWDATEN",m$.var("YM").get(),mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),YFORM.get(),"V","YRESULT",1)),m$.var("Y").get(),1));
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< SET YFELDER=$TRANSLATE($PIECE(YSUCHV,Y,6),";",",")
     mVar YFELDER = m$.var("YFELDER");
@@ -948,7 +955,7 @@ public class WWWFORMBIT extends mClass {
       //<< . NEW YI,YMAXKEY
       mVar YI = m$.var("YI");
       mVar YMAXKEY = m$.var("YMAXKEY");
-      m$.newVar(YI,YMAXKEY);
+      m$.newVarBlock(1,YI,YMAXKEY);
       //<< . SET YMAXKEY=$ORDER(^WWW002(0,YDATEI,""),-1)
       YMAXKEY.set(m$.Fnc.$order(m$.var("^WWW002",0,YDATEI.get(),""),mOp.Negative(1)));
       //<< . FOR YI=1:1:YMAXKEY SET $PIECE(YSUCH1,Y,5)=$PIECE(YSUCH1,Y,5)_","_YI       ;ANZEIGE KEY ;Show KEY
@@ -960,6 +967,7 @@ public class WWWFORMBIT extends mClass {
         m$.pieceVar(YSUCH1,m$.var("Y").get(),5).set(m$.Fnc.$extract(m$.Fnc.$piece(YSUCH1.get(),m$.var("Y").get(),5),2,999));
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< SET $PIECE(YSUCH1,Y,6)=YFELDER     ;ANZEIGEFELD
     m$.pieceVar(YSUCH1,m$.var("Y").get(),6).set(YFELDER.get());
@@ -997,12 +1005,13 @@ public class WWWFORMBIT extends mClass {
     do {
       //<< DO
       //<< . NEW YFORM
-      m$.newVar(YFORM);
+      m$.newVarBlock(1,YFORM);
       //<< . SET YFORM=YFORM1
       YFORM.set(YFORM1.get());
       //<< . DO ^WWWSEAR3
       m$.Cmd.Do("WWWSEAR3.main");
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< DO ^WWWUP(1)
     m$.Cmd.Do("WWWUP.main",1);

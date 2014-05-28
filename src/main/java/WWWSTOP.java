@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWSTOP
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:54
+//** Innovatium Systems - Code Converter - v1.28
+//** 2014-05-26 21:13:35
 //*****************************************************************************
 
 import mLibrary.*;
@@ -121,7 +121,7 @@ public class WWWSTOP extends mClass {
     if ((mOp.NotEqual(m$.var("YFIXHEADER").get(),1)) && (mOp.Equal(m$.Fnc.$get(m$.var("YNOFOOT")),""))) {
       //<< . NEW HELP
       mVar HELP = m$.var("HELP");
-      m$.newVar(HELP);
+      m$.newVarBlock(1,HELP);
       //<< . SET HELP=0
       HELP.set(0);
       //<< . IF $FIND(","_$TRANSLATE($$^WWWBEDBER(YBED),";",",")_",",",1,") SET HELP=1
@@ -225,6 +225,7 @@ public class WWWSTOP extends mClass {
       //<< . WRITE "</font>"
       m$.Cmd.Write("</font>");
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< WRITE YCR,"</div>"
     m$.Cmd.Write(m$.var("YCR").get(),"</div>");
