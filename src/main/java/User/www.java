@@ -187,7 +187,7 @@ public class www extends mPage {
         YUSER.set(m$.Fnc.$get(m$.getRequest().varData("YUSER",1)));
       }
       //<< if $data(^WWWEP(0)) && +$piece($get(^WWWEP(0,YI,1)),"~",1)=0 {   ;UNERLAUBTER ZUGRIFF
-      if (mOp.Equal(mOp.Logical(m$.Fnc.$data(m$.var("^WWWEP",0))) && mOp.Logical(mOp.Positive(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWWEP",0,YI.get(),1)),"~",1))),0)) {
+      if (mOp.Logical(m$.Fnc.$data(m$.var("^WWWEP",0))) && mOp.Equal(mOp.Logical(mOp.Positive(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWWEP",0,YI.get(),1)),"~",1))),0)) {
         //<< write "<HTML><BODY><H2>NO ACCESS (1001)</H2></BODY></HTML>"
         m$.Cmd.Write("<HTML><BODY><H2>NO ACCESS (1001)</H2></BODY></HTML>");
       }

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import mLibrary.mContext;
+import mLibrary.mRequest;
+import mLibrary.mSession;
 import User.www;
 
 /**
@@ -35,9 +37,8 @@ public class WWWServlet extends NetmanagerServlet {
 			String reqStr2 = "EP=WWWFORM&YFORM=VARAlertaLocal&YUCI=SESDF&YBED=INNOV&YM=0&YUSER=10010643489&YPARA=~&YANZ=VARMega,450.10.&YNAME=Alerta_de_Reposição&YLOCKKILL=1";
 			String reqStr3 = "EP=WWWFORM&YFORM=MEDPrescription&YUCI=SESDF&YBED=INNOV&YM=0&YUSER=10010643489&YPARA=~&YANZ=VARMega,450.10.&YNAME=Cadastro_de_Prescrição&YLOCKKILL=1";
 		}
-		populateRequest(request, queryStr);
-		//m$.setRequest(gerenateRequest(request));
-		//m$.setSession(gerenateSession(request));
+		m$.setRequest(new mRequest(request,queryStr));
+		m$.setSession(new mSession());
 
 		www www = new www();
 		www.setContext(m$);

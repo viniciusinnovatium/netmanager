@@ -51,31 +51,5 @@ public abstract class NetmanagerServlet extends HttpServlet {
 
 	abstract void doHandleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException;
-	/*
-	mSession gerenateSession(HttpServletRequest request) {
-		Enumeration<String> keys = request.getSession().getAttributeNames();
-
-		Map<String, String[]> sessionMap = new HashMap<String, String[]>();
-		while (keys.hasMoreElements()) {
-			String key = keys.nextElement();
-			sessionMap.put(key, new String[] { String.valueOf(request
-					.getSession().getAttribute(key)) });
-		}
-		return new mSession(sessionMap);
-	}
-	*/
-
-	void populateRequest(HttpServletRequest req, String str) {
-		String[] atributos = str.split("&");
-		String[] parameter = null;
-		for (String attr : atributos) {
-			parameter = attr.split("=");
-			if (parameter.length == 1) {
-				req.setAttribute(parameter[0], "");
-			} else if (parameter.length == 2) {
-				req.setAttribute(parameter[0], parameter[1]);
-			}
-
-		}
-	}
+	
 }
