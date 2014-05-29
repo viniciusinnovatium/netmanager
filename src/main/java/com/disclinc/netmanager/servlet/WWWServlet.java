@@ -36,8 +36,8 @@ public class WWWServlet extends NetmanagerServlet {
 			String reqStr3 = "EP=WWWFORM&YFORM=MEDPrescription&YUCI=SESDF&YBED=INNOV&YM=0&YUSER=10010643489&YPARA=~&YANZ=VARMega,450.10.&YNAME=Cadastro_de_Prescrição&YLOCKKILL=1";
 		}
 		populateRequest(request, queryStr);
-		m$.setRequest(gerenateRequest(request));
-		m$.setSession(gerenateSession(request));
+		//m$.setRequest(gerenateRequest(request));
+		//m$.setSession(gerenateSession(request));
 
 		www www = new www();
 		www.setContext(m$);

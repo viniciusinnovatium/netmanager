@@ -236,7 +236,9 @@ public class WWWVORG extends mClass {
             YVAR.set("");
             //<< . FOR  SET YVAR=$ORDER(%request.CgiEnvs(YVAR)) QUIT:YVAR=""  DO
             for (;true;) {
-              YVAR.set(m$.Fnc.$order(m$.getRequest().getCgiEnvs(YVAR.get())));
+              
+              //YVAR.set(m$.Fnc.$order(m$.getRequest().getCgiEnvs(YVAR.get())));
+            	YVAR.set("");
               if (mOp.Equal(YVAR.get(),"")) {
                 break;
               }
@@ -248,7 +250,8 @@ public class WWWVORG extends mClass {
                   break;
                 }
                 //<< . . IF $ORDER(%request.CgiEnvs(YVAR,1))="" SET %CGIEVAR(YVAR)=$GET(%request.CgiEnvs(YVAR,1)) QUIT
-                if (mOp.Equal(m$.Fnc.$order(m$.getRequest().getCgiEnvs(YVAR.get(),1)),"")) {
+                //if (mOp.Equal(m$.Fnc.$order(m$.getRequest().getCgiEnvs(YVAR.get(),1)),"")) {
+                if (mOp.Equal(m$.getRequest().getCgiEnvs(YVAR.get(),1),"")) {
                   m$.var("%CGIEVAR",YVAR.get()).set(m$.Fnc.$get(m$.getRequest().getCgiEnvs(YVAR.get(),1)));
                   break;
                 }
@@ -257,7 +260,8 @@ public class WWWVORG extends mClass {
                 YVAR.var(1).set("");
                 //<< . . FOR  SET YVAR(1)=$ORDER(%request.CgiEnvs(YVAR,YVAR(1))) QUIT:YVAR(1)=""  DO
                 for (;true;) {
-                  YVAR.var(1).set(m$.Fnc.$order(m$.getRequest().getCgiEnvs(YVAR.get(),YVAR.var(1).get())));
+                  //YVAR.var(1).set(m$.Fnc.$order(m$.getRequest().getCgiEnvs(YVAR.get(),YVAR.var(1).get())));
+                  YVAR.var(1).set("");
                   if (mOp.Equal(YVAR.var(1).get(),"")) {
                     break;
                   }

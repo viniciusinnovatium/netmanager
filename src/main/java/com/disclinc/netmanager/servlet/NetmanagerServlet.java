@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mLibrary.mRequest;
 import mLibrary.mSession;
 
 /**
@@ -52,19 +51,7 @@ public abstract class NetmanagerServlet extends HttpServlet {
 
 	abstract void doHandleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException;
-
-	mRequest gerenateRequest(HttpServletRequest request) {
-		Enumeration<String> keys = request.getAttributeNames();
-
-		Map<String, String[]> requestMap = new HashMap<String, String[]>();
-		while (keys.hasMoreElements()) {
-			String key = keys.nextElement();
-			requestMap.put(key,
-					new String[] { String.valueOf(request.getAttribute(key)) });
-		}
-		return new mRequest(requestMap);
-	}
-
+	/*
 	mSession gerenateSession(HttpServletRequest request) {
 		Enumeration<String> keys = request.getSession().getAttributeNames();
 
@@ -76,6 +63,7 @@ public abstract class NetmanagerServlet extends HttpServlet {
 		}
 		return new mSession(sessionMap);
 	}
+	*/
 
 	void populateRequest(HttpServletRequest req, String str) {
 		String[] atributos = str.split("&");
