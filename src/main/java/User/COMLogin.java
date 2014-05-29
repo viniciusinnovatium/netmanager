@@ -20,7 +20,7 @@ public class COMLogin extends mPage {
 
   //<< 
   //<< ClassMethod OnPage() As %Status
-  public Object OnPage(Object ... _p) {
+  public Object OnPage() {
     //<< ;------------------------------------------------------------------------------
     //<< ; 05-Sep-2012   shobby      SR18106: Login image is now configurable.
     //<< ; 30-Aug-2012   shobby      SR18073: Browser title is now configurable.

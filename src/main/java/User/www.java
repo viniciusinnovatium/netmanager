@@ -104,7 +104,7 @@ public class www extends mPage {
 
   //<< 
   //<< ClassMethod OnPage() As %Status
-  public Object OnPage(Object ... _p) {
+  public Object OnPage() {
     //<< {
     //<< ;-------------------------------------------------------------------------------
     //<< ; USAGE : e.g. Save button will generate entry point WWWSAVE that is then executed
