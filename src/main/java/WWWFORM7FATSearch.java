@@ -613,14 +613,14 @@ public class WWWFORM7FATSearch extends mClass {
     m$.Cmd.WriteJS("        }","\n");
     m$.Cmd.WriteJS("        function FATgetPageOffsetLeft(obj) { //CORE-75.8","\n");
     m$.Cmd.WriteJS("            var x=getPageOffsetLeft(obj);","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("            if (",(mOp.Logical(m$.Fnc.$get(m$.var("YFIXHEADER"))) && (mOp.Equal(m$.var("YUSERAGENT").get(),"MSIE")))),")) { //CORE-79.5"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("            if (",(mOp.Logical(m$.Fnc.$get(m$.var("YFIXHEADER"))) && (mOp.Equal(m$.var("YUSERAGENT").get(),"MSIE")))),") { //CORE-79.5"),"\n");
     m$.Cmd.WriteJS("                x=x-getPageOffsetLeft(document.getElementById('divFixedHeader'));","\n");
     m$.Cmd.WriteJS("            }","\n");
     m$.Cmd.WriteJS("            return x;","\n");
     m$.Cmd.WriteJS("        }","\n");
     m$.Cmd.WriteJS("        function FATgetPageOffsetTop(obj) {  //CORE-75.8     //CORE-79.5","\n");
     m$.Cmd.WriteJS("            var y=getPageOffsetTop(obj);","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("            if (",(mOp.Logical(m$.Fnc.$get(m$.var("YFIXHEADER"))) && (mOp.Equal(m$.var("YUSERAGENT").get(),"MSIE")))),")) {"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("            if (",(mOp.Logical(m$.Fnc.$get(m$.var("YFIXHEADER"))) && (mOp.Equal(m$.var("YUSERAGENT").get(),"MSIE")))),") {"),"\n");
     m$.Cmd.WriteJS("                y=y-getPageOffsetTop(document.getElementById('divFixedHeader'));","\n");
     m$.Cmd.WriteJS("            }","\n");
     m$.Cmd.WriteJS("            return y;","\n");

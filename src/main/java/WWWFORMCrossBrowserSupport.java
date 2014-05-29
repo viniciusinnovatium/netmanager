@@ -400,12 +400,12 @@ public class WWWFORMCrossBrowserSupport extends mClass {
     m$.Cmd.WriteJS("        return button;","\n");
     m$.Cmd.WriteJS("    }","\n");
     m$.Cmd.WriteJS("    ","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("    function isIE() { return ",(mOp.Equal(m$.var("YUSERAGENT").get(),"MSIE"))),"); }"),"\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("    function isFF() { return ",(mOp.Equal(m$.var("YUSERAGENT").get(),"GECKO"))),"); } //SR17663"),"\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("    function isCH() { return ",(mOp.Equal(m$.var("YUSERAGENT").get(),"CHROME"))),"); } //SR17663"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("    function isIE() { return ",(mOp.Equal(m$.var("YUSERAGENT").get(),"MSIE"))),"; }"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("    function isFF() { return ",(mOp.Equal(m$.var("YUSERAGENT").get(),"GECKO"))),"; } //SR17663"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("    function isCH() { return ",(mOp.Equal(m$.var("YUSERAGENT").get(),"CHROME"))),"; } //SR17663"),"\n");
     m$.Cmd.WriteJS("    ","\n");
     m$.Cmd.WriteJS("    function getBrowser(blnAddVersion) {","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("        if (",(mOp.Equal(m$.Fnc.$get(m$.var("YUSERAGENT")),"MSIE"))),")) {"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("        if (",(mOp.Equal(m$.Fnc.$get(m$.var("YUSERAGENT")),"MSIE"))),") {"),"\n");
     m$.Cmd.WriteJS("            if (blnAddVersion) {","\n");
     m$.Cmd.WriteJS("                if (navigator.userAgent.indexOf(\"MSIE 7\")!=-1) {","\n");
     m$.Cmd.WriteJS("                    return 'IE7';","\n");
