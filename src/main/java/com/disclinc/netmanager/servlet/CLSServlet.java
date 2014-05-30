@@ -37,14 +37,14 @@ public class CLSServlet extends NetmanagerServlet {
 		try {
 			mPage = (mPage) Class.forName(className).newInstance();
 			mPage.setContext(m$);
-			mPage.OnPage((Object[]) null);
+			mPage.Page();
 			
 		} catch (ClassNotFoundException e) {
 			className = "User."+className;
 			try {
 				mPage = (mPage) Class.forName(className).newInstance();
 				mPage.setContext(m$);
-				mPage.OnPage((Object[]) null);
+				mPage.Page();
 			} catch (Exception e1) {
 				throw new ServletException("Fail to execute URL " + className, e1);
 			} 

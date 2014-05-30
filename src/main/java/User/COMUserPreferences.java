@@ -7,7 +7,6 @@
 package User;
 
 import mLibrary.*;
-
 //<< Include (WWWConst, COMSYS)
 import include.WWWConst;
 //import COMSYS;
@@ -50,7 +49,7 @@ public class COMUserPreferences extends mPage {
   //<< {
   //<< 
   //<< ClassMethod OnPage() As %Status
-  public Object OnPage(Object ... _p) {
+  public Object OnPage() {
     //<< 
     //<< new objWWW013,idCompany
     mVar objWWW013 = m$.var("objWWW013");
@@ -190,7 +189,9 @@ public class COMUserPreferences extends mPage {
     //<< } else {
     else {
       //<< do ##class(User.www).Page()
-      m$.Cmd.Do("User.www.Page");
+    	m$.Cmd.Do("User.www.Page");
+    	mPage www = new User.www();
+    	m$.Cmd.Do(www,"Page");
     }
     //<< }
     //<< quit $$$OK

@@ -42,7 +42,7 @@ public class WWWServlet extends NetmanagerServlet {
 
 		www www = new www();
 		www.setContext(m$);
-		www.OnPage(null);
+		www.Page();
 	}
 
 }
