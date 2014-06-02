@@ -31,7 +31,26 @@ public class www extends mPage {
   //<< Parameter ENCODED = 0;
   public static Object p_ENCODED = 0;
 
-  //<< 
+  @Override
+public void OnPreHTTP() {
+	// TODO Auto-generated method stub
+	super.OnPreHTTP();
+}
+
+@Override
+public void OnPostHTTP() {
+	// TODO Auto-generated method stub
+	super.OnPostHTTP();
+}
+
+@Override
+public void Page() {
+	// TODO Auto-generated method stub
+	super.Page();
+}
+
+
+//<< 
   //<< /*
   //<< ClassMethod DateDiff(pdteFirst = "", pdteSecond = "") As %String
   //<< {
