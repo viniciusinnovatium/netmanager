@@ -43,6 +43,7 @@ public abstract class NetmanagerServlet extends HttpServlet {
 		Date init = new Date();
 		doHandleRequest(request, response);
 		Date end = new Date();
+		System.out.println("");
 		System.out
 				.println("###################### FIM DE EXECUÇÃO! #############################");
 		System.out

@@ -190,8 +190,6 @@ public class COMUserPreferences extends mPage {
     else {
       //<< do ##class(User.www).Page()
     	m$.Cmd.Do("User.www.Page");
-    	mPage www = new User.www();
-    	m$.Cmd.Do(www,"Page");
     }
     //<< }
     //<< quit $$$OK

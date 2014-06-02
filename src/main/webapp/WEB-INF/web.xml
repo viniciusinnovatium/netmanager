@@ -23,10 +23,11 @@
 		<servlet-name>CLSServlet</servlet-name>
 		<url-pattern>*.cls</url-pattern>
 	</servlet-mapping>
+	<!-- 
 	<servlet-mapping>
 		<servlet-name>WWWServlet</servlet-name>
 		<url-pattern>/www.cls</url-pattern>
-	</servlet-mapping>
+	 -->
 	<servlet-mapping>
 		<servlet-name>WWWServlet</servlet-name>
 		<url-pattern>/</url-pattern>
