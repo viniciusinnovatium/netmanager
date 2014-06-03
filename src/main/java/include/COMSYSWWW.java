@@ -42,8 +42,9 @@ public class COMSYSWWW extends mInclude {
   //<< 
   //<< #def1arg StartFrameSet(%args)       do StartFrameSet^WWWSession(%args)
   public static Object $$$StartFrameSet(mContext m$, Object ... _p) {
-    mVar p$args = m$.varRef("p$args",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
-    m$.Cmd.Do("WWWSession.StartFrameSet",p$args.get());
+    //mVar p$args = m$.varRef("p$args",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
+    //m$.Cmd.Do("WWWSession.StartFrameSet",p$args.get());
+    m$.Cmd.Do("WWWSession.StartFrameSet",_p);
     return null;
   }
 
