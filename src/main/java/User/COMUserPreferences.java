@@ -101,10 +101,10 @@ public class COMUserPreferences extends mPage {
       //<< (+$$$WWWClientParamCoreChangesHEVA($get(^WWWClientParam(YM,YM,1))))) {
       if ((mOp.Logical((mOp.Positive(include.WWWConst.$$$WWWClientParamCoreChangesSESPE(m$,m$.Fnc.$get(m$.var("^WWWClientParam",m$.var("YM").get(),m$.var("YM").get(),1)))))) || mOp.Logical((mOp.Positive(include.WWWConst.$$$WWWClientParamCoreChangesSESDF(m$,m$.Fnc.$get(m$.var("^WWWClientParam",m$.var("YM").get(),m$.var("YM").get(),1)))))) || mOp.Logical((mOp.Positive(include.WWWConst.$$$WWWClientParamCoreChangesHEVA(m$,m$.Fnc.$get(m$.var("^WWWClientParam",m$.var("YM").get(),m$.var("YM").get(),1)))))))) {
         //<< if (('##class(VAR.infra.shadow.ShadowRunner).IsFunctional()) && (YBED'="SHADOW")) {
-        if (mOp.Logical(((mOp.Not(m$.fnc$("VAR.infra.shadow.ShadowRunner.IsFunctional"))) && (mOp.NotEqual(m$.var("YBED").get(),"SHADOW"))))) {
+        //if (mOp.Logical(((mOp.Not(m$.fnc$("VAR.infra.shadow.ShadowRunner.IsFunctional"))) && (mOp.NotEqual(m$.var("YBED").get(),"SHADOW"))))) {
           //<< do ##class(User.www).ShowError($$$ERROR($$$UserNotAuthorizedOnSystem,YBED))
-          //m$.Cmd.Do("User.www.ShowError",$$$include.$$$ERROR(m$,$$$include.$$$UserNotAuthorizedOnSystem(m$),m$.var("YBED")));
-        }
+          //m$.Cmd.Do("User.www.ShowError",include.COMSYS.$$$ERROR(m$, include.$occErrors.$$$UserNotAuthorizedOnSystem(m$),m$.var("YBED")));
+        //}
       }
       //<< }
       //<< }
