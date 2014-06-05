@@ -235,7 +235,7 @@ public class WWWFORM extends mClass {
     if ((mOp.NotEqual(m$.Fnc.$get(m$.var("YBED")),"")) && (mOp.NotEqual(m$.var("YFORM").get(),""))) {
       mVar strStatus = m$.var("strStatus");
       m$.newVar(strStatus);
-      //TODO REVISAR SAVE strStatus.set(m$.fnc$("COMUtils.Save","WWWBENCH",mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(dteToday.get(),","),YSTARTTIME1.get()),","),m$.var("YFORM").get()),","),m$.var("YBED").get()),"",1));
+      strStatus.set(m$.fnc$("COMUtils.Save","WWWBENCH",mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(dteToday.get(),","),YSTARTTIME1.get()),","),m$.var("YFORM").get()),","),m$.var("YBED").get()),"",1));
     }
     //<< ;START EINSPRUNG VON AUSSEN ;take-off
     //<< set $ztrap="^WWWERROR"
@@ -1836,7 +1836,7 @@ public class WWWFORM extends mClass {
     //<< if ($get(YBED)'="") && (YFORM'="") new strStatus set strStatus=$$Save^COMUtils("WWWBENCH",dteToday_","_YSTARTTIME1_","_YFORM_","_YBED,$zhorolog-YSTARTTIME,0)  ;SAVE BENCHMARK ;SR17998
     if ((mOp.NotEqual(m$.Fnc.$get(m$.var("YBED")),"")) && (mOp.NotEqual(m$.var("YFORM").get(),""))) {
       m$.newVar(strStatus);
-      //TODO REVISAR SAVE strStatus.set(m$.fnc$("COMUtils.Save","WWWBENCH",mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(dteToday.get(),","),YSTARTTIME1.get()),","),m$.var("YFORM").get()),","),m$.var("YBED").get()),mOp.Subtract(m$.Fnc.$zhorolog(),YSTARTTIME.get()),0));
+      strStatus.set(m$.fnc$("COMUtils.Save","WWWBENCH",mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(dteToday.get(),","),YSTARTTIME1.get()),","),m$.var("YFORM").get()),","),m$.var("YBED").get()),mOp.Subtract(m$.Fnc.$zhorolog(),YSTARTTIME.get()),0));
     }
     //<< quit
     return;

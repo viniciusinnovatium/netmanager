@@ -417,7 +417,7 @@ public class WWWDASHBOARD extends mClass {
       //<< set YKEY=$$^WWWNEXT("COMSchedule")
       YKEY.set(m$.fnc$("WWWNEXT.main","COMSchedule"));
       //<< set strStatus=$$Save^COMUtils("COMSchedule",YKEY,objCOMSchedule,1)
-      //TODO REVISAR SAVE strStatus.set(m$.fnc$("COMUtils.Save","COMSchedule",YKEY.get(),objCOMSchedule.get(),1));
+      strStatus.set(m$.fnc$("COMUtils.Save","COMSchedule",YKEY.get(),objCOMSchedule.get(),1));
     }
     //<< }
     //<< quit strStatus

@@ -24,7 +24,7 @@ public class WWWServlet extends NetmanagerServlet {
 	@Override
 	void doHandleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
-		mContext m$ = new mContext(response.getWriter());
+		mContext m$ = new mContext(response);
 		m$.var("^WWWUSER", 0, "10010643489", 1)
 				.set("^1441,1450,1459,~INNOV~63314~55641~0~0~10~FRAME210010643489~0~0~~~~MEDPatient~~~~~PT~0~1~~~~~~~~~~~~~~MSIE~192.168.100.156");
 		m$.var("%", "%KEY", "YFORMWAIT").set(1);
