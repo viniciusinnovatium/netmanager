@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWMENU4X
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:39
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:26
 //*****************************************************************************
 
 import mLibrary.*;
@@ -248,7 +248,7 @@ public class WWWMENU4X extends mClass {
         if (mOp.Or(mOp.Equal(m$.var("YANZ").get(),""),(mOp.NotEqual(m$.Fnc.$piece(m$.var("YANZ").get(),",",1),YAPP.get())))) {
           //<< . . NEW YANZ
           mVar YANZ = m$.var("YANZ");
-          m$.newVar(YANZ);
+          m$.newVarBlock(2,YANZ);
           //<< . . WRITE "<A"
           m$.Cmd.Write("<A");
           //<< . . IF $DATA(^WWWVERSION(0,YAPP,1)) WRITE " TITLE="_""""_$$^WWWTEXT(253)_" "_$PIECE($GET(^WWWVERSION(0,YAPP,1)),Y,1)_""""    ;VERSION;BEC;23699;YM DURCH 0 ERSETZT,SPRACHENTEXT;26.05.03
@@ -266,13 +266,14 @@ public class WWWMENU4X extends mClass {
           //<< . . WRITE ">"
           m$.Cmd.Write(">");
         }
+        m$.restoreVarBlock(2);
         //<< . ;
         //<< . IF YANZ'="" IF $PIECE(YANZ,",",1)=YAPP DO
         if (mOp.NotEqual(m$.var("YANZ").get(),"")) {
           if (mOp.Equal(m$.Fnc.$piece(m$.var("YANZ").get(),",",1),YAPP.get())) {
             //<< . . NEW YANZ
             mVar YANZ = m$.var("YANZ");
-            m$.newVar(YANZ);
+            m$.newVarBlock(2,YANZ);
             //<< . . WRITE "<A"
             m$.Cmd.Write("<A");
             //<< . . IF $DATA(^WWWVERSION(0,YAPP,1)) WRITE " TITLE="_""""_$$^WWWTEXT(253)_" "_$PIECE($GET(^WWWVERSION(0,YAPP,1)),Y,1)_""""   ;VERSION;BEC;23699;YM DURCH 0 ERSETZT,SPRACHENTEXT;26.05.03
@@ -290,6 +291,7 @@ public class WWWMENU4X extends mClass {
             //<< . . WRITE ">"
             m$.Cmd.Write(">");
           }
+          m$.restoreVarBlock(2);
         }
         //<< . ;
         //<< . IF YANZ="" DO
@@ -563,7 +565,7 @@ public class WWWMENU4X extends mClass {
           if (mOp.NotEqual(m$.var("YPROG").get(),(mOp.Concat(m$.Fnc.$piece(m$.Fnc.$piece(m$.var("YANZ").get(),",",2),".",1),".")))) {
             //<< . . . NEW YANZ
             mVar YANZ = m$.var("YANZ");
-            m$.newVar(YANZ);
+            m$.newVarBlock(3,YANZ);
             //<< . . . SET YASTART=1
             YASTART.set(1);
             //<< . . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
@@ -577,12 +579,13 @@ public class WWWMENU4X extends mClass {
             //<< . . . WRITE ">"
             m$.Cmd.Write(">");
           }
+          m$.restoreVarBlock(3);
           //<< . . ;
           //<< . . IF YPROG=($PIECE($PIECE(YANZ,",",2),".",1)_".") DO
           if (mOp.Equal(m$.var("YPROG").get(),(mOp.Concat(m$.Fnc.$piece(m$.Fnc.$piece(m$.var("YANZ").get(),",",2),".",1),".")))) {
             //<< . . . NEW YANZ
             mVar YANZ = m$.var("YANZ");
-            m$.newVar(YANZ);
+            m$.newVarBlock(3,YANZ);
             //<< . . . SET YASTART=1
             YASTART.set(1);
             //<< . . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
@@ -596,6 +599,7 @@ public class WWWMENU4X extends mClass {
             //<< . . . WRITE ">"
             m$.Cmd.Write(">");
           }
+          m$.restoreVarBlock(3);
         }
       }
       //<< . ;
@@ -611,7 +615,7 @@ public class WWWMENU4X extends mClass {
         if (mOp.Equal(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),12),"")) {
           //<< . . . NEW YNAME
           mVar YNAME = m$.var("YNAME");
-          m$.newVar(YNAME);
+          m$.newVarBlock(3,YNAME);
           //<< . . . SET YAUFRUF="WWWFORM"
           mVar YAUFRUF = m$.var("YAUFRUF");
           YAUFRUF.set("WWWFORM");
@@ -663,6 +667,7 @@ public class WWWMENU4X extends mClass {
           //<< . . . WRITE ">"
           m$.Cmd.Write(">");
         }
+        m$.restoreVarBlock(3);
         //<< . . ;
         //<< . . IF $PIECE(YA,Y,12)'="" DO  ;URL
         if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),12),"")) {
@@ -991,7 +996,7 @@ public class WWWMENU4X extends mClass {
           if (mOp.NotEqual(m$.var("YPROG1").get(),(mOp.Concat(m$.Fnc.$piece(m$.Fnc.$piece(m$.var("YANZ").get(),",",2),".",1,2),".")))) {
             //<< . . . NEW YANZ
             mVar YANZ = m$.var("YANZ");
-            m$.newVar(YANZ);
+            m$.newVarBlock(3,YANZ);
             //<< . . . SET YASTART=1
             YASTART.set(1);
             //<< . . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
@@ -1005,12 +1010,13 @@ public class WWWMENU4X extends mClass {
             //<< . . . WRITE ">"
             m$.Cmd.Write(">");
           }
+          m$.restoreVarBlock(3);
           //<< . . ;
           //<< . . IF YPROG1=($PIECE($PIECE(YANZ,",",2),".",1,2)_".") DO
           if (mOp.Equal(m$.var("YPROG1").get(),(mOp.Concat(m$.Fnc.$piece(m$.Fnc.$piece(m$.var("YANZ").get(),",",2),".",1,2),".")))) {
             //<< . . . NEW YANZ
             mVar YANZ = m$.var("YANZ");
-            m$.newVar(YANZ);
+            m$.newVarBlock(3,YANZ);
             //<< . . . SET YASTART=1
             YASTART.set(1);
             //<< . . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
@@ -1024,6 +1030,7 @@ public class WWWMENU4X extends mClass {
             //<< . . . WRITE ">"
             m$.Cmd.Write(">");
           }
+          m$.restoreVarBlock(3);
         }
       }
       //<< . ;
@@ -1039,7 +1046,7 @@ public class WWWMENU4X extends mClass {
         if (mOp.Equal(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),12),"")) {
           //<< . . . NEW YNAME
           mVar YNAME = m$.var("YNAME");
-          m$.newVar(YNAME);
+          m$.newVarBlock(3,YNAME);
           //<< . . . SET YAUFRUF="WWWFORM"
           mVar YAUFRUF = m$.var("YAUFRUF");
           YAUFRUF.set("WWWFORM");
@@ -1095,6 +1102,7 @@ public class WWWMENU4X extends mClass {
           //<< . . . WRITE ">"
           m$.Cmd.Write(">");
         }
+        m$.restoreVarBlock(3);
         //<< . . ;
         //<< . . IF $PIECE(YA,Y,12)'="" DO  ;URL
         if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),12),"")) {
@@ -1381,7 +1389,7 @@ public class WWWMENU4X extends mClass {
       mVar YFORM = m$.var("YFORM");
       mVar YKEY = m$.var("YKEY");
       mVar NUMBER = m$.var("NUMBER");
-      m$.newVar(YFORM,YKEY,NUMBER);
+      m$.newVarBlock(1,YFORM,YKEY,NUMBER);
       //<< . SET NUMBER=YPROG
       NUMBER.set(m$.var("YPROG").get());
       //<< . IF $GET(NO)=1 SET NUMBER=YPROG1
@@ -1413,21 +1421,18 @@ public class WWWMENU4X extends mClass {
       //<< . QUIT
       break;
     } while(false);
+    m$.restoreVarBlock(1);
     //<< WRITE "&nbsp;"
     m$.Cmd.Write("&nbsp;");
     //<< WRITE "</a>",YCR
     m$.Cmd.Write("</a>",m$.var("YCR").get());
     //<< QUIT
     return null;
-    /*
-    //<< WRITE "&nbsp;"
-    m$.Cmd.Write("&nbsp;");
-    //<< WRITE "</a>",YCR
-    m$.Cmd.Write("</a>",m$.var("YCR").get());
-    //<< QUIT
-    return null;
-    */
   }
 
-//<< 
+//<< /*
+//<< WRITE "&nbsp;"
+//<< WRITE "</a>",YCR
+//<< QUIT
+//<< */
 }

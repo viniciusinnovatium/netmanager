@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWMENU6
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:40
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:27
 //*****************************************************************************
 
 import mLibrary.*;
@@ -204,7 +204,7 @@ public class WWWMENU6 extends mClass {
         if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),2),"")) {
           do {
             //<< . . NEW YNAME
-            m$.newVar(YNAME);
+            m$.newVarBlock(2,YNAME);
             //<< . . SET YNAME=$PIECE(YA,Y,1)
             YNAME.set(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),1));
             //<< . . SET YSHAPE=0
@@ -261,11 +261,12 @@ public class WWWMENU6 extends mClass {
           } while (false);
           break;
         }
+        m$.restoreVarBlock(2);
         //<< . IF $PIECE(YA,Y,12)'="" DO  QUIT   ;URL
         if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),12),"")) {
           do {
             //<< . . NEW YNAME
-            m$.newVar(YNAME);
+            m$.newVarBlock(2,YNAME);
             //<< . . SET YNAME=$PIECE(YA,Y,1)
             YNAME.set(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),1));
             //<< . . SET YSHAPE=0
@@ -321,12 +322,13 @@ public class WWWMENU6 extends mClass {
           } while (false);
           break;
         }
+        m$.restoreVarBlock(2);
         //<< . ;
         //<< . IF $PIECE(YA,Y,8)'="" DO  QUIT  ;URL
         if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),8),"")) {
           do {
             //<< . . NEW YNAME
-            m$.newVar(YNAME);
+            m$.newVarBlock(2,YNAME);
             //<< . . SET YNAME=$PIECE(YA,Y,1)
             YNAME.set(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),1));
             //<< . . SET YSHAPE=0
@@ -367,6 +369,7 @@ public class WWWMENU6 extends mClass {
           } while (false);
           break;
         }
+        m$.restoreVarBlock(2);
         //<< . QUIT
         break;
       } while (false);
@@ -386,7 +389,7 @@ public class WWWMENU6 extends mClass {
       do {
         //<< . NEW YANZ
         mVar YANZ = m$.var("YANZ");
-        m$.newVar(YANZ);
+        m$.newVarBlock(1,YANZ);
         //<< . SET YSHAPE1="POLYGON"   ;POLYGONE
         mVar YSHAPE1 = m$.var("YSHAPE1");
         YSHAPE1.set("POLYGON");
@@ -411,6 +414,7 @@ public class WWWMENU6 extends mClass {
         break;
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< QUIT
     return;
   }

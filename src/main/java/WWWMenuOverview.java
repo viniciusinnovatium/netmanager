@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWMenuOverview
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:53
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-04 15:00:25
 //*****************************************************************************
 
 import mLibrary.*;
@@ -141,8 +141,8 @@ public class WWWMenuOverview extends mClass {
       //<< >
       m$.Cmd.WriteHtml("","\n");
       m$.Cmd.WriteHtml("            <ul class=\"MenuOverview\">","\n");
-      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("            <div class=\"Section\" style=\"background-image: url(",(strImageDirectory.get())),")/"),(strImage.get())),"));\">"),"\n");
-      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                <span class=\"Title\">",(include.WWWConst.$$$WWW004MenuDescription(m$,objMenu))),")</span>"),"\n");
+      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("            <div class=\"Section\" style=\"background-image: url(",(strImageDirectory.get())),"/"),(strImage.get())),");\">"),"\n");
+      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                <span class=\"Title\">",(include.WWWConst.$$$WWW004MenuDescription(m$,objMenu))),"</span>"),"\n");
       m$.Cmd.WriteHtml("            </div>","\n");
       m$.Cmd.WriteHtml("        ");
       //<< for loopSubmenus=1:1:$length($get(arrUserMenu(idSection)),";") {
@@ -219,12 +219,12 @@ public class WWWMenuOverview extends mClass {
           //<< if strTarget '= "" {
           if (mOp.NotEqual(strTarget.get(),"")) {
             //<< &html<<li#(strCSSClass)#><a href="#(strLink)#" target="#(strTarget)#">#($$$WWW004MenuDescription(objSubmenu))#</a></li>>
-            m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<li",(strCSSClass.get())),")><a href=\""),(strLink.get())),")\" target=\""),(strTarget.get())),")\">"),(include.WWWConst.$$$WWW004MenuDescription(m$,objSubmenu))),")</a></li>"));
+            m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<li",(strCSSClass.get())),"><a href=\""),(strLink.get())),"\" target=\""),(strTarget.get())),"\">"),(include.WWWConst.$$$WWW004MenuDescription(m$,objSubmenu))),"</a></li>"));
           }
           //<< } else {
           else {
             //<< &html<<li#(strCSSClass)#><a href="#(strLink)#">#($$$WWW004MenuDescription(objSubmenu))#</a></li>>
-            m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<li",(strCSSClass.get())),")><a href=\""),(strLink.get())),")\">"),(include.WWWConst.$$$WWW004MenuDescription(m$,objSubmenu))),")</a></li>"));
+            m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<li",(strCSSClass.get())),"><a href=\""),(strLink.get())),"\">"),(include.WWWConst.$$$WWW004MenuDescription(m$,objSubmenu))),"</a></li>"));
           }
         }
       }
@@ -266,7 +266,7 @@ public class WWWMenuOverview extends mClass {
     //<< set objWWW013 = $get(^WWW013(0,YBED,1))                ; "User"
     objWWW013.set(m$.Fnc.$get(m$.var("^WWW013",0,m$.var("YBED").get(),1)));
     //<< &html<<div class="UserDetails">#($$$Text(232))#:#($$$WWW013Name(objWWW013))#(#(YBED)#)</div>>
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<div class=\"UserDetails\">",(include.COMSYS.$$$Text(m$,232))),"):"),(include.WWWConst.$$$WWW013Name(m$,objWWW013))),")("),(m$.var("YBED").get())),"))</div>"));
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<div class=\"UserDetails\">",(include.COMSYS.$$$Text(m$,232))),":"),(include.WWWConst.$$$WWW013Name(m$,objWWW013))),"("),(m$.var("YBED").get())),")</div>"));
     //<< quit
     return null;
   }
@@ -286,7 +286,7 @@ public class WWWMenuOverview extends mClass {
     //<< set objWWW0121 = $get(^WWW0121(0,0,YLOCATION,1))      ;  "Location"
     objWWW0121.set(m$.Fnc.$get(m$.var("^WWW0121",0,0,m$.var("YLOCATION").get(),1)));
     //<< &html<<div class="LocationDetails">#($$$Text(388))#:#(YLOCATION)# - #($$$WWW0121LocationName(objWWW0121))#</div>>
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<div class=\"LocationDetails\">",(include.COMSYS.$$$Text(m$,388))),"):"),(m$.var("YLOCATION").get())),") - "),(include.WWWConst.$$$WWW0121LocationName(m$,objWWW0121))),")</div>"));
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<div class=\"LocationDetails\">",(include.COMSYS.$$$Text(m$,388))),":"),(m$.var("YLOCATION").get()))," - "),(include.WWWConst.$$$WWW0121LocationName(m$,objWWW0121))),"</div>"));
     //<< quit
     return null;
   }
@@ -430,7 +430,7 @@ public class WWWMenuOverview extends mClass {
     m$.Cmd.WriteHtml("            float:left;","\n");
     m$.Cmd.WriteHtml("            padding:0px;","\n");
     m$.Cmd.WriteHtml("            margin:0px;","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            background-color:",(m$.var("YWHITE").get())),");"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            background-color:",(m$.var("YWHITE").get())),";"),"\n");
     m$.Cmd.WriteHtml("        }","\n");
     m$.Cmd.WriteHtml("        UL.MenuOverview DIV.Section {","\n");
     m$.Cmd.WriteHtml("            height:45px;color:#0B48AE;","\n");
@@ -464,16 +464,16 @@ public class WWWMenuOverview extends mClass {
     m$.Cmd.WriteHtml("        .SystemToolbar .Title {","\n");
     m$.Cmd.WriteHtml("            font-size:medium;","\n");
     m$.Cmd.WriteHtml("            font-weight:bold;","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            color:",(m$.var("YWHITE").get())),");"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            color:",(m$.var("YWHITE").get())),";"),"\n");
     m$.Cmd.WriteHtml("            float:left;","\n");
     m$.Cmd.WriteHtml("        }","\n");
     m$.Cmd.WriteHtml("        .Title A:Hover {","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            color:",(m$.var("YWHITE").get())),");"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            color:",(m$.var("YWHITE").get())),";"),"\n");
     m$.Cmd.WriteHtml("        }","\n");
     m$.Cmd.WriteHtml("        .Title .SystemInformation {","\n");
     m$.Cmd.WriteHtml("            font-size:10px;","\n");
     m$.Cmd.WriteHtml("            font-style:normal;","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            color:",(m$.var("YWHITE").get())),");"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            color:",(m$.var("YWHITE").get())),";"),"\n");
     m$.Cmd.WriteHtml("        }","\n");
     m$.Cmd.WriteHtml("        .SystemToolbar .NavButton {","\n");
     m$.Cmd.WriteHtml("            position:relative;","\n");
@@ -487,12 +487,12 @@ public class WWWMenuOverview extends mClass {
     m$.Cmd.WriteHtml("            position:relative;","\n");
     m$.Cmd.WriteHtml("            width:100%;","\n");
     m$.Cmd.WriteHtml("            border:2px outset;","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            background-color:",(strColourLeft.get())),");"),"\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            ",(m$.fnc$("WWWFORMCrossBrowserSupportVisual.ImageTransformGradient",strColourLeft.get(),strColourRight.get()))),");"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            background-color:",(strColourLeft.get())),";"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            ",(m$.fnc$("WWWFORMCrossBrowserSupportVisual.ImageTransformGradient",strColourLeft.get(),strColourRight.get()))),";"),"\n");
     m$.Cmd.WriteHtml("            border-right:none;","\n");
     m$.Cmd.WriteHtml("        }","\n");
     m$.Cmd.WriteHtml("        LI.default {","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            list-style-image:url(",(strImageDirectory.get())),")/html.gif);"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            list-style-image:url(",(strImageDirectory.get())),"/html.gif);"),"\n");
     m$.Cmd.WriteHtml("            list-style-position:inside;","\n");
     m$.Cmd.WriteHtml("        }","\n");
     m$.Cmd.WriteHtml("        </style>","\n");
@@ -562,26 +562,26 @@ public class WWWMenuOverview extends mClass {
     m$.Cmd.WriteHtml("        A.MenuButton {","\n");
     m$.Cmd.WriteHtml("            width:84px;","\n");
     m$.Cmd.WriteHtml("            height:27px;","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            background-image:url(",(m$.var("YGIF").get())),")MenuOff.gif);"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            background-image:url(",(m$.var("YGIF").get())),"MenuOff.gif);"),"\n");
     m$.Cmd.WriteHtml("            float:right;","\n");
     m$.Cmd.WriteHtml("        }","\n");
     m$.Cmd.WriteHtml("        A.MenuButton:hover{","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            background-image:url(",(m$.var("YGIF").get())),")MenuOn.gif);"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            background-image:url(",(m$.var("YGIF").get())),"MenuOn.gif);"),"\n");
     m$.Cmd.WriteHtml("        }","\n");
     m$.Cmd.WriteHtml("        A.OverviewButton {","\n");
     m$.Cmd.WriteHtml("            width:84px;","\n");
     m$.Cmd.WriteHtml("            height:27px;","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            background-image:url(",(m$.var("YGIF").get())),")StartOff.gif);"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            background-image:url(",(m$.var("YGIF").get())),"StartOff.gif);"),"\n");
     m$.Cmd.WriteHtml("            float:right;","\n");
     m$.Cmd.WriteHtml("        }","\n");
     m$.Cmd.WriteHtml("        A.OverviewButton:hover {","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            background-image:url(",(m$.var("YGIF").get())),")StartOn.gif);"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            background-image:url(",(m$.var("YGIF").get())),"StartOn.gif);"),"\n");
     m$.Cmd.WriteHtml("        }","\n");
     m$.Cmd.WriteHtml("    </style>","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("    <DIV class=\"SystemToolbar\"><A NAME=\"start\"/><span class=\"Title\">",(strTitle.get())),")<a href=\"#\" class=\"SystemInformation\" title=\""),(m$.fnc$("WWWKOPF.GetSystemInfoTooltip"))),")\">("),(m$.var("YM").get())),")/"),(m$.var("YBED").get())),"))</a></span>"),"\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("    <IMG class=\"NavButton\" SRC=\"",(m$.var("YGIF").get())),")exit.gif\" TITLE=\""),(m$.fnc$("WWWTEXT.main",33980))),")\" onClick=\"top.document.location.href='"),(m$.fnc$("WWWLogin.getLoginPage"))),")';\"/>"),"\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("    <a href=\"",(m$.var("YAKTION").get())),")EP=WWWFORM&YFORM="),(m$.var("YFORM").get())),")&YKEY="),(strCGI.get())),")\" class=\"OverviewButton\" title=\"Overview\"></a>"),"\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("    <a href=\"",(m$.var("YAKTION").get())),")EP=WWWMENU"),(strCGI.get())),")\" target=\"FRAME3"),(m$.var("YUSER").get())),")\" onclick=\"parent.showMenu(1);return false;\" class=\"MenuButton\" title=\"Menu\"></a>"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("    <DIV class=\"SystemToolbar\"><A NAME=\"start\"/><span class=\"Title\">",(strTitle.get())),"<a href=\"#\" class=\"SystemInformation\" title=\""),(m$.fnc$("WWWKOPF.GetSystemInfoTooltip"))),"\">("),(m$.var("YM").get())),"/"),(m$.var("YBED").get())),")</a></span>"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("    <IMG class=\"NavButton\" SRC=\"",(m$.var("YGIF").get())),"exit.gif\" TITLE=\""),(m$.fnc$("WWWTEXT.main",33980))),"\" onClick=\"top.document.location.href='"),(m$.fnc$("WWWLogin.getLoginPage"))),"';\"/>"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("    <a href=\"",(m$.var("YAKTION").get())),"EP=WWWFORM&YFORM="),(m$.var("YFORM").get())),"&YKEY="),(strCGI.get())),"\" class=\"OverviewButton\" title=\"Overview\"></a>"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("    <a href=\"",(m$.var("YAKTION").get())),"EP=WWWMENU"),(strCGI.get())),"\" target=\"FRAME3"),(m$.var("YUSER").get())),"\" onclick=\"parent.showMenu(1);return false;\" class=\"MenuButton\" title=\"Menu\"></a>"),"\n");
     m$.Cmd.WriteHtml("    </DIV>","\n");
     m$.Cmd.WriteHtml("    ");
     //<< ;&html<<TABLE><TR><TD></TD>>

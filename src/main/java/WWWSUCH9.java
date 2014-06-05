@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWSUCH9
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:10
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:56
 //*****************************************************************************
 
 import mLibrary.*;
@@ -182,7 +182,7 @@ public class WWWSUCH9 extends mClass {
           //<< . . NEW YKEYS,YI
           mVar YKEYS = m$.var("YKEYS");
           mVar YI = m$.var("YI");
-          m$.newVar(YKEYS,YI);
+          m$.newVarBlock(2,YKEYS,YI);
           //<< . . SET YKEYS=""
           YKEYS.set("");
           //<< . . FOR YI=1:1 QUIT:$PIECE($GET(^WWW121(0,YFORM,YI,1)),Y,16)=""  QUIT:$PIECE(YKEY,",",YI)=""  SET $PIECE(YKEYS,",",YI)=$PIECE(YKEY,",",YI)  ; S $PIECE(YKEY,",",1,$LENGTH(YKEY,",")-1)
@@ -198,6 +198,7 @@ public class WWWSUCH9 extends mClass {
           //<< . . SET $PIECE(YSUCH1,Y,4)=YKEYS
           m$.pieceVar(YSUCH1,m$.var("Y").get(),4).set(YKEYS.get());
         }
+        m$.restoreVarBlock(2);
       }
       //<< . ;
       //<< . SET YMAXKEY=+$ORDER(^WWW002(0,YDATEI,""),-1)
@@ -225,7 +226,7 @@ public class WWWSUCH9 extends mClass {
         }
         //<< . NEW YKEY  ;TYBD; 19,09,2003
         mVar YKEY = m$.var("YKEY");
-        m$.newVar(YKEY);
+        m$.newVarBlock(1,YKEY);
         //<< . SET YKEY=$PIECE(YSUCH1,Y,4)
         YKEY.set(m$.Fnc.$piece(YSUCH1.get(),m$.var("Y").get(),4));
         //<< . SET $PIECE(YSUCH1,Y,4)=""   ;TYBD;19,09,2003;WENN NICHT GELÖSCHT DANN GGF FALSCH
@@ -245,6 +246,7 @@ public class WWWSUCH9 extends mClass {
         m$.pieceVar(YSUCH1,m$.var("Y").get(),11).set(m$.Fnc.$piece(YSUCH1.get(),m$.var("Y").get(),4));
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< IF $PIECE(YSUCH1,Y,4)="-" SET $PIECE(YSUCH1,Y,4)="",$PIECE(%YSUCH1,Y,4)="",$PIECE(YSUCH1,Y,11)=""  ;KEINE VORGABE ;no default
     if (mOp.Equal(m$.Fnc.$piece(YSUCH1.get(),m$.var("Y").get(),4),"-")) {

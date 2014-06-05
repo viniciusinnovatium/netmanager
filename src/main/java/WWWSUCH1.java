@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWSUCH1
-//** Innovatium Systems - Code Converter - v1.24
-//** 2014-06-02 20:35:33
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:47
 //*****************************************************************************
 
 import mLibrary.*;
@@ -152,7 +152,7 @@ public class WWWSUCH1 extends mClass {
       do {
         //<< . NEW YA
         mVar YA = m$.var("YA");
-        m$.newVar(YA);
+        m$.newVarBlock(1,YA);
         //<< . IF $EXTRACT($PIECE(YSUCH1,Y,17),2)'="$" SET $PIECE(YSUCH1,Y,17) = @($EXTRACT($PIECE(YSUCH1,Y,17),2,99)) QUIT   ;WENN @ ;when
         if (mOp.NotEqual(m$.Fnc.$extract(m$.Fnc.$piece(m$.var("YSUCH1").get(),m$.var("Y").get(),17),2),"$")) {
           m$.pieceVar(m$.var("YSUCH1"),m$.var("Y").get(),17).set(m$.indirectVar((m$.Fnc.$extract(m$.Fnc.$piece(m$.var("YSUCH1").get(),m$.var("Y").get(),17),2,99))).get());
@@ -164,6 +164,7 @@ public class WWWSUCH1 extends mClass {
         m$.Cmd.Xecute(YA.get());
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< SET YSAUSW = $PIECE($PIECE(YSUCH1,Y,17),"|",1) ;SORTKEY FIX ;skillful
     YSAUSW.set(m$.Fnc.$piece(m$.Fnc.$piece(m$.var("YSUCH1").get(),m$.var("Y").get(),17),"|",1));

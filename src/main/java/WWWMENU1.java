@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWMENU1
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:36
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:23
 //*****************************************************************************
 
 import mLibrary.*;
@@ -292,7 +292,7 @@ public class WWWMENU1 extends mClass {
             if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),2),"")) {
               do {
                 //<< . . . NEW YNAME
-                m$.newVar(YNAME);
+                m$.newVarBlock(3,YNAME);
                 //<< . . . SET YAUFRUF="WWWFORM"
                 mVar YAUFRUF = m$.var("YAUFRUF");
                 YAUFRUF.set("WWWFORM");
@@ -324,6 +324,7 @@ public class WWWMENU1 extends mClass {
                 break;
               } while (false);
             }
+            m$.restoreVarBlock(3);
             //<< . . IF $PIECE(YA,Y,12)'="" DO  ;URL
             if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),12),"")) {
               do {

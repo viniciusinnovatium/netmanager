@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC COMGridEdit31G
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:24
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:06
 //*****************************************************************************
 
 import mLibrary.*;
@@ -396,7 +396,7 @@ public class COMGridEdit31G extends mClass {
       }
       //<< if pblnAllLines set strRefList = $get($$$WWWDATEN("REFERENCELIST"))    ; Macro override : based on ^CacheTemp rather than YFORM
       if (mOp.Logical(pblnAllLines.get())) {
-        strRefList.set(m$.Fnc.$get(COMGridEdit31G.$$$WWWDATENVar(m$,"REFERENCELIST")));
+        strRefList.set(m$.Fnc.$get($$$WWWDATENVar(m$,"REFERENCELIST")));
       }
       //<< 
       //<< set idGridRow = ""
@@ -524,7 +524,7 @@ public class COMGridEdit31G extends mClass {
     //<< if strYKEY="" {  ; Container Key without line no      FIXME : Always from ...("Grid","Name") regardless of parameter passed in ?
     if (mOp.Equal(strYKEY.get(),"")) {
       //<< set strYKEY = $get($$$WWWDATEN("REFERENCEKEY"))    ; Macro override : based on ^CacheTemp rather than YFORM
-      strYKEY.set(m$.Fnc.$get(COMGridEdit31G.$$$WWWDATENVar(m$,"REFERENCEKEY")));
+      strYKEY.set(m$.Fnc.$get($$$WWWDATENVar(m$,"REFERENCEKEY")));
     }
     //<< }
     //<< 
@@ -608,7 +608,7 @@ public class COMGridEdit31G extends mClass {
     //<< ; 20-Jan-2010   DWR     SR17074: Created
     //<< ;-------------------------------------------------------------------------------
     //<< quit $get($$$WWWDATEN("REFERENCEVALUE","Y"_pidGridRow_"_"_pintCol,1))
-    return m$.Fnc.$get(COMGridEdit31G.$$$WWWDATENVar(m$,"REFERENCEVALUE",mOp.Concat(mOp.Concat(mOp.Concat("Y",pidGridRow.get()),"_"),pintCol.get()),1));
+    return m$.Fnc.$get($$$WWWDATENVar(m$,"REFERENCEVALUE",mOp.Concat(mOp.Concat(mOp.Concat("Y",pidGridRow.get()),"_"),pintCol.get()),1));
   }
 
   //<< /*
@@ -1035,7 +1035,7 @@ public class COMGridEdit31G extends mClass {
     //<< set strDataKeys = ""
     strDataKeys.set("");
     //<< set idCell = $get($$$WWWDATEN("FOCUSFIELD")) ; Macro override : based on ^CacheTemp rather than YFORM
-    idCell.set(m$.Fnc.$get(COMGridEdit31G.$$$WWWDATENVar(m$,"FOCUSFIELD")));
+    idCell.set(m$.Fnc.$get($$$WWWDATENVar(m$,"FOCUSFIELD")));
     //<< if idCell'="" {                                        ; e.g. Y2x01_5
     if (mOp.NotEqual(idCell.get(),"")) {
       //<< set $extract(idCell,1) = ""
@@ -1075,12 +1075,12 @@ public class COMGridEdit31G extends mClass {
     m$.newVar(focusField,value);
     //<< 
     //<< set focusField = $get($$$WWWDATEN("FOCUSFIELD"))    ; Macro override : based on ^CacheTemp rather than YFORM
-    focusField.set(m$.Fnc.$get(COMGridEdit31G.$$$WWWDATENVar(m$,"FOCUSFIELD")));
+    focusField.set(m$.Fnc.$get($$$WWWDATENVar(m$,"FOCUSFIELD")));
     //<< 
     //<< set $piece(focusField,"_",2) = pField
     m$.pieceVar(focusField,"_",2).set(pField.get());
     //<< set value=$get($$$WWWDATEN(focusField,1))           ; Macro override : based on ^CacheTemp rather than YFORM
-    value.set(m$.Fnc.$get(COMGridEdit31G.$$$WWWDATENVar(m$,focusField,1)));
+    value.set(m$.Fnc.$get($$$WWWDATENVar(m$,focusField,1)));
     //<< 
     //<< do GoToForm(newForm,value,$$$NO,pPage,pParam)
     m$.Cmd.Do("GoToForm",newForm.get(),value.get(),include.COMSYS.$$$NO(m$),pPage.get(),pParam.get());
@@ -1316,7 +1316,7 @@ public class COMGridEdit31G extends mClass {
     //<< if idLastKey'="" {
     if (mOp.NotEqual(idLastKey.get(),"")) {
       //<< set idGridRow = $get($$$WWWDATEN("REFERENCEROW",idLastKey,1))    ; Macro override : based on ^CacheTemp rather than YFORM
-      idGridRow.set(m$.Fnc.$get(COMGridEdit31G.$$$WWWDATENVar(m$,"REFERENCEROW",idLastKey,1)));
+      idGridRow.set(m$.Fnc.$get($$$WWWDATENVar(m$,"REFERENCEROW",idLastKey,1)));
     }
     //<< }
     //<< quit idGridRow
@@ -1343,7 +1343,7 @@ public class COMGridEdit31G extends mClass {
     //<< for {
     for (;true;) {
       //<< set idGridRow = $order($$$WWWDATEN("REFERENCEKEY",idGridRow))    ; Macro override : based on ^CacheTemp rather than YFORM
-      idGridRow.set(m$.Fnc.$order(COMGridEdit31G.$$$WWWDATENVar(m$,"REFERENCEKEY",idGridRow)));
+      idGridRow.set(m$.Fnc.$order($$$WWWDATENVar(m$,"REFERENCEKEY",idGridRow)));
       //<< quit:idGridRow=""
       if (mOp.Equal(idGridRow.get(),"")) {
         break;

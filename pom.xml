@@ -32,4 +32,7 @@
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<finalName>netmanager</finalName>
+	</build>
 </project>

@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORM
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:18
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:53:59
 //*****************************************************************************
 
 import mLibrary.*;
@@ -277,7 +277,7 @@ public class WWWFORM extends mClass {
       do {
         //<< . new YVOR
         mVar YVOR = m$.var("YVOR");
-        m$.newVar(YVOR);
+        m$.newVarBlock(1,YVOR);
         //<< . set YFORM = $get(%(YQUERY,"YFORM"))
         mVar YFORM = m$.var("YFORM");
         YFORM.set(m$.Fnc.$get(m$.var("%",m$.var("YQUERY").get(),"YFORM")));
@@ -307,6 +307,7 @@ public class WWWFORM extends mClass {
       } while (false);
       return;
     }
+    m$.restoreVarBlock(1);
     //<< ;------------------------------------------------------------------------
     //<< if (YKILL=1) && ($get(NOKILL)=1) set YKILL="" kill NOKILL  ;KEIN LÖSCHEN ;no Delete
     if ((mOp.Equal(m$.var("YKILL").get(),1)) && (mOp.Equal(m$.Fnc.$get(NOKILL),1))) {
@@ -432,7 +433,7 @@ public class WWWFORM extends mClass {
           //<< . new fixedInput,objFormKey
           mVar fixedInput = m$.var("fixedInput");
           mVar objFormKey = m$.var("objFormKey");
-          m$.newVar(fixedInput,objFormKey);
+          m$.newVarBlock(1,fixedInput,objFormKey);
           //<< . set objFormKey = $get(^WWW121(0,YFORM,YI,1))
           objFormKey.set(m$.Fnc.$get(m$.var("^WWW121",0,m$.var("YFORM").get(),YI.get(),1)));
           //<< . set fixedInput = $$$WWW121FixedInputForHiddenField(objFormKey)
@@ -472,7 +473,7 @@ public class WWWFORM extends mClass {
           if (mOp.NotEqual(include.WWWConst.$$$WWW121DefaultVariableInput(m$,objFormKey),"")) {
             //<< . . new YINHALT
             mVar YINHALT = m$.var("YINHALT");
-            m$.newVar(YINHALT);
+            m$.newVarBlock(2,YINHALT);
             //<< . . set YINHALT = $$$WWW121DefaultVariableInput(objFormKey)    ;VORGABE ;default
             YINHALT.set(include.WWWConst.$$$WWW121DefaultVariableInput(m$,objFormKey));
             //<< . . set $piece(YFKEY,",",YI) = YINHALT
@@ -494,6 +495,7 @@ public class WWWFORM extends mClass {
             }
             break;
           }
+          m$.restoreVarBlock(2);
           //<< . ;
           //<< . ;------------------------------------- ELSE case for previous IF test
           //<< . ;
@@ -516,6 +518,7 @@ public class WWWFORM extends mClass {
           YBACK.set(YBACK2.get());
         } while (false);
       }
+      m$.restoreVarBlock(1);
     }
     //<< 
     //<< ;--------------------------------------- vvvvv  EARLY EXIT BLOCK
@@ -920,7 +923,7 @@ public class WWWFORM extends mClass {
           }
           //<< . new YA1  ;LOSCHEN ALLE EINTRÄGE WENN LEERES FELD ;when field
           mVar YA1 = m$.var("YA1");
-          m$.newVar(YA1);
+          m$.newVarBlock(1,YA1);
           //<< . if $get(YDATEI)'="" do
           if (mOp.NotEqual(m$.Fnc.$get(YDATEI),"")) {
           }
@@ -948,6 +951,7 @@ public class WWWFORM extends mClass {
           }
         } while (false);
       }
+      m$.restoreVarBlock(1);
     }
     //<< 
     //<< if $piece($get(^WWWUSER(0,YUSER,1)),Y,25)'="" do  ;RÜCKHOLEN LETZTER LOCK;FIS;19.04.04;25534
@@ -956,7 +960,7 @@ public class WWWFORM extends mClass {
       mVar YTRAKTOLD = m$.var("YTRAKTOLD");
       mVar YA1 = m$.var("YA1");
       mVar YA = m$.var("YA");
-      m$.newVar(YTRAKTOLD,YA1,YA);
+      m$.newVarBlock(1,YTRAKTOLD,YA1,YA);
       //<< . set YTRAKTOLD = $piece($get(^WWWUSER(0,YUSER,1)),Y,25)
       YTRAKTOLD.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWWUSER",0,m$.var("YUSER").get(),1)),m$.var("Y").get(),25));
       //<< . ;SPEICHERN LOCK FALLS NICHT OBEN PASSIERT (WENN YFKEY'="")
@@ -1007,6 +1011,7 @@ public class WWWFORM extends mClass {
         }
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< $$$LOGWWWBENCH(3)
     $$$LOGWWWBENCH(m$,3);
@@ -1077,7 +1082,7 @@ public class WWWFORM extends mClass {
           if (mOp.Equal(m$.Fnc.$get(m$.var("YRETURN")),1)) {
             if (mOp.Logical(m$.Fnc.$data(m$.var("^WWW126",0,m$.var("YFORM").get(),m$.var("YUSER").get())))) {
               //<< . new YI
-              m$.newVar(YI);
+              m$.newVarBlock(1,YI);
               //<< . for YI=1:1:YMAXKEY if $get(^WWW126(0,YFORM,YUSER,YI,1))'="" set $piece(YKEY,",",YI) = ^WWW126(0,YFORM,YUSER,YI,1)
               for (YI.set(1);(mOp.LessOrEqual(YI.get(),YMAXKEY.get()));YI.set(mOp.Add(YI.get(),1))) {
                 if (mOp.NotEqual(m$.Fnc.$get(m$.var("^WWW126",0,m$.var("YFORM").get(),m$.var("YUSER").get(),YI.get(),1)),"")) {
@@ -1085,6 +1090,7 @@ public class WWWFORM extends mClass {
                 }
               }
             }
+            m$.restoreVarBlock(1);
           }
         }
       }
@@ -1174,7 +1180,7 @@ public class WWWFORM extends mClass {
         if (mOp.Logical(m$.Fnc.$data(m$.var("^WWWUSETMP",0,m$.var("YUSER").get(),m$.var("YFORM").get())))) {
           //<< . . new YTEMP,YI
           mVar YTEMP = m$.var("YTEMP");
-          m$.newVar(YTEMP,YI);
+          m$.newVarBlock(2,YTEMP,YI);
           //<< . . set YTEMP = "^WWWUSETMP(0,"""_YUSER_""","""_YFORM_""""
           YTEMP.set(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("^WWWUSETMP(0,\"",m$.var("YUSER").get()),"\",\""),m$.var("YFORM").get()),"\""));
           //<< . . for YI=1:1  quit:$piece(YKEY,",",YI,99)=""  set YTEMP = YTEMP_","""_$translate($piece(YKEY,",",YI),"""")_""""
@@ -1194,6 +1200,7 @@ public class WWWFORM extends mClass {
             m$.indirectVar(YTEMP.get()).kill();
           }
         }
+        m$.restoreVarBlock(2);
         //<< . ;
         //<< . if (YKILL=2) || (YKILL=3) if YFELD="" do  quit
         if ((mOp.Equal(m$.var("YKILL").get(),2)) || (mOp.Equal(m$.var("YKILL").get(),3))) {
@@ -1260,7 +1267,7 @@ public class WWWFORM extends mClass {
     if (mOp.Logical(m$.Fnc.$data(m$.var("^WWWDUMMY",m$.var("YUSER").get(),"D"))) || mOp.Logical(m$.Fnc.$data(m$.var("^WWWDUMMY",m$.var("YUSER").get(),"M")))) {
       //<< . new YI,oldStatus
       mVar oldStatus = m$.var("oldStatus");
-      m$.newVar(YI,oldStatus);
+      m$.newVarBlock(1,YI,oldStatus);
       //<< . set YBEARB = $get(^WWWDATEN(0,dteToday,YUSER,YFORM,"STATUS",1),YBEARB)
       YBEARB.set(m$.Fnc.$get(m$.var("^WWWDATEN",0,dteToday.get(),m$.var("YUSER").get(),m$.var("YFORM").get(),"STATUS",1),YBEARB.get()));
       //<< . ;
@@ -1288,7 +1295,7 @@ public class WWWFORM extends mClass {
       mVar SCHLUESSEL = m$.var("SCHLUESSEL");
       mVar MAXYKEY = m$.var("MAXYKEY");
       mVar Q = m$.var("Q");
-      m$.newVar(SCHLUESSEL,MAXYKEY,Q);
+      m$.newVarBlock(1,SCHLUESSEL,MAXYKEY,Q);
       //<< . set SCHLUESSEL = ""
       SCHLUESSEL.set("");
       //<< . if YDATEI'="" do
@@ -1361,7 +1368,7 @@ public class WWWFORM extends mClass {
           if (mOp.Equal(Q.get(),0)) {
             //<< . . . . new strKEY
             mVar strKEY = m$.var("strKEY");
-            m$.newVar(strKEY);
+            m$.newVarBlock(4,strKEY);
             //<< . . . . set YLOCK=+$piece($get(^WWW001(0,YDATEI,1)),Y,6)
             mVar YLOCK = m$.var("YLOCK");
             YLOCK.set(mOp.Positive(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW001",0,YDATEI.get(),1)),m$.var("Y").get(),6)));
@@ -1392,9 +1399,11 @@ public class WWWFORM extends mClass {
               m$.var("^WWWDATEN",0,dteToday.get(),m$.var("YUSER").get(),m$.var("YFORM").get(),"LOCK",1).set(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("^WWW006(0,",dteToday.get()),",\""),strKEY.get()),"\",1)"));
             }
           }
+          m$.restoreVarBlock(4);
         }
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;------------------------------------------------------------------------
     //<< ;NEU ;recent
@@ -1452,7 +1461,7 @@ public class WWWFORM extends mClass {
       mVar SCHLUESSEL = m$.var("SCHLUESSEL");
       mVar MAXYKEY = m$.var("MAXYKEY");
       mVar Q = m$.var("Q");
-      m$.newVar(SCHLUESSEL,MAXYKEY,Q);
+      m$.newVarBlock(1,SCHLUESSEL,MAXYKEY,Q);
       //<< . set SCHLUESSEL=""
       SCHLUESSEL.set("");
       //<< . if YDATEI'="" do
@@ -1516,7 +1525,7 @@ public class WWWFORM extends mClass {
           if (mOp.Equal(Q.get(),0)) {
             //<< . . . . new strKEY
             mVar strKEY = m$.var("strKEY");
-            m$.newVar(strKEY);
+            m$.newVarBlock(4,strKEY);
             //<< . . . . set YLOCK=+$piece($get(^WWW001(0,YDATEI,1)),Y,6)
             mVar YLOCK = m$.var("YLOCK");
             YLOCK.set(mOp.Positive(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW001",0,YDATEI.get(),1)),m$.var("Y").get(),6)));
@@ -1545,9 +1554,11 @@ public class WWWFORM extends mClass {
             //<< . . . . set ^WWWDATEN(0,dteToday,YUSER,YFORM,"LOCK",1) = "^WWW006(0,"_dteToday_","""_strKEY_""",1)"
             m$.var("^WWWDATEN",0,dteToday.get(),m$.var("YUSER").get(),m$.var("YFORM").get(),"LOCK",1).set(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("^WWW006(0,",dteToday.get()),",\""),strKEY.get()),"\",1)"));
           }
+          m$.restoreVarBlock(4);
         }
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;------------------------------------------------------------------------
     //<< // WWWDATEN is populated - if not changing tabs
@@ -1581,7 +1592,7 @@ public class WWWFORM extends mClass {
     if (mOp.NotEqual(include.WWWConst.$$$WWW120ReadOnlyWhenDataFieldIsIn(m$,m$.var("YVOR")),"")) {
       //<< . new NICHTFELD,YI
       mVar NICHTFELD = m$.var("NICHTFELD");
-      m$.newVar(NICHTFELD,YI);
+      m$.newVarBlock(1,NICHTFELD,YI);
       //<< . set NICHTFELD = $translate($$$WWW120ReadOnlyWhenDataFieldIsIn(YVOR),";",",")
       NICHTFELD.set(m$.Fnc.$translate(include.WWWConst.$$$WWW120ReadOnlyWhenDataFieldIsIn(m$,m$.var("YVOR")),";",","));
       //<< . for YI=1:1 quit:$piece(NICHTFELD,",",YI)=""  do
@@ -1599,6 +1610,7 @@ public class WWWFORM extends mClass {
         } while (false);
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;------------------------------------------------------------------------
     //<< ;AUFRUF KEINE ÄNDERUNG, WENN MITARBEITER EIN BESTIMMTES MODUL HAT
@@ -1611,7 +1623,7 @@ public class WWWFORM extends mClass {
         //<< . new MODUL,MODUL1,YI
         mVar MODUL = m$.var("MODUL");
         mVar MODUL1 = m$.var("MODUL1");
-        m$.newVar(MODUL,MODUL1,YI);
+        m$.newVarBlock(1,MODUL,MODUL1,YI);
         //<< . set MODUL = $$^WWWBEDMOD(YBED)
         MODUL.set(m$.fnc$("WWWBEDMOD.main",m$.var("YBED").get()));
         //<< . quit:MODUL=""
@@ -1650,6 +1662,7 @@ public class WWWFORM extends mClass {
         }
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< if $$$WWW120DReadOnlyAccessForModules(objWWW120D)'="" do
     if (mOp.NotEqual(include.WWWConst.$$$WWW120DReadOnlyAccessForModules(m$,objWWW120D),"")) {
@@ -1657,7 +1670,7 @@ public class WWWFORM extends mClass {
         //<< . new MODUL,MODUL1,YI
         mVar MODUL = m$.var("MODUL");
         mVar MODUL1 = m$.var("MODUL1");
-        m$.newVar(MODUL,MODUL1,YI);
+        m$.newVarBlock(1,MODUL,MODUL1,YI);
         //<< . set MODUL = $$^WWWBEDMOD(YBED)
         MODUL.set(m$.fnc$("WWWBEDMOD.main",m$.var("YBED").get()));
         //<< . quit:MODUL=""
@@ -1696,6 +1709,7 @@ public class WWWFORM extends mClass {
         }
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;+++++++++++++++++++++++++++++++++++++++
     //<< ;   SONDERFUNKTION EXECUTE ANSTELLE FORMULARAUFBAU   *** EXECUTE 4 ***
@@ -2043,7 +2057,7 @@ public class WWWFORM extends mClass {
           //<< . . new YBER,YPROG
           mVar YBER = m$.var("YBER");
           mVar YPROG = m$.var("YPROG");
-          m$.newVar(YBER,YPROG);
+          m$.newVarBlock(2,YBER,YPROG);
           //<< . . set YBER  = $order(^WWW00441s(0,3,YFORM,""))       quit:YBER=""
           YBER.set(m$.Fnc.$order(m$.var("^WWW00441s",0,3,m$.var("YFORM").get(),"")));
           if (mOp.Equal(YBER.get(),"")) {
@@ -2063,6 +2077,7 @@ public class WWWFORM extends mClass {
           }
         } while (false);
       }
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . do ^WWWKOPF(YKOPF)
       m$.Cmd.Do("WWWKOPF.main",m$.var("YKOPF").get());
@@ -2082,7 +2097,7 @@ public class WWWFORM extends mClass {
       //<< . new YI,YKOPF1
       mVar YI = m$.var("YI");
       mVar YKOPF1 = m$.var("YKOPF1");
-      m$.newVar(YI,YKOPF1);
+      m$.newVarBlock(1,YI,YKOPF1);
       //<< .;write "<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0><TR>"
       //<< . write "<TABLE id=""wfimage"" BORDER=0 CELLSPACING=0 CELLPADDING=0><TR>"
       m$.Cmd.Write("<TABLE id=\"wfimage\" BORDER=0 CELLSPACING=0 CELLPADDING=0><TR>");
@@ -2104,6 +2119,7 @@ public class WWWFORM extends mClass {
       //<< . set YTABLEANZ = $get(YTABLEANZ)-1
       YTABLEANZ.set(mOp.Subtract(m$.Fnc.$get(YTABLEANZ),1));
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;##### vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
     //<< if $$$WWW120FormCentered(YVOR)=$$$YES write "</CENTER>"
@@ -2197,7 +2213,7 @@ public class WWWFORM extends mClass {
     //<< ; 0 Buttons Above   1 Button Down   2 Text Border Left   3 Selection
     //<< ;------------------------------------------------------------------------
     //<< if $$$Contains((0,2,3),+$$$WWW120PositioningOfButtonLine(YVOR)) {
-    if (true || mOp.Logical(include.COMSYS.$$$Contains(m$,(0),mOp.Positive(include.WWWConst.$$$WWW120PositioningOfButtonLine(m$,m$.var("YVOR")))))) {
+    if (mOp.Logical(m$.Fnc.$listfind(m$.Fnc.$listbuild(0,2,3),mOp.Positive(include.WWWConst.$$$WWW120PositioningOfButtonLine(m$,m$.var("YVOR")))))) {
       //<< 
       //<< do ^WWWFORM1    ;BUTTONS                                     ; *** EXECUTE 10-13 ***
       m$.Cmd.Do("WWWFORM1.main");
@@ -2330,7 +2346,7 @@ public class WWWFORM extends mClass {
     if (mOp.Equal(mOp.Positive(include.WWWConst.$$$WWW120DisplayFrames(m$,m$.var("YVOR"))),include.COMSYS.$$$YES(m$))) {
       //<< . new YFRBR
       mVar YFRBR = m$.var("YFRBR");
-      m$.newVar(YFRBR);
+      m$.newVarBlock(1,YFRBR);
       //<< . set YFRBR=2
       YFRBR.set(2);
       //<< . ;SR17862 do ^WWWFRAME(YFRBR,,1)  ;INNEN FRAME OHNE % ;without      ; 0 or 2 or 3 => START^WWWFRAME opens <TABLE>  ; FIXME : add param 4 YID?
@@ -2350,6 +2366,7 @@ public class WWWFORM extends mClass {
       //<< . write "<TR><TD style='vertical-align:top;'>" ;SR18182
       m$.Cmd.Write("<TR><TD style='vertical-align:top;'>");
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< $$$LOGWWWBENCH(14)
     $$$LOGWWWBENCH(m$,14);
@@ -2451,7 +2468,7 @@ public class WWWFORM extends mClass {
       mVar YNUMM = m$.var("YNUMM");
       mVar objWWW1265 = m$.var("objWWW1265");
       mVar strURL = m$.var("strURL");
-      m$.newVar(YNUMM,objWWW1265,strURL);
+      m$.newVarBlock(1,YNUMM,objWWW1265,strURL);
       //<< . set YNUMM=$$^WWWNEXT("WWW1265")
       YNUMM.set(m$.fnc$("WWWNEXT.main","WWW1265"));
       //<< . set $piece(objWWW1265,Y,1)=$get(YANZ)
@@ -2467,6 +2484,7 @@ public class WWWFORM extends mClass {
       //<< . set ^WWW1265(YM,YBED,YFORM,YNUMM,1)=objWWW1265
       m$.var("^WWW1265",m$.var("YM").get(),m$.var("YBED").get(),m$.var("YFORM").get(),YNUMM.get(),1).set(objWWW1265.get());
     } while(false);
+    m$.restoreVarBlock(1);
     //<< do RUECK
     m$.Cmd.Do("RUECK");
     //<< quit
@@ -2651,12 +2669,13 @@ public class WWWFORM extends mClass {
     if ((mOp.Equal(m$.var("YOPTION").get(),"")) && mOp.Logical(m$.Fnc.$data(m$.var("^WWW1210",0,m$.var("YFORM").get())))) {
       //<< . new YHTMFORM
       mVar YHTMFORM = m$.var("YHTMFORM");
-      m$.newVar(YHTMFORM);
+      m$.newVarBlock(1,YHTMFORM);
       //<< . set YHTMFORM="WWW"
       YHTMFORM.set("WWW");
       //<< . do ^WWWFORMO
       m$.Cmd.Do("WWWFORMO.main");
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< 
     //<< 
@@ -2913,7 +2932,7 @@ public class WWWFORM extends mClass {
       $$$jsMarker(m$,mOp.Concat("Execute After Data Field :",strExec.get()));
       //<< . new YSTOP                                                              ;SR18091
       mVar YSTOP = m$.var("YSTOP");
-      m$.newVar(YSTOP);
+      m$.newVarBlock(1,YSTOP);
       //<< . set YSTOP=0                                                            ;SR18091
       YSTOP.set(0);
       //<< . do ExecuteAfterDataFields^WWW120D(YFORM,$get(YKEY),$get(YFELD),.YSTOP) ;SR18091
@@ -2941,6 +2960,7 @@ public class WWWFORM extends mClass {
       //<< . $$$jsMarker("End Execute After Data Field")
       $$$jsMarker(m$,"End Execute After Data Field");
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< do DynamicTableHook(YFORM,YSEITE,YKEY) // SR15351
     m$.Cmd.Do("DynamicTableHook",m$.var("YFORM").get(),m$.var("YSEITE").get(),m$.var("YKEY").get());
@@ -2976,7 +2996,7 @@ public class WWWFORM extends mClass {
           //<< . new YNR,YA
           mVar YNR = m$.var("YNR");
           mVar YA = m$.var("YA");
-          m$.newVar(YNR,YA);
+          m$.newVarBlock(1,YNR,YA);
           //<< . set YNR=""
           YNR.set("");
           //<< . for  set YNR = $order(^WWW124(0,YFORM,SPRACHE,YNR)) quit:YNR=""  do  quit:$piece(YVOR,Y,58)=""
@@ -2998,6 +3018,7 @@ public class WWWFORM extends mClass {
             }
           }
         }
+        m$.restoreVarBlock(1);
       }
     }
     //<< 
@@ -3030,7 +3051,7 @@ public class WWWFORM extends mClass {
         mVar YTOOLTIP = m$.var("YTOOLTIP");
         mVar YPRINT = m$.var("YPRINT");
         mVar strSearchClass = m$.var("strSearchClass");
-        m$.newVar(YA,YYYMAXKEY,YYYKEY,YTOOLTIP,YPRINT,strSearchClass);
+        m$.newVarBlock(1,YA,YYYMAXKEY,YYYKEY,YTOOLTIP,YPRINT,strSearchClass);
         //<< . set YYYMAXKEY = $get(YMAXKEY)
         YYYMAXKEY.set(m$.Fnc.$get(m$.var("YMAXKEY")));
         //<< . set YYYKEY    = $get(YKEY)
@@ -3053,7 +3074,7 @@ public class WWWFORM extends mClass {
           //<< . . new YA,YHEADONLY,YWSAVE
           mVar YHEADONLY = m$.var("YHEADONLY");
           mVar YWSAVE = m$.var("YWSAVE");
-          m$.newVar(YA,YHEADONLY,YWSAVE);
+          m$.newVarBlock(2,YA,YHEADONLY,YWSAVE);
           //<< . . set YMAXKEY=YYYMAXKEY
           mVar YMAXKEY = m$.var("YMAXKEY");
           YMAXKEY.set(YYYMAXKEY.get());
@@ -3072,7 +3093,7 @@ public class WWWFORM extends mClass {
           do {
             //<< . . . new YSUCH
             mVar YSUCH = m$.var("YSUCH");
-            m$.newVar(YSUCH);
+            m$.newVarBlock(3,YSUCH);
             //<< . . . set YSUCH=""
             YSUCH.set("");
             //<< . . . if $data(^WWW123(0,$piece(YVOR,Y,58),1,1)) set YSUCH=$get(^WWW123(0,$piece(YVOR,Y,58),1,1))
@@ -3103,6 +3124,7 @@ public class WWWFORM extends mClass {
               }
             }
           } while(false);
+          m$.restoreVarBlock(3);
           //<< . . ;
           //<< . . set YNOSORT=1  ;KEIN SORT / SONST ANZEIGE IN SUCHFUNKTION ;no otherwise Show within
           mVar YNOSORT = m$.var("YNOSORT");
@@ -3110,6 +3132,7 @@ public class WWWFORM extends mClass {
           //<< . . do ^WWWSUCH9                               ; *** EXECUTE (see) ***
           m$.Cmd.Do("WWWSUCH9.main");
         }
+        m$.restoreVarBlock(2);
         //<< . ;
         //<< . set $piece(YVOR,Y,58) = YA(1)
         m$.pieceVar(m$.var("YVOR"),m$.var("Y").get(),58).set(YA.var(1).get());
@@ -3121,6 +3144,7 @@ public class WWWFORM extends mClass {
         YKEY.set(YYYKEY.get());
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< ; end block SR15509                                    ^^^^^
     //<< 
@@ -3157,7 +3181,7 @@ public class WWWFORM extends mClass {
         mVar YPARAX = m$.var("YPARAX");
         mVar intPos = m$.var("intPos");
         mVar strD111 = m$.var("strD111");
-        m$.newVar(YA,YYYMAXKEY,YYYKEY,YTOOLTIP,YPRINT,YCLASS,YQUERY,YPARAX,intPos,strD111);
+        m$.newVarBlock(1,YA,YYYMAXKEY,YYYKEY,YTOOLTIP,YPRINT,YCLASS,YQUERY,YPARAX,intPos,strD111);
         //<< . set YYYMAXKEY = YMAXKEY
         YYYMAXKEY.set(m$.var("YMAXKEY").get());
         //<< . set YYYKEY    = YKEY
@@ -3195,6 +3219,7 @@ public class WWWFORM extends mClass {
         YKEY.set(YYYKEY.get());
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;+++++++++++++++++++++++++++++++++++++++
     //<< ;  7 : Search Engine       ;SUCHMASCHINE
@@ -3638,7 +3663,7 @@ public class WWWFORM extends mClass {
       $$$jsMarker(m$,"Applet Eventbroker");
       //<< . new TCP
       mVar TCP = m$.var("TCP");
-      m$.newVar(TCP);
+      m$.newVarBlock(1,TCP);
       //<< . set TCP = $get(%CGIEVAR("SERVER_NAME"))
       TCP.set(m$.Fnc.$get(m$.var("%CGIEVAR","SERVER_NAME")));
       //<< . if $get(%KEY("MGWEBP"))="" set %KEY("MGWEBP") = 7001
@@ -3670,6 +3695,7 @@ public class WWWFORM extends mClass {
       //<< . write YCR_"</div>",YCR
       m$.Cmd.Write(mOp.Concat(m$.var("YCR").get(),"</div>"),m$.var("YCR").get());
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;------------------------------------------------------------------------
     //<< 

@@ -1,13 +1,17 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC COMViewSetupJS
-//** Innovatium Systems - Code Converter - v1.24
-//** 2014-06-03 21:26:26
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 22:05:46
 //*****************************************************************************
 
 import mLibrary.*;
 
 //<< 
 //<< #include %occInclude
+import include.$occInclude;
+import include.$occConstant;
+import include.$occStatus;
+import include.$occErrors;
 //<< #include COMSYS
 import include.COMSYS;
 import include.COMSYSDate;
@@ -22,7 +26,6 @@ import include.COMEditor;
 import include.COMSYSJS;
 //<< #include WWWConst
 import include.WWWConst;
-//import COMSYS;
 //<< #include COMConst
 import include.COMConst;
 
@@ -217,7 +220,7 @@ public class COMViewSetupJS extends mClass {
     //<< set objFile = ##class(%Library.FileCharacterStream).%New()
     objFile.set(m$.fnc$("$Library.FileCharacterStream.$New"));
     //<< if objFile'=$$$NULLOREF {
-    if (true /*mOp.NotEqual(objFile.get(),$$$include.$$$NULLOREF(m$))*/) {
+    if (mOp.NotEqual(objFile.get(),include.$occConstant.$$$NULLOREF(m$))) {
       //<< set objFile.Filename = io
       m$.prop(objFile.get(),"Filename").set(io.get());
       //<< while 'objFile.AtEnd {

@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORMCrossBrowserSupport
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:22
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:04
 //*****************************************************************************
 
 import mLibrary.*;
@@ -621,7 +621,7 @@ public class WWWFORMCrossBrowserSupport extends mClass {
     m$.Cmd.WriteJS("            e.cancelBubble=true;","\n");
     m$.Cmd.WriteJS("            e.returnValue=false;","\n");
     m$.Cmd.WriteJS("            if (e.srcElement.id!='') {","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                retval = EventValue(\"",(m$.Fnc.$zutil(5))),")\",\""),(m$.Fnc.$get(m$.var("YUSER")))),")\",\""),(m$.Fnc.$get(m$.var("YFORM")))),")\",\"FIX\",e.srcElement.id, \" \",\"3\",\"NOVALUE\");"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                retval = EventValue(\"",(m$.Fnc.$zutil(5))),"\",\""),(m$.Fnc.$get(m$.var("YUSER")))),"\",\""),(m$.Fnc.$get(m$.var("YFORM")))),"\",\"FIX\",e.srcElement.id, \" \",\"3\",\"NOVALUE\");"),"\n");
     m$.Cmd.WriteJS("            }","\n");
     m$.Cmd.WriteJS("        }","\n");
     m$.Cmd.WriteJS("        if (typeof(pruef) == 'function') pruef(window.event.keyCode);","\n");

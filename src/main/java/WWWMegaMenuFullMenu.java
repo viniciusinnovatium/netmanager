@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWMegaMenuFullMenu
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:51
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-04 15:00:24
 //*****************************************************************************
 
 import mLibrary.*;
@@ -91,7 +91,7 @@ public class WWWMegaMenuFullMenu extends mClass {
     m$.Cmd.WriteJS("                  var idSM=strMenu.id.split('^')[3];","\n");
     m$.Cmd.WriteJS("                  if (idSM==undefined) idSM='';","\n");
     m$.Cmd.WriteJS("                  var id=strMenu.id.split('^')[1];","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                  var retval = EventValue('",(m$.var("YUCI").get())),")','"),(m$.var("YUSER").get())),")','"),(m$.var("YFORM").get())),")','FIX','EVENT^WWWMegaMenu','GETSUBMENU','6',id+\":\"+idSM);"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                  var retval = EventValue('",(m$.var("YUCI").get())),"','"),(m$.var("YUSER").get())),"','"),(m$.var("YFORM").get())),"','FIX','EVENT^WWWMegaMenu','GETSUBMENU','6',id+\":\"+idSM);"),"\n");
     m$.Cmd.WriteJS("                  obj.innerHTML=retval;","\n");
     m$.Cmd.WriteJS("              }","\n");
     m$.Cmd.WriteJS("              menuChangeState(strMenu.id);","\n");
@@ -113,13 +113,13 @@ public class WWWMegaMenuFullMenu extends mClass {
     m$.Cmd.WriteJS("              if (obj.style.display=='none') {","\n");
     m$.Cmd.WriteJS("                  obj.style.display='block';","\n");
     m$.Cmd.WriteJS("                  img1.src=img1.src.replace('plus','minus');","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("                  img2.src='",(m$.var("YGIF").get())),")oopen.gif';"),"\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                  var retval = EventValue('",(m$.var("YUCI").get())),")','"),(m$.var("YUSER").get())),")','"),(m$.var("YFORM").get())),")','FIX','EVENT^WWWMegaMenu','OPENMENU','6',pid);"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("                  img2.src='",(m$.var("YGIF").get())),"oopen.gif';"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                  var retval = EventValue('",(m$.var("YUCI").get())),"','"),(m$.var("YUSER").get())),"','"),(m$.var("YFORM").get())),"','FIX','EVENT^WWWMegaMenu','OPENMENU','6',pid);"),"\n");
     m$.Cmd.WriteJS("              } else {","\n");
     m$.Cmd.WriteJS("                  obj.style.display='none';","\n");
     m$.Cmd.WriteJS("                  img1.src=img1.src.replace('minus','plus');","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("                  img2.src='",(m$.var("YGIF").get())),")oclose.gif';"),"\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                  var retval = EventValue('",(m$.var("YUCI").get())),")','"),(m$.var("YUSER").get())),")','"),(m$.var("YFORM").get())),")','FIX','EVENT^WWWMegaMenu','CLOSEMENU','6',pid);"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("                  img2.src='",(m$.var("YGIF").get())),"oclose.gif';"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                  var retval = EventValue('",(m$.var("YUCI").get())),"','"),(m$.var("YUSER").get())),"','"),(m$.var("YFORM").get())),"','FIX','EVENT^WWWMegaMenu','CLOSEMENU','6',pid);"),"\n");
     m$.Cmd.WriteJS("              }","\n");
     m$.Cmd.WriteJS("          }","\n");
     m$.Cmd.WriteJS("      }","\n");

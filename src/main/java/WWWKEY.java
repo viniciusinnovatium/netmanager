@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWKEY
-//** Innovatium Systems - Code Converter - v1.24
-//** 2014-06-02 18:24:58
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:42
 //*****************************************************************************
 
 import mLibrary.*;
@@ -19,6 +19,7 @@ import include.COMGridEdit31Interface;
 import include.COMTab;
 import include.COMEditor;
 import include.COMSYSJS;
+import include.$occInclude;
 
 //<< WWWKEY(YIPADDR)
 public class WWWKEY extends mClass {
@@ -159,7 +160,7 @@ public class WWWKEY extends mClass {
     if (mOp.Equal(m$.Fnc.$piece(m$.var("YFELD").get(),m$.var("Y").get(),4),"???")) {
       //<< . NEW I
       mVar I = m$.var("I");
-      m$.newVar(I);
+      m$.newVarBlock(1,I);
       //<< . FOR I=1:1 QUIT:$EXTRACT($PIECE(YFELD,Y,1),I)=""  SET I(1) = $GET(I(1))+$ASCII($EXTRACT($PIECE(YFELD,Y,1),I))
       for (I.set(1);(true);I.set(mOp.Add(I.get(),1))) {
         if (mOp.Equal(m$.Fnc.$extract(m$.Fnc.$piece(m$.var("YFELD").get(),m$.var("Y").get(),1),I.get()),"")) {
@@ -174,12 +175,13 @@ public class WWWKEY extends mClass {
       m$.var("%TXT",1).set(mOp.Concat("#YWWWKEYD4~",m$.Fnc.$zhex(m$.Fnc.$get(I.var(1)))));
       return;
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< IF $PIECE(YFELD,Y,4)'="" DO
     if (mOp.NotEqual(m$.Fnc.$piece(m$.var("YFELD").get(),m$.var("Y").get(),4),"")) {
       //<< . NEW I
       mVar I = m$.var("I");
-      m$.newVar(I);
+      m$.newVarBlock(1,I);
       //<< . FOR I=1:1 QUIT:$EXTRACT($PIECE(YFELD,Y,1),I)=""  SET I(1) = $GET(I(1))+$ASCII($EXTRACT($PIECE(YFELD,Y,1),I))
       for (I.set(1);(true);I.set(mOp.Add(I.get(),1))) {
         if (mOp.Equal(m$.Fnc.$extract(m$.Fnc.$piece(m$.var("YFELD").get(),m$.var("Y").get(),1),I.get()),"")) {
@@ -195,6 +197,7 @@ public class WWWKEY extends mClass {
         m$.var("%TXT",1).set(mOp.Concat("!",m$.fnc$("WWWTEXT.main",409,null,1)));
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< QUIT
     return;

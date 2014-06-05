@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - INC include.COMSYS
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 14:50:15
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:52:12
 //*****************************************************************************
 
 package include;
@@ -764,7 +764,7 @@ public class COMSYS extends mInclude {
   //<< 
   //<< #define StartScript(%str)       do StartScript^COMUtiljavascript(%str)
   public static Object $$$StartScript(mContext m$, Object ... _p) {
-    mVar p$str = m$.varRef("p$str",(((_p!=null)&&(_p.length>=1))?_p[0]:null),"");
+    mVar p$str = m$.varRef("p$str",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
     m$.Cmd.Do("COMUtiljavascript.StartScript",p$str.get());
     return null;
   }

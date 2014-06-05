@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWW0121
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:16
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:01
 //*****************************************************************************
 
 import mLibrary.*;
@@ -27,6 +27,7 @@ import include.$occInclude;
 import include.$occInclude;
 import include.$occConstant;
 import include.$occStatus;
+import include.$occErrors;
 
 //<< WWW0121
 public class WWW0121 extends mClass {
@@ -612,8 +613,7 @@ public class WWW0121 extends mClass {
     //<< &html<
     //<< #($$CreateLocationPopupJS(strFieldId))#
     //<< >
-    m$.Cmd.WriteHtml("","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("        ",(m$.fnc$("CreateLocationPopupJS",strFieldId.get()))),")"),"\n");
+    m$.Cmd.WriteHtml(mOp.Modulus("",(m$.fnc$("CreateLocationPopupJS",strFieldId.get()))),"\n");
     m$.Cmd.WriteHtml("    ");
     //<< quit $$$OK
     return include.COMSYS.$$$OK(m$);

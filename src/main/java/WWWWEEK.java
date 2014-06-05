@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWWEEK
-//** Innovatium Systems - Code Converter - v1.24
-//** 2014-05-30 14:01:29
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:47
 //*****************************************************************************
 
 import mLibrary.*;
@@ -19,6 +19,7 @@ import include.COMGridEdit31Interface;
 import include.COMTab;
 import include.COMEditor;
 import include.COMSYSJS;
+import include.$occInclude;
 
 //<< WWWWEEK(YDATUM="",YPARA)
 public class WWWWEEK extends mClass {
@@ -633,10 +634,10 @@ public class WWWWEEK extends mClass {
                   //<< . . . . SET YQ=1
                   YQ.set(1);
                 }
-                if (mOp.Equal(YQ.get(),1)) {
-                  break;
-                }
               } while(false);
+              if (mOp.Equal(YQ.get(),1)) {
+                break;
+              }
             } while (false);
           }
         }
@@ -1011,134 +1012,54 @@ public class WWWWEEK extends mClass {
     //<< ;
     //<< QUIT
     return null;
-    //<< 
-    //<< ;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv DISABLED BLOCK
-    /*
-    //<< NEW DAT,JAH,WOC,MON,TAG
-    mVar DAT = m$.var("DAT");
-    mVar JAH = m$.var("JAH");
-    mVar WOC = m$.var("WOC");
-    mVar MON = m$.var("MON");
-    mVar TAG = m$.var("TAG");
-    m$.newVar(DAT,JAH,WOC,MON,TAG);
-    //<< ;
-    //<< ;
-    //<< ;YDATUM=$H ODER TT.MM.JJJJ ;Or
-    //<< ;
-    //<< ;YPARA=1 AUSGABE IN WW.JJJJ KW ;expenses within week
-    //<< ;YPARA=2 AUSGABE IN JJJJWW ;expenses within
-    //<< ;YPARA=3 AUSGABE IN JJJJ-WW ;expenses within
-    //<< SET YPARA=$GET(YPARA)
-    mVar YPARA = m$.var("YPARA");
-    YPARA.set(m$.Fnc.$get(m$.var("YPARA")));
-    //<< IF '$DATA(YDATUM) SET YDATUM=""
-    if (mOp.Not(m$.Fnc.$data(m$.var("YDATUM")))) {
-      mVar YDATUM = m$.var("YDATUM");
-      YDATUM.set("");
-    }
-    //<< IF YDATUM="" SET YDATUM=+$HOROLOG
-    if (mOp.Equal(m$.var("YDATUM").get(),"")) {
-      mVar YDATUM = m$.var("YDATUM");
-      YDATUM.set(mOp.Positive(m$.Fnc.$horolog()));
-    }
-    //<< ;
-    //<< SET DAT=YDATUM
-    DAT.set(m$.var("YDATUM").get());
-    //<< IF $FIND(DAT,"/") SET DAT=$PIECE(DAT,"/",2)_"."_$PIECE(DAT,"/",1)_"."_$PIECE(DAT,"/",3)
-    if (mOp.Logical(m$.Fnc.$find(DAT.get(),"/"))) {
-      DAT.set(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(m$.Fnc.$piece(DAT.get(),"/",2),"."),m$.Fnc.$piece(DAT.get(),"/",1)),"."),m$.Fnc.$piece(DAT.get(),"/",3)));
-    }
-    //<< IF $P(DAT,".",3)="" SET DAT=$$^WWWDATE($P(YDATUM,".",1))
-    if (mOp.Equal(m$.Fnc.$piece(DAT.get(),".",3),"")) {
-      DAT.set(m$.fnc$("WWWDATE.main",m$.Fnc.$piece(m$.var("YDATUM").get(),".",1)));
-    }
-    //<< IF $FIND(DAT,"/") SET DAT=$PIECE(DAT,"/",2)_"."_$PIECE(DAT,"/",1)_"."_$PIECE(DAT,"/",3)
-    if (mOp.Logical(m$.Fnc.$find(DAT.get(),"/"))) {
-      DAT.set(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(m$.Fnc.$piece(DAT.get(),"/",2),"."),m$.Fnc.$piece(DAT.get(),"/",1)),"."),m$.Fnc.$piece(DAT.get(),"/",3)));
-    }
-    //<< IF $FIND(DAT,"-") SET DAT=$TRANSLATE(DAT,"-",".")
-    if (mOp.Logical(m$.Fnc.$find(DAT.get(),"-"))) {
-      DAT.set(m$.Fnc.$translate(DAT.get(),"-","."));
-    }
-    //<< SET MON=$PIECE(DAT,".",2),JAH=$PIECE(DAT,".",3),TAG=$PIECE(DAT,".",1)
-    MON.set(m$.Fnc.$piece(DAT.get(),".",2));
-    JAH.set(m$.Fnc.$piece(DAT.get(),".",3));
-    TAG.set(m$.Fnc.$piece(DAT.get(),".",1));
-    //<< 
-    //<< SET DAT=$$^WWWDATE1("01.01."_JAH)
-    DAT.set(m$.fnc$("WWWDATE1.main",mOp.Concat("01.01.",JAH.get())));
-    //<< SET DAT=$$^WWWDAY(DAT)  ;wochentag des 1.1.
-    DAT.set(m$.fnc$("WWWDAY.main",DAT.get()));
-    //<< IF +MON=1,TAG<$PIECE("1;0;0;0;4;3;2",";",DAT) DO
-    if (mOp.Equal(mOp.Positive(MON.get()),1) && mOp.Less(TAG.get(),m$.Fnc.$piece("1;0;0;0;4;3;2",";",DAT.get()))) {
-      //<< . SET JAH=JAH-1,MON=12,TAG=31
-      JAH.set(mOp.Subtract(JAH.get(),1));
-      MON.set(12);
-      TAG.set(31);
-      //<< . SET DAT=$$^WWWDATE1("01.01."_JAH)
-      DAT.set(m$.fnc$("WWWDATE1.main",mOp.Concat("01.01.",JAH.get())));
-      //<< . SET DAT=$$^WWWDAY(DAT)
-      DAT.set(m$.fnc$("WWWDAY.main",DAT.get()));
-    }
-    //<< 
-    //<< SET DAT(1)=$PIECE("0;1;2;3;-3;-2;-1",";",DAT)
-    DAT.var(1).set(m$.Fnc.$piece("0;1;2;3;-3;-2;-1",";",DAT.get()));
-    //<< SET WOC=DAT(1)+TAG+$PIECE("0,31,59,90,120,151,181,212,243,273,304,334",",",MON)
-    WOC.set(mOp.Add(mOp.Add(DAT.var(1).get(),TAG.get()),m$.Fnc.$piece("0,31,59,90,120,151,181,212,243,273,304,334",",",MON.get())));
-    //<< SET DAT("LY")=$SELECT(JAH#100:JAH#4=0,1:JAH#400=0)
-    DAT.var("LY").set(m$.Fnc.$select(mOp.Modulus(JAH.get(),100),mOp.Equal(mOp.Modulus(JAH.get(),4),0),1,mOp.Equal(mOp.Modulus(JAH.get(),400),0)));
-    //<< IF DAT("LY"),MON>2 SET WOC=WOC+1
-    if (mOp.Logical(DAT.var("LY").get()) && mOp.Greater(MON.get(),2)) {
-      WOC.set(mOp.Add(WOC.get(),1));
-    }
-    //<< SET WOC=WOC\7+(WOC#7'=0)
-    WOC.set(mOp.Add(mOp.IntegerDivide(WOC.get(),7),(mOp.NotEqual(mOp.Modulus(WOC.get(),7),0))));
-    //<< IF WOC=53 DO
-    if (mOp.Equal(WOC.get(),53)) {
-      do {
-        //<< . IF $PIECE($GET(^WWW100(0,"WEEKS",SPRACHE,JAH,1)),Y,1)=53 QUIT   ;TYBD;22960;17.5.2003; PARAMETER FÜR JAHRESZAHL
-        if (mOp.Equal(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW100",0,"WEEKS",m$.var("SPRACHE").get(),JAH.get(),1)),m$.var("Y").get(),1),53)) {
-          break;
-        }
-        //<< . IF $PIECE($GET(^WWW100(0,"WEEKS",SPRACHE,JAH,1)),Y,1)=52 SET JAH=JAH+1,WOC=1 QUIT   ;TYBD;22960;17.5.2003; PARAMETER FÜR JAHRESZAHL
-        if (mOp.Equal(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW100",0,"WEEKS",m$.var("SPRACHE").get(),JAH.get(),1)),m$.var("Y").get(),1),52)) {
-          JAH.set(mOp.Add(JAH.get(),1));
-          WOC.set(1);
-          break;
-        }
-        //<< . IF DAT=4,'DAT("LY") QUIT
-        if (mOp.Equal(DAT.get(),4) && mOp.Not(DAT.var("LY").get())) {
-          break;
-        }
-        //<< . IF DAT=3,DAT("LY")  QUIT
-        if (mOp.Equal(DAT.get(),3) && mOp.Logical(DAT.var("LY").get())) {
-          break;
-        }
-        //<< . SET JAH=JAH+1,WOC=1
-        JAH.set(mOp.Add(JAH.get(),1));
-        WOC.set(1);
-      } while (false);
-    }
-    //<< 
-    //<< SET WOC=$EXTRACT(100+WOC,2,3)
-    WOC.set(m$.Fnc.$extract(mOp.Add(100,WOC.get()),2,3));
-    //<< IF YPARA=1 QUIT WOC_"."_JAH_" "_$$^WWWTEXT(385)  ;KW ;week
-    if (mOp.Equal(YPARA.get(),1)) {
-      return mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(WOC.get(),"."),JAH.get())," "),m$.fnc$("WWWTEXT.main",385));
-    }
-    //<< IF YPARA=2 QUIT JAH_WOC      ;KW ;week
-    if (mOp.Equal(YPARA.get(),2)) {
-      return mOp.Concat(JAH.get(),WOC.get());
-    }
-    //<< IF YPARA=3 QUIT JAH_"-"_WOC  ;KW ;week
-    if (mOp.Equal(YPARA.get(),3)) {
-      return mOp.Concat(mOp.Concat(JAH.get(),"-"),WOC.get());
-    }
-    //<< QUIT WOC_JAH
-    return mOp.Concat(WOC.get(),JAH.get());
-    */
   }
 
 //<< 
+//<< ;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv DISABLED BLOCK
+//<< /*
+//<< NEW DAT,JAH,WOC,MON,TAG
+//<< ;
+//<< ;
+//<< ;YDATUM=$H ODER TT.MM.JJJJ ;Or
+//<< ;
+//<< ;YPARA=1 AUSGABE IN WW.JJJJ KW ;expenses within week
+//<< ;YPARA=2 AUSGABE IN JJJJWW ;expenses within
+//<< ;YPARA=3 AUSGABE IN JJJJ-WW ;expenses within
+//<< SET YPARA=$GET(YPARA)
+//<< IF '$DATA(YDATUM) SET YDATUM=""
+//<< IF YDATUM="" SET YDATUM=+$HOROLOG
+//<< ;
+//<< SET DAT=YDATUM
+//<< IF $FIND(DAT,"/") SET DAT=$PIECE(DAT,"/",2)_"."_$PIECE(DAT,"/",1)_"."_$PIECE(DAT,"/",3)
+//<< IF $P(DAT,".",3)="" SET DAT=$$^WWWDATE($P(YDATUM,".",1))
+//<< IF $FIND(DAT,"/") SET DAT=$PIECE(DAT,"/",2)_"."_$PIECE(DAT,"/",1)_"."_$PIECE(DAT,"/",3)
+//<< IF $FIND(DAT,"-") SET DAT=$TRANSLATE(DAT,"-",".")
+//<< SET MON=$PIECE(DAT,".",2),JAH=$PIECE(DAT,".",3),TAG=$PIECE(DAT,".",1)
+//<< 
+//<< SET DAT=$$^WWWDATE1("01.01."_JAH)
+//<< SET DAT=$$^WWWDAY(DAT)  ;wochentag des 1.1.
+//<< IF +MON=1,TAG<$PIECE("1;0;0;0;4;3;2",";",DAT) DO
+//<< . SET JAH=JAH-1,MON=12,TAG=31
+//<< . SET DAT=$$^WWWDATE1("01.01."_JAH)
+//<< . SET DAT=$$^WWWDAY(DAT)
+//<< 
+//<< SET DAT(1)=$PIECE("0;1;2;3;-3;-2;-1",";",DAT)
+//<< SET WOC=DAT(1)+TAG+$PIECE("0,31,59,90,120,151,181,212,243,273,304,334",",",MON)
+//<< SET DAT("LY")=$SELECT(JAH#100:JAH#4=0,1:JAH#400=0)
+//<< IF DAT("LY"),MON>2 SET WOC=WOC+1
+//<< SET WOC=WOC\7+(WOC#7'=0)
+//<< IF WOC=53 DO
+//<< . IF $PIECE($GET(^WWW100(0,"WEEKS",SPRACHE,JAH,1)),Y,1)=53 QUIT   ;TYBD;22960;17.5.2003; PARAMETER FÜR JAHRESZAHL
+//<< . IF $PIECE($GET(^WWW100(0,"WEEKS",SPRACHE,JAH,1)),Y,1)=52 SET JAH=JAH+1,WOC=1 QUIT   ;TYBD;22960;17.5.2003; PARAMETER FÜR JAHRESZAHL
+//<< . IF DAT=4,'DAT("LY") QUIT
+//<< . IF DAT=3,DAT("LY")  QUIT
+//<< . SET JAH=JAH+1,WOC=1
+//<< 
+//<< SET WOC=$EXTRACT(100+WOC,2,3)
+//<< IF YPARA=1 QUIT WOC_"."_JAH_" "_$$^WWWTEXT(385)  ;KW ;week
+//<< IF YPARA=2 QUIT JAH_WOC      ;KW ;week
+//<< IF YPARA=3 QUIT JAH_"-"_WOC  ;KW ;week
+//<< QUIT WOC_JAH
+//<< */
 //<< 
 }

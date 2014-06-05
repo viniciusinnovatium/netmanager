@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORM6
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:37
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:20
 //*****************************************************************************
 
 import mLibrary.*;
@@ -672,7 +672,7 @@ public class WWWFORM6 extends mClass {
           mVar blnRequired = m$.var("blnRequired");
           mVar blnImportant = m$.var("blnImportant");
           mVar intMaxLength = m$.var("intMaxLength");
-          m$.newVar(blnRequired,blnImportant,intMaxLength);
+          m$.newVarBlock(3,blnRequired,blnImportant,intMaxLength);
           //<< . . . do GetFlags(YLFN,.blnRequired,.blnImportant)
           m$.Cmd.Do("GetFlags",m$.var("YLFN").get(),blnRequired,blnImportant);
           //<< . . . set intMaxLength=13
@@ -712,6 +712,7 @@ public class WWWFORM6 extends mClass {
             m$.Cmd.Write(m$.var("YCR").get(),"<FONT COLOR=RED>!</FONT>");
           }
         } while(false);
+        m$.restoreVarBlock(3);
         //<< . . ;CORE-71 set YIMPORTANT = $$$NO
         //<< . . ;CORE-71 do   ;pfichtfelder
         //<< . . ;CORE-71 . new YI

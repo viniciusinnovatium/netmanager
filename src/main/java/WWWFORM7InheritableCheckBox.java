@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORM7InheritableCheckBox
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:33
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:19
 //*****************************************************************************
 
 import mLibrary.*;
@@ -90,9 +90,9 @@ public class WWWFORM7InheritableCheckBox extends mClass {
     //<< >
     //<< >
     m$.Cmd.WriteHtml("","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("        <SPAN onmouseup='var xResult=InheritableCheckBoxClick(this,\"",(enumValue.get())),")\");"),"\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                      document.getElementById(\"",(id.get())),")\").value=xResult; "),"\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                      xResult = EventValue(\"",(m$.var("YUCI").get())),")\",\""),(m$.var("YUSER").get())),")\",\""),(m$.var("YFORM").get())),")\",\"FIX"),(m$.Fnc.$translate(m$.var("YKEY").get(),".","~"))),")\",\""),(mOp.Concat(mOp.Concat(mOp.Concat("Y",m$.var("YFORM").get()),m$.var("YART").get()),m$.var("YLFN").get()))),")\",xResult,\"2\",\"\",\""),(m$.var("YSEITE").get())),")\");"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("        <SPAN onmouseup='var xResult=InheritableCheckBoxClick(this,\"",(enumValue.get())),"\");"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                      document.getElementById(\"",(id.get())),"\").value=xResult; "),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                      xResult = EventValue(\"",(m$.var("YUCI").get())),"\",\""),(m$.var("YUSER").get())),"\",\""),(m$.var("YFORM").get())),"\",\"FIX"),(m$.Fnc.$translate(m$.var("YKEY").get(),".","~"))),"\",\""),(mOp.Concat(mOp.Concat(mOp.Concat("Y",m$.var("YFORM").get()),m$.var("YART").get()),m$.var("YLFN").get()))),"\",xResult,\"2\",\"\",\""),(m$.var("YSEITE").get())),"\");"),"\n");
     m$.Cmd.WriteHtml("                      event.cancelBubble=true;","\n");
     m$.Cmd.WriteHtml("                     ' ","\n");
     m$.Cmd.WriteHtml("           style='height:20px; float:right; '","\n");

@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWEVENT4
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:33
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:16
 //*****************************************************************************
 
 import mLibrary.*;
@@ -106,7 +106,7 @@ public class WWWEVENT4 extends mClass {
       //<< . NEW YKEY,YFELD
       mVar YKEY = m$.var("YKEY");
       mVar YFELD = m$.var("YFELD");
-      m$.newVar(YKEY,YFELD);
+      m$.newVarBlock(1,YKEY,YFELD);
       //<< . ;
       //<< . ;PRÜFEN LOCK ; check lock
       //<< . IF $GET(YLOCK)=1 IF YFORM'="" IF $DATA(^WWW120(0,YFORM)) DO
@@ -117,7 +117,7 @@ public class WWWEVENT4 extends mClass {
               //<< . . NEW YDATEI,%SCHLUESSEL,LOCK
               mVar YDATEI = m$.var("YDATEI");
               mVar LOCK = m$.var("LOCK");
-              m$.newVar(YDATEI,LOCK);
+              m$.newVarBlock(2,YDATEI,LOCK);
               //<< . . QUIT:$EXTRACT(YFORM,1,6)="WWW127"                            ;NICHT BEI HILFE ;Not next to succour
               if (mOp.Equal(m$.Fnc.$extract(YFORM.get(),1,6),"WWW127")) {
                 break;
@@ -225,6 +225,7 @@ public class WWWEVENT4 extends mClass {
               }
             } while (false);
           }
+          m$.restoreVarBlock(2);
         }
       }
       //<< . . . // AUSGESCHALTET, DA PROBLEM: WWWDATEN,2 UND @YDATEI STIMMEN NICHT ÜBEREIN, DA KLEINE UNTERSCHIEDE (Z.B. ÄNDERUNGSDATUM, ZAHLENFORMATE,...)
@@ -242,7 +243,7 @@ public class WWWEVENT4 extends mClass {
               mVar TXT1 = m$.var("TXT1");
               mVar YVOR = m$.var("YVOR");
               mVar YOK = m$.var("YOK");
-              m$.newVar(TXT,TXT1,YFORM,YVOR,YOK);
+              m$.newVarBlock(2,TXT,TXT1,YFORM,YVOR,YOK);
               //<< . . SET TXT1 = ""
               TXT1.set("");
               //<< . . SET TXT  = $ORDER(^WWW013Ms(0,1," ",YBED,""))
@@ -278,9 +279,11 @@ public class WWWEVENT4 extends mClass {
               YOK.set(m$.fnc$("WWWSPEI.main","WWW013M",mOp.Concat(mOp.Concat(m$.var("YBED").get(),","),TXT.get()),TXT1.get(),1));
             } while (false);
           }
+          m$.restoreVarBlock(2);
         }
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< 
     //<< IF $GET(YREQUEST)="DataRequest" DO
@@ -288,7 +291,7 @@ public class WWWEVENT4 extends mClass {
       //<< . NEW YDATEI,%SCHLUESSEL,LOCK
       mVar YDATEI = m$.var("YDATEI");
       mVar LOCK = m$.var("LOCK");
-      m$.newVar(YDATEI,LOCK);
+      m$.newVarBlock(1,YDATEI,LOCK);
       //<< . SET YFELD = ""
       mVar YFELD = m$.var("YFELD");
       YFELD.set("");
@@ -354,13 +357,14 @@ public class WWWEVENT4 extends mClass {
         YRETVAL.set(mOp.Concat("!",m$.fnc$("WWWTEXT.main",392,null,1)));
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< 
     //<< IF $GET(YREQUEST)="DeleteLock" DO
     if (mOp.Equal(m$.Fnc.$get(YREQUEST),"DeleteLock")) {
       //<< . NEW LOCK
       mVar LOCK = m$.var("LOCK");
-      m$.newVar(LOCK);
+      m$.newVarBlock(1,LOCK);
       //<< . SET LOCK = $get(^WWWDATEN(YM,dteToday,YUSER,YFORM,"LOCK",1))
       LOCK.set(m$.Fnc.$get(m$.var("^WWWDATEN",m$.var("YM").get(),dteToday.get(),YUSER.get(),YFORM.get(),"LOCK",1)));
       //<< . if $translate(LOCK," ")'="" do
@@ -375,6 +379,7 @@ public class WWWEVENT4 extends mClass {
         } while (false);
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< 
     //<< IF $GET(YREQUEST)="RefreshCheck" DO
@@ -382,7 +387,7 @@ public class WWWEVENT4 extends mClass {
       do {
         //<< . NEW YKEY
         mVar YKEY = m$.var("YKEY");
-        m$.newVar(YKEY);
+        m$.newVarBlock(1,YKEY);
         //<< . SET YRETVAL = ""
         YRETVAL.set("");
         //<< . SET YKEY    = $GET(^WWWDATEN(YM,dteToday,YUSER,YFORM,"P",1))
@@ -401,6 +406,7 @@ public class WWWEVENT4 extends mClass {
         }
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< QUIT YRETVAL
     return YRETVAL.get();

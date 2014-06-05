@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC COMUtilClass
-//** Innovatium Systems - Code Converter - v1.24
-//** 2014-06-02 20:07:30
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:39
 //*****************************************************************************
 
 import mLibrary.*;
@@ -28,7 +28,6 @@ import include.COMConst;
 import include.COMSYS;
 //<< #include WWWConst
 import include.WWWConst;
-//import COMSYS;
 //<< #include COMSYS
 import include.COMSYS;
 import include.COMSYSDate;
@@ -41,6 +40,7 @@ import include.COMGridEdit31Interface;
 import include.COMTab;
 import include.COMEditor;
 import include.COMSYSJS;
+import include.$occInclude;
 
 //<< COMUtilClass
 public class COMUtilClass extends mClass {
@@ -992,7 +992,7 @@ public class COMUtilClass extends mClass {
       //<< do
       //<< . new strClass
       mVar strClass = m$.var("strClass");
-      m$.newVar(strClass);
+      m$.newVarBlock(1,strClass);
       //<< . set strClass=""
       strClass.set("");
       //<< . for  set strClass=$order(^WWW001(0,strClass)) quit:strClass=""  do
@@ -1036,6 +1036,7 @@ public class COMUtilClass extends mClass {
         } while (false);
       }
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;do $system.OBJ.CompileAll()
     //<< quit
@@ -1131,7 +1132,7 @@ public class COMUtilClass extends mClass {
     //<< if pblnRecurse {
     if (mOp.Logical(pblnRecurse.get())) {
       //<< set pidForm=$order(^WWW120s(0,1,$$$Index(pidClass),pidForm))
-      pidForm.set(m$.Fnc.$order(m$.var("^WWW120s",0,1,include.COMConst.$$$Index(m$,pidClass),pidForm.get())));
+      pidForm.set(m$.Fnc.$order(m$.var("^WWW120s",0,1,include.MEDConst.$$$Index(m$,pidClass),pidForm.get())));
     }
     //<< }
     //<< if pidForm'="" {

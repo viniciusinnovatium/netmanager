@@ -1,15 +1,16 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - CLASS User.COMUserPreferences
-//** Innovatium Systems - Code Converter - v1.24
-//** 2014-05-27 14:52:15
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:30
 //*****************************************************************************
 
 package User;
 
 import mLibrary.*;
+
 //<< Include (WWWConst, COMSYS)
 import include.WWWConst;
-//import COMSYS;
+import include.COMSYS;
 import include.COMSYS;
 import include.COMSYSDate;
 import include.COMSYSNum;
@@ -21,6 +22,7 @@ import include.COMGridEdit31Interface;
 import include.COMTab;
 import include.COMEditor;
 import include.COMSYSJS;
+import include.$occInclude;
 //<< {
 //<< ;-------------------------------------------------------------------------------
 //<< ; Method Usage
@@ -49,7 +51,7 @@ public class COMUserPreferences extends mPage {
   //<< {
   //<< 
   //<< ClassMethod OnPage() As %Status
-  public Object OnPage() {
+  public Object OnPage(Object ... _p) {
     //<< 
     //<< new objWWW013,idCompany
     mVar objWWW013 = m$.var("objWWW013");
@@ -101,10 +103,10 @@ public class COMUserPreferences extends mPage {
       //<< (+$$$WWWClientParamCoreChangesHEVA($get(^WWWClientParam(YM,YM,1))))) {
       if ((mOp.Logical((mOp.Positive(include.WWWConst.$$$WWWClientParamCoreChangesSESPE(m$,m$.Fnc.$get(m$.var("^WWWClientParam",m$.var("YM").get(),m$.var("YM").get(),1)))))) || mOp.Logical((mOp.Positive(include.WWWConst.$$$WWWClientParamCoreChangesSESDF(m$,m$.Fnc.$get(m$.var("^WWWClientParam",m$.var("YM").get(),m$.var("YM").get(),1)))))) || mOp.Logical((mOp.Positive(include.WWWConst.$$$WWWClientParamCoreChangesHEVA(m$,m$.Fnc.$get(m$.var("^WWWClientParam",m$.var("YM").get(),m$.var("YM").get(),1)))))))) {
         //<< if (('##class(VAR.infra.shadow.ShadowRunner).IsFunctional()) && (YBED'="SHADOW")) {
-        //if (mOp.Logical(((mOp.Not(m$.fnc$("VAR.infra.shadow.ShadowRunner.IsFunctional"))) && (mOp.NotEqual(m$.var("YBED").get(),"SHADOW"))))) {
+        if (mOp.Logical(((mOp.Not(m$.fnc$("VAR.infra.shadow.ShadowRunner.IsFunctional"))) && (mOp.NotEqual(m$.var("YBED").get(),"SHADOW"))))) {
           //<< do ##class(User.www).ShowError($$$ERROR($$$UserNotAuthorizedOnSystem,YBED))
-          //m$.Cmd.Do("User.www.ShowError",include.COMSYS.$$$ERROR(m$, include.$occErrors.$$$UserNotAuthorizedOnSystem(m$),m$.var("YBED")));
-        //}
+          m$.Cmd.Do("User.www.ShowError",include.$occStatus.$$$ERROR(m$,include.$occErrors.$$$UserNotAuthorizedOnSystem(m$),m$.var("YBED")));
+        }
       }
       //<< }
       //<< }
@@ -189,7 +191,7 @@ public class COMUserPreferences extends mPage {
     //<< } else {
     else {
       //<< do ##class(User.www).Page()
-    	m$.Cmd.Do("User.www.Page");
+      m$.Cmd.Do("User.www.Page");
     }
     //<< }
     //<< quit $$$OK
@@ -199,7 +201,7 @@ public class COMUserPreferences extends mPage {
 
   //<< 
   //<< ClassMethod insertJsFunctionMaximizeWindow()
-  public void insertJsFunctionMaximizeWindow(Object ... _p) {
+  public Object insertJsFunctionMaximizeWindow(Object ... _p) {
     //<< {
     //<< ;-------------------------------------------------------------------------------
     //<< ; This method writes to the current output (the new html page) a new javascript
@@ -248,6 +250,7 @@ public class COMUserPreferences extends mPage {
     m$.Cmd.Write("\n","  }");
     //<< write !,"}",!
     m$.Cmd.Write("\n","}","\n");
+    return null;
   //<< }
   }
 
