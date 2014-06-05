@@ -24,7 +24,7 @@ public class CLSServlet extends NetmanagerServlet {
 	@Override
 	void doHandleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
-		mContext m$ = new mContext(response.getWriter());
+		mContext m$ = new mContext(response);
 		request.getSession(true);
 		m$.setRequest(new mRequest(request));
 		m$.setSession(new mSession());
