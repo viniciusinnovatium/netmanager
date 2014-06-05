@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWMegaMenuUserMenu
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:52
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-04 15:00:25
 //*****************************************************************************
 
 import mLibrary.*;
@@ -108,20 +108,20 @@ public class WWWMegaMenuUserMenu extends mClass {
     //<< </li>-->
     //<< >
     m$.Cmd.WriteHtml("","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("    <li id='menuLi_3' class='menu_right' hclass='lihover_right' zclass='menu_right'  ",(m$.fnc$("WWWMegaMenu.Events"))),")><a id='menuA_3' href=\"#\" class='drop' zclass='drop'> <strong>"),(m$.var("YBED").get())),")</strong> </a><!-- Begin User -->"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("    <li id='menuLi_3' class='menu_right' hclass='lihover_right' zclass='menu_right'  ",(m$.fnc$("WWWMegaMenu.Events"))),"><a id='menuA_3' href=\"#\" class='drop' zclass='drop'> <strong>"),(m$.var("YBED").get())),"</strong> </a><!-- Begin User -->"),"\n");
     m$.Cmd.WriteHtml("        <div id='menuDiv_3' class='dropdown_right' zclass='dropdown_right' style=\"padding:15px; float:right; margin-right:0px;\">","\n");
     m$.Cmd.WriteHtml("           <div id='menuDivCol_3' class=\"col_2\">","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                <h2 id='menuH2_3' style=\"border: 0;margin-bottom:0;padding-bottom:2px\">",(include.WWWConst.$$$WWW013Name(m$,objWWW013))),")</h2>"),"\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                <div style=\"font-size:12px;border-bottom: 1px solid #666666;margin-bottom:10px;padding-bottom:6px\">Email: ",(include.WWWConst.$$$WWW013EMailAddress(m$,objWWW013))),")"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                <h2 id='menuH2_3' style=\"border: 0;margin-bottom:0;padding-bottom:2px\">",(include.WWWConst.$$$WWW013Name(m$,objWWW013))),"</h2>"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat("                <div style=\"font-size:12px;border-bottom: 1px solid #666666;margin-bottom:10px;padding-bottom:6px\">Email: ",(include.WWWConst.$$$WWW013EMailAddress(m$,objWWW013))),"\n");
     m$.Cmd.WriteHtml("                </div>","\n");
     m$.Cmd.WriteHtml("            </div>","\n");
     m$.Cmd.WriteHtml("            <div class=\"col_2\" style='width:250px;'>","\n");
     m$.Cmd.WriteHtml("                <ul>","\n");
     m$.Cmd.WriteHtml("                    <!--<li style='width:100%'>","\n");
     m$.Cmd.WriteHtml("                        <p style='margin:0px; cursor:pointer;'>","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                            <a class='menuitem' href='",(m$.var("YAKTION").get())),")&EP=WWWFORM&YFORM="),(mOp.Concat(YFORM.get(),m$.fnc$("WWWCGI.WWWCGI2")))),")' >"),"\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                                <img src='",(mOp.Concat(m$.var("YGIF").get(),m$.fnc$("WWWMegaMenu.GetMenuImage",YFORM.get())))),")' style='position:relative; border:none;'>"),"\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                                 ",(m$.fnc$("COMUtilError.DecodeError","WWW00176"))),")"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                            <a class='menuitem' href='",(m$.var("YAKTION").get())),"&EP=WWWFORM&YFORM="),(mOp.Concat(YFORM.get(),m$.fnc$("WWWCGI.WWWCGI2")))),"' >"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                                <img src='",(mOp.Concat(m$.var("YGIF").get(),m$.fnc$("WWWMegaMenu.GetMenuImage",YFORM.get())))),"' style='position:relative; border:none;'>"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat("                                 ",(m$.fnc$("COMUtilError.DecodeError","WWW00176"))),"\n");
     m$.Cmd.WriteHtml("                            </a>","\n");
     m$.Cmd.WriteHtml("                        </p>","\n");
     m$.Cmd.WriteHtml("                    </li>-->","\n");
@@ -142,10 +142,10 @@ public class WWWMegaMenuUserMenu extends mClass {
       //<< </li>
       //<< >
       m$.Cmd.WriteHtml("","\n");
-      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            <li style='width:100%;list-style-type:none;list-style-position:outside;padding-left:17px;background-image:url(",(m$.var("YGIF").get())),")homeform.png);background-repeat:no-repeat;background-position: left 5px; height:20px;'>"),"\n");
+      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            <li style='width:100%;list-style-type:none;list-style-position:outside;padding-left:17px;background-image:url(",(m$.var("YGIF").get())),"homeform.png);background-repeat:no-repeat;background-position: left 5px; height:20px;'>"),"\n");
       m$.Cmd.WriteHtml("                  <p style='margin:0px; cursor:pointer;'>","\n");
-      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                        <a class='menuitem' style='padding-left:5px' href='",(m$.var("YAKTION").get())),")&EP=WWWFORM&YFORM="),(mOp.Concat(startForm.get(),m$.fnc$("WWWCGI.WWWCGI2")))),")&YKEY=\"\"' >"),"\n");
-      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                              ",(m$.fnc$("COMUtilError.DecodeError","WWW00182"))),")"),"\n");
+      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                        <a class='menuitem' style='padding-left:5px' href='",(m$.var("YAKTION").get())),"&EP=WWWFORM&YFORM="),(mOp.Concat(startForm.get(),m$.fnc$("WWWCGI.WWWCGI2")))),"&YKEY=\"\"' >"),"\n");
+      m$.Cmd.WriteHtml(mOp.Concat("                              ",(m$.fnc$("COMUtilError.DecodeError","WWW00182"))),"\n");
       m$.Cmd.WriteHtml("                        </a>","\n");
       m$.Cmd.WriteHtml("                  </p>","\n");
       m$.Cmd.WriteHtml("            </li>","\n");
@@ -178,12 +178,12 @@ public class WWWMegaMenuUserMenu extends mClass {
           //<< </li>
           //<< >
           m$.Cmd.WriteHtml("","\n");
-          m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                        <li style='width:100%;list-style-type:none;list-style-position:outside;padding-left:17px;background-image:url(",(mOp.Concat(m$.var("YGIF").get(),m$.fnc$("WWWMegaMenu.GetMenuImage",idForm.get())))),"));background-repeat:no-repeat;background-position: left 5px; height:20px;'>"),"\n");
+          m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                        <li style='width:100%;list-style-type:none;list-style-position:outside;padding-left:17px;background-image:url(",(mOp.Concat(m$.var("YGIF").get(),m$.fnc$("WWWMegaMenu.GetMenuImage",idForm.get())))),");background-repeat:no-repeat;background-position: left 5px; height:20px;'>"),"\n");
           m$.Cmd.WriteHtml("                            <p style='margin:0px; cursor:pointer;'>","\n");
-          m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                                <a class='menuitem' style='padding-left:5px' href='",(m$.var("YAKTION").get())),")&EP=WWWFORM&YFORM="),(mOp.Concat(idForm.get(),m$.fnc$("WWWCGI.WWWCGI2")))),")' TITLE='"),(m$.fnc$("WWWMegaMenu.GetLocation",m$.var("YLOCATION").get()))),")' >"),"\n");
-          m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                                    <!--<img src='",(mOp.Concat(m$.var("YGIF").get(),m$.fnc$("WWWMegaMenu.GetMenuImage",idForm.get())))),")' style='position:relative; border:none;'>"),"\n");
-          m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                                    ",(m$.fnc$("COMUtilError.DecodeError","WWW00178"))),")-->"),"\n");
-          m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                                    ",(m$.fnc$("WWWFORMNAME.main",idForm.get()))),") "),"\n");
+          m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                                <a class='menuitem' style='padding-left:5px' href='",(m$.var("YAKTION").get())),"&EP=WWWFORM&YFORM="),(mOp.Concat(idForm.get(),m$.fnc$("WWWCGI.WWWCGI2")))),"' TITLE='"),(m$.fnc$("WWWMegaMenu.GetLocation",m$.var("YLOCATION").get()))),"' >"),"\n");
+          m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                                    <!--<img src='",(mOp.Concat(m$.var("YGIF").get(),m$.fnc$("WWWMegaMenu.GetMenuImage",idForm.get())))),"' style='position:relative; border:none;'>"),"\n");
+          m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                                    ",(m$.fnc$("COMUtilError.DecodeError","WWW00178"))),"-->"),"\n");
+          m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                                    ",(m$.fnc$("WWWFORMNAME.main",idForm.get())))," "),"\n");
           m$.Cmd.WriteHtml("                                </a>","\n");
           m$.Cmd.WriteHtml("                            </p>","\n");
           m$.Cmd.WriteHtml("                        </li>","\n");
@@ -217,16 +217,16 @@ public class WWWMegaMenuUserMenu extends mClass {
     //<< 
     //<< >
     m$.Cmd.WriteHtml("","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                    <li style='width:100%;list-style-type:none;list-style-position:outside;padding-left:17px;background-image:url(",(m$.var("YGIF").get())),")help.png);background-repeat:no-repeat;background-position: left 5px; height:20px;'>"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                    <li style='width:100%;list-style-type:none;list-style-position:outside;padding-left:17px;background-image:url(",(m$.var("YGIF").get())),"help.png);background-repeat:no-repeat;background-position: left 5px; height:20px;'>"),"\n");
     m$.Cmd.WriteHtml("                          <p style='margin:0px; cursor:pointer;'>","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                                <a class='menuitem' style='padding-left:5px' target='_blank' href='../../../ensemble/csp/",(m$.var("YUCI").get())),")/manual/index.csp?User="),(m$.var("YUSER").get())),")' >"),"\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                                      ",(m$.fnc$("COMUtilError.DecodeError","WWW00181"))),")"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                                <a class='menuitem' style='padding-left:5px' target='_blank' href='../../../ensemble/csp/",(m$.var("YUCI").get())),"/manual/index.csp?User="),(m$.var("YUSER").get())),"' >"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat("                                      ",(m$.fnc$("COMUtilError.DecodeError","WWW00181"))),"\n");
     m$.Cmd.WriteHtml("                                </a>","\n");
     m$.Cmd.WriteHtml("                          </p>","\n");
     m$.Cmd.WriteHtml("                    </li>","\n");
     m$.Cmd.WriteHtml("                    <li style=\"margin-top:5px;\">","\n");
     m$.Cmd.WriteHtml("                        <p style='margin:0px; cursor:pointer;float:right;'>","\n");
-    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                            <a href=\"#\" class='drop actionButton' style='color:red;width:auto;float:right;padding-right:20px;padding-left:20px;background-color:#E0E0E0;' ",(m$.fnc$("WWWMegaMenu.Logout"))),")>"),(m$.fnc$("COMUtilError.DecodeError",33980))),")</a>"),"\n");
+    m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                            <a href=\"#\" class='drop actionButton' style='color:red;width:auto;float:right;padding-right:20px;padding-left:20px;background-color:#E0E0E0;' ",(m$.fnc$("WWWMegaMenu.Logout"))),">"),(m$.fnc$("COMUtilError.DecodeError",33980))),"</a>"),"\n");
     m$.Cmd.WriteHtml("                        </p>","\n");
     m$.Cmd.WriteHtml("                    </li>","\n");
     m$.Cmd.WriteHtml("                </ul>","\n");

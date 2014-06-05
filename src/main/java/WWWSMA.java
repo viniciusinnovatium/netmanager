@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWSMA
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:11
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:56
 //*****************************************************************************
 
 import mLibrary.*;
@@ -66,7 +66,7 @@ public class WWWSMA extends mClass {
         //<< . NEW YKEY,YFKEY
         mVar YKEY = m$.var("YKEY");
         mVar YFKEY = m$.var("YFKEY");
-        m$.newVar(YKEY,YFKEY);
+        m$.newVarBlock(1,YKEY,YFKEY);
         //<< . SET YKEY="",YFKEY=""
         YKEY.set("");
         YFKEY.set("");
@@ -105,6 +105,7 @@ public class WWWSMA extends mClass {
         m$.Cmd.Do("WWWFORM9.main");
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< SET YBBN=""
     YBBN.set("");
@@ -627,7 +628,7 @@ public class WWWSMA extends mClass {
     if (mOp.Logical(m$.Fnc.$find(YAUSW.get(),";"))) {
       //<< . NEW YAUSW1
       mVar YAUSW1 = m$.var("YAUSW1");
-      m$.newVar(YAUSW1);
+      m$.newVarBlock(1,YAUSW1);
       //<< . SET YAUSW1=YAUSW
       YAUSW1.set(YAUSW.get());
       //<< . FOR YAUSW1(1)=1:1 QUIT:$PIECE(YAUSW1,";",YAUSW1(1),99)=""  SET YAUSW=$PIECE(YAUSW1,";",YAUSW1(1)) DO
@@ -642,6 +643,7 @@ public class WWWSMA extends mClass {
         }
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< IF '$FIND(YAUSW,";") DO ^WWWSMA1
     if (mOp.Not(m$.Fnc.$find(YAUSW.get(),";"))) {

@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORMCrossBrowserSupportClipboard
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:17
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:02
 //*****************************************************************************
 
 import mLibrary.*;
@@ -179,7 +179,7 @@ public class WWWFORMCrossBrowserSupportClipboard extends mClass {
     m$.Cmd.WriteJS("                netscape.security.PrivilegeManager.enablePrivilege(\"UniversalXPConnect\");","\n");
     m$.Cmd.WriteJS("                var comp_classes = Components.classes;","\n");
     m$.Cmd.WriteJS("            } catch(e) {","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("                var strMessage='",(include.COMSYSString.$$$JSText(m$,include.COMSYS.$$$Text(m$,"WWW00136")))),")';"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("                var strMessage='",(include.COMSYSString.$$$JSText(m$,include.COMSYS.$$$Text(m$,"WWW00136")))),"';"),"\n");
     m$.Cmd.WriteJS("                //signed.applets.codebase_principal_support must be set to true to allow clipboard access in Firefox.  Contact your System Administrator.","\n");
     m$.Cmd.WriteJS("                alert(strMessage);","\n");
     m$.Cmd.WriteJS("                return;","\n");

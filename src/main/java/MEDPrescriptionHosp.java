@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC MEDPrescriptionHosp
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:12
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:57
 //*****************************************************************************
 
 import mLibrary.*;
@@ -1584,6 +1584,21 @@ public class MEDPrescriptionHosp extends mClass {
     return null;
   }
 
+  //<< /*
+  //<< new tmTime
+  //<< if pstrTime="." {
+  //<< set pstrTime=$ztime($piece($h,",",2),2)
+  //<< }
+  //<< set tmTime=$ztimeh(pstrTime,2,"err")
+  //<< if tmTime="err" {
+  //<< set Q=$$$QDontSave
+  //<< do ReturnError^COMUtils("MED01265")  ;Incorrect Time~
+  //<< } else {
+  //<< set pstrTime=$ztime(tmTime,2)
+  //<< }
+  //<< quit ;SR18026
+  //<< */
+  //<< 
   //<< UpdateDiluent(pidItem,YUPDATE)
   public Object UpdateDiluent(Object ... _p) {
     mVar pidItem = m$.newVarRef("pidItem",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
@@ -2071,24 +2086,14 @@ public class MEDPrescriptionHosp extends mClass {
     //<< var strResult = iePrompt('#(strPrompt)#');
     //<< 
     //<< if (strResult!=false) {
+    if (mOp.Logical((m$.var("strResult").get()))) {
+    }
     //<< CallBackNow('#(strCallback)#','#(strYKEY)#',strResult);
     //<< } else {
     //<< CallBackNow('GoToForm^COMUtilForm','MEDPrescriptionHosp','#(idRx)#');
     //<< }
     //<< 
     //<< >
-    m$.Cmd.WriteJS("","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("        //var strResult=prompt('",(strPrompt.get())),")','','');"),"\n");
-    m$.Cmd.WriteJS("        ","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("        var strResult = iePrompt('",(strPrompt.get())),")');"),"\n");
-    m$.Cmd.WriteJS("                ","\n");
-    m$.Cmd.WriteJS("        if (strResult!=false) {","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("            CallBackNow('",(strCallback.get())),")','"),(strYKEY.get())),")',strResult);"),"\n");
-    m$.Cmd.WriteJS("        } else {","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("            CallBackNow('GoToForm^COMUtilForm','MEDPrescriptionHosp','",(idRx.get())),")');       "),"\n");
-    m$.Cmd.WriteJS("        }","\n");
-    m$.Cmd.WriteJS("        ","\n");
-    m$.Cmd.WriteJS("    ");
     //<< $$$EndScript()
     include.COMSYS.$$$EndScript(m$);
     //<< 

@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - INC include.COMDebug
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:18
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:04
 //*****************************************************************************
 
 package include;
@@ -19,13 +19,13 @@ public class COMDebug extends mInclude {
 
   //<< #define JournalOn   do $zu(139,0)
   public static Object $$$JournalOn(mContext m$) {
-    m$.Cmd.Do("$zu",139,0);
+    m$.Fnc.$zutil(139,0);
     return null;
   }
 
   //<< #define JournalOff  do $zu(139,1)
   public static Object $$$JournalOff(mContext m$) {
-    m$.Cmd.Do("$zu",139,1);
+    m$.Fnc.$zutil(139,1);
     return null;
   }
 

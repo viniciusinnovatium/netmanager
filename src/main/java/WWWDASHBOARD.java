@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWDASHBOARD
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:33
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:16
 //*****************************************************************************
 
 import mLibrary.*;
@@ -281,7 +281,7 @@ public class WWWDASHBOARD extends mClass {
       //<< set $$$WWWDASHBOARDResult(objWWWDASHBOARD) = blnResult
       include.WWWConst.$$$WWWDASHBOARDResultSet(m$,objWWWDASHBOARD,blnResult.get());
       //<< set strStatus = $$$Save("WWWDASHBOARD",pintWarnings,objWWWDASHBOARD,$$$YES)
-      //TODO REVISAR SAVE strStatus.set(include.COMSYS.$$$Save(m$,"WWWDASHBOARD",pintWarnings,objWWWDASHBOARD,include.COMSYS.$$$YES(m$)));
+      strStatus.set(include.COMSYS.$$$Save(m$,"WWWDASHBOARD",pintWarnings,objWWWDASHBOARD,include.COMSYS.$$$YES(m$)));
     }
     //<< 
     //<< }
@@ -417,7 +417,7 @@ public class WWWDASHBOARD extends mClass {
       //<< set YKEY=$$^WWWNEXT("COMSchedule")
       YKEY.set(m$.fnc$("WWWNEXT.main","COMSchedule"));
       //<< set strStatus=$$Save^COMUtils("COMSchedule",YKEY,objCOMSchedule,1)
-      //TODO REVISAR SAVE strStatus.set(m$.fnc$("COMUtils.Save","COMSchedule",YKEY.get(),objCOMSchedule.get(),1));
+      strStatus.set(m$.fnc$("COMUtils.Save","COMSchedule",YKEY.get(),objCOMSchedule.get(),1));
     }
     //<< }
     //<< quit strStatus

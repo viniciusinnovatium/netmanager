@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWSPEI
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:28
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:15
 //*****************************************************************************
 
 import mLibrary.*;
@@ -337,7 +337,7 @@ public class WWWSPEI extends mClass {
         if (mOp.Equal(m$.Fnc.$get(YTIMEFORM),include.COMSYS.$$$YES(m$))) {
           //<< . . NEW YABDATE
           mVar YABDATE = m$.var("YABDATE");
-          m$.newVar(YABDATE);
+          m$.newVarBlock(2,YABDATE);
           //<< . . IF $GET(YQUERY)="" SET YQUERY="%KEY"
           if (mOp.Equal(m$.Fnc.$get(m$.var("YQUERY")),"")) {
             mVar YQUERY = m$.var("YQUERY");
@@ -360,7 +360,7 @@ public class WWWSPEI extends mClass {
             mVar SCHLUESSEL2 = m$.var("SCHLUESSEL2");
             YDATEI = m$.var("YDATEI");
             YFELD = m$.var("YFELD");
-            m$.newVar(SCHLUESSEL2,YDATEI,YTIMEFORM,YFELD);
+            m$.newVarBlock(3,SCHLUESSEL2,YDATEI,YTIMEFORM,YFELD);
             //<< . . . SET YDATEI=$PIECE($PIECE(SCHLUESSEL,"^",2),"t(",1)
             YDATEI.set(m$.Fnc.$piece(m$.Fnc.$piece(SCHLUESSEL.get(),"^",2),"t(",1));
             //<< . . . QUIT:YDATEI=""
@@ -380,7 +380,9 @@ public class WWWSPEI extends mClass {
             //<< . . . SET YFELD=$$^WWWSETS(SCHLUESSEL2,YFELD)
             YFELD.set(m$.fnc$("WWWSETS.main",SCHLUESSEL2.get(),YFELD.get()));
           } while(false);
+          m$.restoreVarBlock(3);
         }
+        m$.restoreVarBlock(2);
         //<< . ;
         //<< . ; WWW001 : D8 : Alternate Save Procedure : 4="Caché Object"
         //<< . IF $PIECE(YDATA,Y,8)'=4 SET SCHLUESSEL=SCHLUESSEL_"1"
@@ -436,7 +438,7 @@ public class WWWSPEI extends mClass {
             //<< . . new dteToday,strKeyTR
             mVar dteToday = m$.var("dteToday");
             mVar strKeyTR = m$.var("strKeyTR");
-            m$.newVar(dteToday,strKeyTR);
+            m$.newVarBlock(2,dteToday,strKeyTR);
             //<< . . set YAEND = $$$YES
             YAEND.set(include.COMSYS.$$$YES(m$));
             //<< . . if (YFIX'=$$$YES) && ($get(YFORM)'="") && ($$^WWWLOCATION($get(YLOCATION),YFORM,YFELD)'=$$$YES) set YOK=$$$SoftFail quit   ;KEINE BERECHTIGUNG, DA FALSCHER BETRIEB;9.4.2003;TYBD
@@ -480,6 +482,7 @@ public class WWWSPEI extends mClass {
             NEU.set(1);
           } while (false);
         }
+        m$.restoreVarBlock(2);
         //<< . ;
         //<< . ;-------------------------------------
         //<< . ; Quit if attempting to modify/change inappropriately
@@ -536,7 +539,7 @@ public class WWWSPEI extends mClass {
             //<< . . if $get(YQUERY)="" new YQUERY set YQUERY = "%KEY"  ;FIS;15.02.05;26751
             if (mOp.Equal(m$.Fnc.$get(m$.var("YQUERY")),"")) {
               mVar YQUERY = m$.var("YQUERY");
-              m$.newVar(YQUERY);
+              m$.newVarBlock(2,YQUERY);
               YQUERY.set("%KEY");
             }
             //<< . . set dteDate = $horolog
@@ -602,6 +605,7 @@ public class WWWSPEI extends mClass {
             }
           } while (false);
         }
+        m$.restoreVarBlock(2);
         //<< . ;
         //<< . ;-------------------------------------
         //<< . ;FALSCHER DATENSATZ; LEERER DATENSATZ AUF GESPEICHERTE DATEIN --> Wrong datarecord; or empty
@@ -725,7 +729,7 @@ public class WWWSPEI extends mClass {
                     mVar YMAX1 = m$.var("YMAX1");
                     mVar YMAX2 = m$.var("YMAX2");
                     mVar YFILES = m$.var("YFILES");
-                    m$.newVar(YMAX,YMAX1,YMAX2,YFILES);
+                    m$.newVarBlock(4,YMAX,YMAX1,YMAX2,YFILES);
                     //<< . . . . SET YFILES=YDATEI_"s"
                     YFILES.set(mOp.Concat(YDATEI.get(),"s"));
                     //<< . . . . IF $PIECE(YDATA,Y,23)'="" SET YFILES=$PIECE(YDATA,Y,23)  ;ANDERE DATEI ;data file
@@ -909,6 +913,7 @@ public class WWWSPEI extends mClass {
                       } while (false);
                     }
                   }
+                  m$.restoreVarBlock(4);
                 } while (false);
               }
             } while (false);
@@ -926,7 +931,7 @@ public class WWWSPEI extends mClass {
         do {
           //<< . . NEW YI,YCHECK
           mVar YCHECK = m$.var("YCHECK");
-          m$.newVar(YI,YCHECK);
+          m$.newVarBlock(2,YI,YCHECK);
           //<< . . SET YCHANGED = $$$NO  ;NICHT GEÄNDERT ;Not
           YCHANGED.set(include.COMSYS.$$$NO(m$));
           //<< . . QUIT:$GET(YFELD)=$GET(%FELD1)  ;KEINE ÄNDERUNG;FIS;20.07.04 ;no alteration
@@ -1004,7 +1009,7 @@ public class WWWSPEI extends mClass {
               mVar dteToday = m$.var("dteToday");
               mVar strKeyTR = m$.var("strKeyTR");
               mVar tmeToday = m$.var("tmeToday");
-              m$.newVar(dteToday,strKeyTR,tmeToday);
+              m$.newVarBlock(3,dteToday,strKeyTR,tmeToday);
               //<< . . . set dteToday = $horolog                              ; 02-Jan-2007
               dteToday.set(m$.Fnc.$horolog());
               //<< . . . set tmeToday = $piece(dteToday,",",2),dteToday = +dteToday
@@ -1027,7 +1032,9 @@ public class WWWSPEI extends mClass {
               m$.var("^WWWLAST",YM.get(),YDATEI.get(),strKeyTR.get(),m$.Fnc.$horolog(),1).set(YFELD.get());
             } while (false);
           }
+          m$.restoreVarBlock(3);
         } while(false);
+        m$.restoreVarBlock(2);
         //<< . ;
         //<< . ;-------------------------------------
         //<< . ;  ACTUAL SAVE
@@ -1108,7 +1115,7 @@ public class WWWSPEI extends mClass {
                 mVar YMAX1 = m$.var("YMAX1");
                 mVar YMAX2 = m$.var("YMAX2");
                 mVar YFILES = m$.var("YFILES");
-                m$.newVar(YMAX,YMAX1,YMAX2,YFILES);
+                m$.newVarBlock(3,YMAX,YMAX1,YMAX2,YFILES);
                 //<< . . . SET YFILES = YDATEI_"s"
                 YFILES.set(mOp.Concat(YDATEI.get(),"s"));
                 //<< . . . IF $PIECE(YDATA,Y,23)'="" SET YFILES = $PIECE(YDATA,Y,23)  ;ANDERE DATEI ;data file
@@ -1291,6 +1298,7 @@ public class WWWSPEI extends mClass {
                   } while (false);
                 }
               }
+              m$.restoreVarBlock(3);
             } while (false);
           }
         }

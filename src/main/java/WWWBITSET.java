@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWBITSET
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:35
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:22
 //*****************************************************************************
 
 import mLibrary.*;
@@ -95,7 +95,7 @@ public class WWWBITSET extends mClass {
         do {
           //<< . NEW YNEXT
           mVar YNEXT = m$.var("YNEXT");
-          m$.newVar(YNEXT);
+          m$.newVarBlock(1,YNEXT);
           //<< . IF '$DATA(^WWWBITRUN) SET ^WWWBITRUN=""
           if (mOp.Not(m$.Fnc.$data(m$.var("^WWWBITRUN")))) {
             m$.var("^WWWBITRUN").set("");
@@ -126,6 +126,7 @@ public class WWWBITSET extends mClass {
           return RETURN.get();
         }
       }
+      m$.restoreVarBlock(1);
     }
     //<< 
     //<< ;UMLAUTE IN $TR ; TYBD;30,9,2004
@@ -172,7 +173,7 @@ public class WWWBITSET extends mClass {
       mVar YKEY1 = m$.var("YKEY1");
       mVar ID = m$.var("ID");
       mVar SCHL = m$.var("SCHL");
-      m$.newVar(BIT,BITX,BITS,BITM,COUNT,FIELD,YLFN,YLFN1,OK,YKEY1,ID,SCHL);
+      m$.newVarBlock(1,BIT,BITX,BITS,BITM,COUNT,FIELD,YLFN,YLFN1,OK,YKEY1,ID,SCHL);
       //<< . SET OK=0
       OK.set(0);
       //<< . DO
@@ -296,6 +297,7 @@ public class WWWBITSET extends mClass {
         m$.Cmd.Do("SETBIT");
       }
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;SET YRET(1)="SET YRET=$SORTEND(^"_YDATEI_"bi)" XECUTE YRET(1)
     //<< ;SET YRET(1)="SET YRET=$SORTEND(^"_YDATEI_"b)" XECUTE YRET(1)

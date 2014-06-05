@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWMANU
-//** Innovatium Systems - Code Converter - v1.24
-//** 2014-05-30 12:17:58
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:42
 //*****************************************************************************
 
 import mLibrary.*;
@@ -18,6 +18,7 @@ import include.COMGridEdit31Interface;
 import include.COMTab;
 import include.COMEditor;
 import include.COMSYSJS;
+import include.$occInclude;
 
 //<< WWWMANU
 public class WWWMANU extends mClass {
@@ -122,7 +123,7 @@ public class WWWMANU extends mClass {
           }
           //<< . NEW YA1  ;LOSCHEN ALLE EINTRÄGE WENN LEERES FELD ;when field
           mVar YA1 = m$.var("YA1");
-          m$.newVar(YA1);
+          m$.newVarBlock(1,YA1);
           //<< . IF $GET(YDATEI)'="" DO
           if (mOp.NotEqual(m$.Fnc.$get(m$.var("YDATEI")),"")) {
             //<< . . SET YA1=""
@@ -143,6 +144,7 @@ public class WWWMANU extends mClass {
           }
         } while (false);
       }
+      m$.restoreVarBlock(1);
     }
     //<< 
     //<< KILL YA
@@ -201,7 +203,7 @@ public class WWWMANU extends mClass {
         mVar EXEC = m$.var("EXEC");
         mVar NOHTML = m$.var("NOHTML");
         mVar PROG = m$.var("PROG");
-        m$.newVar(EXEC,NOHTML,PROG);
+        m$.newVarBlock(1,EXEC,NOHTML,PROG);
         //<< . ;SET PROG=$$^WWWUPER($PIECE($PIECE(YEXEC," ",2),"(",1))  ;Z.B. 'do Gesamt^INAUFBES2(...)' = 'GESAMT^INAUFBES2'
         //<< . SET PROG=$zconvert($PIECE($PIECE(YEXEC," ",2),"(",1),"U")  ;Z.B. 'do Gesamt^INAUFBES2(...)' = 'GESAMT^INAUFBES2'
         PROG.set(m$.Fnc.$zconvert(m$.Fnc.$piece(m$.Fnc.$piece(m$.var("YEXEC").get()," ",2),"(",1),"U"));
@@ -233,6 +235,7 @@ public class WWWMANU extends mClass {
           }
         }
       }
+      m$.restoreVarBlock(1);
     }
     //<< 
     //<< IF ($EXTRACT(YEXEC)="#") || ($EXTRACT(YEXEC)="*") SET YEXEC = $EXTRACT(YEXEC,2,999) DO  QUIT  ;OHNE HTML VORBEREITUNG ;without HTML preparation
@@ -324,12 +327,14 @@ public class WWWMANU extends mClass {
     }
     //<< 
     //<< ;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv DISABLED BLOCK START
+    //<< /*
     //<< ;D   ;WENN 'ZURUECK' GEWUENSCHT! ;when
     //<< . WRITE YCR,"<FORM>"
     //<< . WRITE "<TABLE CELLSPACING=0 BORDER=0><TR><TD>"                ; "Back"
     //<< . WRITE "<INPUT TYPE="_""""_"BUTTON"_""""_" VALUE="_""""_YAM_$$^WWWTEXT(99)_""""_" onClick="_""""_"window.history.back()"_""""_">"
     //<< . WRITE "</TD></TR></TABLE>"
     //<< . WRITE "</FORM>",YCR
+    //<< */
     //<< ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ DISABLED BLOCK END
     //<< 
     //<< IF $PIECE(YVOR,Y,9)="" WRITE "<PRE>"        ; $$$WWW120FontFace
@@ -358,7 +363,7 @@ public class WWWMANU extends mClass {
             mVar YQUERY = m$.var("YQUERY");
             mVar YPARAX = m$.var("YPARAX");
             mVar intYVOR111 = m$.var("intYVOR111");
-            m$.newVar(YCLASS,YQUERY,YPARAX,intYVOR111);
+            m$.newVarBlock(2,YCLASS,YQUERY,YPARAX,intYVOR111);
             //<< . . SET YCLASS = $PIECE(YEXEC,",",2)
             YCLASS.set(m$.Fnc.$piece(m$.var("YEXEC").get(),",",2));
             //<< . . SET YQUERY = $PIECE(YEXEC,",",3)
@@ -384,6 +389,7 @@ public class WWWMANU extends mClass {
           } while (false);
           break;
         }
+        m$.restoreVarBlock(2);
       }
       //<< . ;
       //<< . //IF YEXEC'="" IF '$FIND(YEXEC," ") DO @YEXEC    QUIT  ;DO COMMAND

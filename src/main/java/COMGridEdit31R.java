@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC COMGridEdit31R
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:25
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:11
 //*****************************************************************************
 
 import mLibrary.*;
@@ -696,7 +696,7 @@ public class COMGridEdit31R extends mClass {
     //<< if pblnShow="" {
     if (mOp.Equal(pblnShow.get(),"")) {
       //<< set pblnShow = $data($$$WWWDATEN("HIDDEN"))
-      pblnShow.set(m$.Fnc.$data(COMGridEdit31Events.$$$WWWDATENVar(m$,"HIDDEN")));
+      pblnShow.set(m$.Fnc.$data(include.COMGridEdit31.$$$WWWDATENVar(m$,"HIDDEN")));
     }
     //<< }
     //<< if pblnKill kill $$$WWWDATEN("HIDDEN")
@@ -712,7 +712,7 @@ public class COMGridEdit31R extends mClass {
       //<< for {
       for (;true;) {
         //<< set idRow = $order($$$WWWDATEN("REFERENCEKEY",idRow))
-        idRow.set(m$.Fnc.$order(COMGridEdit31Events.$$$WWWDATENVar(m$,"REFERENCEKEY",idRow)));
+        idRow.set(m$.Fnc.$order(include.COMGridEdit31.$$$WWWDATENVar(m$,"REFERENCEKEY",idRow)));
         //<< quit:idRow=""
         if (mOp.Equal(idRow.get(),"")) {
           break;
@@ -727,12 +727,12 @@ public class COMGridEdit31R extends mClass {
           //<< if pblnEquals {
           if (mOp.Logical(pblnEquals.get())) {
             //<< set blnMatch = (+$get($$$WWWDATEN("Y"_idRow_"_"_pintCol,1)) = blnChecked)
-            blnMatch.set((mOp.Equal(mOp.Positive(m$.Fnc.$get(COMGridEdit31Events.$$$WWWDATENVar(m$,mOp.Concat(mOp.Concat(mOp.Concat("Y",idRow.get()),"_"),pintCol.get()),1))),blnChecked.get())));
+            blnMatch.set((mOp.Equal(mOp.Positive(m$.Fnc.$get(include.COMGridEdit31.$$$WWWDATENVar(m$,mOp.Concat(mOp.Concat(mOp.Concat("Y",idRow.get()),"_"),pintCol.get()),1))),blnChecked.get())));
           }
           //<< } else {
           else {
             //<< set blnMatch = (+$get($$$WWWDATEN("Y"_idRow_"_"_pintCol,1)) '= blnChecked)
-            blnMatch.set((mOp.NotEqual(mOp.Positive(m$.Fnc.$get(COMGridEdit31Events.$$$WWWDATENVar(m$,mOp.Concat(mOp.Concat(mOp.Concat("Y",idRow.get()),"_"),pintCol.get()),1))),blnChecked.get())));
+            blnMatch.set((mOp.NotEqual(mOp.Positive(m$.Fnc.$get(include.COMGridEdit31.$$$WWWDATENVar(m$,mOp.Concat(mOp.Concat(mOp.Concat("Y",idRow.get()),"_"),pintCol.get()),1))),blnChecked.get())));
           }
         }
         //<< }
@@ -742,12 +742,12 @@ public class COMGridEdit31R extends mClass {
           //<< if pblnEquals {
           if (mOp.Logical(pblnEquals.get())) {
             //<< set blnMatch = ($get($$$WWWDATEN("Y"_idRow_"_"_pintCol,1)) = pstrValue)
-            blnMatch.set((mOp.Equal(m$.Fnc.$get(COMGridEdit31Events.$$$WWWDATENVar(m$,mOp.Concat(mOp.Concat(mOp.Concat("Y",idRow.get()),"_"),pintCol.get()),1)),pstrValue.get())));
+            blnMatch.set((mOp.Equal(m$.Fnc.$get(include.COMGridEdit31.$$$WWWDATENVar(m$,mOp.Concat(mOp.Concat(mOp.Concat("Y",idRow.get()),"_"),pintCol.get()),1)),pstrValue.get())));
           }
           //<< } else {
           else {
             //<< set blnMatch = ($get($$$WWWDATEN("Y"_idRow_"_"_pintCol,1)) '= pstrValue)
-            blnMatch.set((mOp.NotEqual(m$.Fnc.$get(COMGridEdit31Events.$$$WWWDATENVar(m$,mOp.Concat(mOp.Concat(mOp.Concat("Y",idRow.get()),"_"),pintCol.get()),1)),pstrValue.get())));
+            blnMatch.set((mOp.NotEqual(m$.Fnc.$get(include.COMGridEdit31.$$$WWWDATENVar(m$,mOp.Concat(mOp.Concat(mOp.Concat("Y",idRow.get()),"_"),pintCol.get()),1)),pstrValue.get())));
           }
         }
         //<< }
@@ -1036,12 +1036,12 @@ public class COMGridEdit31R extends mClass {
       //<< if parentKey = $$GetYKEY^COMGridEdit31G() {     // Same parent
       if (mOp.Equal(parentKey.get(),m$.fnc$("COMGridEdit31G.GetYKEY"))) {
         //<< set idRow = $get($$$WWWDATEN("REFERENCEROW",idKey,1))
-        idRow.set(m$.Fnc.$get(COMGridEdit31Events.$$$WWWDATENVar(m$,"REFERENCEROW",idKey,1)));
+        idRow.set(m$.Fnc.$get(include.COMGridEdit31.$$$WWWDATENVar(m$,"REFERENCEROW",idKey,1)));
         //<< 
         //<< if idRow'="" {
         if (mOp.NotEqual(idRow.get(),"")) {
           //<< if $data($$$WWWDATEN("REFERENCEKEY",idRow,1)) { // FIXME - not displayed
-          if (mOp.Logical(m$.Fnc.$data(COMGridEdit31Events.$$$WWWDATENVar(m$,"REFERENCEKEY",idRow,1)))) {
+          if (mOp.Logical(m$.Fnc.$data(include.COMGridEdit31.$$$WWWDATENVar(m$,"REFERENCEKEY",idRow,1)))) {
             //<< if $$$KilledRecord(idRow,YFORM) {
             if (mOp.Logical(include.COMGridEdit31.$$$KilledRecord(m$,idRow,YFORM))) {
               //<< $$$Alert("Com00231")      ; "That record has been deleted."

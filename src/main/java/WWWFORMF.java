@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORMF
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:47
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:31
 //*****************************************************************************
 
 import mLibrary.*;
@@ -175,7 +175,7 @@ public class WWWFORMF extends mClass {
             //<< . . ;
             //<< . . new YNEU
             mVar YNEU = m$.var("YNEU");
-            m$.newVar(YNEU);
+            m$.newVarBlock(2,YNEU);
             //<< . . set YNEU = $$^WWWTEXT($piece(strStandardSubmit,",",2))
             YNEU.set(m$.fnc$("WWWTEXT.main",m$.Fnc.$piece(strStandardSubmit.get(),",",2)));
             //<< . . if YNEU="" set YNEU="NEW"
@@ -196,6 +196,7 @@ public class WWWFORMF extends mClass {
             m$.Cmd.Write(m$.var("YCR").get(),"</TD>");
           } while (false);
         }
+        m$.restoreVarBlock(2);
       }
       return;
     }
@@ -1790,7 +1791,7 @@ public class WWWFORMF extends mClass {
       //<< . new YKILL,YKEY1
       mVar YKILL = m$.var("YKILL");
       mVar YKEY1 = m$.var("YKEY1");
-      m$.newVar(YKILL,YKEY1);
+      m$.newVarBlock(1,YKILL,YKEY1);
       //<< . $$$OpenTD($$$NO)
       include.WWWFORM.$$$OpenTD(m$,include.COMSYS.$$$NO(m$));
       //<< . if '$$$Buttons write "<INPUT TYPE=""BUTTON"" VALUE="""_YAM_$$^WWWUML($$^WWWTEXT(33946))_""""   ; "Create New Data Record"
@@ -1814,6 +1815,7 @@ public class WWWFORMF extends mClass {
       //<< . $$$CloseTD
       include.WWWFORM.$$$CloseTD(m$);
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< quit
     return;
@@ -1828,7 +1830,7 @@ public class WWWFORMF extends mClass {
       //<< . new YKILL,YKEY1
       mVar YKILL = m$.var("YKILL");
       mVar YKEY1 = m$.var("YKEY1");
-      m$.newVar(YKILL,YKEY1);
+      m$.newVarBlock(1,YKILL,YKEY1);
       //<< . $$$OpenTD($$$NO)
       include.WWWFORM.$$$OpenTD(m$,include.COMSYS.$$$NO(m$));
       //<< . if '$$$Buttons write "<INPUT TYPE=""BUTTON"" VALUE="""_YAM_$$^WWWUML($$^WWWTEXT(11))_""""   ; "Save Data"
@@ -1848,6 +1850,7 @@ public class WWWFORMF extends mClass {
       //<< . $$$CloseTD
       include.WWWFORM.$$$CloseTD(m$);
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< quit
     return;
@@ -1862,7 +1865,7 @@ public class WWWFORMF extends mClass {
       //<< . new YKILL,YKEY1
       mVar YKILL = m$.var("YKILL");
       mVar YKEY1 = m$.var("YKEY1");
-      m$.newVar(YKILL,YKEY1);
+      m$.newVarBlock(1,YKILL,YKEY1);
       //<< . $$$OpenTD($$$NO)
       include.WWWFORM.$$$OpenTD(m$,include.COMSYS.$$$NO(m$));
       //<< . if '$$$Buttons write "<INPUT TYPE=""BUTTON"" VALUE="""_YAM_$$^WWWUML($$^WWWTEXT(122))_""""  ; "Delete"
@@ -1882,6 +1885,7 @@ public class WWWFORMF extends mClass {
       //<< . $$$CloseTD
       include.WWWFORM.$$$CloseTD(m$);
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< quit
     return;
@@ -1908,7 +1912,7 @@ public class WWWFORMF extends mClass {
         m$.Cmd.Write("<A class=link onClick=\" window.location='");
         //<< . . new YKEY
         mVar YKEY = m$.var("YKEY");
-        m$.newVar(YKEY);
+        m$.newVarBlock(2,YKEY);
         //<< . . write YAKTION_"EP=WWWFORM&amp;YFORM="_YFORM
         m$.Cmd.Write(mOp.Concat(mOp.Concat(m$.var("YAKTION").get(),"EP=WWWFORM&amp;YFORM="),m$.var("YFORM").get()));
         //<< . . set YKEY=""
@@ -1928,6 +1932,7 @@ public class WWWFORMF extends mClass {
         //<< . . write "</A>"
         m$.Cmd.Write("</A>");
       }
+      m$.restoreVarBlock(2);
       //<< . $$$CloseTD
       include.WWWFORM.$$$CloseTD(m$);
     }
@@ -1986,7 +1991,7 @@ public class WWWFORMF extends mClass {
             do {
               //<< . new YLFN1
               mVar YLFN1 = m$.var("YLFN1");
-              m$.newVar(YLFN1);
+              m$.newVarBlock(1,YLFN1);
               //<< . quit:$$$WWW120AuthorizationToModifyData(YVOR)>3     ; i.e. quit if = $$$EnumModifyOnly or $$$EnumReadOnly
               if (mOp.Greater(include.WWWConst.$$$WWW120AuthorizationToModifyData(m$,m$.var("YVOR")),3)) {
                 break;
@@ -2046,6 +2051,7 @@ public class WWWFORMF extends mClass {
               m$.Cmd.Write("</A>");
             } while (false);
           }
+          m$.restoreVarBlock(1);
         }
       }
     }
@@ -2066,12 +2072,12 @@ public class WWWFORMF extends mClass {
       //<< do
       //<< . new YBACK1
       mVar YBACK1 = m$.var("YBACK1");
-      m$.newVar(YBACK1);
+      m$.newVarBlock(1,YBACK1);
       //<< . set YBACK1 = YBACK
       YBACK1.set(m$.var("YBACK").get());
       //<< . new YBACK
       mVar YBACK = m$.var("YBACK");
-      m$.newVar(YBACK);
+      m$.newVarBlock(1,YBACK);
       //<< . set YBACK = YBACK1
       YBACK.set(YBACK1.get());
       //<< . ;
@@ -2102,6 +2108,7 @@ public class WWWFORMF extends mClass {
       //<< . write "</A>"
       m$.Cmd.Write("</A>");
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< $$$CloseTD
     include.WWWFORM.$$$CloseTD(m$);

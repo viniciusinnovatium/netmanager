@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWYEAR
-//** Innovatium Systems - Code Converter - v1.24
-//** 2014-05-30 12:32:56
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:48
 //*****************************************************************************
 
 import mLibrary.*;
@@ -18,9 +18,9 @@ import include.COMGridEdit31Interface;
 import include.COMTab;
 import include.COMEditor;
 import include.COMSYSJS;
+import include.$occInclude;
 //<< #include WWWConst
 import include.WWWConst;
-
 
 //<< WWWYEAR(pdteDate) ;WWWYEAR;DT;ANZEIGEN JAHR AUS $H;21.01.2000
 public class WWWYEAR extends mClass {

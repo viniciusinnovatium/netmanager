@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWHELP
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:19
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:04
 //*****************************************************************************
 
 import mLibrary.*;
@@ -1193,7 +1193,7 @@ public class WWWHELP extends mClass {
               if (mOp.Equal(m$.Fnc.$extract(m$.Fnc.$reverse(m$.Fnc.$zconvert(m$.Fnc.$translate(YINHALT.get()," "),"U")),1,4),"FIG.")) {
                 //<< . . . new WIDTH
                 mVar WIDTH = m$.var("WIDTH");
-                m$.newVar(WIDTH);
+                m$.newVarBlock(3,WIDTH);
                 //<< . . . set WIDTH = ""
                 WIDTH.set("");
                 //<< . . . set strYINHALT      = $zconvert(YINHALT,"L")
@@ -1221,6 +1221,7 @@ public class WWWHELP extends mClass {
                 m$.Cmd.Write(mOp.Concat(mOp.Concat(" TITLE=\"",m$.Fnc.$piece(YINHALT.get(),".",1)),"\"></CENTER>"));
                 break;
               }
+              m$.restoreVarBlock(3);
             }
           }
           //<< . . ;
@@ -1288,7 +1289,7 @@ public class WWWHELP extends mClass {
               }
               //<< . . . new PRUEF
               mVar PRUEF = m$.var("PRUEF");
-              m$.newVar(PRUEF);
+              m$.newVarBlock(3,PRUEF);
               //<< . . . set PRUEF = $piece(YINHALT," ",YI2)
               PRUEF.set(m$.Fnc.$piece(YINHALT.get()," ",YI2.get()));
               //<< . . . for PRUEF(4)="B","I","U","H1","H2","H3","H4","H5","H6","H7","LI","CENTER","OL","UL"  do
@@ -1376,7 +1377,7 @@ public class WWWHELP extends mClass {
                 //<< . . . . new YKEY,WORD
                 mVar YKEY = m$.var("YKEY");
                 mVar WORD = m$.var("WORD");
-                m$.newVar(YKEY,WORD);
+                m$.newVarBlock(4,YKEY,WORD);
                 //<< . . . . write YCR,"<A HREF=""#"""
                 m$.Cmd.Write(m$.var("YCR").get(),"<A HREF=\"#\"");
                 //<< . . . . set WORD=$translate($piece(YINHALT," ",YI2),",'^()""")
@@ -1420,6 +1421,7 @@ public class WWWHELP extends mClass {
                 //<< . . . . write YCR,">"
                 m$.Cmd.Write(m$.var("YCR").get(),">");
               }
+              m$.restoreVarBlock(4);
               //<< . . . ;
               //<< . . . write YCR,$$^WWWUML($piece(YINHALT," ",YI2),1)
               m$.Cmd.Write(m$.var("YCR").get(),m$.fnc$("WWWUML.main",m$.Fnc.$piece(YINHALT.get()," ",YI2.get()),1));
@@ -1435,6 +1437,7 @@ public class WWWHELP extends mClass {
               //<< . . . write " "
               m$.Cmd.Write(" ");
             }
+            m$.restoreVarBlock(3);
           }
           //<< . . ;
           //<< . . write "<BR>",YCR
@@ -1504,7 +1507,7 @@ public class WWWHELP extends mClass {
       mVar YKEY = m$.var("YKEY");
       mVar YFORM = m$.var("YFORM");
       mVar YBACK = m$.var("YBACK");
-      m$.newVar(YKEY,YFORM,YBACK);
+      m$.newVarBlock(1,YKEY,YFORM,YBACK);
       //<< . write "<A HREF="""_YAKTION_"EP=WWWFORM&amp;YFORM="_YHFORM_"&amp;YKEY="_YHKEY  ;_"&amp;YBACK="_YHBACK_","
       m$.Cmd.Write(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<A HREF=\"",m$.var("YAKTION").get()),"EP=WWWFORM&amp;YFORM="),YHFORM.get()),"&amp;YKEY="),YHKEY.get()));
       //<< . do ^WWWCGI
@@ -1518,6 +1521,7 @@ public class WWWHELP extends mClass {
       //<< . write ">"
       m$.Cmd.Write(">");
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< write "<U>"_$get(YHTEXT)_"</U>"
     m$.Cmd.Write(mOp.Concat(mOp.Concat("<U>",m$.Fnc.$get(YHTEXT)),"</U>"));

@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWDRAGDROP
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:30:27
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:45
 //*****************************************************************************
 
 import mLibrary.*;
@@ -568,7 +568,7 @@ public class WWWDRAGDROP extends mClass {
       //<< DO  ;VORAUSWAHL UND SORTIERUNG ;And sorting
       //<< . NEW SORTFELD
       mVar SORTFELD = m$.var("SORTFELD");
-      m$.newVar(SORTFELD);
+      m$.newVarBlock(1,SORTFELD);
       //<< . SET SORTFELD=$PIECE(CHART1,Y,40)  ;FELD FÜR SORTIERUNG ;field to sorting
       SORTFELD.set(m$.Fnc.$piece(CHART1.get(),m$.var("Y").get(),40));
       //<< . IF $EXTRACT(YAUSWAHL)="*" DO
@@ -593,7 +593,7 @@ public class WWWDRAGDROP extends mClass {
       //<< . IF SORTFELD="" DO
       if (mOp.Equal(SORTFELD.get(),"")) {
         //<< . . NEW YNUM
-        m$.newVar(YNUM);
+        m$.newVarBlock(2,YNUM);
         //<< . . SET YNUM=""
         YNUM.set("");
         //<< . . FOR  SET YNUM=$ORDER(^WWWDRAGDROPD(0,CHART,YNUM)) QUIT:YNUM=""  DO  QUIT:SORTFELD'=""
@@ -611,6 +611,7 @@ public class WWWDRAGDROP extends mClass {
           }
         }
       }
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . IF +SORTFELD=0 SET SORTFELD=1
       if (mOp.Equal(mOp.Positive(SORTFELD.get()),0)) {
@@ -627,7 +628,7 @@ public class WWWDRAGDROP extends mClass {
       //<< . NEW FELDER,LFN,SATZ
       mVar FELDER = m$.var("FELDER");
       mVar SATZ = m$.var("SATZ");
-      m$.newVar(FELDER,LFN,SATZ);
+      m$.newVarBlock(1,FELDER,LFN,SATZ);
       //<< . SET FELDER=$TRANSLATE($PIECE(CHART1,Y,47),",",";")
       FELDER.set(m$.Fnc.$translate(m$.Fnc.$piece(CHART1.get(),m$.var("Y").get(),47),",",";"));
       //<< . SET SATZ=""
@@ -646,6 +647,7 @@ public class WWWDRAGDROP extends mClass {
         m$.var("^WWWDRAGDROPU",0,CHART.get(),m$.var("YBED").get(),1).set(SATZ.get());
       }
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;LÖSCHEN ALTE DATEN UND SPEICHERN NEUE WERTE ;Delete And Save
     //<< ;-------------------------------------------
@@ -842,12 +844,13 @@ public class WWWDRAGDROP extends mClass {
       //<< . NEW YAUSWAHL,YPARA,VORG
       mVar YPARA = m$.var("YPARA");
       mVar VORG = m$.var("VORG");
-      m$.newVar(YAUSWAHL,YPARA,VORG);
+      m$.newVarBlock(1,YAUSWAHL,YPARA,VORG);
       //<< . IF $PIECE(CHART1,Y,10)'="" XECUTE $PIECE(CHART1,Y,10)  ;EXECUTE ZUR DATENAUFBEREITUNG ;EXECUTE data preparation
       if (mOp.NotEqual(m$.Fnc.$piece(CHART1.get(),m$.var("Y").get(),10),"")) {
         m$.Cmd.Xecute(m$.Fnc.$piece(CHART1.get(),m$.var("Y").get(),10));
       }
     }
+    m$.restoreVarBlock(1);
     do {
       //<< 
       //<< ;DATEN VORSORTIERUNG UND ANZAHL ZEILEN ERMITTELN ;And Number find
@@ -858,7 +861,7 @@ public class WWWDRAGDROP extends mClass {
       mVar SORTAUSW = m$.var("SORTAUSW");
       mVar YFILTER = m$.var("YFILTER");
       mVar SATZ2 = m$.var("SATZ2");
-      m$.newVar(SORTFELD,SORT,SORTAUSW,KEY2,SORT2,YFILTER,SATZ2);
+      m$.newVarBlock(1,SORTFELD,SORT,SORTAUSW,KEY2,SORT2,YFILTER,SATZ2);
       //<< . SET SORTFELD=$PIECE(CHART1,Y,40)  ;FELD FÜR SORTIERUNG ;field to sorting
       SORTFELD.set(m$.Fnc.$piece(CHART1.get(),m$.var("Y").get(),40));
       //<< . QUIT:+SORTFELD=0
@@ -952,7 +955,7 @@ public class WWWDRAGDROP extends mClass {
               //<< . . . . NEW YEXEC,YINHALT
               mVar YEXEC = m$.var("YEXEC");
               mVar YINHALT = m$.var("YINHALT");
-              m$.newVar(YEXEC,YINHALT);
+              m$.newVarBlock(4,YEXEC,YINHALT);
               //<< . . . . SET YINHALT=SORT
               YINHALT.set(SORT.get());
               //<< . . . . SET YEXEC=$PIECE(CHARTD1,Y,19)
@@ -970,14 +973,16 @@ public class WWWDRAGDROP extends mClass {
                 mVar YFORM = m$.var("YFORM");
                 mVar YDATEI = m$.var("YDATEI");
                 mVar YLOCATION = m$.var("YLOCATION");
-                m$.newVarExcept(YEXEC,YINHALT,SPRACHE,LANGUAGE,Y,YUCI,YM,YBED,YUSER,YFORM,YDATEI,YLOCATION);
+                m$.newVarExceptBlock(5,YEXEC,YINHALT,SPRACHE,LANGUAGE,Y,YUCI,YM,YBED,YUSER,YFORM,YDATEI,YLOCATION);
                 //<< . . . . . XECUTE YEXEC
                 m$.Cmd.Xecute(YEXEC.get());
               } while(false);
+              m$.restoreVarBlock(5);
               //<< . . . . ;
               //<< . . . . SET SORT=YINHALT
               SORT.set(YINHALT.get());
             }
+            m$.restoreVarBlock(4);
             //<< . . . ;
             //<< . . . SET DATLFN(1)=+$GET(DATLFN(1))+1  ;DATENSÄTZE GESAMT ;total
             DATLFN.var(1).set(mOp.Add(mOp.Positive(m$.Fnc.$get(DATLFN.var(1))),1));
@@ -995,7 +1000,7 @@ public class WWWDRAGDROP extends mClass {
               mVar YSUCH = m$.var("YSUCH");
               mVar YFILTER1 = m$.var("YFILTER1");
               mVar YWERT = m$.var("YWERT");
-              m$.newVar(YNUM,YSUCH,YFILTER1,YWERT);
+              m$.newVarBlock(4,YNUM,YSUCH,YFILTER1,YWERT);
               //<< . . . . SET YNUM=""
               YNUM.set("");
               //<< . . . . FOR  SET YNUM=$ORDER(^WWWDRAGDROPF(0,CHART,YBED,YNUM)) QUIT:YNUM=""  DO  QUIT:YFILTER=1
@@ -1034,6 +1039,7 @@ public class WWWDRAGDROP extends mClass {
                 break;
               }
             }
+            m$.restoreVarBlock(4);
             //<< . . . ;
             //<< . . . SET SORT2=""  ;VORSORTIERUNG
             SORT2.set("");
@@ -1109,7 +1115,7 @@ public class WWWDRAGDROP extends mClass {
                   //<< . . . . NEW YEXEC,YINHALT
                   mVar YEXEC = m$.var("YEXEC");
                   mVar YINHALT = m$.var("YINHALT");
-                  m$.newVar(YEXEC,YINHALT);
+                  m$.newVarBlock(4,YEXEC,YINHALT);
                   //<< . . . . SET YINHALT=SORT
                   YINHALT.set(SORT.get());
                   //<< . . . . SET YEXEC=$PIECE(CHARTD1,Y,19)
@@ -1127,14 +1133,16 @@ public class WWWDRAGDROP extends mClass {
                     mVar YFORM = m$.var("YFORM");
                     mVar YDATEI = m$.var("YDATEI");
                     mVar YLOCATION = m$.var("YLOCATION");
-                    m$.newVarExcept(YEXEC,YINHALT,SPRACHE,LANGUAGE,Y,YUCI,YM,YBED,YUSER,YFORM,YDATEI,YLOCATION);
+                    m$.newVarExceptBlock(5,YEXEC,YINHALT,SPRACHE,LANGUAGE,Y,YUCI,YM,YBED,YUSER,YFORM,YDATEI,YLOCATION);
                     //<< . . . . . XECUTE YEXEC
                     m$.Cmd.Xecute(YEXEC.get());
                   } while(false);
+                  m$.restoreVarBlock(5);
                   //<< . . . . ;
                   //<< . . . . SET SORT=YINHALT
                   SORT.set(YINHALT.get());
                 }
+                m$.restoreVarBlock(4);
                 //<< . . . ;
                 //<< . . . SET DATLFN(1)=+$GET(DATLFN(1))+1  ;DATENSÄTZE GESAMT ;total
                 DATLFN.var(1).set(mOp.Add(mOp.Positive(m$.Fnc.$get(DATLFN.var(1))),1));
@@ -1152,7 +1160,7 @@ public class WWWDRAGDROP extends mClass {
                   mVar YSUCH = m$.var("YSUCH");
                   mVar YFILTER1 = m$.var("YFILTER1");
                   mVar YWERT = m$.var("YWERT");
-                  m$.newVar(YNUM,YSUCH,YFILTER1,YWERT);
+                  m$.newVarBlock(4,YNUM,YSUCH,YFILTER1,YWERT);
                   //<< . . . . SET YNUM=""
                   YNUM.set("");
                   //<< . . . . FOR  SET YNUM=$ORDER(^WWWDRAGDROPF(0,CHART,YBED,YNUM)) QUIT:YNUM=""  DO  QUIT:YFILTER=1
@@ -1191,6 +1199,7 @@ public class WWWDRAGDROP extends mClass {
                     break;
                   }
                 }
+                m$.restoreVarBlock(4);
                 //<< . . . ;
                 //<< . . . SET SORT2=""  ;VORSORTIERUNG
                 SORT2.set("");
@@ -1242,7 +1251,7 @@ public class WWWDRAGDROP extends mClass {
             mVar RELK = m$.var("RELK");
             mVar RELF = m$.var("RELF");
             mVar YI = m$.var("YI");
-            m$.newVar(YFELD,YDATEI,YDATEI1,RELK,RELF,YI,LFN);
+            m$.newVarBlock(2,YFELD,YDATEI,YDATEI1,RELK,RELF,YI,LFN);
             //<< . . QUIT:$PIECE(CHART1,Y,40)=""
             if (mOp.Equal(m$.Fnc.$piece(CHART1.get(),m$.var("Y").get(),40),"")) {
               break;
@@ -1302,14 +1311,16 @@ public class WWWDRAGDROP extends mClass {
             }
           } while (false);
         }
+        m$.restoreVarBlock(2);
       }
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< IF +ROWS=0 DO  ;IF +ROWS<10 DO  //KEINE DATEN VORHANDEN;FIS;19.07.04;26118
     if (mOp.Equal(mOp.Positive(ROWS.get()),0)) {
       //<< . NEW YI,SORT
       mVar YI = m$.var("YI");
-      m$.newVar(YI,SORT);
+      m$.newVarBlock(1,YI,SORT);
       //<< . SET SORT=$CHAR(255)
       SORT.set(m$.Fnc.$char(255));
       //<< . IF $PIECE(CHART1,Y,40)'="" IF $PIECE($GET(^WWWDRAGDROPD(0,CHART,$PIECE(CHART1,Y,40),1)),Y,22)=1 SET SORT=" "
@@ -1323,6 +1334,7 @@ public class WWWDRAGDROP extends mClass {
         m$.var("^WWWDATEN",m$.var("YM").get(),mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"V","DATENs",SORT.get(),SORT.get(),YI.get(),1).set("");
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< DO SCRIPT^WWWTOOLTIP
     m$.Cmd.Do("WWWTOOLTIP.SCRIPT");
@@ -1460,7 +1472,7 @@ public class WWWDRAGDROP extends mClass {
             //<< . . . IF $DATA(^WWWDATEN(YM,+$HOROLOG,YUSER,YFORM,"V","DATENn",KEY)) DO
             if (mOp.Logical(m$.Fnc.$data(m$.var("^WWWDATEN",m$.var("YM").get(),mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"V","DATENn",KEY.get())))) {
               //<< . . . . NEW SATZ,KEY2
-              m$.newVar(SATZ,KEY2);
+              m$.newVarBlock(4,SATZ,KEY2);
               //<< . . . . SET KEY2=""
               KEY2.set("");
               //<< . . . . FOR  SET KEY2=$ORDER(^WWWDATEN(YM,+$HOROLOG,YUSER,YFORM,"V","DATENn",KEY,KEY2))  QUIT:KEY2=""  DO
@@ -1517,6 +1529,7 @@ public class WWWDRAGDROP extends mClass {
                 } while (false);
               }
             }
+            m$.restoreVarBlock(4);
             //<< . . . ;
             //<< . . . SET LINE=LINE+1
             LINE.set(mOp.Add(LINE.get(),1));
@@ -1619,7 +1632,7 @@ public class WWWDRAGDROP extends mClass {
       mVar LENGL = m$.var("LENGL");
       mVar LENGR = m$.var("LENGR");
       mVar KEYS = m$.var("KEYS");
-      m$.newVar(LINROW,ELEM,LEFT,RIGHT,LENGTH,ZEILE,LASTRIGHT,COLOR,LENGL,LENGR,KEYS);
+      m$.newVarBlock(1,LINROW,ELEM,LEFT,RIGHT,LENGTH,ZEILE,LASTRIGHT,COLOR,LENGL,LENGR,KEYS);
       //<< . SET LASTRIGHT=0
       LASTRIGHT.set(0);
       //<< . SET LINROW=""
@@ -1808,6 +1821,7 @@ public class WWWDRAGDROP extends mClass {
         } while (false);
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< ;BALKENDIAGRAMM
     //<< ;--------------
@@ -1829,11 +1843,11 @@ public class WWWDRAGDROP extends mClass {
         mVar TEMPD = m$.var("TEMPD");
         mVar JUST = m$.var("JUST");
         mVar WERT = m$.var("WERT");
-        m$.newVar(DATA,PLEFT,PTOP,HEIGHT,WIDTH,LNUM,CNUM,DATA1,RCOLOR,RCOLOR2,TEMPDATA,TEMPD,JUST,WERT);
+        m$.newVarBlock(1,DATA,PLEFT,PTOP,HEIGHT,WIDTH,LNUM,CNUM,DATA1,RCOLOR,RCOLOR2,TEMPDATA,TEMPD,JUST,WERT);
         //<< . NEW YKEY1T,YKEY1
         mVar YKEY1T = m$.var("YKEY1T");
         mVar YKEY1 = m$.var("YKEY1");
-        m$.newVar(YKEY1T,YKEY1);
+        m$.newVarBlock(1,YKEY1T,YKEY1);
         //<< . SET DATA1=""      ;REFERENZLINIE
         DATA1.set("");
         //<< . SET DATA=""
@@ -1879,7 +1893,7 @@ public class WWWDRAGDROP extends mClass {
         if (mOp.NotEqual(mOp.Positive(m$.Fnc.$piece(CHART1.get(),m$.var("Y").get(),64)),0)) {
           //<< . . NEW YI
           mVar YI = m$.var("YI");
-          m$.newVar(YI);
+          m$.newVarBlock(2,YI);
           //<< . . SET LNUM=0
           LNUM.set(0);
           //<< . . FOR YI=1:1:CNUM IF +$PIECE(DATA,Y,YI)>LNUM SET LNUM=$PIECE(DATA,Y,YI)
@@ -1889,6 +1903,7 @@ public class WWWDRAGDROP extends mClass {
             }
           }
         }
+        m$.restoreVarBlock(2);
         //<< . ;
         //<< . ;SET DATA1=$GET(^WWWSOR(YUSER,"DATA1",1))
         //<< . SET TEMPDATA = $GET(^WWWSOR(YUSER,"DATA1",1))
@@ -1898,7 +1913,7 @@ public class WWWDRAGDROP extends mClass {
         //<< . NEW YI,YII
         mVar YI = m$.var("YI");
         mVar YII = m$.var("YII");
-        m$.newVar(YI,YII);
+        m$.newVarBlock(1,YI,YII);
         //<< . FOR YII=1:1 QUIT:$PIECE(TEMPDATA,Y,YII,9999)=""  DO    ;SETZTEN DER REFERENZLINIE PRO TAG ;the within TAG
         for (YII.set(1);(true);YII.set(mOp.Add(YII.get(),1))) {
           if (mOp.Equal(m$.Fnc.$piece(TEMPDATA.get(),m$.var("Y").get(),YII.get(),9999),"")) {
@@ -1956,7 +1971,7 @@ public class WWWDRAGDROP extends mClass {
         //<< . NEW RLINK,NAMES
         mVar RLINK = m$.var("RLINK");
         mVar NAMES = m$.var("NAMES");
-        m$.newVar(RLINK,NAMES);
+        m$.newVarBlock(1,RLINK,NAMES);
         //<< . ;SET NAMES=$PIECE(CHART1,Y,51)_Y_$PIECE(CHART1,Y,52)_Y_$PIECE(CHART1,Y,53)_Y_$PIECE(CHART1,Y,54)_Y_$PIECE(CHART1,Y,55)
         //<< . SET NAMES=$$^WWWTEXT($PIECE(CHART1,Y,51))  ;LEGENDE HISTOGRAMM ;legend
         NAMES.set(m$.fnc$("WWWTEXT.main",m$.Fnc.$piece(CHART1.get(),m$.var("Y").get(),51)));
@@ -1998,6 +2013,7 @@ public class WWWDRAGDROP extends mClass {
           m$.var("^WWWDATEN",m$.var("YM").get(),mOp.Positive(m$.Fnc.$horolog()),m$.var("YUSER").get(),m$.var("YFORM").get(),"V","DATA1KEY",1).set(m$.Fnc.$get(m$.var("^WWWSOR",m$.var("YUSER").get(),"DATA1KEY",1)));
         }
       }
+      m$.restoreVarBlock(1);
     }
     //<< 
     //<< WRITE "</FORM>"
@@ -2377,7 +2393,7 @@ public class WWWDRAGDROP extends mClass {
                   do {
                     //<< . . . . . NEW HEADER
                     mVar HEADER = m$.var("HEADER");
-                    m$.newVar(HEADER);
+                    m$.newVarBlock(5,HEADER);
                     //<< . . . . . SET HEADER=$PIECE(YFELD,Y,1)
                     HEADER.set(m$.Fnc.$piece(YFELD.get(),m$.var("Y").get(),1));
                     //<< . . . . . IF $PIECE($GET(^WWW1221(0,CHART,YNUM,SPRACHE,1)),Y,1)'="" SET HEADER=$PIECE(^(1),Y,1)
@@ -2399,12 +2415,13 @@ public class WWWDRAGDROP extends mClass {
                           //<< . . . . . . NEW YFORM,YKEY
                           mVar YFORM = m$.var("YFORM");
                           mVar YKEY = m$.var("YKEY");
-                          m$.newVar(YFORM,YKEY);
+                          m$.newVarBlock(6,YFORM,YKEY);
                           //<< . . . . . . DO ^WWWCGI
                           m$.Cmd.Do("WWWCGI.main");
                           //<< . . . . . . WRITE """"_">"
                           m$.Cmd.Write(mOp.Concat("\"",">"));
                         }
+                        m$.restoreVarBlock(6);
                       }
                     }
                     //<< . . . . . ;
@@ -2417,6 +2434,7 @@ public class WWWDRAGDROP extends mClass {
                       }
                     }
                   } while(false);
+                  m$.restoreVarBlock(5);
                   //<< . . . . ;
                   //<< . . . . WRITE YCR,"</TD>"
                   m$.Cmd.Write(m$.var("YCR").get(),"</TD>");

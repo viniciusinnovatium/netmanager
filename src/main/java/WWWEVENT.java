@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWEVENT
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:33
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:20
 //*****************************************************************************
 
 import mLibrary.*;
@@ -2380,7 +2380,7 @@ public class WWWEVENT extends mClass {
     if (mOp.NotEqual(YSORT.get(),"")) {
       //<< . new idFieldNum
       mVar idFieldNum = m$.var("idFieldNum");
-      m$.newVar(idFieldNum);
+      m$.newVarBlock(1,idFieldNum);
       //<< . set strValue=""
       strValue.set("");
       //<< . ;
@@ -2421,7 +2421,7 @@ public class WWWEVENT extends mClass {
           if (mOp.Logical(m$.Fnc.$data(m$.var("^WWW003",0,idRelClass.get(),idFieldNum.get(),1)))) {
             //<< . . . new YART
             mVar YART = m$.var("YART");
-            m$.newVar(YART);
+            m$.newVarBlock(3,YART);
             //<< . . . set YART=$piece($get(^WWW003(0,idRelClass,idFieldNum,1)),Y,3)
             YART.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW003",0,idRelClass.get(),idFieldNum.get(),1)),m$.var("Y").get(),3));
             //<< . . . if YART'="" if YART'=6 set $piece(YSORT,Y,idFieldNum)=$$GetLiteral^WWWTR(YART,$piece(YSORT,Y,idFieldNum))  ;FEHLER IN ANZEIGE DER RELATION
@@ -2431,6 +2431,7 @@ public class WWWEVENT extends mClass {
               }
             }
           }
+          m$.restoreVarBlock(3);
         }
         //<< . . ;
         //<< . . set strTmp = $piece(YSORT,Y,idFieldNum)
@@ -2439,6 +2440,7 @@ public class WWWEVENT extends mClass {
         strValue.set(mOp.Concat(strValue.get(),include.COMSYS.$$$EscapeHyperEventData(m$,strTmp)));
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< if idRelClass="WWW013" if $translate(strValue," ,")="" do
     if (mOp.Equal(idRelClass.get(),"WWW013")) {
@@ -2449,7 +2451,7 @@ public class WWWEVENT extends mClass {
             if (mOp.Logical(m$.Fnc.$data(m$.var("^WWW013s",0,3,m$.var("YINHALT").get())))) {
               //<< . . new YINHALT1
               mVar YINHALT1 = m$.var("YINHALT1");
-              m$.newVar(YINHALT1);
+              m$.newVarBlock(2,YINHALT1);
               //<< . . set YINHALT1=$order(^WWW013s(0,3,YINHALT,""))
               YINHALT1.set(m$.Fnc.$order(m$.var("^WWW013s",0,3,m$.var("YINHALT").get(),"")));
               //<< . . if YINHALT1'="" do
@@ -2458,6 +2460,7 @@ public class WWWEVENT extends mClass {
                 strValue.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW013",0,YINHALT1.get(),1)),m$.var("Y").get(),mOp.Positive(strRelFields.get())));
               }
             }
+            m$.restoreVarBlock(2);
           }
         }
       }
@@ -2643,7 +2646,7 @@ public class WWWEVENT extends mClass {
       mVar YLAST = m$.var("YLAST");
       mVar YII = m$.var("YII");
       mVar blnHeader = m$.var("blnHeader");
-      m$.newVar(YA,YKEY,YLAST,YII,blnHeader);
+      m$.newVarBlock(1,YA,YKEY,YLAST,YII,blnHeader);
       //<< . quit:YDATEI=""
       if (mOp.Equal(YDATEI.get(),"")) {
         break;
@@ -2703,6 +2706,7 @@ public class WWWEVENT extends mClass {
       //<< . set %TXT(1) = %TXT(1)_"</small></strong>"
       m$.var("%TXT",1).set(mOp.Concat(m$.var("%TXT",1).get(),"</small></strong>"));
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< set %TXT(1) = $$Replace^COMUtilStr(%TXT(1),$char(13),"<br />")
     m$.var("%TXT",1).set(m$.fnc$("COMUtilStr.Replace",m$.var("%TXT",1).get(),m$.Fnc.$char(13),"<br />"));
@@ -2940,7 +2944,7 @@ public class WWWEVENT extends mClass {
     if (mOp.Equal(m$.Fnc.$extract(YFKEY.get(),1,5),"VALID")) {
       //<< . new YTYP
       mVar YTYP = m$.var("YTYP");
-      m$.newVar(YTYP);
+      m$.newVarBlock(1,YTYP);
       //<< . set YTYP = $extract(YFKEY,6,99)                                 ;FELDTYP
       YTYP.set(m$.Fnc.$extract(YFKEY.get(),6,99));
       //<< . if +YTYP'=0 do
@@ -2983,6 +2987,7 @@ public class WWWEVENT extends mClass {
       //<< . set %TXT(1) = $$$Perform_YVAR_"~"_YINHALT
       m$.var("%TXT",1).set(mOp.Concat(mOp.Concat(mOp.Concat(include.COMSYS.$$$Perform(m$),YVAR.get()),"~"),YINHALT.get()));
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< quit
     return;
@@ -3023,7 +3028,7 @@ public class WWWEVENT extends mClass {
     }
     //<< if $get(YHYPER)=0 do sendline^%mgwj("")                                  ;SEND ANSWER
     if (mOp.Equal(m$.Fnc.$get(m$.var("YHYPER")),0)) {
-      m$.Cmd.Do("%mgwj.sendline","");
+      m$.Cmd.Do("$mgwj.sendline","");
     }
     //<< quit
     return;
@@ -3046,7 +3051,7 @@ public class WWWEVENT extends mClass {
     }
     //<< if $get(YHYPER)=0 do sendline^%mgwj("")                    ;SEND ANSWER
     if (mOp.Equal(m$.Fnc.$get(m$.var("YHYPER")),0)) {
-      m$.Cmd.Do("%mgwj.sendline","");
+      m$.Cmd.Do("$mgwj.sendline","");
     }
     //<< quit
     return;
@@ -3173,31 +3178,20 @@ public class WWWEVENT extends mClass {
     //<< 
     //<< quit  ; DISABLED FOR NOW
     return null;
-    /*
-    //<< 
-    //<< if pdteToday="" set pdteToday = +$horolog
-    if (mOp.Equal(pdteToday.get(),"")) {
-      pdteToday.set(mOp.Positive(m$.Fnc.$horolog()));
-    }
-    //<< set strLock = $get(^WWWDATEN(0,pdteToday,pidUser,pidForm,"LOCK",1))
-    strLock.set(m$.Fnc.$get(m$.var("^WWWDATEN",0,pdteToday.get(),pidUser.get(),pidForm.get(),"LOCK",1)));
-    //<< if strLock'="" {
-    if (mOp.NotEqual(strLock.get(),"")) {
-      //<< set objLock = @strLock
-      objLock.set(m$.indirectVar(strLock.get()).get());
-      //<< if $$$WWW006User1(objLock)=pidUser {
-      if (mOp.Equal(include.WWWConst.$$$WWW006User1(m$,objLock),pidUser.get())) {
-        //<< set @strLock = pidUser_Y_$piece($horolog,$$$COMMA,2)
-        m$.indirectVar(strLock.get()).set(mOp.Concat(mOp.Concat(pidUser.get(),m$.var("Y").get()),m$.Fnc.$piece(m$.Fnc.$horolog(),include.COMSYSString.$$$COMMA(m$),2)));
-      }
-    }
-    //<< }
-    //<< }
-    //<< quit
-    return null;
-    */
   }
 
+  //<< 
+  //<< /*
+  //<< if pdteToday="" set pdteToday = +$horolog
+  //<< set strLock = $get(^WWWDATEN(0,pdteToday,pidUser,pidForm,"LOCK",1))
+  //<< if strLock'="" {
+  //<< set objLock = @strLock
+  //<< if $$$WWW006User1(objLock)=pidUser {
+  //<< set @strLock = pidUser_Y_$piece($horolog,$$$COMMA,2)
+  //<< }
+  //<< }
+  //<< quit
+  //<< */
   //<< 
   //<< 
   //<< Store(&YINHALT,&pstrStored)

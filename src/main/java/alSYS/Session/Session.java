@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - CLASS alSYS.Session.Session
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:17
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:03
 //*****************************************************************************
 
 package alSYS.Session;
@@ -12,6 +12,7 @@ import mLibrary.*;
 import include.$occInclude;
 import include.$occConstant;
 import include.$occStatus;
+import include.$occErrors;
 
 //<< 
 //<< Class alSYS.Session.Session Extends %Persistent [ Not Abstract, ClassType = persistent, ProcedureBlock ]

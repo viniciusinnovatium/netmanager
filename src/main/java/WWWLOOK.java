@@ -1,14 +1,14 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWLOOK
-//** Innovatium Systems - Code Converter - v1.24
-//** 2014-06-02 20:16:33
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:42
 //*****************************************************************************
 
 import mLibrary.*;
 
 //<< #include WWWConst
 import include.WWWConst;
-//import COMSYS;
+import include.COMSYS;
 
 //<< WWWLOOK
 public class WWWLOOK extends mClass {
@@ -61,7 +61,7 @@ public class WWWLOOK extends mClass {
         do {
           //<< . . NEW YXKEY
           mVar YXKEY = m$.var("YXKEY");
-          m$.newVar(YXKEY);
+          m$.newVarBlock(2,YXKEY);
           //<< . . SET YTYP=$PIECE($GET(^WWW002(0,YDATEI,YI,1)),Y,3)
           mVar YTYP = m$.var("YTYP");
           YTYP.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW002",0,YDATEI.get(),YI.get(),1)),m$.var("Y").get(),3));
@@ -83,6 +83,7 @@ public class WWWLOOK extends mClass {
           YKEY1.set(mOp.Concat(mOp.Concat(YKEY1.get(),YXKEY.get()),","));
         } while (false);
       }
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . DO FIND
       m$.Cmd.Do("FIND");
@@ -94,7 +95,6 @@ public class WWWLOOK extends mClass {
       m$.Cmd.Do("FIND");
       return;
     }
-    FIND();
   }
 
   //<< 
@@ -230,7 +230,7 @@ public class WWWLOOK extends mClass {
       do {
         //<< . NEW YXKEY
         mVar YXKEY = m$.var("YXKEY");
-        m$.newVar(YXKEY);
+        m$.newVarBlock(1,YXKEY);
         //<< . SET YTYP=$PIECE($GET(^WWW002(0,YDATEI,YI,1)),Y,3)
         mVar YTYP = m$.var("YTYP");
         YTYP.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW002",0,YDATEI.get(),YI.get(),1)),m$.var("Y").get(),3));
@@ -254,6 +254,7 @@ public class WWWLOOK extends mClass {
         YA.set(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(YA.get(),"\""),YXKEY.get()),"\""),","));
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< SET YA=YA_"1)"
     YA.set(mOp.Concat(YA.get(),"1)"));
@@ -319,7 +320,7 @@ public class WWWLOOK extends mClass {
       do {
         //<< . NEW YXKEY
         mVar YXKEY = m$.var("YXKEY");
-        m$.newVar(YXKEY);
+        m$.newVarBlock(1,YXKEY);
         //<< . SET YTYP=$PIECE($GET(^WWW002(0,YDATEI,YI,1)),Y,3)
         mVar YTYP = m$.var("YTYP");
         YTYP.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW002",0,m$.var("YDATEI").get(),YI.get(),1)),m$.var("Y").get(),3));
@@ -343,6 +344,7 @@ public class WWWLOOK extends mClass {
         break;
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< SET YDATEI = $PIECE(YVOR,Y,11)
     mVar YDATEI = m$.var("YDATEI");
     YDATEI.set(m$.Fnc.$piece(m$.var("YVOR").get(),m$.var("Y").get(),11));

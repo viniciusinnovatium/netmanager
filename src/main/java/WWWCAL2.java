@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWCAL2
-//** Innovatium Systems - Code Converter - v1.24
-//** 2014-05-29 21:14:37
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:40
 //*****************************************************************************
 
 import mLibrary.*;
@@ -18,6 +18,7 @@ import include.COMGridEdit31Interface;
 import include.COMTab;
 import include.COMEditor;
 import include.COMSYSJS;
+import include.$occInclude;
 
 //<< WWWCAL2
 public class WWWCAL2 extends mClass {
@@ -86,7 +87,7 @@ public class WWWCAL2 extends mClass {
       m$.Cmd.Write(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(" src=","\""),"javascript:window.location='"),m$.var("YAKTION").get()),"EP=WWWMANU&amp;YEXEC=DO|START^WWWCAL2("),YDATE.get()),")&amp;YFORM="),m$.var("YFORM").get()),"&amp;YHTMFORM="),m$.Fnc.$get(m$.var("YHTMFORM"))),"&amp;YLFDAT="),m$.Fnc.$get(YLFDAT)),"&amp;YHTMFORM1="),m$.Fnc.$get(YHTMFORM1)));
       //<< . NEW YFORM
       mVar YFORM = m$.var("YFORM");
-      m$.newVar(YFORM);
+      m$.newVarBlock(1,YFORM);
       //<< . DO ^WWWCGI
       m$.Cmd.Do("WWWCGI.main");
       //<< . WRITE "'"_""""
@@ -101,6 +102,7 @@ public class WWWCAL2 extends mClass {
       //<< . WRITE YCR,"</IFRAME>",YCR
       m$.Cmd.Write(m$.var("YCR").get(),"</IFRAME>",m$.var("YCR").get());
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< SET YNOFOOT=1
     mVar YNOFOOT = m$.var("YNOFOOT");
@@ -199,16 +201,17 @@ public class WWWCAL2 extends mClass {
       //<< . NEW YI,YFORM
       mVar YI = m$.var("YI");
       mVar YFORM = m$.var("YFORM");
-      m$.newVar(YI,YFORM);
+      m$.newVarBlock(1,YI,YFORM);
       //<< . WRITE YAKTION_"EP=WWWMANU&amp;YEXEC=DO|START^WWWCAL2('"_""""_" + date + "_""""_"')&amp;YFORM=WWWCAL&amp;YHTMFORM1="_YHTMFORM_"&amp;YLFDAT="_YLFDAT
       m$.Cmd.Write(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(m$.var("YAKTION").get(),"EP=WWWMANU&amp;YEXEC=DO|START^WWWCAL2('"),"\"")," + date + "),"\""),"')&amp;YFORM=WWWCAL&amp;YHTMFORM1="),m$.var("YHTMFORM").get()),"&amp;YLFDAT="),YLFDAT.get()));
       //<< . NEW YFORM
-      m$.newVar(YFORM);
+      m$.newVarBlock(1,YFORM);
       //<< . DO ^WWWCGI
       m$.Cmd.Do("WWWCGI.main");
       //<< . WRITE """"_";"
       m$.Cmd.Write(mOp.Concat("\"",";"));
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< WRITE YCR,"}"
     m$.Cmd.Write(m$.var("YCR").get(),"}");
@@ -420,7 +423,7 @@ public class WWWCAL2 extends mClass {
     m$.Cmd.Do("WWWDATE1.LitToDMY",DATUM.get(),FORMAT.get(),TRENN.get(),m$.var("TAGXX"),m$.var("MONATX"),m$.var("JAHRX"));
     //<< 
     //<< set strMaxDays = "312831303130313130313031"
-    strMaxDays.set("312831303130313130313031"); 
+    strMaxDays.set("312831303130313130313031");
     //<< set MAX   = $extract(strMaxDays,2*MONATX-1,2*MONATX)
     mVar MAX = m$.var("MAX");
     MAX.set(m$.Fnc.$extract(strMaxDays.get(),mOp.Subtract(mOp.Multiply(2,m$.var("MONATX").get()),1),mOp.Multiply(2,m$.var("MONATX").get())));
@@ -1124,7 +1127,7 @@ public class WWWCAL2 extends mClass {
           if (mOp.Logical(m$.Fnc.$data(m$.var("^WWWCAL1s",0,1,1,m$.fnc$("WWWUMLAU.main",mOp.Concat(mOp.Concat(m$.Fnc.$extract(mOp.Add(100,A.get()),2,3),"/"),m$.Fnc.$extract(mOp.Add(100,m$.var("MONATX").get()),2,3)),1),m$.var("KALENDER").get())))) {
             //<< . . . NEW FTAG
             mVar FTAG = m$.var("FTAG");
-            m$.newVar(FTAG);
+            m$.newVarBlock(3,FTAG);
             //<< . . . SET FTAG=$ORDER(^WWWCAL1s(0,1,1,$$^WWWUMLAU($EXTRACT(100+A,2,3)_"/"_$EXTRACT(100+MONATX,2,3),1),KALENDER,""))
             FTAG.set(m$.Fnc.$order(m$.var("^WWWCAL1s",0,1,1,m$.fnc$("WWWUMLAU.main",mOp.Concat(mOp.Concat(m$.Fnc.$extract(mOp.Add(100,A.get()),2,3),"/"),m$.Fnc.$extract(mOp.Add(100,m$.var("MONATX").get()),2,3)),1),m$.var("KALENDER").get(),"")));
             //<< . . . IF FTAG'="" WRITE " TITLE="_""""_$PIECE($GET(^WWWCAL1(0,KALENDER,FTAG,1)),Y,1)_""""
@@ -1132,6 +1135,7 @@ public class WWWCAL2 extends mClass {
               m$.Cmd.Write(mOp.Concat(mOp.Concat(mOp.Concat(" TITLE=","\""),m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWWCAL1",0,m$.var("KALENDER").get(),FTAG.get(),1)),m$.var("Y").get(),1)),"\""));
             }
           }
+          m$.restoreVarBlock(3);
         } while (false);
       }
       //<< . ;

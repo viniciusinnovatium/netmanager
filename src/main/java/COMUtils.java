@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC COMUtils
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:16
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:53:58
 //*****************************************************************************
 
 import mLibrary.*;
@@ -174,7 +174,7 @@ public class COMUtils extends mClass {
       //<< }
       //<< >
       m$.Cmd.WriteHtml("","\n");
-      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            if ('",(strHidden.get())),")'=='none') {"),"\n");
+      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("            if ('",(strHidden.get())),"'=='none') {"),"\n");
       m$.Cmd.WriteHtml("                var obj3;","\n");
       m$.Cmd.WriteHtml("                var blnHide=true;","\n");
       m$.Cmd.WriteHtml("                var intChildren=obj.parentNode.children.length;","\n");
@@ -191,7 +191,7 @@ public class COMUtils extends mClass {
       m$.Cmd.WriteHtml("            }","\n");
       m$.Cmd.WriteHtml("            if (blnHide) {","\n");
       m$.Cmd.WriteHtml("                var obj1=getParent(obj,'FIELDSET');","\n");
-      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                obj1.style.display='",(strHidden.get())),")';"),"\n");
+      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                obj1.style.display='",(strHidden.get())),"';"),"\n");
       m$.Cmd.WriteHtml("            }","\n");
       m$.Cmd.WriteHtml("        ");
     }

@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWMegaMenuFlexible
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:51
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-04 15:00:24
 //*****************************************************************************
 
 import mLibrary.*;
@@ -177,8 +177,8 @@ public class WWWMegaMenuFlexible extends mClass {
       //<< <div id='menuDiv_#(pintMenu)#' class="dropdown_flexible #(styleNoColumns)#"  zclass="dropdown_flexible" ><!-- Begin 4 columns container -->
       //<< >
       m$.Cmd.WriteHtml("","\n");
-      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("        <li id='menuLi_",(pintMenu.get())),")' class='li' hclass='lihover' zclass='li' style='"),(strLeft.get())),")'><a id='menuA_"),(pintMenu.get())),")' href=\"#\" class=\"drop\"><span style='text-align:center;'>"),(strMenuName.get())),")</span></a><!-- Begin 4 columns Item -->"),"\n");
-      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("            <div id='menuDiv_",(pintMenu.get())),")' class=\"dropdown_flexible "),(styleNoColumns.get())),")\"  zclass=\"dropdown_flexible\" ><!-- Begin 4 columns container -->"),"\n");
+      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("        <li id='menuLi_",(pintMenu.get())),"' class='li' hclass='lihover' zclass='li' style='"),(strLeft.get())),"'><a id='menuA_"),(pintMenu.get())),"' href=\"#\" class=\"drop\"><span style='text-align:center;'>"),(strMenuName.get())),"</span></a><!-- Begin 4 columns Item -->"),"\n");
+      m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("            <div id='menuDiv_",(pintMenu.get())),"' class=\"dropdown_flexible "),(styleNoColumns.get())),"\"  zclass=\"dropdown_flexible\" ><!-- Begin 4 columns container -->"),"\n");
       m$.Cmd.WriteHtml("        ");
       //<< ;CORE-81
       //<< &html<<div class="OverviewWrapper" onmouseover='window.event.returnValue=false; window.event.cancelBubble=true; return false;'>>
@@ -217,8 +217,8 @@ public class WWWMegaMenuFlexible extends mClass {
         //<< >
         m$.Cmd.WriteHtml("","\n");
         m$.Cmd.WriteHtml("                <ul class=\"Overview\" style='padding:5px; padding-right:0px; width:265px; float:left; height:100%; clear:right;'>","\n");
-        m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                    <div class=\"Section\" style=\"margin-left:0px; left:-15px; margin-right:0px; width:265px; height:65px; background-image: url(",(strImageDirectory.get())),")/"),(strImage.get())),")); padding-top:8px; background-repeat:no-repeat;\">"),"\n");
-        m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                        <span>",(include.WWWConst.$$$WWW004MenuDescription(m$,objMenu))),")</span>"),"\n");
+        m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("                    <div class=\"Section\" style=\"margin-left:0px; left:-15px; margin-right:0px; width:265px; height:65px; background-image: url(",(strImageDirectory.get())),"/"),(strImage.get())),"); padding-top:8px; background-repeat:no-repeat;\">"),"\n");
+        m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat("                        <span>",(include.WWWConst.$$$WWW004MenuDescription(m$,objMenu))),"</span>"),"\n");
         m$.Cmd.WriteHtml("                    </div>","\n");
         m$.Cmd.WriteHtml("            ");
         //<< for loopSubmenus=1:1:$length($get(arrUserMenu(idSection)),";") {
@@ -301,12 +301,12 @@ public class WWWMegaMenuFlexible extends mClass {
             //<< if strTarget '= "" {
             if (mOp.NotEqual(strTarget.get(),"")) {
               //<< &html<<li#(strCSSClass)#><a href="#(strLink)#" target="#(strTarget)#">#($$$WWW004MenuDescription(objSubmenu))#</a></li>>
-              m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<li",(strCSSClass.get())),")><a href=\""),(strLink.get())),")\" target=\""),(strTarget.get())),")\">"),(include.WWWConst.$$$WWW004MenuDescription(m$,objSubmenu))),")</a></li>"));
+              m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<li",(strCSSClass.get())),"><a href=\""),(strLink.get())),"\" target=\""),(strTarget.get())),"\">"),(include.WWWConst.$$$WWW004MenuDescription(m$,objSubmenu))),"</a></li>"));
             }
             //<< } else {
             else {
               //<< &html<<li#(strCSSClass)#><a href="#(strLink)#">#($$$WWW004MenuDescription(objSubmenu))#</a></li>>
-              m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<li",(strCSSClass.get())),")><a href=\""),(strLink.get())),")\">"),(include.WWWConst.$$$WWW004MenuDescription(m$,objSubmenu))),")</a></li>"));
+              m$.Cmd.WriteHtml(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<li",(strCSSClass.get())),"><a href=\""),(strLink.get())),"\">"),(include.WWWConst.$$$WWW004MenuDescription(m$,objSubmenu))),"</a></li>"));
             }
           }
         }

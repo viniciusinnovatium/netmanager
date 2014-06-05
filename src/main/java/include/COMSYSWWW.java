@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - INC include.COMSYSWWW
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:12:42
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:52:17
 //*****************************************************************************
 
 package include;
@@ -42,9 +42,8 @@ public class COMSYSWWW extends mInclude {
   //<< 
   //<< #def1arg StartFrameSet(%args)       do StartFrameSet^WWWSession(%args)
   public static Object $$$StartFrameSet(mContext m$, Object ... _p) {
-    //mVar p$args = m$.varRef("p$args",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
-    //m$.Cmd.Do("WWWSession.StartFrameSet",p$args.get());
-    m$.Cmd.Do("WWWSession.StartFrameSet",_p);
+    mVar p$args = m$.varRef("p$args",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
+    m$.Cmd.Do("WWWSession.StartFrameSet",p$args.get());
     return null;
   }
 

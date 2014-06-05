@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWLESE
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:00
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:44
 //*****************************************************************************
 
 import mLibrary.*;
@@ -277,7 +277,7 @@ public class WWWLESE extends mClass {
           do {
             //<< . . . NEW YABDATE
             mVar YABDATE = m$.var("YABDATE");
-            m$.newVar(YABDATE);
+            m$.newVarBlock(3,YABDATE);
             //<< . . . SET YABDATE = +$PIECE(YKEY,",",MAXYKEY+1)
             YABDATE.set(mOp.Positive(m$.Fnc.$piece(YKEY.get(),",",mOp.Add(MAXYKEY.get(),1))));
             //<< . . . IF YABDATE=0              SET SCHLUESSEL = $PIECE($PIECE(SCHLUESSEL,"(",1),"t",1)_"("_$PIECE(SCHLUESSEL,"(",2,999) QUIT  ;new record
@@ -291,6 +291,7 @@ public class WWWLESE extends mClass {
             }
           } while (false);
         }
+        m$.restoreVarBlock(3);
         //<< . . ;
         //<< . . IF $PIECE(YDATA,Y,8)'=4     SET SCHLUESSEL = SCHLUESSEL_"1"
         if (mOp.NotEqual(m$.Fnc.$piece(YDATA.get(),Y.get(),8),4)) {
@@ -359,7 +360,7 @@ public class WWWLESE extends mClass {
                 //<< . . . . . NEW YTRAKTOLD,YA1,YA,YT
                 mVar YTRAKTOLD = m$.var("YTRAKTOLD");
                 mVar YT = m$.var("YT");
-                m$.newVar(YTRAKTOLD,YA1,YA,YT);
+                m$.newVarBlock(5,YTRAKTOLD,YA1,YA,YT);
                 //<< . . . . . SET YTRAKTOLD = $PIECE($GET(^WWWUSER(0,YUSER,1)),Y,25)      ; Transaction no. Lock Return Info
                 YTRAKTOLD.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWWUSER",0,YUSER.get(),1)),Y.get(),25));
                 //<< . . . . . SET YT  = 0
@@ -401,6 +402,7 @@ public class WWWLESE extends mClass {
                   m$.pieceVar(m$.var("^WWWUSER",0,YUSER.get(),1),Y.get(),25).set("");
                 }
               }
+              m$.restoreVarBlock(5);
             }
           }
           //<< . . . ;
@@ -408,7 +410,7 @@ public class WWWLESE extends mClass {
           if ((mOp.NotEqual(m$.Fnc.$get(YREADONLY),1)) && (mOp.NotEqual(YDATEI.get(),"WWW006")) && (mOp.NotEqual(YLOCK.get(),0))) {
             //<< . . . . new strKey
             mVar strKey = m$.var("strKey");
-            m$.newVar(strKey);
+            m$.newVarBlock(4,strKey);
             //<< . . . . set strKey = $TRANSLATE(%SCHLUESSEL,",()"_"""",".//")
             strKey.set(m$.Fnc.$translate(m$.var("%SCHLUESSEL").get(),mOp.Concat(",()","\""),".//"));
             //<< . . . . IF $DATA(^WWW006(0,dteToday,strKey,1)) DO
@@ -423,21 +425,21 @@ public class WWWLESE extends mClass {
                   YBEARB.set(4);
                 }
               }
-              //<< . . . . . ;
-              //<< . . . . . ;*****************************
-              //<< . . . . . ;  FIXME : Do we really want an unconditional lock (which unlocks ALL locks held by this process)?
-              //<< . . . . . ;          e.g.  lock batch, save block [unconditionally unlock], save batch, unlock batch
-              //<< . . . . . ;          Other processes can sieze control of the batch between unlock and save.
-              //<< . . . . . ;          This depends on whether the following lock is ever executed.                  <GRF>
-              //<< . . . . . ;          Most calls don't pass YREADONLY
-              //<< . . . . . ;          Only executed if Lock Seconds assigned in WWW001
-              //<< . . . . . ;*****************************
-              //<< . . . . . ;
-              //<< . . . . . LOCK
-              //<< . . . ;
-              m$.Cmd.Lock(m$.var("."));
             }
           }
+          m$.restoreVarBlock(4);
+          //<< . . . . . ;
+          //<< . . . . . ;*****************************
+          //<< . . . . . ;  FIXME : Do we really want an unconditional lock (which unlocks ALL locks held by this process)?
+          //<< . . . . . ;          e.g.  lock batch, save block [unconditionally unlock], save batch, unlock batch
+          //<< . . . . . ;          Other processes can sieze control of the batch between unlock and save.
+          //<< . . . . . ;          This depends on whether the following lock is ever executed.                  <GRF>
+          //<< . . . . . ;          Most calls don't pass YREADONLY
+          //<< . . . . . ;          Only executed if Lock Seconds assigned in WWW001
+          //<< . . . . . ;*****************************
+          //<< . . . . . ;
+          //<< . . . . . LOCK
+          //<< . . . ;
           //<< . . . IF $GET(YREADONLY)'=1 DO      ;BEC;TYBD;27477;14.03.05
           if (mOp.NotEqual(m$.Fnc.$get(YREADONLY),1)) {
             do {

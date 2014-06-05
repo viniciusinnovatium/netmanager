@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWMegaMenuMRU
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:52
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-04 15:00:25
 //*****************************************************************************
 
 import mLibrary.*;
@@ -106,7 +106,7 @@ public class WWWMegaMenuMRU extends mClass {
     m$.Cmd.WriteJS("            //CORE-127 objDiv.attachEvent('onmousemove',function() {window.event.cancelBubble=true; window.event.returnValue=false; return false;});","\n");
     m$.Cmd.WriteJS("            document.getElementById('menuLi_4').appendChild(objDiv);","\n");
     m$.Cmd.WriteJS("        }","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("        var retval = EventValue('",(m$.var("YUCI").get())),")','"),(m$.var("YUSER").get())),")','"),(m$.var("YFORM").get())),")','FIX','EVENT^WWWMegaMenu','GETMRU_ITEMS','6',obj.id.split('_')[1]);"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("        var retval = EventValue('",(m$.var("YUCI").get())),"','"),(m$.var("YUSER").get())),"','"),(m$.var("YFORM").get())),"','FIX','EVENT^WWWMegaMenu','GETMRU_ITEMS','6',obj.id.split('_')[1]);"),"\n");
     m$.Cmd.WriteJS("        if (retval=='') {","\n");
     m$.Cmd.WriteJS("            objDiv.style.display='none';","\n");
     m$.Cmd.WriteJS("        } else {","\n");
@@ -115,7 +115,7 @@ public class WWWMegaMenuMRU extends mClass {
     m$.Cmd.WriteJS("            objDiv.id='mrulist';","\n");
     m$.Cmd.WriteJS("            with (objDiv.style) {","\n");
     m$.Cmd.WriteJS("                var objMenuDiv=document.getElementById('menuDiv_4');","\n");
-    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("                width='",(m$.Fnc.$select(mOp.Equal(m$.var("YUSERAGENT").get(),"MSIE"),"100px",1,"auto"))),")';"),"\n");
+    m$.Cmd.WriteJS(mOp.Concat(mOp.Concat("                width='",(m$.Fnc.$select(mOp.Equal(m$.var("YUSERAGENT").get(),"MSIE"),"100px",1,"auto"))),"';"),"\n");
     m$.Cmd.WriteJS("                if ((getPageOffsetLeft(objMenuDiv)+objMenuDiv.offsetWidth+objDiv.offsetWidth-5)&gt;document.body.offsetWidth) {","\n");
     m$.Cmd.WriteJS("                    left=(-objDiv.clientWidth+5)+'px';","\n");
     m$.Cmd.WriteJS("                    objDiv.className='mrulist_left';","\n");

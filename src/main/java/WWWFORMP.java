@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORMP
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:49
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:33
 //*****************************************************************************
 
 import mLibrary.*;
@@ -132,7 +132,7 @@ public class WWWFORMP extends mClass {
       if (mOp.Logical(m$.Fnc.$data(m$.var("^WWW121D",0,m$.var("YFORM").get(),YLFN.get(),m$.var("YM").get(),1)))) {
         //<< . . new YSATZ1
         mVar YSATZ1 = m$.var("YSATZ1");
-        m$.newVar(YSATZ1);
+        m$.newVarBlock(2,YSATZ1);
         //<< . . set YSATZ1 = $get(^WWW121D(0,YFORM,YLFN,YM,1))
         YSATZ1.set(m$.Fnc.$get(m$.var("^WWW121D",0,m$.var("YFORM").get(),YLFN.get(),m$.var("YM").get(),1)));
         //<< . . if $$$WWW121DDontAllowCharacters(YSATZ1) '="" set $$$WWW121DontAllowChars(YSATZ) = $$$WWW121DDontAllowCharacters(YSATZ1)
@@ -152,6 +152,7 @@ public class WWWFORMP extends mClass {
           m$.pieceVar(YSATZ,m$.var("Y").get(),97).set(m$.Fnc.$piece(YSATZ1.get(),m$.var("Y").get(),97));
         }
       }
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . set YBBN=YLFN
       mVar YBBN = m$.var("YBBN");
@@ -164,7 +165,7 @@ public class WWWFORMP extends mClass {
           //<< . . new LASTHIDD,LFN2
           mVar LASTHIDD = m$.var("LASTHIDD");
           mVar LFN2 = m$.var("LFN2");
-          m$.newVar(LASTHIDD,LFN2);
+          m$.newVarBlock(2,LASTHIDD,LFN2);
           //<< . . set LASTHIDD = 0
           LASTHIDD.set(0);
           //<< . . ;
@@ -212,6 +213,7 @@ public class WWWFORMP extends mClass {
           }
         } while (false);
       }
+      m$.restoreVarBlock(2);
     }
     //<< 
     //<< ;ZEITABHÄNIGE VORABERFASSUNG VON DATEN = GÜLTIG AB DATUM ;valuable Confirm. Date

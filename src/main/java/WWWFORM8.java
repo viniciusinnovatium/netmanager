@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORM8
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:04
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-04 15:00:26
 //*****************************************************************************
 
 import mLibrary.*;
@@ -339,7 +339,7 @@ public class WWWFORM8 extends mClass {
         mVar TIMEOUT = m$.var("TIMEOUT");
         mVar objWWW012 = m$.var("objWWW012");
         mVar strHTM = m$.var("strHTM");
-        m$.newVar(TIMEOUT,objWWW012,strHTM);
+        m$.newVarBlock(1,TIMEOUT,objWWW012,strHTM);
         //<< . set objWWW012 = $get(^WWW012(0,0,1))
         objWWW012.set(m$.Fnc.$get(m$.var("^WWW012",0,0,1)));
         //<< . $$$StartScript()              ;CORE-70
@@ -420,6 +420,7 @@ public class WWWFORM8 extends mClass {
         include.COMSYS.$$$EndScript(m$);
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< set YEVENT = $piece($get(^WWW012(0,0,1)),Y,82)  ;flag für eventbroker ; $$$WWW012EventBrokerOn()
     mVar YEVENT = m$.var("YEVENT");

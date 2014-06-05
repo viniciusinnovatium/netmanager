@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWBITRUN
-//** Innovatium Systems - Code Converter - v1.24
-//** 2014-05-22 11:41:10
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:34
 //*****************************************************************************
 
 import mLibrary.*;
@@ -45,7 +45,7 @@ public class WWWBITRUN extends mClass {
     //<< DO ^WWWVAR
     m$.Cmd.Do("WWWVAR.main");
     //<< DO LOW^%PRIO
-    //m$.Cmd.Do("%PRIO.LOW");
+    m$.Cmd.Do("$PRIO.LOW");
     //<< FOR YII=1:1:20 DO RUN hang 10
     mVar YII = m$.var("YII");
     for (YII.set(1);(mOp.LessOrEqual(YII.get(),20));YII.set(mOp.Add(YII.get(),1))) {
@@ -113,12 +113,13 @@ public class WWWBITRUN extends mClass {
             //<< . . DO
             do {
               //<< . . . NEW YNEXT
-              m$.newVar(YNEXT);
+              m$.newVarBlock(3,YNEXT);
               //<< . . . SET YOK=$$^WWWBITSET(YDATEI,YKEY,SET,YFELD,YKILLBI,YBITLIST,1,WWWYM,YXREF)
               YOK.set(m$.fnc$("WWWBITSET.main",YDATEI.get(),YKEY.get(),SET.get(),YFELD.get(),YKILLBI.get(),YBITLIST.get(),1,WWWYM.get(),YXREF.get()));
               //<< . . . QUIT
               break;
             } while(false);
+            m$.restoreVarBlock(3);
             //<< . . KILL ^WWWBITRUN(YM,YNEXT)
             m$.var("^WWWBITRUN",YM.get(),YNEXT.get()).kill();
             //<< . . QUIT

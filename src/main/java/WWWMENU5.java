@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWMENU5
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:21
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:07
 //*****************************************************************************
 
 import mLibrary.*;
@@ -131,7 +131,7 @@ public class WWWMENU5 extends mClass {
       do {
         //<< . NEW YANZ
         mVar YANZ = m$.var("YANZ");
-        m$.newVar(YANZ);
+        m$.newVarBlock(1,YANZ);
         //<< . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
         m$.Cmd.Write(mOp.Concat(mOp.Concat(mOp.Concat("<A HREF=","\""),m$.var("YAKTION").get()),"EP=WWWMENU"));
         //<< . SET YANZ=""
@@ -146,6 +146,7 @@ public class WWWMENU5 extends mClass {
         break;
       } while (false);
     }
+    m$.restoreVarBlock(1);
     //<< WRITE "<IMG SRC="_""""_YGIF_"aplatz.gif"_""""_" width=18 height=18 border=0 align=top>"
     m$.Cmd.Write(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<IMG SRC=","\""),m$.var("YGIF").get()),"aplatz.gif"),"\"")," width=18 height=18 border=0 align=top>"));
     //<< WRITE $PIECE(YVOR,Y,11)
@@ -244,7 +245,7 @@ public class WWWMENU5 extends mClass {
           do {
             //<< . . NEW YANZ
             mVar YANZ = m$.var("YANZ");
-            m$.newVar(YANZ);
+            m$.newVarBlock(2,YANZ);
             //<< . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
             m$.Cmd.Write(mOp.Concat(mOp.Concat(mOp.Concat("<A HREF=","\""),m$.var("YAKTION").get()),"EP=WWWMENU"));
             //<< . . SET YANZ=YAPP
@@ -257,13 +258,14 @@ public class WWWMENU5 extends mClass {
             break;
           } while (false);
         }
+        m$.restoreVarBlock(2);
         //<< . IF YANZ'="" IF $PIECE(YANZ,",",1)=YAPP DO
         if (mOp.NotEqual(m$.var("YANZ").get(),"")) {
           if (mOp.Equal(m$.Fnc.$piece(m$.var("YANZ").get(),",",1),YAPP.get())) {
             do {
               //<< . . NEW YANZ
               mVar YANZ = m$.var("YANZ");
-              m$.newVar(YANZ);
+              m$.newVarBlock(2,YANZ);
               //<< . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
               m$.Cmd.Write(mOp.Concat(mOp.Concat(mOp.Concat("<A HREF=","\""),m$.var("YAKTION").get()),"EP=WWWMENU"));
               //<< . . SET YANZ=""
@@ -276,6 +278,7 @@ public class WWWMENU5 extends mClass {
               break;
             } while (false);
           }
+          m$.restoreVarBlock(2);
         }
         //<< . IF YANZ="" DO
         if (mOp.Equal(m$.var("YANZ").get(),"")) {
@@ -544,7 +547,7 @@ public class WWWMENU5 extends mClass {
               do {
                 //<< . . . NEW YANZ
                 mVar YANZ = m$.var("YANZ");
-                m$.newVar(YANZ);
+                m$.newVarBlock(3,YANZ);
                 //<< . . . SET YASTART=1
                 YASTART.set(1);
                 //<< . . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
@@ -559,11 +562,12 @@ public class WWWMENU5 extends mClass {
                 break;
               } while (false);
             }
+            m$.restoreVarBlock(3);
             //<< . . IF YPROG=($PIECE($PIECE(YANZ,",",2),".",1)_".") DO
             if (mOp.Equal(YPROG.get(),(mOp.Concat(m$.Fnc.$piece(m$.Fnc.$piece(m$.var("YANZ").get(),",",2),".",1),".")))) {
               //<< . . . NEW YANZ
               mVar YANZ = m$.var("YANZ");
-              m$.newVar(YANZ);
+              m$.newVarBlock(3,YANZ);
               //<< . . . SET YASTART=1
               YASTART.set(1);
               //<< . . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
@@ -575,6 +579,7 @@ public class WWWMENU5 extends mClass {
               //<< . . . WRITE """"_">"
               m$.Cmd.Write(mOp.Concat("\"",">"));
             }
+            m$.restoreVarBlock(3);
           }
         }
         //<< . IF $PIECE(YA,Y,2)'=""!($PIECE(YA,Y,12)'="") DO
@@ -590,7 +595,7 @@ public class WWWMENU5 extends mClass {
             do {
               //<< . . . NEW YNAME
               mVar YNAME = m$.var("YNAME");
-              m$.newVar(YNAME);
+              m$.newVarBlock(3,YNAME);
               //<< . . . SET YAUFRUF="WWWFORM"
               mVar YAUFRUF = m$.var("YAUFRUF");
               YAUFRUF.set("WWWFORM");
@@ -614,6 +619,7 @@ public class WWWMENU5 extends mClass {
               break;
             } while (false);
           }
+          m$.restoreVarBlock(3);
           //<< . . IF $PIECE(YA,Y,12)'="" DO  ;URL
           if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),12),"")) {
             //<< . . . SET YORDNER="ordner4.gif"
@@ -863,7 +869,7 @@ public class WWWMENU5 extends mClass {
               do {
                 //<< . . . NEW YANZ
                 mVar YANZ = m$.var("YANZ");
-                m$.newVar(YANZ);
+                m$.newVarBlock(3,YANZ);
                 //<< . . . SET YASTART=1
                 YASTART.set(1);
                 //<< . . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
@@ -878,11 +884,12 @@ public class WWWMENU5 extends mClass {
                 break;
               } while (false);
             }
+            m$.restoreVarBlock(3);
             //<< . . IF YPROG1=($PIECE($PIECE(YANZ,",",2),".",1,2)_".") DO
             if (mOp.Equal(YPROG1.get(),(mOp.Concat(m$.Fnc.$piece(m$.Fnc.$piece(m$.var("YANZ").get(),",",2),".",1,2),".")))) {
               //<< . . . NEW YANZ
               mVar YANZ = m$.var("YANZ");
-              m$.newVar(YANZ);
+              m$.newVarBlock(3,YANZ);
               //<< . . . SET YASTART=1
               YASTART.set(1);
               //<< . . . WRITE "<A HREF="_""""_YAKTION_"EP=WWWMENU"
@@ -894,6 +901,7 @@ public class WWWMENU5 extends mClass {
               //<< . . . WRITE """"_">"
               m$.Cmd.Write(mOp.Concat("\"",">"));
             }
+            m$.restoreVarBlock(3);
           }
         }
         //<< . IF $PIECE(YA,Y,2)'=""!($PIECE(YA,Y,12)'="") DO
@@ -909,7 +917,7 @@ public class WWWMENU5 extends mClass {
             do {
               //<< . . . NEW YNAME
               mVar YNAME = m$.var("YNAME");
-              m$.newVar(YNAME);
+              m$.newVarBlock(3,YNAME);
               //<< . . . SET YAUFRUF="WWWFORM"
               mVar YAUFRUF = m$.var("YAUFRUF");
               YAUFRUF.set("WWWFORM");
@@ -933,6 +941,7 @@ public class WWWMENU5 extends mClass {
               break;
             } while (false);
           }
+          m$.restoreVarBlock(3);
           //<< . . IF $PIECE(YA,Y,12)'="" DO  ;URL
           if (mOp.NotEqual(m$.Fnc.$piece(YA.get(),m$.var("Y").get(),12),"")) {
             //<< . . . SET YORDNER="ordner4.gif"

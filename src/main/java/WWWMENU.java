@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWMENU
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:52
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:36
 //*****************************************************************************
 
 import mLibrary.*;
@@ -863,7 +863,7 @@ public class WWWMENU extends mClass {
     //<< if $$$WWW013useFullScreenandHeader(pobjUser) {
     if (mOp.Logical(include.WWWConst.$$$WWW013useFullScreenandHeader(m$,pobjUser))) {
       //<< $$$StartFrameSet(1,"rows='49,*' framespacing=0 frameborder=no border=0")
-      include.COMSYSWWW.$$$StartFrameSet(m$,1,"rows='49,*' framespacing=0 frameborder=no border=0");
+      m$.Cmd.Do("WWWSession.StartFrameSet",1,"rows='49,*' framespacing=0 frameborder=no border=0");
       //<< 
       //<< write "<frame scrolling=""NO"" noresize src=""COMHeader.cls?EP=WWWFORM"
       m$.Cmd.Write("<frame scrolling=\"NO\" noresize src=\"COMHeader.cls?EP=WWWFORM");
@@ -877,13 +877,13 @@ public class WWWMENU extends mClass {
     //<< } elseif (blnShowMenu = $$$YES) {
     else if ((mOp.Equal(blnShowMenu.get(),include.COMSYS.$$$YES(m$)))) {
       //<< $$$StartFrameSet(0,"","showMenu(0);")  //load menu window
-      include.COMSYSWWW.$$$StartFrameSet(m$,0,"","showMenu(0);");
+      m$.Cmd.Do("WWWSession.StartFrameSet",0,"","showMenu(0);");
     }
     //<< 
     //<< } else {
     else {
       //<< $$$StartFrameSet(0,"","")  //no menu //SR16205
-      include.COMSYSWWW.$$$StartFrameSet(m$,0,"","");
+      m$.Cmd.Do("WWWSession.StartFrameSet",0,"","");
     }
     //<< }
     //<< 
@@ -959,7 +959,7 @@ public class WWWMENU extends mClass {
     }
     //<< 
     //<< $$$StartFrameSet(1," cols="""_YCOLS_"%,"_(100-YCOLS)_"%""")
-    include.COMSYSWWW.$$$StartFrameSet(m$,1,mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(" cols=\"",YCOLS.get()),"%,"),(mOp.Subtract(100,YCOLS.get()))),"%\""));
+    m$.Cmd.Do("WWWSession.StartFrameSet",1,mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(" cols=\"",YCOLS.get()),"%,"),(mOp.Subtract(100,YCOLS.get()))),"%\""));
     //<< write "<FRAME SRC="""_YAKTION_"EP=WWWMENU&amp;YUSER="_YUSER_"&amp;YBED="_YBED_"&amp;YUCI="_$get(YUCI)_"&amp;YM="_YM_"&amp;YXURL="_$get(YXURL)_""" scrolling=yes NAME=""MENUFRAME1"">"  ;16948 (required)
     m$.Cmd.Write(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<FRAME SRC=\"",m$.var("YAKTION").get()),"EP=WWWMENU&amp;YUSER="),m$.var("YUSER").get()),"&amp;YBED="),m$.var("YBED").get()),"&amp;YUCI="),m$.Fnc.$get(m$.var("YUCI"))),"&amp;YM="),m$.var("YM").get()),"&amp;YXURL="),m$.Fnc.$get(m$.var("YXURL"))),"\" scrolling=yes NAME=\"MENUFRAME1\">"));
     //<< write YCR

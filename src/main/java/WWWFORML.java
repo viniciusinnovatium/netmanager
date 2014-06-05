@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORML
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:08
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:53
 //*****************************************************************************
 
 import mLibrary.*;
@@ -180,7 +180,7 @@ public class WWWFORML extends mClass {
       //<< . WRITE YCR,"<TABLE CELLSPACING=0 BORDER=0>"
       m$.Cmd.Write(m$.var("YCR").get(),"<TABLE CELLSPACING=0 BORDER=0>");
       //<< . NEW YDATEI,YDATSO,YDNUM
-      m$.newVar(YDATEI,YDATSO,YDNUM);
+      m$.newVarBlock(1,YDATEI,YDATSO,YDNUM);
       //<< . SET YDATSO=""
       YDATSO.set("");
       //<< . FOR  SET YDATSO=$ORDER(^WWW131(0,YFORM,YDATSO)) QUIT:YDATSO=""  DO
@@ -238,6 +238,7 @@ public class WWWFORML extends mClass {
       //<< . WRITE YCR,"</TABLE>"
       m$.Cmd.Write(m$.var("YCR").get(),"</TABLE>");
     } while(false);
+    m$.restoreVarBlock(1);
     //<< . ;WRITE "</CENTER>"
     //<< 
     //<< IF '$DATA(^WWW122(0,YFORM)) IF +$PIECE(YVOR,Y,13)=1 WRITE YCR,"</FIELDSET>"
@@ -393,7 +394,7 @@ public class WWWFORML extends mClass {
               do {
                 //<< . . . NEW YLFN1
                 mVar YLFN1 = m$.var("YLFN1");
-                m$.newVar(YLFN1);
+                m$.newVarBlock(3,YLFN1);
                 //<< . . . SET YLFN1=$ORDER(^WWW122s(0,4,YLFN,YFORM,""))
                 YLFN1.set(m$.Fnc.$order(m$.var("^WWW122s",0,4,YLFN.get(),m$.var("YFORM").get(),"")));
                 //<< . . . QUIT:YLFN1=""
@@ -404,6 +405,7 @@ public class WWWFORML extends mClass {
                 YNAME.set(m$.fnc$("WWWFELDNAME.main",m$.var("YFORM").get(),"D",YLFN1.get()));
               } while (false);
             }
+            m$.restoreVarBlock(3);
           }
           //<< . . ;
           //<< . . IF YNAME="" DO

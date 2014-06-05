@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFOR71
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:34
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:18
 //*****************************************************************************
 
 import mLibrary.*;
@@ -388,7 +388,7 @@ public class WWWFOR71 extends mClass {
         if (mOp.NotEqual(m$.Fnc.$piece(YPARA.var(33).get(),",",3,99),"")) {
           //<< . . . new YI
           mVar YI = m$.var("YI");
-          m$.newVar(YI);
+          m$.newVarBlock(3,YI);
           //<< . . . for YI=3:1 set YI(1) = $piece(YPARA(33),",",YI) quit:YI(1)=""  set YSKPR(2) = YSKPR(2)_YI_","   ; FIXME : Should this be concatenate YI(1) rather than YI?
           for (YI.set(3);(true);YI.set(mOp.Add(YI.get(),1))) {
             YI.var(1).set(m$.Fnc.$piece(YPARA.var(33).get(),",",YI.get()));
@@ -398,6 +398,7 @@ public class WWWFOR71 extends mClass {
             YSKPR.var(2).set(mOp.Concat(mOp.Concat(YSKPR.var(2).get(),YI.get()),","));
           }
         }
+        m$.restoreVarBlock(3);
         //<< . . ;
         //<< . . set YSKPR(1)=YSKPR(2)_""" "",YPARA(5))"
         YSKPR.var(1).set(mOp.Concat(YSKPR.var(2).get(),"\" \",YPARA(5))"));
@@ -445,7 +446,7 @@ public class WWWFOR71 extends mClass {
     if (mOp.Logical(m$.Fnc.$find(m$.Fnc.$translate(YSKPR.get(),"\""),mOp.Concat(mOp.Concat("^INARTs(",m$.var("YM").get()),",7,2,")))) {
       //<< . new NAME
       mVar NAME = m$.var("NAME");
-      m$.newVar(NAME);
+      m$.newVarBlock(1,NAME);
       //<< . set NAME = ""
       NAME.set("");
       //<< . for  set NAME = $order(^INARTs(YM,7,2,NAME)) quit:NAME=""  do
@@ -475,6 +476,7 @@ public class WWWFOR71 extends mClass {
       }
       return;
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< set Q       = 0
     mVar Q = m$.var("Q");
@@ -687,7 +689,7 @@ public class WWWFOR71 extends mClass {
         //<< . ;MEHRFACHANZEIGEN SUCHEN (YPARA(3)) ;seek
         //<< . new YSORTXD
         mVar YSORTXD = m$.var("YSORTXD");
-        m$.newVar(YSORTXD);
+        m$.newVarBlock(1,YSORTXD);
         //<< . if YFILE'=YPARA(1) set YPARA(19)="^"_YPARA(1)_"("_$piece(YPARA(19),"(",2,99)
         if (mOp.NotEqual(YFILE.get(),YPARA.var(1).get())) {
           YPARA.var(19).set(mOp.Concat(mOp.Concat(mOp.Concat("^",YPARA.var(1).get()),"("),m$.Fnc.$piece(YPARA.var(19).get(),"(",2,99)));
@@ -738,7 +740,7 @@ public class WWWFOR71 extends mClass {
             mVar YSORTX1 = m$.var("YSORTX1");
             mVar YSORTX2 = m$.var("YSORTX2");
             mVar YSORTX3 = m$.var("YSORTX3");
-            m$.newVar(YSORTX,YSORTX1,YSORTX2,YSORTX3);
+            m$.newVarBlock(2,YSORTX,YSORTX1,YSORTX2,YSORTX3);
             //<< . . set YSORTX=$piece(YSORTXD,Y,$piece(YPARA(3),",",YPARA(88)))   ;FELD LESEN  ;field read
             YSORTX.set(m$.Fnc.$piece(YSORTXD.get(),m$.var("Y").get(),m$.Fnc.$piece(YPARA.var(3).get(),",",YPARA.var(88).get())));
             //<< . . ;
@@ -798,7 +800,7 @@ public class WWWFOR71 extends mClass {
               if (mOp.NotEqual(m$.Fnc.$piece(YSORTX2.get(),m$.var("Y").get(),8),"")) {
                 do {
                   //<< . . . new YFILE,YDATA
-                  m$.newVar(YFILE,YDATA);
+                  m$.newVarBlock(3,YFILE,YDATA);
                   //<< . . . set YDATA="" if $extract($piece(YSORTX2,Y,8),1,2)'="IN" if $extract($piece(YSORTX2,Y,8),1,3)'="WWW" set YDATA=$get(^WWW001(0,$piece(YSORTX2,Y,8),1))  ;VARIABEL AUS DATENSATZDEF.  FELD 8=DATEIART ;out of field
                   YDATA.set("");
                   if (mOp.NotEqual(m$.Fnc.$extract(m$.Fnc.$piece(YSORTX2.get(),m$.var("Y").get(),8),1,2),"IN")) {
@@ -860,6 +862,7 @@ public class WWWFOR71 extends mClass {
                 } while (false);
                 break;
               }
+              m$.restoreVarBlock(3);
             }
             //<< . . ;
             //<< . . ;ZUSAMMENBAU DER ANZEIGEZEILE OHNE PARAMETER ;the without parameter
@@ -867,6 +870,7 @@ public class WWWFOR71 extends mClass {
             YSORT.set(mOp.Concat(mOp.Concat(YSORT.get(),m$.fnc$("WWWTR.GetLiteral",YSORTX1.get(),YSORTX.get()))," "));
           } while (false);
         }
+        m$.restoreVarBlock(2);
         //<< . ;
         //<< . ;
         //<< . ;ZUSAMMENSTELLEN
@@ -953,7 +957,7 @@ public class WWWFOR71 extends mClass {
             if (mOp.NotEqual(m$.var("YXTYP").get(),1)) {
               //<< . . new YYI
               mVar YYI = m$.var("YYI");
-              m$.newVar(YYI);
+              m$.newVarBlock(2,YYI);
               //<< . . set YPARA(22)=1
               YPARA.var(22).set(1);
               //<< . . if YUMLAU=""  if $find($translate(YPARA(5),LC,UC),$translate(YINHALT,LC,UC)) set YPARA(21)=YPARA(21)+1,YPARA(22)=0
@@ -975,6 +979,7 @@ public class WWWFOR71 extends mClass {
                 break;
               }
             }
+            m$.restoreVarBlock(2);
           }
         }
         //<< . ;
@@ -983,7 +988,7 @@ public class WWWFOR71 extends mClass {
           if (mOp.Equal(YPARA.var(20).get(),1)) {
             //<< . . new YYI
             mVar YYI = m$.var("YYI");
-            m$.newVar(YYI);
+            m$.newVarBlock(2,YYI);
             //<< . . set YPARA(22)=1
             YPARA.var(22).set(1);
             //<< . . if YUMLAU=""  for YYI=1:1 quit:$piece(YINHALT,",",YYI)=""  if $find($translate(YPARA(5),LC,UC),$translate($piece(YINHALT,",",YYI),LC,UC)) set YPARA(21)=YPARA(21)+1,YPARA(22)=0 quit
@@ -1017,6 +1022,7 @@ public class WWWFOR71 extends mClass {
               break;
             }
           }
+          m$.restoreVarBlock(2);
         }
         //<< . ;
         //<< . if YXTYP=1 if YPARA(20)=1 do  if YPARA(22)=1 set YPARA(7)=YPARA(7)-1 quit
@@ -1024,7 +1030,7 @@ public class WWWFOR71 extends mClass {
           if (mOp.Equal(YPARA.var(20).get(),1)) {
             //<< . . new YYI
             mVar YYI = m$.var("YYI");
-            m$.newVar(YYI);
+            m$.newVarBlock(2,YYI);
             //<< . . set YPARA(22)=1
             YPARA.var(22).set(1);
             //<< . . if YUMLAU=""  for YYI=1:1 quit:$piece(YINHALT,",",YYI)=""  if $translate(YPARA(5),LC,UC)=$translate($piece(YINHALT,",",YYI),LC,UC) set YPARA(21)=1,YPARA(22)=0,YPARA(7)=1 quit
@@ -1060,6 +1066,7 @@ public class WWWFOR71 extends mClass {
               break;
             }
           }
+          m$.restoreVarBlock(2);
         }
         //<< . ;
         //<< . set YPARA(53)=YPARA(5)
@@ -1266,6 +1273,7 @@ public class WWWFOR71 extends mClass {
         }
       }
     }
+    m$.restoreVarBlock(1);
     //<< 
     //<< quit
     return;
@@ -1651,7 +1659,7 @@ public class WWWFOR71 extends mClass {
               mVar YSORTX2 = m$.var("YSORTX2");
               mVar YSORTX3 = m$.var("YSORTX3");
               mVar YSORTX4 = m$.var("YSORTX4");
-              m$.newVar(YSORTX,YSORTX1,YSORTX2,YSORTX3,YSORTX4);
+              m$.newVarBlock(2,YSORTX,YSORTX1,YSORTX2,YSORTX3,YSORTX4);
               //<< . . if YFILE'=YPARA(1) set YPARA(19)="^"_YPARA(1)_"("_$piece(YPARA(19),"(",2,99)
               if (mOp.NotEqual(m$.var("YFILE").get(),YPARA.var(1).get())) {
                 YPARA.var(19).set(mOp.Concat(mOp.Concat(mOp.Concat("^",YPARA.var(1).get()),"("),m$.Fnc.$piece(YPARA.var(19).get(),"(",2,99)));
@@ -1704,7 +1712,7 @@ public class WWWFOR71 extends mClass {
                   //<< . . . new YFILE,YDATA
                   mVar YFILE = m$.var("YFILE");
                   mVar YDATA = m$.var("YDATA");
-                  m$.newVar(YFILE,YDATA);
+                  m$.newVarBlock(3,YFILE,YDATA);
                   //<< . . . set YDATA="" if $extract($piece(YSORTX2,Y,8),1,2)'="IN" if $extract($piece(YSORTX2,Y,8),1,3)'="WWW" set YDATA=$get(^WWW001(0,$piece(YSORTX2,Y,8),1))  ;VARIABEL AUS DATENSATZDEF.  FELD 8=DATEIART ;out of field
                   YDATA.set("");
                   if (mOp.NotEqual(m$.Fnc.$extract(m$.Fnc.$piece(YSORTX2.get(),m$.var("Y").get(),8),1,2),"IN")) {
@@ -1749,11 +1757,13 @@ public class WWWFOR71 extends mClass {
                 } while (false);
                 break;
               }
+              m$.restoreVarBlock(3);
               //<< . . ;
               //<< . . set YSORT=YSORT_$extract($$GetLiteral^WWWTR(YSORTX1,YSORTX)_"                                        ",1,YSORTX4)_" "
               YSORT.set(mOp.Concat(mOp.Concat(YSORT.get(),m$.Fnc.$extract(mOp.Concat(m$.fnc$("WWWTR.GetLiteral",YSORTX1.get(),YSORTX.get()),"                                        "),1,YSORTX4.get()))," "));
             } while (false);
           }
+          m$.restoreVarBlock(2);
           //<< . ;
           //<< . if YSORT="" set YSORT=" "
           if (mOp.Equal(YSORT.get(),"")) {
@@ -1836,7 +1846,7 @@ public class WWWFOR71 extends mClass {
               if (mOp.NotEqual(m$.var("YXTYP").get(),1)) {
                 //<< . . new YYI
                 mVar YYI = m$.var("YYI");
-                m$.newVar(YYI);
+                m$.newVarBlock(2,YYI);
                 //<< . . set YPARA(22)=1
                 YPARA.var(22).set(1);
                 //<< . . if YUMLAU="" if $find($translate(YPARA(5),LC,UC),$translate(YINHALT,LC,UC)) set YPARA(21)=YPARA(21)+1,YPARA(22)=0
@@ -1858,6 +1868,7 @@ public class WWWFOR71 extends mClass {
                   break;
                 }
               }
+              m$.restoreVarBlock(2);
             }
           }
           //<< . ;
@@ -1866,7 +1877,7 @@ public class WWWFOR71 extends mClass {
             if (mOp.Equal(YPARA.var(20).get(),1)) {
               //<< . . new YYI
               mVar YYI = m$.var("YYI");
-              m$.newVar(YYI);
+              m$.newVarBlock(2,YYI);
               //<< . . set YPARA(22)=1
               YPARA.var(22).set(1);
               //<< . . if YUMLAU=""  for YYI=1:1 quit:$piece(YINHALT,",",YYI)=""  if $find($translate(YPARA(5),LC,UC),$translate($piece(YINHALT,",",YYI),LC,UC)) set YPARA(21)=YPARA(21)+1,YPARA(22)=0 quit
@@ -1900,6 +1911,7 @@ public class WWWFOR71 extends mClass {
                 break;
               }
             }
+            m$.restoreVarBlock(2);
           }
           //<< . ;
           //<< . if YXTYP=1 if YPARA(20)=1 do  if YPARA(22)=1 set YPARA(7)=YPARA(7)-1 quit
@@ -1907,7 +1919,7 @@ public class WWWFOR71 extends mClass {
             if (mOp.Equal(YPARA.var(20).get(),1)) {
               //<< . . new YYI
               mVar YYI = m$.var("YYI");
-              m$.newVar(YYI);
+              m$.newVarBlock(2,YYI);
               //<< . . set YPARA(22)=1
               YPARA.var(22).set(1);
               //<< . . if YUMLAU=""  for YYI=1:1 quit:$piece(YINHALT,",",YYI)=""  if $translate(YPARA(5),LC,UC)=$translate($piece(YINHALT,",",YYI),LC,UC) set YPARA(21)=1,YPARA(22)=0,YPARA(7)=1 quit
@@ -1943,6 +1955,7 @@ public class WWWFOR71 extends mClass {
                 break;
               }
             }
+            m$.restoreVarBlock(2);
           }
           //<< . ;
           //<< . if +YPARA(12)'=0 set ^WWWSOR(YUSER,2,$zconvert(YSORT(1),"U"),YPARA(5)) = YSORT_" ("_YPARA(5)_")"

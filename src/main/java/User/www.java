@@ -1,13 +1,12 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - CLASS User.www
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:14:16
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:53:58
 //*****************************************************************************
 
 package User;
 
 import mLibrary.*;
-
 //<< Include COMSYS
 import include.COMSYS;
 import include.COMSYSDate;
@@ -29,28 +28,9 @@ public class www extends mPage {
   //<< {
   //<< 
   //<< Parameter ENCODED = 0;
-  public static Object p_ENCODED = 0;
+  public static String p_ENCODED = "0";
 
-  @Override
-public void OnPreHTTP() {
-	// TODO Auto-generated method stub
-	super.OnPreHTTP();
-}
-
-@Override
-public void OnPostHTTP() {
-	// TODO Auto-generated method stub
-	super.OnPostHTTP();
-}
-
-@Override
-public void Page() {
-	// TODO Auto-generated method stub
-	super.Page();
-}
-
-
-//<< 
+  //<< 
   //<< /*
   //<< ClassMethod DateDiff(pdteFirst = "", pdteSecond = "") As %String
   //<< {
@@ -121,9 +101,30 @@ public void Page() {
   //<< }
   }
 
-  //<< 
+  @Override
+public void OnPreHTTP() {
+	super.OnPreHTTP();
+}
+
+@Override
+public void OnPostHTTP() {
+	super.OnPostHTTP();
+}
+
+@Override
+public void Page() {
+	super.Page();
+}
+
+@Override
+public Object OnPage() {
+	return OnPage((Object[])null);
+}
+
+
+//<< 
   //<< ClassMethod OnPage() As %Status
-  public Object OnPage() {
+  public Object OnPage(Object ... _p) {
     //<< {
     //<< ;-------------------------------------------------------------------------------
     //<< ; USAGE : e.g. Save button will generate entry point WWWSAVE that is then executed
@@ -206,7 +207,7 @@ public void Page() {
         YUSER.set(m$.Fnc.$get(m$.getRequest().varData("YUSER",1)));
       }
       //<< if $data(^WWWEP(0)) && +$piece($get(^WWWEP(0,YI,1)),"~",1)=0 {   ;UNERLAUBTER ZUGRIFF
-      if (mOp.Logical(m$.Fnc.$data(m$.var("^WWWEP",0))) && mOp.Equal(mOp.Logical(mOp.Positive(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWWEP",0,YI.get(),1)),"~",1))),0)) {
+      if (mOp.Equal(mOp.Logical(m$.Fnc.$data(m$.var("^WWWEP",0))) && mOp.Logical(mOp.Positive(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWWEP",0,YI.get(),1)),"~",1))),0)) {
         //<< write "<HTML><BODY><H2>NO ACCESS (1001)</H2></BODY></HTML>"
         m$.Cmd.Write("<HTML><BODY><H2>NO ACCESS (1001)</H2></BODY></HTML>");
       }
@@ -226,7 +227,7 @@ public void Page() {
         //<< ;$$$StartFrameSet(0,"","document.frames[0].location = window.location;")  //SR17343  ;SR17454
         //<< ;SR17603 $$$StartFrameSet(0,"","parent.frames[0].location = window.location;")  //SR17343  ;SR17454  ;SR17457
         //<< $$$StartFrameSet(0,"","window.frames[0].location = window.location;")  //SR17343  ;SR17454  ;SR17457  ;SR17603
-        include.COMSYSWWW.$$$StartFrameSet(m$,0,"","window.frames[0].location = window.location;");
+        m$.Cmd.Do("WWWSession.StartFrameSet",0,"","window.frames[0].location = window.location;");
         //<< write "<FRAME scrolling=yes>"
         m$.Cmd.Write("<FRAME scrolling=yes>");
         //<< $$$EndFrameSet

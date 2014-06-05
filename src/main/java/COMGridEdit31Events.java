@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC COMGridEdit31Events
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:25
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:55:10
 //*****************************************************************************
 
 import mLibrary.*;
@@ -765,7 +765,7 @@ public class COMGridEdit31Events extends mClass {
     mVar YFOCUSFIELD = m$.var("YFOCUSFIELD");
     m$.newVar(YFOCUSFIELD);
     //<< set YFOCUSFIELD=$get($$$WWWDATEN("FOCUSFIELD")) ;SR18026
-    YFOCUSFIELD.set(m$.Fnc.$get(COMGridEdit31Events.$$$WWWDATENVar(m$,"FOCUSFIELD")));
+    YFOCUSFIELD.set(m$.Fnc.$get($$$WWWDATENVar(m$,"FOCUSFIELD")));
     //<< 
     //<< ;SR17847 vvvvv
     //<< 
@@ -1178,7 +1178,7 @@ public class COMGridEdit31Events extends mClass {
     //<< if $get(pidDataLine)'="" {
     if (mOp.NotEqual(m$.Fnc.$get(pidDataLine),"")) {
       //<< set YLFDAT = "Y"_$get($$$WWWDATEN("REFERENCEROW",pidDataLine,1))
-      YLFDAT.set(mOp.Concat("Y",m$.Fnc.$get(COMGridEdit31Events.$$$WWWDATENVar(m$,"REFERENCEROW",pidDataLine,1))));
+      YLFDAT.set(mOp.Concat("Y",m$.Fnc.$get($$$WWWDATENVar(m$,"REFERENCEROW",pidDataLine,1))));
       //<< if pstrFormName'="" {
       if (mOp.NotEqual(pstrFormName.get(),"")) {
         //<< set OYFORM = YFORM
@@ -1447,7 +1447,7 @@ public class COMGridEdit31Events extends mClass {
     YFORM.set(pstrForm.get());
     //<< 
     //<< set strList = $get($$$WWWDATEN("REFERENCELIST"),",")
-    strList.set(m$.Fnc.$get(COMGridEdit31Events.$$$WWWDATENVar(m$,"REFERENCELIST"),","));
+    strList.set(m$.Fnc.$get($$$WWWDATENVar(m$,"REFERENCELIST"),","));
     //<< if pstrType="D" set pidField = $$$GetFormField(pstrForm,pidField) ; convert class field to form field
     if (mOp.Equal(pstrType.get(),"D")) {
       pidField.set(include.COMSYSWWW.$$$GetFormField(m$,pstrForm,pidField));
@@ -1745,7 +1745,7 @@ public class COMGridEdit31Events extends mClass {
       }
       //<< 
       //<< set idKey = $translate($get($$$WWWDATEN("REFERENCEKEY",idGridRow,1)),"""") ;CORE-172.1
-      idKey.set(m$.Fnc.$translate(m$.Fnc.$get(COMGridEdit31Events.$$$WWWDATENVar(m$,"REFERENCEKEY",idGridRow,1)),"\""));
+      idKey.set(m$.Fnc.$translate(m$.Fnc.$get($$$WWWDATENVar(m$,"REFERENCEKEY",idGridRow,1)),"\""));
       //<< if blnPrimary {                                ; Primary Key
       if (mOp.Logical(blnPrimary.get())) {
         //<< set strValue = $$$KEYMAX(idKey)

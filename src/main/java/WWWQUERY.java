@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWQUERY
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:11
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:56
 //*****************************************************************************
 
 import mLibrary.*;
@@ -293,7 +293,7 @@ public class WWWQUERY extends mClass {
             do {
               //<< . . . NEW YART
               mVar YART = m$.var("YART");
-              m$.newVar(YART);
+              m$.newVarBlock(3,YART);
               //<< . . . SET YART=$PIECE(FELD(col),Y,1)
               YART.set(m$.Fnc.$piece(FELD.var(col.get()).get(),m$.var("Y").get(),1));
               //<< . . . SET YLFN=$PIECE(FELD(col),Y,2)
@@ -305,7 +305,7 @@ public class WWWQUERY extends mClass {
               if (mOp.Equal(YART.get(),"P")) {
                 if (mOp.Equal(mOp.Positive(YLFN.get()),0)) {
                   //<< . . . . NEW YI
-                  m$.newVar(YI);
+                  m$.newVarBlock(4,YI);
                   //<< . . . . FOR YI=1:1 QUIT:$PIECE(YINHALT,"||",YI)=""  DO
                   for (YI.set(1);(true);YI.set(mOp.Add(YI.get(),1))) {
                     if (mOp.Equal(m$.Fnc.$piece(YINHALT.get(),"||",YI.get()),"")) {
@@ -315,6 +315,7 @@ public class WWWQUERY extends mClass {
                     m$.pieceVar(YKEY,",",YI.get()).set(m$.Fnc.$piece(YINHALT.get(),"||",YI.get()));
                   }
                 }
+                m$.restoreVarBlock(4);
               }
               //<< . . . ;
               //<< . . . IF YART="P" IF +YLFN'=0 SET $PIECE(YKEY,",",YLFN)=YINHALT
@@ -340,7 +341,7 @@ public class WWWQUERY extends mClass {
                   }
                   //<< . . . . NEW YINHALT1,YI
                   mVar YINHALT1 = m$.var("YINHALT1");
-                  m$.newVar(YINHALT1,YI);
+                  m$.newVarBlock(4,YINHALT1,YI);
                   //<< . . . . SET YINHALT1=YINHALT
                   YINHALT1.set(YINHALT.get());
                   //<< . . . . SET YINHALT=""
@@ -357,6 +358,7 @@ public class WWWQUERY extends mClass {
                   }
                   break;
                 }
+                m$.restoreVarBlock(4);
               }
               //<< . . . IF YART="D" S YINHALT=$$^WWWFORMAT(YDATEI,"D",YLFN,YINHALT) QUIT  ;FORMAT  DATENFELDER
               if (mOp.Equal(YART.get(),"D")) {
@@ -365,12 +367,13 @@ public class WWWQUERY extends mClass {
               }
             } while (false);
           }
+          m$.restoreVarBlock(3);
         }
         //<< . . ;
         //<< . . IF $GET(YART)="D" DO  ;IF YDATEI'="" IF YLINK=1 IF YKEY'="" DO
         if (mOp.Equal(m$.Fnc.$get(m$.var("YART")),"D")) {
           //<< . . . NEW YFORM,YKEY
-          m$.newVar(YFORM,YKEY);
+          m$.newVarBlock(3,YFORM,YKEY);
           //<< . . . WRITE "<A"
           m$.Cmd.Write("<A");
           //<< . . . IF $GET(YTOOLTIP)=""  WRITE " TITLE="_""""_$$^WWWTEXT(374)_""""  ;DATENSATZ AUSWÄHLEN ;data record pick out
@@ -392,6 +395,7 @@ public class WWWQUERY extends mClass {
           //<< . . . WRITE """"_">"
           m$.Cmd.Write(mOp.Concat("\"",">"));
         }
+        m$.restoreVarBlock(3);
         //<< . . ;
         //<< . . WRITE YINHALT
         m$.Cmd.Write(YINHALT.get());

@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWSTART
-//** Innovatium Systems - Code Converter - v1.27
-//** 2014-05-22 00:15:03
+//** Innovatium Systems - Code Converter - v1.29
+//** 2014-06-03 20:54:48
 //*****************************************************************************
 
 import mLibrary.*;
@@ -206,7 +206,7 @@ public class WWWSTART extends mClass {
       //<< DO
       //<< . NEW STYLE
       mVar STYLE = m$.var("STYLE");
-      m$.newVar(STYLE);
+      m$.newVarBlock(1,STYLE);
       //<< . SET STYLE = $PIECE($GET(^WWW012(0,0,1)),Y,83)
       STYLE.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW012",0,0,1)),m$.var("Y").get(),83));
       //<< . IF $GET(YFORM)'="" IF $PIECE($GET(^WWW120(0,YFORM,1)),Y,83)'="" SET STYLE=$PIECE($GET(^WWW120(0,YFORM,1)),Y,83)
@@ -222,13 +222,14 @@ public class WWWSTART extends mClass {
           YSTYLE.set(include.COMSYS.$$$YES(m$));
           //<< . . NEW EXEC
           mVar EXEC = m$.var("EXEC");
-          m$.newVar(EXEC);
+          m$.newVarBlock(2,EXEC);
           //<< . . SET EXEC = "WRITE "_STYLE
           EXEC.set(mOp.Concat("WRITE ",STYLE.get()));
           //<< . . XECUTE EXEC
           m$.Cmd.Xecute(EXEC.get());
           break;
         }
+        m$.restoreVarBlock(2);
       }
       //<< . ;
       //<< . IF STYLE'="" DO
@@ -250,6 +251,7 @@ public class WWWSTART extends mClass {
         } while (false);
       }
     } while(false);
+    m$.restoreVarBlock(1);
     do {
       //<< 
       //<< DO  ;STYLE
@@ -267,12 +269,12 @@ public class WWWSTART extends mClass {
       //<< . ;W "@media all {IE\:HOMEPAGE {behavior:url(#default#homepage)} }"
       //<< . NEW COLOR
       mVar COLOR = m$.var("COLOR");
-      m$.newVar(COLOR);
+      m$.newVarBlock(1,COLOR);
       //<< . DO                               ;SCHRIFT ;typeface
       do {
         //<< . . NEW SCHRIFT  ;,COLOR
         mVar SCHRIFT = m$.var("SCHRIFT");
-        m$.newVar(SCHRIFT);
+        m$.newVarBlock(2,SCHRIFT);
         //<< . . SET SCHRIFT = $PIECE($GET(^WWW012(0,0,1)),Y,9)
         SCHRIFT.set(m$.Fnc.$piece(m$.Fnc.$get(m$.var("^WWW012",0,0,1)),m$.var("Y").get(),9));
         //<< . . IF SCHRIFT'="" SET SCHRIFT = $PIECE($GET(^WWW100(0,"SCHRIFTART",SPRACHE,SCHRIFT,1)),Y,1)
@@ -298,6 +300,7 @@ public class WWWSTART extends mClass {
         //<< . . WRITE "}",!
         m$.Cmd.Write("}","\n");
       } while(false);
+      m$.restoreVarBlock(2);
       //<< . ;
       //<< . IF $GET(YLINKCOL)=""  WRITE " a:hover{color:blue; text-decoration:underline}",!
       if (mOp.Equal(m$.Fnc.$get(m$.var("YLINKCOL")),"")) {
@@ -371,6 +374,7 @@ public class WWWSTART extends mClass {
       //<< . WRITE "</STYLE>",YCR
       m$.Cmd.Write("</STYLE>",m$.var("YCR").get());
     } while(false);
+    m$.restoreVarBlock(1);
     //<< 
     //<< do Title(YTITLE)
     m$.Cmd.Do("Title",YTITLE.get());
