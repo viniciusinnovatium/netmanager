@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - CLASS User.COMUserPreferences
-//** Innovatium Systems - Code Converter - v1.29
-//** 2014-06-03 20:55:30
+//** Innovatium Systems - Code Converter - v1.30
+//** 2014-06-05 19:31:04
 //*****************************************************************************
 
 package User;
@@ -10,7 +10,7 @@ import mLibrary.*;
 
 //<< Include (WWWConst, COMSYS)
 import include.WWWConst;
-import include.COMSYS;
+//import COMSYS;
 import include.COMSYS;
 import include.COMSYSDate;
 import include.COMSYSNum;
@@ -22,7 +22,6 @@ import include.COMGridEdit31Interface;
 import include.COMTab;
 import include.COMEditor;
 import include.COMSYSJS;
-import include.$occInclude;
 //<< {
 //<< ;-------------------------------------------------------------------------------
 //<< ; Method Usage
@@ -51,7 +50,7 @@ public class COMUserPreferences extends mPage {
   //<< {
   //<< 
   //<< ClassMethod OnPage() As %Status
-  public Object OnPage(Object ... _p) {
+  public Object OnPage() {
     //<< 
     //<< new objWWW013,idCompany
     mVar objWWW013 = m$.var("objWWW013");
@@ -105,7 +104,7 @@ public class COMUserPreferences extends mPage {
         //<< if (('##class(VAR.infra.shadow.ShadowRunner).IsFunctional()) && (YBED'="SHADOW")) {
         if (mOp.Logical(((mOp.Not(m$.fnc$("VAR.infra.shadow.ShadowRunner.IsFunctional"))) && (mOp.NotEqual(m$.var("YBED").get(),"SHADOW"))))) {
           //<< do ##class(User.www).ShowError($$$ERROR($$$UserNotAuthorizedOnSystem,YBED))
-          m$.Cmd.Do("User.www.ShowError",include.$occStatus.$$$ERROR(m$,include.$occErrors.$$$UserNotAuthorizedOnSystem(m$),m$.var("YBED")));
+          //m$.Cmd.Do("User.www.ShowError",$$$include.$$$ERROR(m$,$$$include.$$$UserNotAuthorizedOnSystem(m$),m$.var("YBED")));
         }
       }
       //<< }
@@ -201,7 +200,7 @@ public class COMUserPreferences extends mPage {
 
   //<< 
   //<< ClassMethod insertJsFunctionMaximizeWindow()
-  public Object insertJsFunctionMaximizeWindow(Object ... _p) {
+  public Object insertJsFunctionMaximizeWindow() {
     //<< {
     //<< ;-------------------------------------------------------------------------------
     //<< ; This method writes to the current output (the new html page) a new javascript
@@ -256,7 +255,7 @@ public class COMUserPreferences extends mPage {
 
   //<< 
   //<< ClassMethod isLoginRight() As %Boolean
-  public Object isLoginRight(Object ... _p) {
+  public Object isLoginRight() {
     //<< {
     //<< ;-------------------------------------------------------------------------------
     //<< ; Method Usage

@@ -1,12 +1,13 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - CLASS User.www
-//** Innovatium Systems - Code Converter - v1.29
-//** 2014-06-03 20:53:58
+//** Innovatium Systems - Code Converter - v1.30
+//** 2014-06-05 19:31:05
 //*****************************************************************************
 
 package User;
 
 import mLibrary.*;
+
 //<< Include COMSYS
 import include.COMSYS;
 import include.COMSYSDate;
@@ -19,7 +20,6 @@ import include.COMGridEdit31Interface;
 import include.COMTab;
 import include.COMEditor;
 import include.COMSYSJS;
-import include.$occInclude;
 
 //<< 
 //<< /// @net Manger
@@ -101,30 +101,9 @@ public class www extends mPage {
   //<< }
   }
 
-  @Override
-public void OnPreHTTP() {
-	super.OnPreHTTP();
-}
-
-@Override
-public void OnPostHTTP() {
-	super.OnPostHTTP();
-}
-
-@Override
-public void Page() {
-	super.Page();
-}
-
-@Override
-public Object OnPage() {
-	return OnPage((Object[])null);
-}
-
-
-//<< 
+  //<< 
   //<< ClassMethod OnPage() As %Status
-  public Object OnPage(Object ... _p) {
+  public Object OnPage() {
     //<< {
     //<< ;-------------------------------------------------------------------------------
     //<< ; USAGE : e.g. Save button will generate entry point WWWSAVE that is then executed
