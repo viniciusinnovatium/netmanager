@@ -4,29 +4,15 @@
 //** 2014-06-03 20:54:12
 //*****************************************************************************
 
-import mLibrary.*;
-
+import mLibrary.mClass;
+import mLibrary.mOp;
+import mLibrary.mVar;
 //<< ;-------------------------------------------------------------------------------
 //<< ; Sets up screen for COM View Use.
 //<< ;-------------------------------------------------------------------------------
 //<< #include WWWConst
-import include.WWWConst;
-import include.COMSYS;
 //<< #include COMConst
-import include.COMConst;
 //<< #include COMSYS
-import include.COMSYS;
-import include.COMSYSDate;
-import include.COMSYSNum;
-import include.COMSYSString;
-import include.COMSYSWWW;
-import include.COMSYSOutput;
-import include.COMSYSEnum;
-import include.COMGridEdit31Interface;
-import include.COMTab;
-import include.COMEditor;
-import include.COMSYSJS;
-import include.$occInclude;
 
 //<< COMViewSetup
 public class COMViewSetup extends mClass {
@@ -357,7 +343,7 @@ public class COMViewSetup extends mClass {
     //<< }
     //<< }
     //<< if $$$ISERR(strStatus) {
-    if (mOp.Logical(include.COMSYS.$$$ISERR(m$,strStatus))) {
+    if (mOp.Logical(include.COMSYS.$$$ISERR(m$,strStatus.get()))) {
       //<< write "<br>"_$$$Text(strStatus)
       m$.Cmd.Write(mOp.Concat("<br>",include.COMSYS.$$$Text(m$,strStatus)));
     }
@@ -381,7 +367,7 @@ public class COMViewSetup extends mClass {
     mVar $ztrap = m$.var("$ztrap");
     $ztrap.set("ReadFileError");
     //<< read pstrText
-    m$.Cmd.Read(pstrText);
+    m$.Cmd.Read(pstrText);//TODO REVISAR GERAÇÃO DO PARAMETRO DO READ NO CONVERSOR m$.Cmd.Read(pstrText.get());
     //<< quit blnError
     return blnError.get();
   }
