@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import mLibrary.mContext;
+import mLibrary.mFncUtil;
 import mLibrary.mPage;
 import mLibrary.mRequest;
 import mLibrary.mSession;
@@ -25,22 +26,17 @@ public class CLSServlet extends NetmanagerServlet {
 	void doHandleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
 		mContext m$ = new mContext(response);
-		request.getSession(true);
+		
 		m$.setRequest(new mRequest(request));
-		m$.setSession(new mSession());
+		m$.setSession(new mSession(request.getSession(true)));
 
 		String className = request.getServletPath().replace("/", "")
 				.replace(".cls", "");
 		className = className.replaceFirst("%", "\\$");
-
+		className = mFncUtil.normalizeClassname(className);
 		mPage mPage;
 		try {
-			mPage = (mPage) Class.forName(className).newInstance();
-			mPage.setContext(m$);
-			mPage.Page();
-
-		} catch (ClassNotFoundException e) {
-			className = "User." + className;
+			/*
 			if (className.contains("Broker")) {
 				m$.Cmd.Write("00000001000013jtTsui000000qG2oyPfDuLAHjt5zHYuLmQ--");
 				m$.Cmd.Write("\r\n#R");
@@ -48,15 +44,14 @@ public class CLSServlet extends NetmanagerServlet {
 				m$.Cmd.Write("\r\n#OK");
 				//m$.Cmd.Write("\r\n#YMEDPatientD23~ASDAS");
 			} else {
-				try {
-					mPage = (mPage) Class.forName(className).newInstance();
-					mPage.setContext(m$);
-					mPage.Page();
-				} catch (Exception e1) {
-					throw new ServletException("Fail to execute URL "
-							+ className, e1);
-				}
+				mPage = (mPage) Class.forName(className).newInstance();
+				mPage.setContext(m$);
+				mPage.Page();
 			}
+			*/
+			mPage = (mPage) Class.forName(className).newInstance();
+			mPage.setContext(m$);
+			mPage.Page();
 
 		} catch (Exception e) {
 			throw new ServletException("Fail to execute URL " + className, e);
