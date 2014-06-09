@@ -18,6 +18,12 @@
 		<description></description>
 		<servlet-class>com.disclinc.netmanager.servlet.WWWServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>TestePersistenciaServlet</servlet-name>
+		<display-name>TestePersistenciaServlet</display-name>
+		<description></description>
+		<servlet-class>com.disclinc.netmanager.servlet.TestePersistenciaServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>CLSServlet</servlet-name>
@@ -31,5 +37,9 @@
 	<servlet-mapping>
 		<servlet-name>WWWServlet</servlet-name>
 		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TestePersistenciaServlet</servlet-name>
+		<url-pattern>/testepersistencia</url-pattern>
 	</servlet-mapping>
 </web-app>
