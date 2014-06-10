@@ -308,7 +308,7 @@ public class VARMEDPatient extends mClass {
     }
     //<< 
     //<< set blnPacienteComAcaoJud = $$$MEDPatientFREE5(YFELD)
-    blnPacienteComAcaoJud.set($piece(m$.var("YFELD"),"~",35)) //TODO REVISAR blnPacienteComAcaoJud.set($$$include.$$$MEDPatientFREE5(m$,m$.var("YFELD")));
+    blnPacienteComAcaoJud.set(m$.Fnc.$piece(m$.var("YFELD"),"~",35)); //TODO REVISAR blnPacienteComAcaoJud.set($$$include.$$$MEDPatientFREE5(m$,m$.var("YFELD")));
     //<< 
     //<< if blnPacienteComAcaoJud = $$$YES {
     if (mOp.Equal(blnPacienteComAcaoJud.get(),include.COMSYS.$$$YES(m$))) {
