@@ -22,7 +22,7 @@ import include.COMSYSJS;
 //<< #include COMConst
 //<< #include WWWConst
 import include.WWWConst;
-import COMSYS;
+//import COMSYS;
 
 //<< COMConst
 public class COMConst extends mClass {
