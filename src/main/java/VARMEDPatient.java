@@ -11,11 +11,11 @@ import include.COMConst;
 import include.COMSYS;
 //<< #include INConst
 import include.INConst;
-import COMSYS;
+//import COMSYS;
 //<< #include COMGridEdit31
 import include.COMGridEdit31;
 //<< #include MEDConst
-import MEDConst;
+//import MEDConst;
 
 //<< VARMEDPatient
 public class VARMEDPatient extends mClass {
@@ -394,7 +394,7 @@ public class VARMEDPatient extends mClass {
       //<< set objPaciente = $get(^MEDPatient(YM,pidPaciente,1))
       objPaciente.set(m$.Fnc.$get(m$.var("^MEDPatient",m$.var("YM").get(),pidPaciente.get(),1)));
       //<< set dteNascimento =$$$MEDPatientDOB(objPaciente)
-      dteNascimento.set($$$include.$$$MEDPatientDOB(m$,objPaciente));
+      //TODO REVISAR dteNascimento.set($$$include.$$$MEDPatientDOB(m$,objPaciente));
     }
     //<< }
     //<< quit dteNascimento
@@ -423,7 +423,7 @@ public class VARMEDPatient extends mClass {
       //<< set objPaciente = $get(^MEDPatient(YM,pidPaciente,1))
       objPaciente.set(m$.Fnc.$get(m$.var("^MEDPatient",m$.var("YM").get(),pidPaciente.get(),1)));
       //<< set CPF = $$$MEDPatientSSN(objPaciente)
-      CPF.set($$$include.$$$MEDPatientSSN(m$,objPaciente));
+      //TODO REVISAR CPF.set($$$include.$$$MEDPatientSSN(m$,objPaciente));
     }
     //<< }
     //<< quit CPF
@@ -476,10 +476,10 @@ public class VARMEDPatient extends mClass {
           //<< 
           //<< ;Se o campo "Paciente possui ação judicial?" for 1-Sim retorna o nome
           //<< if $$$MEDPatientFREE5(objPaciente) = $$$YES {
-          if (mOp.Equal($$$include.$$$MEDPatientFREE5(m$,objPaciente),include.COMSYS.$$$YES(m$))) {
+          /*TODO REVISAR if (mOp.Equal($$$include.$$$MEDPatientFREE5(m$,objPaciente),include.COMSYS.$$$YES(m$))) {
             //<< set Result = $$$MEDPatientName(objPaciente)
             Result.set($$$include.$$$MEDPatientName(m$,objPaciente));
-          }
+          }*/
         }
       }
     }
@@ -503,7 +503,7 @@ public class VARMEDPatient extends mClass {
       //<< set strDirectory = "/"_YUCI_"/"_$translate($$GetDiretorioVirtual^VARBRDiretorios(YM,5),"\","/")_"/"
       strDirectory.set(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("/",m$.var("YUCI").get()),"/"),m$.Fnc.$translate(m$.fnc$("VARBRDiretorios.GetDiretorioVirtual",m$.var("YM").get(),5),"\\","/")),"/"));
       //<< set idGender = $$$MEDPatientGender(^MEDPatient(YM,pYKEY,1))
-      idGender.set($$$include.$$$MEDPatientGender(m$,m$.var("^MEDPatient",m$.var("YM").get(),pYKEY.get(),1)));
+      //TODO REVISAR idGender.set($$$include.$$$MEDPatientGender(m$,m$.var("^MEDPatient",m$.var("YM").get(),pYKEY.get(),1)));
       //<< if (##class(%File).Exists($$GetDiretorioFisico^VARBRDiretorios(YM,5)_"\"_pYKEY_".jpg")){
       if (mOp.Logical((m$.fnc$("$File.Exists",mOp.Concat(mOp.Concat(mOp.Concat(m$.fnc$("VARBRDiretorios.GetDiretorioFisico",m$.var("YM").get(),5),"\\"),pYKEY.get()),".jpg"))))) {
         //<< set strFile = pYKEY_".jpg?id="_$piece($horolog,",",2)
