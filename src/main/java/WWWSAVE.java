@@ -717,7 +717,7 @@ public class WWWSAVE extends mClass {
     //<< 
     //<< ;AUSWAHL DATENSATZ AUS FELDERN ;Selection data record out of
     //<< if YRICHT="" IF $$$WWW120FormType(YVOR)=1||($$$WWW120FormType(YVOR)=3) IF YALLKEY=1 IF $EXTRACT(YOPEN,1,4)'="SAVE" DO  QUIT
-    if (mOp.Equal(m$.var("YRICHT").get(),"")) {
+    if (false && mOp.Equal(m$.var("YRICHT").get(),"")) {//TODO REVISAR
       if (mOp.Equal(include.WWWConst.$$$WWW120FormType(m$,m$.var("YVOR")),1) || (mOp.Equal(include.WWWConst.$$$WWW120FormType(m$,m$.var("YVOR")),3))) {
         if (mOp.Equal(m$.var("YALLKEY").get(),1)) {
           if (mOp.NotEqual(m$.Fnc.$extract(YOPEN.get(),1,4),"SAVE")) {

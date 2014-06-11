@@ -4,13 +4,25 @@
 //** 2014-06-05 20:54:34
 //*****************************************************************************
 
-import mLibrary.mClass;
-import mLibrary.mOp;
-import mLibrary.mVar;
+import mLibrary.*;
+
 //<< 
 //<< #include COMSYS
+import include.COMSYS;
+import include.COMSYSDate;
+import include.COMSYSNum;
+import include.COMSYSString;
+import include.COMSYSWWW;
+import include.COMSYSOutput;
+import include.COMSYSEnum;
+import include.COMGridEdit31Interface;
+import include.COMTab;
+import include.COMEditor;
+import include.COMSYSJS;
 //<< #include COMConst
 //<< #include WWWConst
+import include.WWWConst;
+//import COMSYS;
 
 //<< COMConst
 public class COMConst extends mClass {
@@ -155,7 +167,8 @@ public class COMConst extends mClass {
       return FieldName.get();
     }
     //<< }
-    
+    //<< quit
+    return null;
   }
 
   //<< 
