@@ -21,11 +21,11 @@ public class TestePersistenciaServlet extends NetmanagerServlet {
 		mContext m$ = new mContext(response);
 		mNMObject obj = new mNMObject();
 		String record = obj.loadRecord(m$, "MEDPatient", "0||85");
-		m$.Cmd.Write("\n"+record);
 		
-		obj.saveRecord(m$, "MEDPatient", "0||-1", record);
-		record = obj.loadRecord(m$, "MEDPatient", "0||-1");
+		obj.saveRecord(m$, "MEDPatient", "0||9999999", record);
+		record = obj.loadRecord(m$, "MEDPatient", "0||85");
 		m$.Cmd.Write("\n"+record);
 	}
 
+	
 }
