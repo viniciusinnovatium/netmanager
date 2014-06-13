@@ -50,7 +50,7 @@ public class COMUserPreferences extends mPage {
   //<< {
   //<< 
   //<< ClassMethod OnPage() As %Status
-  public Object OnPage() {
+  public Object OnPageOLD() {
     //<< 
     //<< new objWWW013,idCompany
     mVar objWWW013 = m$.var("objWWW013");
@@ -194,6 +194,151 @@ public class COMUserPreferences extends mPage {
     return include.COMSYS.$$$OK(m$);
   //<< }
   }
+
+  public Object OnPage() {
+	    //<< 
+	    //<< new objWWW013,idCompany
+	    mVar objWWW013 = m$.var("objWWW013");
+	    mVar idCompany = m$.var("idCompany");
+	    m$.newVar(objWWW013,idCompany);
+	    //<< 
+	    //<< do ^WWWVAR
+	    m$.Cmd.Do("WWWVAR.main");
+	    //<< 
+	    //<< set blnSessionLoginOK=$$^WWWLicenseAllocation()   //SCR SR15550 15-Oct-2008
+	    mVar blnSessionLoginOK = m$.var("blnSessionLoginOK");
+	    blnSessionLoginOK.set(m$.fnc$("WWWLicenseAllocation.main"));
+	    //<< 
+	    //<< if $get(YUSER)'="" {
+	    if (mOp.NotEqual(m$.Fnc.$get(m$.var("YUSER")),"")) {
+	      //<< ;BR014210: If the user exists, company exists and user has entitlements to that company go to that company
+	      //<< set idCompany=$get(%request.Data("YM",1))
+	      idCompany.set(m$.Fnc.$get(m$.getRequest().varData("YM",1)));
+	      //<< if idCompany'="" {
+	      if (mOp.NotEqual(idCompany.get(),"")) {
+	        //<< if $data(^WWW012(0,idCompany,1)) {
+	        if (mOp.Logical(m$.Fnc.$data(m$.var("^WWW012",0,idCompany.get(),1)))) {
+	          //<< if YBED'="" {
+	          if (mOp.NotEqual(m$.var("YBED").get(),"")) {
+	            //<< set objWWW013=$get(^WWW013(0,YBED,1))
+	            objWWW013.set(m$.Fnc.$get(m$.var("^WWW013",0,m$.var("YBED").get(),1)));
+	            //<< if (";"_$$$WWW013EntitledCompany(objWWW013)_";")[(";"_idCompany_";") {
+	            if (mOp.Contains((mOp.Concat(mOp.Concat(";",include.WWWConst.$$$WWW013EntitledCompany(m$,objWWW013)),";")),(mOp.Concat(mOp.Concat(";",idCompany.get()),";")))) {
+	              //<< set $$$WWWUSERLastCompany(^WWWUSER(0,YUSER,1))=idCompany
+	              include.WWWConst.$$$WWWUSERLastCompanySet(m$,m$.var("^WWWUSER",0,m$.var("YUSER").get(),1),idCompany.get());
+	            }
+	          }
+	        }
+	      }
+	    }
+	    //<< }
+	    //<< }
+	    //<< }
+	    //<< }
+	    //<< }
+	    //<< 
+	    //<< do saveLoginPage^WWWLogin()
+	    m$.Cmd.Do("WWWLogin.saveLoginPage");
+	    //<< 
+	    //<< if ..isLoginRight() {
+	    if (mOp.Logical(m$.fnc$(this,"isLoginRight"))) {
+	      //<< if ((+$$$WWWClientParamCoreChangesSESPE($get(^WWWClientParam(YM,YM,1)))) ||
+	      //<< (+$$$WWWClientParamCoreChangesSESDF($get(^WWWClientParam(YM,YM,1)))) ||
+	      //<< (+$$$WWWClientParamCoreChangesHEVA($get(^WWWClientParam(YM,YM,1))))) {
+	      if ((mOp.Logical((mOp.Positive(include.WWWConst.$$$WWWClientParamCoreChangesSESPE(m$,m$.Fnc.$get(m$.var("^WWWClientParam",m$.var("YM").get(),m$.var("YM").get(),1)))))) || mOp.Logical((mOp.Positive(include.WWWConst.$$$WWWClientParamCoreChangesSESDF(m$,m$.Fnc.$get(m$.var("^WWWClientParam",m$.var("YM").get(),m$.var("YM").get(),1)))))) || mOp.Logical((mOp.Positive(include.WWWConst.$$$WWWClientParamCoreChangesHEVA(m$,m$.Fnc.$get(m$.var("^WWWClientParam",m$.var("YM").get(),m$.var("YM").get(),1)))))))) {
+	        //<< if (('##class(VAR.infra.shadow.ShadowRunner).IsFunctional()) && (YBED'="SHADOW")) {
+	        
+	      }
+	      //<< }
+	      //<< }
+	      //<< ;set $piece(^zzUsers(%request.CgiEnvs("REMOTE_ADDR"),$zcvt(%request.Data("YBED",1),"u")),"~",1)=$h
+	      //<< do AddCookie^COMUtilCookie(%session.SessionId)  ;SRBR014275
+	      m$.Cmd.Do("COMUtilCookie.AddCookie",m$.getSession().getSessionId());
+	      //<< if $$$WWW013useFullScreenandHeader($get(^WWW013(0,YBED,1))) {
+	      if (mOp.Logical(include.WWWConst.$$$WWW013useFullScreenandHeader(m$,m$.Fnc.$get(m$.var("^WWW013",0,m$.var("YBED").get(),1))))) {
+	        //<< if (+$$$WWWClientParamCoreChangesALL($get(^WWWClientParam(YM,YM,1)))) {
+	        if (mOp.Logical((mOp.Positive(include.WWWConst.$$$WWWClientParamCoreChangesALL(m$,m$.Fnc.$get(m$.var("^WWWClientParam",m$.var("YM").get(),m$.var("YM").get(),1))))))) {
+	          //<< do ##class(User.www).Page()
+	          m$.Cmd.Do("User.www.Page");
+	        }
+	        //<< }
+	        //<< else {
+	        else {
+	          //<< do ##class(User.COMLogin).OnPage()
+	          m$.Cmd.Do("User.COMLogin.OnPage");
+	          //<< write "<script language=""JavaScript"">",!
+	          m$.Cmd.Write("<script language=\"JavaScript\">","\n");
+	          //<< write "var mainWindow;",!
+	          m$.Cmd.Write("var mainWindow;","\n");
+	          //<< write "function manualFocus() {",!
+	          m$.Cmd.Write("function manualFocus() {","\n");
+	          //<< write "mainWindow.focus();",!
+	          m$.Cmd.Write("mainWindow.focus();","\n");
+	          //<< write "}",!
+	          m$.Cmd.Write("}","\n");
+	          //<< 
+	          //<< do ..insertJsFunctionMaximizeWindow()
+	          m$.Cmd.Do(this,"insertJsFunctionMaximizeWindow");
+	          //<< 
+	          //<< write "function openMainWindow(theURL,winName,features) { ",!
+	          m$.Cmd.Write("function openMainWindow(theURL,winName,features) { ","\n");
+	          //<< write "mainWindow=window.open(theURL,winName,features);",!
+	          m$.Cmd.Write("mainWindow=window.open(theURL,winName,features);","\n");
+	          //<< write "}",!
+	          m$.Cmd.Write("}","\n");
+	          //<< //write "openMainWindow('COMParent.cls?EP=WWWFORM&YFORM=WWWPARA"    //BR014262
+	          //<< write "openMainWindow('www.cls?EP="_$GET(%request.Data("EP",1))
+	          m$.Cmd.Write(mOp.Concat("openMainWindow('www.cls?EP=",m$.Fnc.$get(m$.getRequest().varData("EP",1))));
+	          //<< do ^WWWCGI
+	          m$.Cmd.Do("WWWCGI.main");
+	          //<< //Do NOT change the features (fullscreen=0,...)!
+	          //<< write "','5818649','fullscreen=0,resizable=1,titlebar=1,menubar=0,toolbar=0,location=0');",!
+	          m$.Cmd.Write("','5818649','fullscreen=0,resizable=1,titlebar=1,menubar=0,toolbar=0,location=0');","\n");
+	          //<< 
+	          //<< //Call the js code that maximizes and places the new window in the correct position
+	          //<< write "maximizeWindow(mainWindow);",!
+	          m$.Cmd.Write("maximizeWindow(mainWindow);","\n");
+	          //<< 
+	          //<< write "setTimeout(""manualFocus()"",500);",!
+	          m$.Cmd.Write("setTimeout(\"manualFocus()\",500);","\n");
+	          //<< write "var parent = window.self;"
+	          m$.Cmd.Write("var parent = window.self;");
+	          //<< write "parent.opener = window.self;"
+	          m$.Cmd.Write("parent.opener = window.self;");
+	          //<< ;write "parent.close();"  //karine
+	          //<< write "parent.window.close();"
+	          m$.Cmd.Write("parent.window.close();");
+	          //<< 
+	          //<< /* Old code
+	          //<< write "setTimeout(""manualFocus()"",500);",!
+	          //<< write "var parent = window.self;"
+	          //<< write "parent.opener = window.self;"
+	          //<< ;write "parent.close();"  //karine
+	          //<< write "parent.window.close();"
+	          //<< */
+	          //<< 
+	          //<< write "</script>"
+	          m$.Cmd.Write("</script>");
+	        }
+	      }
+	      //<< }
+	      //<< } else {
+	      else {
+	        //<< do ##class(User.www).Page()
+	        m$.Cmd.Do("User.www.Page");
+	      }
+	    }
+	    //<< }
+	    //<< } else {
+	    else {
+	      //<< do ##class(User.www).Page()
+	      m$.Cmd.Do("User.www.Page");
+	    }
+	    //<< }
+	    //<< quit $$$OK
+	    return include.COMSYS.$$$OK(m$);
+	  //<< }
+	  }
 
   //<< 
   //<< ClassMethod insertJsFunctionMaximizeWindow()
