@@ -128,7 +128,7 @@ public class COMViewUtils extends mClass {
   //<< 
   //<< // <MAXNUMBER> on values with more than 310 digits
   //<< QuoteString(pstrParam)
-  public void QuoteString(Object ... _p) {
+  public Object QuoteString(Object ... _p) {
     mVar pstrParam = m$.newVarRef("pstrParam",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
     //<< new strValue
     mVar strValue = m$.var("strValue");
@@ -142,7 +142,7 @@ public class COMViewUtils extends mClass {
     //<< set $ztrap = ""
     $ztrap.set("");
     //<< goto finallyQuoteString   
-    m$.Cmd.Goto("finallyQuoteString");// TODO REVISAR RETORNO DO GOTO ESPERADO E ESTAVA RETORNANDO NULL
+    return m$.Cmd.Goto("finallyQuoteString");// TODO REVISAR RETORNO DO GOTO ESPERADO E ESTAVA RETORNANDO NULL
   }
 
   //<< 
