@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC VARMEDPatient
 //** Innovatium Systems - Code Converter - v1.30
-//** 2014-06-10 15:39:50
+//** 2014-06-13 16:32:08
 //*****************************************************************************
 
 import mLibrary.*;
@@ -11,11 +11,10 @@ import include.COMConst;
 import include.COMSYS;
 //<< #include INConst
 import include.INConst;
-//import COMSYS;
 //<< #include COMGridEdit31
 import include.COMGridEdit31;
 //<< #include MEDConst
-//import MEDConst;
+import include.MEDConst;
 
 //<< VARMEDPatient
 public class VARMEDPatient extends mClass {
@@ -62,13 +61,13 @@ public class VARMEDPatient extends mClass {
     //<< if pYFELD '= "" {
     if (mOp.NotEqual(pYFELD.get(),"")) {
       //<< set vCPF             = $$$MEDPatientSSN(pYFELD)
-    	vCPF.set(m$.Fnc.$piece(m$.var("YFELD"),"~",11));//TODO REVISAR SEM INCLUDE vCPF.set($$$include.$$$MEDPatientSSN(m$,pYFELD));
+      vCPF.set(include.MEDConst.$$$MEDPatientSSN(m$,pYFELD));
       //<< set dteNascimento    = $$$MEDPatientDOB(YFELD)
-    	 dteNascimento.set(m$.Fnc.$piece(m$.var("YFELD"),"~",4));//TODO REVISAR SEM INCLUDE dteNascimento.set($$$include.$$$MEDPatientDOB(m$,m$.var("YFELD")));
+      dteNascimento.set(include.MEDConst.$$$MEDPatientDOB(m$,m$.var("YFELD")));
       //<< set dteNascimentoMae = $$$MEDPatientMothersDOB(YFELD)
-    	dteNascimentoMae.set(m$.Fnc.$piece(m$.var("YFELD"),"~",10));//TODO REVISAR SEM INCLUDE dteNascimentoMae.set($$$include.$$$MEDPatientMothersDOB(m$,m$.var("YFELD")));
+      dteNascimentoMae.set(include.MEDConst.$$$MEDPatientMothersDOB(m$,m$.var("YFELD")));
       //<< set nomeMae          = $$$MEDPatientMothersName(YFELD)
-    	nomeMae.set(m$.Fnc.$piece(m$.var("YFELD"),"~",9));//TODO REVISAR SEM INCLUDE nomeMae.set($$$include.$$$MEDPatientMothersName(m$,m$.var("YFELD")));
+      nomeMae.set(include.MEDConst.$$$MEDPatientMothersName(m$,m$.var("YFELD")));
       //<< 
       //<< set strCompanyNumber = $translate(vCPF,".-/")
       mVar strCompanyNumber = m$.var("strCompanyNumber");
@@ -308,7 +307,7 @@ public class VARMEDPatient extends mClass {
     }
     //<< 
     //<< set blnPacienteComAcaoJud = $$$MEDPatientFREE5(YFELD)
-    blnPacienteComAcaoJud.set(m$.Fnc.$piece(m$.var("YFELD"),"~",35)); //TODO REVISAR blnPacienteComAcaoJud.set($$$include.$$$MEDPatientFREE5(m$,m$.var("YFELD")));
+    blnPacienteComAcaoJud.set(include.MEDConst.$$$MEDPatientFREE5(m$,m$.var("YFELD")));
     //<< 
     //<< if blnPacienteComAcaoJud = $$$YES {
     if (mOp.Equal(blnPacienteComAcaoJud.get(),include.COMSYS.$$$YES(m$))) {
@@ -394,7 +393,7 @@ public class VARMEDPatient extends mClass {
       //<< set objPaciente = $get(^MEDPatient(YM,pidPaciente,1))
       objPaciente.set(m$.Fnc.$get(m$.var("^MEDPatient",m$.var("YM").get(),pidPaciente.get(),1)));
       //<< set dteNascimento =$$$MEDPatientDOB(objPaciente)
-      //TODO REVISAR dteNascimento.set($$$include.$$$MEDPatientDOB(m$,objPaciente));
+      dteNascimento.set(include.MEDConst.$$$MEDPatientDOB(m$,objPaciente));
     }
     //<< }
     //<< quit dteNascimento
@@ -423,7 +422,7 @@ public class VARMEDPatient extends mClass {
       //<< set objPaciente = $get(^MEDPatient(YM,pidPaciente,1))
       objPaciente.set(m$.Fnc.$get(m$.var("^MEDPatient",m$.var("YM").get(),pidPaciente.get(),1)));
       //<< set CPF = $$$MEDPatientSSN(objPaciente)
-      //TODO REVISAR CPF.set($$$include.$$$MEDPatientSSN(m$,objPaciente));
+      CPF.set(include.MEDConst.$$$MEDPatientSSN(m$,objPaciente));
     }
     //<< }
     //<< quit CPF
@@ -476,10 +475,10 @@ public class VARMEDPatient extends mClass {
           //<< 
           //<< ;Se o campo "Paciente possui ação judicial?" for 1-Sim retorna o nome
           //<< if $$$MEDPatientFREE5(objPaciente) = $$$YES {
-          /*TODO REVISAR if (mOp.Equal($$$include.$$$MEDPatientFREE5(m$,objPaciente),include.COMSYS.$$$YES(m$))) {
+          if (mOp.Equal(include.MEDConst.$$$MEDPatientFREE5(m$,objPaciente),include.COMSYS.$$$YES(m$))) {
             //<< set Result = $$$MEDPatientName(objPaciente)
-            Result.set($$$include.$$$MEDPatientName(m$,objPaciente));
-          }*/
+            Result.set(include.MEDConst.$$$MEDPatientName(m$,objPaciente));
+          }
         }
       }
     }
@@ -503,7 +502,7 @@ public class VARMEDPatient extends mClass {
       //<< set strDirectory = "/"_YUCI_"/"_$translate($$GetDiretorioVirtual^VARBRDiretorios(YM,5),"\","/")_"/"
       strDirectory.set(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("/",m$.var("YUCI").get()),"/"),m$.Fnc.$translate(m$.fnc$("VARBRDiretorios.GetDiretorioVirtual",m$.var("YM").get(),5),"\\","/")),"/"));
       //<< set idGender = $$$MEDPatientGender(^MEDPatient(YM,pYKEY,1))
-      //TODO REVISAR idGender.set($$$include.$$$MEDPatientGender(m$,m$.var("^MEDPatient",m$.var("YM").get(),pYKEY.get(),1)));
+      idGender.set(include.MEDConst.$$$MEDPatientGender(m$,m$.var("^MEDPatient",m$.var("YM").get(),pYKEY.get(),1)));
       //<< if (##class(%File).Exists($$GetDiretorioFisico^VARBRDiretorios(YM,5)_"\"_pYKEY_".jpg")){
       if (mOp.Logical((m$.fnc$("$File.Exists",mOp.Concat(mOp.Concat(mOp.Concat(m$.fnc$("VARBRDiretorios.GetDiretorioFisico",m$.var("YM").get(),5),"\\"),pYKEY.get()),".jpg"))))) {
         //<< set strFile = pYKEY_".jpg?id="_$piece($horolog,",",2)

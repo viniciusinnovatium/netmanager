@@ -97,7 +97,10 @@ public class WWWSETL extends mClass {
       //<< if enumAltSaveProc=4 {
       if (mOp.Equal(enumAltSaveProc.get(),4)) {
         //<< set pobjRecord=$$OBJECT(idClass,pstrGlobal)   ;CACHE
-        pobjRecord.set(m$.fnc$("OBJECT",idClass.get(),pstrGlobal.get()));
+    	//// pobjRecord.set(m$.fnc$("OBJECT",idClass.get(),pstrGlobal.get()));
+    	// ORM - NetManager Object
+    	mNMObject NMO = new mNMObject();
+    	pobjRecord.set(NMO.loadRecord(m$,idClass.get().toString(),pstrGlobal.get().toString().replaceAll(".*\\(\\\"(.*)\\\"\\)","$1")));
       }
       //<< 
       //<< } elseif enumAltSaveProc=5 {
@@ -118,7 +121,10 @@ public class WWWSETL extends mClass {
       //<< } else {
       else {
         //<< set pobjRecord=$get(@pstrGlobal)
-        pobjRecord.set(m$.Fnc.$get(m$.indirectVar(pstrGlobal.get())));
+        //// pobjRecord.set(m$.Fnc.$get(m$.indirectVar(pstrGlobal.get())));
+    	// ORM - NetManager Object
+    	mNMObject NMO = new mNMObject();
+    	pobjRecord.set(NMO.loadRecord(m$,idClass.get().toString(),pstrGlobal.get().toString().replaceAll(".*\\(\\\"(.*)\\|\\|1\\\"\\)","$1")));
         //<< if (pobjRecord="") && ($get(YTEST)=1) && $data(@pstrGlobal) {
         if ((mOp.Equal(pobjRecord.get(),"")) && (mOp.Equal(m$.Fnc.$get(YTEST),1)) && mOp.Logical(m$.Fnc.$data(m$.indirectVar(pstrGlobal.get())))) {
           //<< set pobjRecord=Y               ;DATENSATZ VORHANDEN;TYBD;30,04,2003

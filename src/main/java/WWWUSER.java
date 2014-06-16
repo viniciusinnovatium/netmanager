@@ -57,6 +57,8 @@ public class WWWUSER extends mClass {
     //<< do {
     //<< //set idChildUser = pidUser_"-"_$random(1000)
     //<< set idChildUser = pidUser_"x"_$random(1000)     //BR014262
+    // TODO: Revisar - performance
+    //m$.Fnc.$data(m$.var("^WWWUSER",0));
     do {
       idChildUser.set(mOp.Concat(mOp.Concat(pidUser.get(),"x"),m$.Fnc.$random(1000)));
     }

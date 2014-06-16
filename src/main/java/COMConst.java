@@ -168,7 +168,6 @@ public class COMConst extends mClass {
     }
     //<< }
     //<< quit
-    return null;
   }
 
   //<< 
