@@ -961,7 +961,11 @@ public class WWWMENU extends mClass {
     //<< $$$StartFrameSet(1," cols="""_YCOLS_"%,"_(100-YCOLS)_"%""")
     m$.Cmd.Do("WWWSession.StartFrameSet",1,mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(" cols=\"",YCOLS.get()),"%,"),(mOp.Subtract(100,YCOLS.get()))),"%\""));
     //<< write "<FRAME SRC="""_YAKTION_"EP=WWWMENU&amp;YUSER="_YUSER_"&amp;YBED="_YBED_"&amp;YUCI="_$get(YUCI)_"&amp;YM="_YM_"&amp;YXURL="_$get(YXURL)_""" scrolling=yes NAME=""MENUFRAME1"">"  ;16948 (required)
+    
     m$.Cmd.Write(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat(mOp.Concat("<FRAME SRC=\"",m$.var("YAKTION").get()),"EP=WWWMENU&amp;YUSER="),m$.var("YUSER").get()),"&amp;YBED="),m$.var("YBED").get()),"&amp;YUCI="),m$.Fnc.$get(m$.var("YUCI"))),"&amp;YM="),m$.var("YM").get()),"&amp;YXURL="),m$.Fnc.$get(m$.var("YXURL"))),"\" scrolling=yes NAME=\"MENUFRAME1\">"));
+    
+    ///m$.Cmd.Write("<FRAME SRC=\"about:blank\" scrolling=yes NAME=\"MENUFRAME1\">");
+    
     //<< write YCR
     m$.Cmd.Write(m$.var("YCR").get());
     //<< 
@@ -988,6 +992,9 @@ public class WWWMENU extends mClass {
     //<< 
     //<< } else {
     else {
+        ///Adicionado para testar o menu sem carregar o segundo frame
+        /// Fernando em 16/06      
+
       //<< write YCR,"<FRAME SRC="""
       m$.Cmd.Write(m$.var("YCR").get(),"<FRAME SRC=\"");
       //<< set strForm = $$$WWW013StartForm(pobjUser)
@@ -996,8 +1003,11 @@ public class WWWMENU extends mClass {
       if (mOp.Equal(strForm.get(),"")) {
         strForm.set("WWWBLANK");
       }
+      
       //<< write $$FormURL^WWWCGI(strForm,,"&amp;YFORMWAIT=1")     //BR014262
       m$.Cmd.Write(m$.fnc$("WWWCGI.FormURL",strForm.get(),null,"&amp;YFORMWAIT=1"));
+      //m$.Cmd.Write("about:blank");
+      
       //<< write """ scrolling=yes NAME="""_YTARGET_""">"
       m$.Cmd.Write(mOp.Concat(mOp.Concat("\" scrolling=yes NAME=\"",m$.var("YTARGET").get()),"\">"));
     }
