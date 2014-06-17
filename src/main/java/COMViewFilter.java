@@ -5,7 +5,6 @@
 //*****************************************************************************
 
 import mLibrary.*;
-
 //<< 
 //<< #include WWWConst
 import include.WWWConst;
@@ -987,6 +986,13 @@ public class COMViewFilter extends mClass {
             //<< set strRef = strRef_"1)"
             strRef.set(mOp.Concat(strRef.get(),"1)"));
           }
+	      	mNMObject NMO = new mNMObject();
+	      	mVar globalRef = m$.indirectVar(strRef.get());
+	      	String globalRefID = "";
+	      	for (int i=1;i<globalRef.getSubs().length-1;i++) {
+	      		globalRefID = (globalRefID.isEmpty()?"":globalRefID+"||")+mFncUtil.toString(globalRef.getSubs()[i]);
+	      	}
+	      	globalRef.set(NMO.loadRecord(m$,idClass.get().toString(),globalRefID));
           //<< }
           //<< 
           //<< if 'blnObj {
