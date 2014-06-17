@@ -4,26 +4,13 @@
 //** 2014-06-03 20:53:58
 //*****************************************************************************
 
-import mLibrary.*;
-
+import mLibrary.mClass;
+import mLibrary.mContext;
+import mLibrary.mOp;
+import mLibrary.mVar;
 //<< #include COMConst
-import include.COMConst;
-import include.COMSYS;
 //<< #include WWWConst
-import include.WWWConst;
 //<< #include COMSYS
-import include.COMSYS;
-import include.COMSYSDate;
-import include.COMSYSNum;
-import include.COMSYSString;
-import include.COMSYSWWW;
-import include.COMSYSOutput;
-import include.COMSYSEnum;
-import include.COMGridEdit31Interface;
-import include.COMTab;
-import include.COMEditor;
-import include.COMSYSJS;
-import include.$occInclude;
 
 //<< COMUtils
 public class COMUtils extends mClass {

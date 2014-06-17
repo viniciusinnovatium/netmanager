@@ -21,11 +21,19 @@ public class TestePersistenciaServlet extends NetmanagerServlet {
 		mContext m$ = new mContext(response);
 		mNMObject obj = new mNMObject();
 		String record = obj.loadRecord(m$, "MEDPatient", "0||85");
-		m$.Cmd.Write("\n"+record);
-		
-		obj.saveRecord(m$, "MEDPatient", "0||-1", record);
-		record = obj.loadRecord(m$, "MEDPatient", "0||-1");
-		m$.Cmd.Write("\n"+record);
-	}
 
+		String id = "0||9999993";
+		String classname = "MEDPatient";
+		obj.saveRecord(m$, classname, id, record);
+		m$.Cmd.Write("\nRegistro salvo para o ID: " + id);
+
+		record = obj.loadRecord(m$, classname, "0||85");
+		m$.Cmd.Write("\nRegistro carregado: " + record);
+
+		obj.deleteRecord(m$, classname, id);
+		record = obj.loadRecord(m$, classname, id);
+		m$.Cmd.Write("\nRegistro do ID " + id + " foi removido: "
+				+ (record == null || record.isEmpty()));
+
+	}
 }

@@ -47,10 +47,10 @@ public abstract class NetmanagerServlet extends HttpServlet {
 		System.out
 				.println("###################### FIM DE EXECUÇÃO! #############################");
 		System.out
-				.println("Tempo: " + (end.getTime() - init.getTime()));
+				.println("Tempo " + (end.getTime() - init.getTime()) + " (ms)");
 	}
 
 	abstract void doHandleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException;
-	
+
 }

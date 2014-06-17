@@ -166,6 +166,8 @@ public class COMConst extends mClass {
       //<< quit FieldName
       return FieldName.get();
     }
+    //<< }
+    //<< quit
   }
 
   //<< 
