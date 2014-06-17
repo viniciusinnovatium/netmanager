@@ -248,7 +248,7 @@ public class WWWERROR extends mClass {
     if (mOp.NotEqual(m$.Fnc.$get(m$.var("YM")),"")) {
       if (mOp.NotEqual(m$.Fnc.$get(m$.var("Y")),"")) {
         if (mOp.Equal(include.WWWConst.$$$WWW012ErrorTrappingWithVariable(m$,m$.Fnc.$get(m$.var("^WWW012",0,m$.var("YM").get(),1))),include.COMSYS.$$$YES(m$))) {
-          m$.Cmd.Do("$ETN.BACK");
+          //m$.Cmd.Do("$ETN.BACK");
         }
       }
     }
