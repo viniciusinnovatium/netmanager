@@ -97,10 +97,19 @@ public class WWWSETL extends mClass {
       //<< if enumAltSaveProc=4 {
       if (mOp.Equal(enumAltSaveProc.get(),4)) {
         //<< set pobjRecord=$$OBJECT(idClass,pstrGlobal)   ;CACHE
-    	//// pobjRecord.set(m$.fnc$("OBJECT",idClass.get(),pstrGlobal.get()));
-    	// ORM - NetManager Object
-    	mNMObject NMO = new mNMObject();
-    	pobjRecord.set(NMO.loadRecord(m$,idClass.get().toString(),pstrGlobal.get().toString().replaceAll(".*\\(\\\"(.*)\\\"\\)","$1")));
+    	if (idClass.get().toString().substring(0,3).equals("WWW")) {
+        	pobjRecord.set(m$.fnc$("OBJECT",idClass.get(),pstrGlobal.get()));
+    	}
+    	else {
+	    	// ORM - NetManager Object
+	      	mNMObject NMO = new mNMObject();
+	      	mVar globalRef = m$.indirectVar(pstrGlobal.get());
+	      	String globalRefID = "";
+	      	for (int i=1;i<globalRef.getSubs().length;i++) {
+	      		globalRefID = (globalRefID.isEmpty()?"":globalRefID+"||")+mFncUtil.toString(globalRef.getSubs()[i]);
+	      	}
+	      	pobjRecord.set(NMO.loadRecord(m$,idClass.get().toString(),globalRefID));
+    	}
       }
       //<< 
       //<< } elseif enumAltSaveProc=5 {
@@ -121,10 +130,19 @@ public class WWWSETL extends mClass {
       //<< } else {
       else {
         //<< set pobjRecord=$get(@pstrGlobal)
-        //// pobjRecord.set(m$.Fnc.$get(m$.indirectVar(pstrGlobal.get())));
-    	// ORM - NetManager Object
-    	mNMObject NMO = new mNMObject();
-    	pobjRecord.set(NMO.loadRecord(m$,idClass.get().toString(),pstrGlobal.get().toString().replaceAll(".*\\(\\\"(.*)\\|\\|1\\\"\\)","$1")));
+      	if (idClass.get().toString().substring(0,3).equals("WWW")) {
+          pobjRecord.set(m$.Fnc.$get(m$.indirectVar(pstrGlobal.get())));
+      	}
+      	else {
+	    	// ORM - NetManager Object
+	    	mNMObject NMO = new mNMObject();
+	    	mVar globalRef = m$.indirectVar(pstrGlobal.get());
+	    	String globalRefID = "";
+	    	for (int i=1;i<globalRef.getSubs().length-1;i++) {
+	    		globalRefID = (globalRefID.isEmpty()?"":globalRefID+"||")+mFncUtil.toString(globalRef.getSubs()[i]);
+	    	}
+	    	pobjRecord.set(NMO.loadRecord(m$,idClass.get().toString(),globalRefID));
+      	}
         //<< if (pobjRecord="") && ($get(YTEST)=1) && $data(@pstrGlobal) {
         if ((mOp.Equal(pobjRecord.get(),"")) && (mOp.Equal(m$.Fnc.$get(YTEST),1)) && mOp.Logical(m$.Fnc.$data(m$.indirectVar(pstrGlobal.get())))) {
           //<< set pobjRecord=Y               ;DATENSATZ VORHANDEN;TYBD;30,04,2003
