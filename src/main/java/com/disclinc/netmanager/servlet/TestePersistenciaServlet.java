@@ -20,15 +20,18 @@ public class TestePersistenciaServlet extends NetmanagerServlet {
 			HttpServletResponse response) throws IOException, ServletException {
 		mContext m$ = new mContext(response);
 		mNMObject obj = new mNMObject();
-		String record = obj.loadRecord(m$, "MEDPatient", "0||85");
-
-		String id = "0||9999993";
+		
+		String idPatient = "0||85";
+		String record = obj.loadRecord(m$, "MEDPatient", idPatient);
+		m$.Cmd.Write("\nRegistro existente: " + record);
+		
+		String id = "0||9999992";
 		String classname = "MEDPatient";
 		obj.saveRecord(m$, classname, id, record);
 		m$.Cmd.Write("\nRegistro salvo para o ID: " + id);
 
-		record = obj.loadRecord(m$, classname, "0||85");
-		m$.Cmd.Write("\nRegistro carregado: " + record);
+		record = obj.loadRecord(m$, classname, idPatient);
+		m$.Cmd.Write("\nNovo registro carregado: " + record);
 
 		obj.deleteRecord(m$, classname, id);
 		record = obj.loadRecord(m$, classname, id);
