@@ -4,6 +4,7 @@
 //** 2014-06-03 20:55:22
 //*****************************************************************************
 
+import br.com.innovatium.mumps2java.todo.REVIEW;
 import mLibrary.*;
 
 
@@ -23,6 +24,7 @@ public class WWWBITSET extends mClass {
     return _WWWBITSET(YDATEI,YKEY,SET,YFELD,YKILLBI,YBITLIST,NOBACKGROUND,YYM,YXREF);
   }
 
+  @REVIEW(description="execução em background (job) comentado para testes")
   public Object _WWWBITSET(Object ... _p) {
     mVar YDATEI = m$.newVarRef("YDATEI",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
     mVar YKEY = m$.newVarRef("YKEY",(((_p!=null)&&(_p.length>=2))?_p[1]:null));
@@ -104,7 +106,8 @@ public class WWWBITSET extends mClass {
           m$.Cmd.LockInc(m$.var("^WWWBITRUN"),0);
           if (mOp.Logical(m$.Fnc.$test())) {
             m$.Cmd.Unlock(m$.var("^WWWBITRUN"));
-            m$.Cmd.Job("WWWBITRUN.main");
+            /// comentado para testes.
+            //m$.Cmd.Job("WWWBITRUN.main");
             if (mOp.Not(m$.Fnc.$test())) {
               break;
             }
