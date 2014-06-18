@@ -5,7 +5,6 @@
 //*****************************************************************************
 
 import mLibrary.*;
-
 //<< #include WWWConst
 import include.WWWConst;
 import include.COMSYS;
@@ -110,7 +109,20 @@ public class WWWSETS extends mClass {
       //<< if enumAltSaveProc=4 {
       if (mOp.Equal(enumAltSaveProc.get(),4)) {
         //<< set blnError=$$OBJECT(idClass,pstrGlobal,pobjRecord,.pstrStatus)    ;KLASSEN
-        blnError.set(m$.fnc$("OBJECT",idClass.get(),pstrGlobal.get(),pobjRecord.get(),pstrStatus));
+    	if (idClass.get().toString().substring(0,3).equals("WWW")) {
+            blnError.set(m$.fnc$("OBJECT",idClass.get(),pstrGlobal.get(),pobjRecord.get(),pstrStatus));
+    	}
+    	else {
+	    	// ORM - NetManager Object
+	      	mNMObject NMO = new mNMObject();
+	      	mVar globalRef = m$.indirectVar(pstrGlobal.get());
+	      	String globalRefID = "";
+	      	for (int i=1;i<globalRef.getSubs().length;i++) {
+	      		globalRefID = (globalRefID.isEmpty()?"":globalRefID+"||")+mFncUtil.toString(globalRef.getSubs()[i]);
+	      	}
+	      	pstrStatus.set(NMO.saveRecord(m$,idClass.get().toString(),globalRefID,pobjRecord.get().toString()));
+	      	blnError.set(mOp.NotEqual(pstrStatus.get(),""));
+    	}
       }
       //<< } elseif enumAltSaveProc=5 {
       else if (mOp.Equal(enumAltSaveProc.get(),5)) {
@@ -145,10 +157,23 @@ public class WWWSETS extends mClass {
       //<< 
       //<< do Out^WWWDataExchange("Save",pstrGlobal,pobjRecord) //FIS 17-Jan-2008 ;BR014985
       m$.Cmd.Do("WWWDataExchange.Out","Save",pstrGlobal.get(),pobjRecord.get());
-      //<< set @pstrGlobal=$extract(pobjRecord,1,intMaxLen)
-      m$.indirectVar(pstrGlobal.get()).set(m$.Fnc.$extract(pobjRecord.get(),1,intMaxLen.get()));
-      //<< set blnError=$$$NO
-      blnError.set(include.COMSYS.$$$NO(m$));
+      if (idClass.get().toString().substring(0,3).equals("WWW")) {
+	    //<< set @pstrGlobal=$extract(pobjRecord,1,intMaxLen)
+	    m$.indirectVar(pstrGlobal.get()).set(m$.Fnc.$extract(pobjRecord.get(),1,intMaxLen.get()));
+	    //<< set blnError=$$$NO
+	    blnError.set(include.COMSYS.$$$NO(m$));
+	  }
+	  else {
+    	// ORM - NetManager Object
+      	mNMObject NMO = new mNMObject();
+      	mVar globalRef = m$.indirectVar(pstrGlobal.get());
+      	String globalRefID = "";
+      	for (int i=1;i<globalRef.getSubs().length-1;i++) {
+      		globalRefID = (globalRefID.isEmpty()?"":globalRefID+"||")+mFncUtil.toString(globalRef.getSubs()[i]);
+      	}
+      	pstrStatus.set(NMO.saveRecord(m$,idClass.get().toString(),globalRefID,pobjRecord.get().toString()));
+      	blnError.set(mOp.NotEqual(pstrStatus.get(),""));
+	  }
       //<< ;---------------------------------------
       //<< if $data(%KEY) TCOMMIT      // JW FIXME: How about rollback otherwise ???
       if (mOp.Logical(m$.Fnc.$data(m$.var("%KEY")))) {
