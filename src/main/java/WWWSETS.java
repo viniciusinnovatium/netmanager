@@ -121,7 +121,8 @@ public class WWWSETS extends mClass {
 	      		globalRefID = (globalRefID.isEmpty()?"":globalRefID+"||")+mFncUtil.toString(globalRef.getSubs()[i]);
 	      	}
 	      	pstrStatus.set(NMO.saveRecord(m$,idClass.get().toString(),globalRefID,pobjRecord.get().toString()));
-	      	blnError.set(mOp.NotEqual(pstrStatus.get(),""));
+	      	//blnError.set(mOp.NotEqual(pstrStatus.get(),""));
+	      	blnError.set(m$.fnc$("OBJECT",idClass.get(),pstrGlobal.get(),pobjRecord.get(),pstrStatus));
     	}
       }
       //<< } elseif enumAltSaveProc=5 {
@@ -172,7 +173,7 @@ public class WWWSETS extends mClass {
       		globalRefID = (globalRefID.isEmpty()?"":globalRefID+"||")+mFncUtil.toString(globalRef.getSubs()[i]);
       	}
       	pstrStatus.set(NMO.saveRecord(m$,idClass.get().toString(),globalRefID,pobjRecord.get().toString()));
-      	blnError.set(mOp.NotEqual(pstrStatus.get(),""));
+      	blnError.set(include.COMSYS.$$$NO(m$));
 	  }
       //<< ;---------------------------------------
       //<< if $data(%KEY) TCOMMIT      // JW FIXME: How about rollback otherwise ???
