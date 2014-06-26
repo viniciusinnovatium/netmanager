@@ -1,7 +1,7 @@
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC WWWFORMX
-//** Innovatium Systems - Code Converter - v1.29
-//** 2014-06-03 20:55:07
+//** Innovatium Systems - Code Converter - v1.30
+//** 2014-06-25 20:25:48
 //*****************************************************************************
 
 import mLibrary.*;
@@ -67,10 +67,12 @@ public class WWWFORMX extends mClass {
     //<< 
     //<< if $$$WWW120InheritCompanyProperties(YVOR) {
     if (mOp.Logical(include.WWWConst.$$$WWW120InheritCompanyProperties(m$,YVOR))) {
-      //<< for YI=3:1:10,63,64,70,77,91 set $piece(YVOR,Y,YI) = $piece(YVOR1,Y,YI)   ;VORGABEN AUS MANDANT IN FORMULAR ;out of Company within form
+      //<< //for YI=3:1:10,63,64,70,77,91 set $piece(YVOR,Y,YI) = $piece(YVOR1,Y,YI)   ;VORGABEN AUS MANDANT IN FORMULAR ;out of Company within form
+      //<< for YI=3,4,5,6,7,8,9,10,63,64,70,77,91 set $piece(YVOR,Y,YI) = $piece(YVOR1,Y,YI)   ;VORGABEN AUS MANDANT IN FORMULAR ;out of Company within form
       mVar YI = m$.var("YI");
-      for (YI.set(3);(mOp.LessOrEqual(YI.get(),10));YI.set(mOp.Add(YI.get(),1))) {
-        m$.pieceVar(YVOR,m$.var("Y").get(),YI.get()).set(m$.Fnc.$piece(YVOR1.get(),m$.var("Y").get(),YI.get()));
+      for (Object _YI: new Object[] {3,4,5,6,7,8,9,10,63,64,70,77,91}) {
+        YI.set(_YI);
+        m$.pieceVar(YVOR,m$.var("Y").get(),_YI).set(m$.Fnc.$piece(YVOR1.get(),m$.var("Y").get(),_YI));
       }
       //<< 
       //<< set YI = 66    ; $$$WWW012DisplayButtonOnBottomLine     $$$WWW120PositioningOfButtonLine
@@ -104,10 +106,12 @@ public class WWWFORMX extends mClass {
     //<< 
     //<< } else {
     else {
-      //<< for YI=3:1:10,63,64,77,91 set $piece(YVOR1,Y,YI) = $piece(YVOR,Y,YI)   ;VORGABEN
+      //<< //for YI=3:1:10,63,64,77,91 set $piece(YVOR1,Y,YI) = $piece(YVOR,Y,YI)   ;VORGABEN
+      //<< for YI=3,4,5,6,7,8,9,10,63,64,77,91 set $piece(YVOR1,Y,YI) = $piece(YVOR,Y,YI)   ;VORGABEN
       mVar YI = m$.var("YI");
-      for (YI.set(3);(mOp.LessOrEqual(YI.get(),10));YI.set(mOp.Add(YI.get(),1))) {
-        m$.pieceVar(YVOR1,m$.var("Y").get(),YI.get()).set(m$.Fnc.$piece(YVOR.get(),m$.var("Y").get(),YI.get()));
+      for (Object _YI: new Object[] {3,4,5,6,7,8,9,10,63,64,77,91}) {
+        YI.set(_YI);
+        m$.pieceVar(YVOR1,m$.var("Y").get(),_YI).set(m$.Fnc.$piece(YVOR.get(),m$.var("Y").get(),_YI));
       }
     }
     //<< }
