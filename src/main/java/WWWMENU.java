@@ -1005,8 +1005,8 @@ public class WWWMENU extends mClass {
       }
       
       //<< write $$FormURL^WWWCGI(strForm,,"&amp;YFORMWAIT=1")     //BR014262
-      ///m$.Cmd.Write(m$.fnc$("WWWCGI.FormURL",strForm.get(),null,"&amp;YFORMWAIT=1"));
-      m$.Cmd.Write("about:blank");
+      m$.Cmd.Write(m$.fnc$("WWWCGI.FormURL",strForm.get(),null,"&amp;YFORMWAIT=0"));
+      ///m$.Cmd.Write("about:blank");
       
       //<< write """ scrolling=yes NAME="""_YTARGET_""">"
       m$.Cmd.Write(mOp.Concat(mOp.Concat("\" scrolling=yes NAME=\"",m$.var("YTARGET").get()),"\">"));
