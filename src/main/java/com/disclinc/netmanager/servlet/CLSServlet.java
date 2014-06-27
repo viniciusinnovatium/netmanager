@@ -25,6 +25,17 @@ public class CLSServlet extends NetmanagerServlet {
 	@Override
 	void doHandleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
+		
+		if (request.getParameter("YFORMWAIT") != null) {
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e1) {
+				throw new ServletException(
+						"Fail to lock form construction until menu construction finish",
+						e1);
+			}
+		}
+		
 		mContext m$ = new mContext(response);
 		
 		m$.setRequest(new mRequest(request));
