@@ -295,8 +295,10 @@ public class WWWFieldValidation extends mClass {
                 //<< }
                 //<< 
                 //<< if '$data(@strGlobal) set blnValid = $$$NO
-                if (mOp.Not(m$.Fnc.$data(m$.indirectVar(strGlobal.get())))) {
-                  blnValid.set(include.COMSYS.$$$NO(m$));
+                if(!idRelation.get().equals("MEDPatient")){//TODO REVISAR CONDIÇÃO PARA NÃO PRECISAR VALIDAR O ID DO PACIENTE NA TABELA RELACIONAL                	
+	                if (mOp.Not(m$.Fnc.$data(m$.indirectVar(strGlobal.get())))) {
+	                  blnValid.set(include.COMSYS.$$$NO(m$));
+	                }
                 }
                 //<< 
                 //<< if blnValid {
