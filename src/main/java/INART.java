@@ -1800,7 +1800,10 @@ public class INART extends mClass {
     }
     //<< 
     //<< set objResultSet = ##class(%ResultSet).%New()  ;Create Result Set Object
-    objResultSet.set(m$.fnc$("$ResultSet.$New"));
+    if (!mOp.Equal(pidItem.get(),"")) {//TODO REVISAR REMOVER ESSE IF
+    //TODO REVISAR VERIFICAR SE É A MESMA CLASSA DE $LIBRARY objResultSet.set(m$.fnc$("$ResultSet.$New"));    
+    return blnIsInUse.get();
+  }
     //<< 
     //<< set mySQL = "SELECT %ID FROM alSOH.dStockBalance "_
     //<< "WHERE Item = '"_pidItem_"' "_
