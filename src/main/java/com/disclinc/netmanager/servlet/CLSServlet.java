@@ -25,7 +25,6 @@ public class CLSServlet extends NetmanagerServlet {
 	@Override
 	void doHandleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
-		
 		if (request.getParameter("YFORMWAIT") != null) {
 			try {
 				Thread.sleep(2000);

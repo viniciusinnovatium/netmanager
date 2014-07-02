@@ -24,6 +24,12 @@
 		<description></description>
 		<servlet-class>com.disclinc.netmanager.servlet.TestePersistenciaServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>TestePesquisaPacienteServlet</servlet-name>
+		<display-name>TestePesquisaPacienteServlet</display-name>
+		<description></description>
+		<servlet-class>com.disclinc.netmanager.servlet.TestePesquisaPacienteServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>CLSServlet</servlet-name>
@@ -41,5 +47,9 @@
 	<servlet-mapping>
 		<servlet-name>TestePersistenciaServlet</servlet-name>
 		<url-pattern>/testepersistencia</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TestePesquisaPacienteServlet</servlet-name>
+		<url-pattern>/pesquisarpaciente</url-pattern>
 	</servlet-mapping>
 </web-app>

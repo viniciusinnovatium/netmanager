@@ -31,13 +31,23 @@
 			<artifactId>mumps2java-api</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.core</artifactId>
+			<version>2.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.jpa</artifactId>
+			<version>2.5.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>netmanager</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>3.1</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
