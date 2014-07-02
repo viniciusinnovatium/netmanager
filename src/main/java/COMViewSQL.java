@@ -1463,6 +1463,11 @@ public class COMViewSQL extends mClass {
   public Object ConvertField(Object ... _p) {
     mVar pidClass = m$.newVarRef("pidClass",(((_p!=null)&&(_p.length>=1))?_p[0]:null));
     mVar pstrField = m$.newVarRef("pstrField",(((_p!=null)&&(_p.length>=2))?_p[1]:null));
+    if((((_p!=null)&&(_p.length>=2))?_p[1]:null) instanceof mVar){
+    	//m$.var("pstrField");
+    	//m$.newVar(pstrField);
+    	//m$.merge(pstrField, ((mVar)(_p[1])));//
+    }
     mVar pstrValue = m$.newVarRef("pstrValue",(((_p!=null)&&(_p.length>=3))?_p[2]:null),"");
     mVar pstrComp = m$.newVarRef("pstrComp",(((_p!=null)&&(_p.length>=4))?_p[3]:null),"");
     mVar penumInputType = m$.newVarRef("penumInputType",(((_p!=null)&&(_p.length>=5))?_p[4]:null),"");
@@ -1523,7 +1528,7 @@ public class COMViewSQL extends mClass {
     mVar objProperty = m$.var("objProperty");
     m$.newVar(blnObj,idIndexKey,idInputAs,loop,objField,objProperty);
     //<< new strField,strKeyCode,strPackage,strPlus,strUCValue,strValue
-    mVar strField = m$.var("strField");
+    mVar strField = m$.var("strField2");
     mVar strKeyCode = m$.var("strKeyCode");
     mVar strPackage = m$.var("strPackage");
     mVar strPlus = m$.var("strPlus");
