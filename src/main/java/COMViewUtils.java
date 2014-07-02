@@ -506,7 +506,7 @@ public class COMViewUtils extends mClass {
     mVar objForm = m$.var("objForm");
     mVar idField = m$.var("idField");
     mVar KeyCode = m$.var("KeyCode");
-    mVar idClass = m$.var("idClass");
+    mVar idClass = m$.var("idClass2");
     mVar idNextFields = m$.var("idNextFields");
     mVar strPiece2 = m$.var("strPiece2");
     mVar strPiece3 = m$.var("strPiece3");
