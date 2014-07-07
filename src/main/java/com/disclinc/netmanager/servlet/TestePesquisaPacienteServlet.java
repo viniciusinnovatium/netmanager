@@ -1,7 +1,6 @@
 package com.disclinc.netmanager.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -52,9 +51,8 @@ public class TestePesquisaPacienteServlet extends HttpServlet {
 			} else {
 				response.getWriter().write("Nao existe paciente");
 			}
-
-			List<Medpatient> l = dao.total(request.getParameter("id"));
-			response.getWriter().write("\nTotal de pacientes eh: " + l.size());
+			//dao.testarPesquisa(request.getParameter("id"));
+			dao.testarInclusaoMedpatientEstatico();
 
 		} catch (ServiceLocatorException e) {
 			throw new ServletException(e);
