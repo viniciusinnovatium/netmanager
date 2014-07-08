@@ -1,3 +1,4 @@
+package include;
 //*****************************************************************************
 //** TASC - ALPHALINC - MAC VARAlertaLocalBIZ
 //** Innovatium Systems - Code Converter - v1.30
@@ -24,7 +25,6 @@ import include.VARConst;
 //<< #include INConst
 import include.INConst;
 //<< #include VARSESConst
-import VARSESConst;
 
 public class VARAlertaLocalBIZ extends mClass {
 

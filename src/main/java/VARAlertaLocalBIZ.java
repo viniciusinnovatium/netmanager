@@ -24,7 +24,6 @@ import include.VARConst;
 //<< #include INConst
 import include.INConst;
 //<< #include VARSESConst
-import VARSESConst;
 
 public class VARAlertaLocalBIZ extends mClass {
 
