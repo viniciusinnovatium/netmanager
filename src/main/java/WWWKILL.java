@@ -518,7 +518,8 @@ public class WWWKILL extends mClass {
             }
             //<< //Either deletes the object or exports its parent
             //<< do ##class(SourceControl.Exporter).DeleteArtifactByNameKey(YDATEI,YKEY)
-            m$.Cmd.Do("SourceControl.Exporter.DeleteArtifactByNameKey",YDATEI.get(),YKEY.get());
+            //m$.Cmd.Do("SourceControl.Exporter.DeleteArtifactByNameKey",YDATEI.get(),YKEY.get());
+            //TODO: SourceControl
           }
         }
         //<< }
