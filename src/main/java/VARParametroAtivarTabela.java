@@ -197,7 +197,6 @@ public class VARParametroAtivarTabela extends mClass {
     //<< }
     //<< 
     //<< quit
-    return null;
   }
 
   //<< 
@@ -320,7 +319,6 @@ public class VARParametroAtivarTabela extends mClass {
       break;
       //<< 
       //<< &sql(FETCH UnitofMeasure)
-      m$.Cmd.SQL();
     }
     //<< }
     //<< &sql(CLOSE UnitofMeasure)
@@ -352,7 +350,6 @@ public class VARParametroAtivarTabela extends mClass {
         break;
         //<< 
         //<< &sql(FETCH BaseUnit)
-        m$.Cmd.SQL();
       }
       //<< }
       //<< &sql(CLOSE BaseUnit)
@@ -387,7 +384,6 @@ public class VARParametroAtivarTabela extends mClass {
         break;
         //<< 
         //<< &sql(FETCH OuterUnit)
-        m$.Cmd.SQL();
       }
       //<< }
       //<< &sql(CLOSE OuterUnit)

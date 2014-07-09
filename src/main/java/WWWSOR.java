@@ -5,7 +5,6 @@
 //*****************************************************************************
 
 import mLibrary.*;
-
 //<< #include COMSYS
 import include.COMSYS;
 import include.COMSYSDate;
@@ -1007,6 +1006,9 @@ public class WWWSOR extends mClass {
     mVar YQ = m$.var("YQ");
     mVar strKey = m$.var("strKey");
     m$.newVar(YQ,strKey);
+    //
+    String className;
+    String keyValue;
     //<< 
     //<< FOR  DO  QUIT:YA=""  QUIT:YQ=1
     for (;true;) {
@@ -1018,8 +1020,24 @@ public class WWWSOR extends mClass {
         YA.var(9).set(mOp.Add(m$.var("YA").var(9).get(),1));
         //<< . SET YA(2)=" "
         YA.var(2).set(" ");
-        //<< . SET YA=$QUERY(@YA,YSRI)
-        YA.set(m$.Fnc.$query(m$.indirectVar(YA.get()),m$.var("YSRI").get()));
+        //
+        className = m$.Fnc.$piece(YA.get(),"(",1).substring(1);
+        if (className.substring(0,3).equals("WWW")) {
+            //<< . SET YA=$QUERY(@YA,YSRI)
+            YA.set(m$.Fnc.$query(m$.indirectVar(YA.get()),m$.var("YSRI").get()));
+        }
+        else {
+            keyValue = mFncUtil.toString(m$.Fnc.$piece(YA.get(),"(",2,999));
+        	keyValue = keyValue.substring(0,keyValue.length()-1);
+	      	mNMObject NMO = new mNMObject();
+	      	keyValue = NMO.searchPK(m$,className,keyValue,mFncUtil.integerConverter(m$.var("YSRI").get()));
+	      	if (!keyValue.isEmpty()) {
+	      		YA.set("^"+className+"("+keyValue+")");
+	      	}
+	      	else {
+	      		YA.set("");
+	      	}
+        }
         //<< . IF YA="" QUIT
         if (mOp.Equal(YA.get(),"")) {
           break;
