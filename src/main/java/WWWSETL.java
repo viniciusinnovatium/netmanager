@@ -97,7 +97,7 @@ public class WWWSETL extends mClass {
       //<< if enumAltSaveProc=4 {
       if (mOp.Equal(enumAltSaveProc.get(),4)) {
         //<< set pobjRecord=$$OBJECT(idClass,pstrGlobal)   ;CACHE
-    	if (idClass.get().toString().substring(0,3).equals("WWW") || idClass.get().toString().substring(0,3).equals("VAR")) {
+    	if (idClass.get().toString().substring(0,3).equals("WWW") || idClass.get().toString().equals("VARPARA") || idClass.get().toString().equals("INPARA")) {
         	pobjRecord.set(m$.fnc$("OBJECT",idClass.get(),pstrGlobal.get()));
     	}
     	else {
@@ -130,7 +130,7 @@ public class WWWSETL extends mClass {
       //<< } else {
       else {
         //<< set pobjRecord=$get(@pstrGlobal)
-      	if (idClass.get().toString().substring(0,3).equals("WWW") || idClass.get().toString().substring(0,3).equals("VAR")) {
+      	if (idClass.get().toString().substring(0,3).equals("WWW") || idClass.get().toString().equals("VARPARA") || idClass.get().toString().equals("INPARA")) {
           pobjRecord.set(m$.Fnc.$get(m$.indirectVar(pstrGlobal.get())));
       	}
       	else {
